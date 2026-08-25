@@ -10,10 +10,10 @@ def test_bell_state_simulation():
         numQubits=2,
         numClbits=2,
         operations=[
-            QuantumOperation(gate="h", targets=[0], moment=0),
-            QuantumOperation(gate="cx", controls=[0], targets=[1], moment=1),
-            QuantumOperation(gate="measure", targets=[0], clbits=[0], moment=2),
-            QuantumOperation(gate="measure", targets=[1], clbits=[1], moment=2),
+            QuantumOperation(id="op-1", gate="h", targets=[0], moment=0),
+            QuantumOperation(id="op-2", gate="cx", controls=[0], targets=[1], moment=1),
+            QuantumOperation(id="op-3", gate="measure", targets=[0], clbits=[0], moment=2),
+            QuantumOperation(id="op-4", gate="measure", targets=[1], clbits=[1], moment=2),
         ]
     )
 
@@ -40,7 +40,7 @@ def test_invalid_qubit_target():
     circuit = QuantumIR(
         numQubits=2,
         operations=[
-            QuantumOperation(gate="h", targets=[3])
+            QuantumOperation(id="op-1", gate="h", targets=[3])
         ]
     )
 
