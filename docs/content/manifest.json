@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "2.0.0",
+  "contentVersion": "2.0.0",
+  "generatedFrom": "content.json",
+  "generatedOn": "2026-09-07",
+  "domains": [
+    {
+      "id": 0,
+      "slug": "what-is-quantum-computing",
+      "title": "What is Quantum Computing?",
+      "path": "domains/00-what-is-quantum-computing.json",
+      "sectionCount": 14
+    },
+    {
+      "id": 1,
+      "slug": "historical-timeline-and-key-figures",
+      "title": "Historical Timeline and Key Figures",
+      "path": "domains/01-historical-timeline-and-key-figures.json",
+      "sectionCount": 11
+    },
+    {
+      "id": 2,
+      "slug": "quantum-phenomena",
+      "title": "Quantum Phenomena",
+      "path": "domains/02-quantum-phenomena.json",
+      "sectionCount": 14
+    },
+    {
+      "id": 3,
+      "slug": "mathematical-foundations",
+      "title": "Mathematical Foundations",
+      "path": "domains/03-mathematical-foundations.json",
+      "sectionCount": 17
+    },
+    {
+      "id": 4,
+      "slug": "quantum-mechanics-formalism",
+      "title": "Quantum Mechanics Formalism",
+      "path": "domains/04-quantum-mechanics-formalism.json",
+      "sectionCount": 15
+    },
+    {
+      "id": 5,
+      "slug": "the-qubit",
+      "title": "The Qubit",
+      "path": "domains/05-the-qubit.json",
+      "sectionCount": 11
+    },
+    {
+      "id": 6,
+      "slug": "single-qubit-gates",
+      "title": "Single-Qubit Gates",
+      "path": "domains/06-single-qubit-gates.json",
+      "sectionCount": 4
+    },
+    {
+      "id": 7,
+      "slug": "multiple-qubits",
+      "title": "Multiple Qubits",
+      "path": "domains/07-multiple-qubits.json",
+      "sectionCount": 9
+    },
+    {
+      "id": 8,
+      "slug": "entanglement",
+      "title": "Entanglement",
+      "path": "domains/08-entanglement.json",
+      "sectionCount": 12
+    },
+    {
+      "id": 9,
+      "slug": "quantum-measurement",
+      "title": "Quantum Measurement",
+      "path": "domains/09-quantum-measurement.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 10,
+      "slug": "quantum-algorithms",
+      "title": "Quantum Algorithms",
+      "path": "domains/10-quantum-algorithms.json",
+      "sectionCount": 16
+    },
+    {
+      "id": 11,
+      "slug": "quantum-cryptography",
+      "title": "Quantum Cryptography",
+      "path": "domains/11-quantum-cryptography.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 12,
+      "slug": "quantum-error-correction",
+      "title": "Quantum Error Correction",
+      "path": "domains/12-quantum-error-correction.json",
+      "sectionCount": 4
+    },
+    {
+      "id": 13,
+      "slug": "quantum-hardware",
+      "title": "Quantum Hardware",
+      "path": "domains/13-quantum-hardware.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 14,
+      "slug": "noise-and-errors",
+      "title": "Noise and Errors",
+      "path": "domains/14-noise-and-errors.json",
+      "sectionCount": 4
+    },
+    {
+      "id": 15,
+      "slug": "compilation-transpilation",
+      "title": "Compilation & Transpilation",
+      "path": "domains/15-compilation-transpilation.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 16,
+      "slug": "variational-quantum-algorithms",
+      "title": "Variational Quantum Algorithms",
+      "path": "domains/16-variational-quantum-algorithms.json",
+      "sectionCount": 9
+    },
+    {
+      "id": 17,
+      "slug": "quantum-machine-learning",
+      "title": "Quantum Machine Learning",
+      "path": "domains/17-quantum-machine-learning.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 18,
+      "slug": "quantum-chemistry",
+      "title": "Quantum Chemistry",
+      "path": "domains/18-quantum-chemistry.json",
+      "sectionCount": 8
+    },
+    {
+      "id": 19,
+      "slug": "quantum-optimization",
+      "title": "Quantum Optimization",
+      "path": "domains/19-quantum-optimization.json",
+      "sectionCount": 9
+    },
+    {
+      "id": 20,
+      "slug": "quantum-information-theory",
+      "title": "Quantum Information Theory",
+      "path": "domains/20-quantum-information-theory.json",
+      "sectionCount": 6
+    },
+    {
+      "id": 21,
+      "slug": "quantum-thermodynamics",
+      "title": "Quantum Thermodynamics",
+      "path": "domains/21-quantum-thermodynamics.json",
+      "sectionCount": 7
+    },
+    {
+      "id": 22,
+      "slug": "foundations-interpretations",
+      "title": "Foundations & Interpretations",
+      "path": "domains/22-foundations-interpretations.json",
+      "sectionCount": 11
+    },
+    {
+      "id": 23,
+      "slug": "quantum-paradoxes",
+      "title": "Quantum Paradoxes",
+      "path": "domains/23-quantum-paradoxes.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 24,
+      "slug": "quantum-communication",
+      "title": "Quantum Communication",
+      "path": "domains/24-quantum-communication.json",
+      "sectionCount": 8
+    },
+    {
+      "id": 25,
+      "slug": "quantum-networks",
+      "title": "Quantum Networks",
+      "path": "domains/25-quantum-networks.json",
+      "sectionCount": 6
+    },
+    {
+      "id": 26,
+      "slug": "quantum-sensing",
+      "title": "Quantum Sensing",
+      "path": "domains/26-quantum-sensing.json",
+      "sectionCount": 9
+    },
+    {
+      "id": 27,
+      "slug": "quantum-simulation",
+      "title": "Quantum Simulation",
+      "path": "domains/27-quantum-simulation.json",
+      "sectionCount": 8
+    },
+    {
+      "id": 28,
+      "slug": "quantum-complexity-theory",
+      "title": "Quantum Complexity Theory",
+      "path": "domains/28-quantum-complexity-theory.json",
+      "sectionCount": 10
+    },
+    {
+      "id": 29,
+      "slug": "alternative-quantum-computing-models",
+      "title": "Alternative Quantum Computing Models",
+      "path": "domains/29-alternative-quantum-computing-models.json",
+      "sectionCount": 7
+    },
+    {
+      "id": 30,
+      "slug": "quantum-programming",
+      "title": "Quantum Programming",
+      "path": "domains/30-quantum-programming.json",
+      "sectionCount": 4
+    },
+    {
+      "id": 31,
+      "slug": "quantum-software-engineering",
+      "title": "Quantum Software Engineering",
+      "path": "domains/31-quantum-software-engineering.json",
+      "sectionCount": 9
+    },
+    {
+      "id": 32,
+      "slug": "quantum-experiments",
+      "title": "Quantum Experiments",
+      "path": "domains/32-quantum-experiments.json",
+      "sectionCount": 8
+    },
+    {
+      "id": 33,
+      "slug": "quantum-myths",
+      "title": "Quantum Myths",
+      "path": "domains/33-quantum-myths.json",
+      "sectionCount": 6
+    },
+    {
+      "id": 34,
+      "slug": "ask-a-physicist",
+      "title": "Ask a Physicist",
+      "path": "domains/34-ask-a-physicist.json",
+      "sectionCount": 4
+    },
+    {
+      "id": 35,
+      "slug": "famous-thought-experiments",
+      "title": "Famous Thought Experiments",
+      "path": "domains/35-famous-thought-experiments.json",
+      "sectionCount": 10
+    }
+  ]
+}

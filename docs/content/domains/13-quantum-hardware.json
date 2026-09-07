@@ -1,0 +1,1060 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 13,
+  "slug": "quantum-hardware",
+  "title": "Quantum Hardware",
+  "summary": "Curriculum domain 13: Quantum Hardware.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "13-13-1-technologies",
+      "title": "13.1 Technologies",
+      "parentId": null,
+      "content": {
+        "statement": "Various physical platforms realize qubits, each with distinct advantages and challenges.",
+        "explanation": "Superconducting circuits, trapped ions, neutral atoms, photonics, spin qubits, NV centers, topological approaches, and quantum annealers are actively developed.",
+        "example": "IBM and Google use superconducting transmons; IonQ uses trapped ions.",
+        "keyTakeaways": [
+          "Various physical platforms realize qubits, each with distinct advantages and challenges.",
+          "Know what problem or physical phenomenon 13.1 Technologies addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Various physical platforms realize qubits, each with distinct advantages and challenges."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Superconducting circuits, trapped ions, neutral atoms, photonics, spin qubits, NV centers, topological approaches, and quantum annealers are actively developed."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-13-1-technologies",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-13-1-technologies",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-13-1-technologies",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-13-1-technologies'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.31415927, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.31415927, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "13.1 Technologies",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-superconducting-qubits",
+      "title": "Superconducting Qubits",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Josephson junctions create anharmonic oscillators; types include Transmon, Fluxonium, Xmon.",
+        "explanation": "Properties: frequency 4–8 GHz, T₁~100 µs, T₂~100 µs, gate time 10–100 ns, temperature ~10 mK. Advantages: fast gates, scalable fabrication. Challenges: decoherence, crosstalk, cryogenics.",
+        "example": "IBM's heavy-hex architecture uses transmons.",
+        "keyTakeaways": [
+          "Josephson junctions create anharmonic oscillators; types include Transmon, Fluxonium, Xmon.",
+          "Know what problem or physical phenomenon Superconducting Qubits addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-38af70a1",
+          "latex": "|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle",
+          "description": "Core relation for Superconducting Qubits."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Josephson junctions create anharmonic oscillators; types include Transmon, Fluxonium, Xmon."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Properties: frequency 4–8 GHz, T₁~100 µs, T₂~100 µs, gate time 10–100 ns, temperature ~10 mK. Advantages: fast gates, scalable fabrication. Challenges: decoherence, crosstalk, cryogenics."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-superconducting-qubits",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-superconducting-qubits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-superconducting-qubits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-superconducting-qubits'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.69493569, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.69493569, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Superconducting Qubits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "13-trapped-ions",
+      "title": "Trapped Ions",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Ions trapped in electromagnetic fields; qubits are internal electronic states.",
+        "explanation": "Properties: T₂ > 1 s, gate time 10–100 µs, room temperature (laser-cooled). Advantages: long coherence, high fidelity (>99.9%), all-to-all connectivity. Challenges: slow gates, scaling complexity, laser stability.",
+        "example": "Quantinuum and IonQ systems.",
+        "keyTakeaways": [
+          "Ions trapped in electromagnetic fields; qubits are internal electronic states.",
+          "Know what problem or physical phenomenon Trapped Ions addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Ions trapped in electromagnetic fields; qubits are internal electronic states."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Properties: T₂ > 1 s, gate time 10–100 µs, room temperature (laser-cooled). Advantages: long coherence, high fidelity (>99.9%), all-to-all connectivity. Challenges: slow gates, scaling complexity, laser stability."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-trapped-ions",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-trapped-ions",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-trapped-ions",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-trapped-ions'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.76794487, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.76794487, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Trapped Ions",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-neutral-atoms",
+      "title": "Neutral Atoms",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Atoms trapped in optical tweezers; qubits are hyperfine states.",
+        "explanation": "Properties: coherence ~1 s, gate time ~1 µs, temperature µK. Advantages: scalable (1000+ qubits), long coherence, reconfigurable geometry. Challenges: gate fidelity, loading efficiency, Rydberg interactions.",
+        "example": "QuEra and Pasqal systems.",
+        "keyTakeaways": [
+          "Atoms trapped in optical tweezers; qubits are hyperfine states.",
+          "Know what problem or physical phenomenon Neutral Atoms addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Atoms trapped in optical tweezers; qubits are hyperfine states."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Properties: coherence ~1 s, gate time ~1 µs, temperature µK. Advantages: scalable (1000+ qubits), long coherence, reconfigurable geometry. Challenges: gate fidelity, loading efficiency, Rydberg interactions."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-neutral-atoms",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-neutral-atoms",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-neutral-atoms",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-neutral-atoms'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.15191731, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.15191731, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Neutral Atoms",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-photonic-quantum-computing",
+      "title": "Photonic Quantum Computing",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Photons as qubits, encoded in polarization, time-bin, or path.",
+        "explanation": "Room temperature, no decoherence in flight, fast operations. Advantages: natural for communication, low noise. Challenges: two-qubit gates difficult, photon loss, probabilistic operations.",
+        "example": "Xanadu and PsiQuantum.",
+        "keyTakeaways": [
+          "Photons as qubits, encoded in polarization, time-bin, or path.",
+          "Know what problem or physical phenomenon Photonic Quantum Computing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Photons as qubits, encoded in polarization, time-bin, or path."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Room temperature, no decoherence in flight, fast operations. Advantages: natural for communication, low noise. Challenges: two-qubit gates difficult, photon loss, probabilistic operations."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-photonic-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-photonic-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-photonic-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-photonic-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.16617459, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.16617459, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Photonic Quantum Computing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-spin-qubits",
+      "title": "Spin Qubits",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Electron spins in quantum dots.",
+        "explanation": "Properties: T₂~100 µs, gate time ~100 ns, temperature ~100 mK. Advantages: small size, CMOS compatible, long coherence. Challenges: fabrication variability, control complexity, readout fidelity.",
+        "example": "Intel and Silicon Quantum Computing.",
+        "keyTakeaways": [
+          "Electron spins in quantum dots.",
+          "Know what problem or physical phenomenon Spin Qubits addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-38af70a1",
+          "latex": "|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle",
+          "description": "Core relation for Spin Qubits."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Electron spins in quantum dots."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Properties: T₂~100 µs, gate time ~100 ns, temperature ~100 mK. Advantages: small size, CMOS compatible, long coherence. Challenges: fabrication variability, control complexity, readout fidelity."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-spin-qubits",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-spin-qubits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-spin-qubits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-spin-qubits'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.2, 0)\ncircuit.rz(0.8, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'statevector': [complex(a).__repr__() for a in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Spin Qubits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-nv-centers",
+      "title": "NV Centers",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Nitrogen-vacancy defects in diamond.",
+        "explanation": "Room temperature operation, long coherence (ms), optical interface. Applications: quantum sensing, networking, small-scale computing.",
+        "example": "Used for magnetometry.",
+        "keyTakeaways": [
+          "Nitrogen-vacancy defects in diamond.",
+          "Know what problem or physical phenomenon NV Centers addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Nitrogen-vacancy defects in diamond."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Room temperature operation, long coherence (ms), optical interface. Applications: quantum sensing, networking, small-scale computing."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-nv-centers",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-nv-centers",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-nv-centers",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-nv-centers'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.05948852, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.05948852, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "NV Centers",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-topological-approaches",
+      "title": "Topological Approaches",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Non-abelian anyons for topological protection.",
+        "explanation": "Intrinsic error protection. Status: theoretical/experimental. Challenges: material requirements, experimental demonstration.",
+        "example": "Microsoft's approach.",
+        "keyTakeaways": [
+          "Non-abelian anyons for topological protection.",
+          "Know what problem or physical phenomenon Topological Approaches addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Non-abelian anyons for topological protection."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Intrinsic error protection. Status: theoretical/experimental. Challenges: material requirements, experimental demonstration."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-topological-approaches",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-topological-approaches",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-topological-approaches",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-topological-approaches'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.45058959, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.45058959, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Topological Approaches",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-quantum-annealers",
+      "title": "Quantum Annealers",
+      "parentId": "13-13-1-technologies",
+      "content": {
+        "statement": "Adiabatic quantum optimization, implemented by D-Wave.",
+        "explanation": "Qubits: superconducting flux qubits. Applications: optimization, sampling. Limitations: not universal, limited connectivity, open question on quantum advantage.",
+        "example": "D-Wave Advantage.",
+        "keyTakeaways": [
+          "Adiabatic quantum optimization, implemented by D-Wave.",
+          "Know what problem or physical phenomenon Quantum Annealers addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Adiabatic quantum optimization, implemented by D-Wave."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Qubits: superconducting flux qubits. Applications: optimization, sampling. Limitations: not universal, limited connectivity, open question on quantum advantage."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-quantum-annealers",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-quantum-annealers",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-quantum-annealers",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-quantum-annealers'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.45378561, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.45378561, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Quantum Annealers",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "13-13-2-hardware-concepts",
+      "title": "13.2 Hardware Concepts",
+      "parentId": null,
+      "content": {
+        "statement": "Key metrics: coherence time, gate fidelity, readout error, connectivity, crosstalk, calibration, cryogenics.",
+        "explanation": "T₁ (relaxation) and T₂ (dephasing) limit circuit depth. Gate fidelity measures closeness to ideal. Readout error is probability of incorrect measurement. Connectivity dictates SWAP overhead. Crosstalk is unwanted interactions. Calibration tunes parameters.",
+        "example": "T₂ = 100 µs limits circuits to <1000 gates.",
+        "keyTakeaways": [
+          "Key metrics: coherence time, gate fidelity, readout error, connectivity, crosstalk, calibration, cryogenics.",
+          "Know what problem or physical phenomenon 13.2 Hardware Concepts addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-ec9f7264",
+          "latex": "1/T₂ = 1/(2T₁) + 1/T_φ; F_avg = ∫ dψ ⟨ψ|U†ℰ(|ψ⟩⟨ψ|)U|ψ⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Key metrics: coherence time, gate fidelity, readout error, connectivity, crosstalk, calibration, cryogenics."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "1/T₂ = 1/(2T₁) + 1/T_φ; F_avg = ∫ dψ ⟨ψ|U†ℰ(|ψ⟩⟨ψ|)U|ψ⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "T₁ (relaxation) and T₂ (dephasing) limit circuit depth. Gate fidelity measures closeness to ideal. Readout error is probability of incorrect measurement. Connectivity dictates SWAP overhead. Crosstalk is unwanted interactions. Calibration tunes parameters."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-13-13-2-hardware-concepts",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-13-13-2-hardware-concepts",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-13-13-2-hardware-concepts",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '13-13-2-hardware-concepts'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.79449312, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.79449312, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum hardware documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "review",
+          "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+          "url": "https://arxiv.org/abs/1801.00862"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "13.2 Hardware Concepts",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "web",
+      "title": "IBM Quantum hardware documentation",
+      "url": "https://quantum.cloud.ibm.com/docs/"
+    },
+    {
+      "type": "review",
+      "title": "Preskill, Quantum Computing in the NISQ era and beyond",
+      "url": "https://arxiv.org/abs/1801.00862"
+    }
+  ]
+}

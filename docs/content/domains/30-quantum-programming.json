@@ -1,0 +1,484 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 30,
+  "slug": "quantum-programming",
+  "title": "Quantum Programming",
+  "summary": "Curriculum domain 30: Quantum Programming.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "30-30-1-qiskit",
+      "title": "30.1 Qiskit",
+      "parentId": null,
+      "content": {
+        "statement": "IBM's quantum SDK. Key components: QuantumCircuit, gates, primitives (Sampler, Estimator), transpiler, Aer simulator, Statevector.",
+        "explanation": "Qiskit is a Python‑based framework for circuit construction, compilation, and execution on IBM hardware and simulators.",
+        "example": "Creating a Bell state: qc = QuantumCircuit(2,2); qc.h(0); qc.cx(0,1); qc.measure([0,1],[0,1]).",
+        "keyTakeaways": [
+          "IBM's quantum SDK.",
+          "Know what problem or physical phenomenon 30.1 Qiskit addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "IBM's quantum SDK. Key components: QuantumCircuit, gates, primitives (Sampler, Estimator), transpiler, Aer simulator, Statevector."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Qiskit is a Python‑based framework for circuit construction, compilation, and execution on IBM hardware and simulators."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-30-30-1-qiskit",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-30-30-1-qiskit",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-30-30-1-qiskit",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '30-30-1-qiskit'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.85201532, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.85201532, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        },
+        {
+          "type": "web",
+          "title": "PennyLane documentation",
+          "url": "https://docs.pennylane.ai/"
+        },
+        {
+          "type": "web",
+          "title": "Cirq documentation",
+          "url": "https://quantumai.google/cirq"
+        },
+        {
+          "type": "web",
+          "title": "OpenQASM documentation",
+          "url": "https://openqasm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "30.1 Qiskit",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "code"
+        ]
+      }
+    },
+    {
+      "id": "30-30-2-pennylane",
+      "title": "30.2 PennyLane",
+      "parentId": null,
+      "content": {
+        "statement": "Xanadu's quantum machine learning library; differentiable quantum circuits.",
+        "explanation": "Integrates with PyTorch, TensorFlow, and JAX. Provides `qml.qnode` decorator, gradients (`qml.grad`), and hybrid models.",
+        "example": "qml.RX(x, wires=0); qml.CNOT(wires=[0,1]); return qml.expval(qml.Z(0)).",
+        "keyTakeaways": [
+          "Xanadu's quantum machine learning library; differentiable quantum circuits.",
+          "Know what problem or physical phenomenon 30.2 PennyLane addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Xanadu's quantum machine learning library; differentiable quantum circuits."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Integrates with PyTorch, TensorFlow, and JAX. Provides `qml.qnode` decorator, gradients (`qml.grad`), and hybrid models."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-30-30-2-pennylane",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-30-30-2-pennylane",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-30-30-2-pennylane",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '30-30-2-pennylane'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.03687290, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.03687290, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        },
+        {
+          "type": "web",
+          "title": "PennyLane documentation",
+          "url": "https://docs.pennylane.ai/"
+        },
+        {
+          "type": "web",
+          "title": "Cirq documentation",
+          "url": "https://quantumai.google/cirq"
+        },
+        {
+          "type": "web",
+          "title": "OpenQASM documentation",
+          "url": "https://openqasm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "30.2 PennyLane",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "code"
+        ]
+      }
+    },
+    {
+      "id": "30-30-3-cirq",
+      "title": "30.3 Cirq",
+      "parentId": null,
+      "content": {
+        "statement": "Google's quantum framework. Uses circuits, moments, and simulators.",
+        "explanation": "Cirq is designed for noisy intermediate‑scale quantum (NISQ) devices with a focus on custom gate sets and noise models.",
+        "example": "Circuit with H and CNOT: circuit = cirq.Circuit(cirq.H(q0), cirq.CNOT(q0, q1)).",
+        "keyTakeaways": [
+          "Google's quantum framework.",
+          "Know what problem or physical phenomenon 30.3 Cirq addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Google's quantum framework. Uses circuits, moments, and simulators."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Cirq is designed for noisy intermediate‑scale quantum (NISQ) devices with a focus on custom gate sets and noise models."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-30-30-3-cirq",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-30-30-3-cirq",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-30-30-3-cirq",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '30-30-3-cirq'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.66322512, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.66322512, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        },
+        {
+          "type": "web",
+          "title": "PennyLane documentation",
+          "url": "https://docs.pennylane.ai/"
+        },
+        {
+          "type": "web",
+          "title": "Cirq documentation",
+          "url": "https://quantumai.google/cirq"
+        },
+        {
+          "type": "web",
+          "title": "OpenQASM documentation",
+          "url": "https://openqasm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "30.3 Cirq",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "code"
+        ]
+      }
+    },
+    {
+      "id": "30-30-4-openqasm",
+      "title": "30.4 OpenQASM",
+      "parentId": null,
+      "content": {
+        "statement": "Open Quantum Assembly Language. Standard syntax for quantum circuits.",
+        "explanation": "Supports gates, measurements, and classical control. Used as an intermediate representation.",
+        "example": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2]; h q[0]; cx q[0], q[1]; measure q -> c; if (c == 1) x q[0];",
+        "keyTakeaways": [
+          "Open Quantum Assembly Language.",
+          "Know what problem or physical phenomenon 30.4 OpenQASM addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Open Quantum Assembly Language. Standard syntax for quantum circuits."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Supports gates, measurements, and classical control. Used as an intermediate representation."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-30-30-4-openqasm",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-30-30-4-openqasm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-30-30-4-openqasm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '30-30-4-openqasm'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.32645023, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.32645023, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        },
+        {
+          "type": "web",
+          "title": "PennyLane documentation",
+          "url": "https://docs.pennylane.ai/"
+        },
+        {
+          "type": "web",
+          "title": "Cirq documentation",
+          "url": "https://quantumai.google/cirq"
+        },
+        {
+          "type": "web",
+          "title": "OpenQASM documentation",
+          "url": "https://openqasm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "30.4 OpenQASM",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "code"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "web",
+      "title": "Qiskit documentation",
+      "url": "https://qiskit.qotlabs.org/"
+    },
+    {
+      "type": "web",
+      "title": "PennyLane documentation",
+      "url": "https://docs.pennylane.ai/"
+    },
+    {
+      "type": "web",
+      "title": "Cirq documentation",
+      "url": "https://quantumai.google/cirq"
+    },
+    {
+      "type": "web",
+      "title": "OpenQASM documentation",
+      "url": "https://openqasm.com/"
+    }
+  ]
+}

@@ -1,0 +1,1042 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 16,
+  "slug": "variational-quantum-algorithms",
+  "title": "Variational Quantum Algorithms",
+  "summary": "Curriculum domain 16: Variational Quantum Algorithms.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "16-16-1-variational-principle",
+      "title": "16.1 Variational Principle",
+      "parentId": null,
+      "content": {
+        "statement": "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩ / ⟨ψ(θ)|ψ(θ)⟩.",
+        "explanation": "The expectation value of any state is an upper bound on the ground state energy. Minimizing over parameterized states yields an approximation.",
+        "example": "VQE for H₂.",
+        "keyTakeaways": [
+          "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩ / ⟨ψ(θ)|ψ(θ)⟩.",
+          "Know what problem or physical phenomenon 16.1 Variational Principle addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-40579d8a",
+          "latex": "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩ / ⟨ψ(θ)|ψ(θ)⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The expectation value of any state is an upper bound on the ground state energy. Minimizing over parameterized states yields an approximation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-1-variational-principle",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-1-variational-principle",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ],
+            "parameter": "theta0"
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "ry",
+            "targets": [
+              1
+            ],
+            "parameter": "theta1"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-1-variational-principle",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-1-variational-principle'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.1 Variational Principle",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-2-parameterized-circuits",
+      "title": "16.2 Parameterized Circuits",
+      "parentId": null,
+      "content": {
+        "statement": "Ansatz: |ψ(θ)⟩ = U(θ)|0⟩, with parameters θ.",
+        "explanation": "Common ansätze: hardware-efficient (alternating CNOTs and single-qubit rotations), problem-inspired (UCCSD, QAOA).",
+        "example": "Hardware-efficient: ∏ [CNOTs ⊗ ⨂ R_y(θ_{l,i})].",
+        "keyTakeaways": [
+          "Ansatz: |ψ(θ)⟩ = U(θ)|0⟩, with parameters θ.",
+          "Know what problem or physical phenomenon 16.2 Parameterized Circuits addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-9d90ef44",
+          "latex": "U(θ) = ∏ₗ [CNOTs · ⨂ᵢ R_y(θ_{l,i})].",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Ansatz: |ψ(θ)⟩ = U(θ)|0⟩, with parameters θ."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "U(θ) = ∏ₗ [CNOTs · ⨂ᵢ R_y(θ_{l,i})].",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Common ansätze: hardware-efficient (alternating CNOTs and single-qubit rotations), problem-inspired (UCCSD, QAOA)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-2-parameterized-circuits",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-2-parameterized-circuits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-2-parameterized-circuits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-2-parameterized-circuits'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.2 Parameterized Circuits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-3-ansatz",
+      "title": "16.3 Ansatz",
+      "parentId": null,
+      "content": {
+        "statement": "Types: hardware-efficient, problem-inspired (UCCSD, QAOA), tensor network inspired.",
+        "explanation": "Hardware-efficient matches topology but risks barren plateaus. Problem-inspired converges better. Tensor network ansätze (MPS, PEPS) leverage structure.",
+        "example": "UCCSD for chemistry.",
+        "keyTakeaways": [
+          "Types: hardware-efficient, problem-inspired (UCCSD, QAOA), tensor network inspired.",
+          "Know what problem or physical phenomenon 16.3 Ansatz addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Types: hardware-efficient, problem-inspired (UCCSD, QAOA), tensor network inspired."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Hardware-efficient matches topology but risks barren plateaus. Problem-inspired converges better. Tensor network ansätze (MPS, PEPS) leverage structure."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-3-ansatz",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-3-ansatz",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-3-ansatz",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-3-ansatz'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.3 Ansatz",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-4-cost-functions",
+      "title": "16.4 Cost Functions",
+      "parentId": null,
+      "content": {
+        "statement": "Objective to minimize: energy, overlap, or classification loss.",
+        "explanation": "VQE uses energy ⟨H⟩. Overlap cost C=1−|⟨ψ(θ)|ψ_target⟩|². Classification uses mean squared error.",
+        "example": "C(θ) = ⟨ψ(θ)|H|ψ(θ)⟩.",
+        "keyTakeaways": [
+          "Objective to minimize: energy, overlap, or classification loss.",
+          "Know what problem or physical phenomenon 16.4 Cost Functions addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-7ad59eb0",
+          "latex": "C(θ) = ⟨ψ(θ)|H|ψ(θ)⟩; C(θ) = 1 − |⟨ψ(θ)|ψ_target⟩|²; C(θ) = (1/N)∑ loss(y_i, f(x_i;θ)).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Objective to minimize: energy, overlap, or classification loss."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "C(θ) = ⟨ψ(θ)|H|ψ(θ)⟩; C(θ) = 1 − |⟨ψ(θ)|ψ_target⟩|²; C(θ) = (1/N)∑ loss(y_i, f(x_i;θ)).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "VQE uses energy ⟨H⟩. Overlap cost C=1−|⟨ψ(θ)|ψ_target⟩|². Classification uses mean squared error."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-4-cost-functions",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-4-cost-functions",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-4-cost-functions",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-4-cost-functions'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.34070751, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.34070751, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.4 Cost Functions",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-5-classical-optimizer",
+      "title": "16.5 Classical Optimizer",
+      "parentId": null,
+      "content": {
+        "statement": "Gradient-based (Adam, L-BFGS) or gradient-free (COBYLA, Nelder-Mead, SPSA).",
+        "explanation": "Gradient-based requires parameter-shift rule. Gradient-free handles noisy measurements.",
+        "example": "SPSA is popular for noisy VQE.",
+        "keyTakeaways": [
+          "Gradient-based (Adam, L-BFGS) or gradient-free (COBYLA, Nelder-Mead, SPSA).",
+          "Know what problem or physical phenomenon 16.5 Classical Optimizer addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Gradient-based (Adam, L-BFGS) or gradient-free (COBYLA, Nelder-Mead, SPSA)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Gradient-based requires parameter-shift rule. Gradient-free handles noisy measurements."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-5-classical-optimizer",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-5-classical-optimizer",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-5-classical-optimizer",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-5-classical-optimizer'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.53588974, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.53588974, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.5 Classical Optimizer",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-6-hybrid-quantum-classical-computation",
+      "title": "16.6 Hybrid Quantum-Classical Computation",
+      "parentId": null,
+      "content": {
+        "statement": "Classical optimizer updates θ, quantum computer evaluates C(θ).",
+        "explanation": "Loop: classical proposes θ → quantum computes expectation → classical updates θ → repeat.",
+        "example": "VQE loop.",
+        "keyTakeaways": [
+          "Classical optimizer updates θ, quantum computer evaluates C(θ).",
+          "Know what problem or physical phenomenon 16.6 Hybrid Quantum-Classical Computation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Classical optimizer updates θ, quantum computer evaluates C(θ)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Loop: classical proposes θ → quantum computes expectation → classical updates θ → repeat."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-6-hybrid-quantum-classical-computation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-6-hybrid-quantum-classical-computation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-6-hybrid-quantum-classical-computation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-6-hybrid-quantum-classical-computation'\ntable = [{'a': a, 'b': b, 'and': a & b, 'or': a | b, 'xor': a ^ b} for a in (0,1) for b in (0,1)]\nprint(json.dumps({'lesson': LESSON_ID, 'table': table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.6 Hybrid Quantum-Classical Computation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "16-16-7-vqe",
+      "title": "16.7 VQE",
+      "parentId": null,
+      "content": {
+        "statement": "Variational Quantum Eigensolver finds ground state energy of a Hamiltonian.",
+        "explanation": "Choose ansatz, measure ⟨H⟩ = ∑ cᵢ⟨Pᵢ⟩, classically minimize. Applications: chemistry, materials, optimization.",
+        "example": "H₂ ground state energy.",
+        "keyTakeaways": [
+          "Variational Quantum Eigensolver finds ground state energy of a Hamiltonian.",
+          "Know what problem or physical phenomenon 16.7 VQE addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e4d57f50",
+          "latex": "E₀ ≈ min_θ ⟨ψ(θ)|H|ψ(θ)⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Variational Quantum Eigensolver finds ground state energy of a Hamiltonian."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E₀ ≈ min_θ ⟨ψ(θ)|H|ψ(θ)⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Choose ansatz, measure ⟨H⟩ = ∑ cᵢ⟨Pᵢ⟩, classically minimize. Applications: chemistry, materials, optimization."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-7-vqe",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-7-vqe",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ],
+            "parameter": "theta0"
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "ry",
+            "targets": [
+              1
+            ],
+            "parameter": "theta1"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-7-vqe",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-7-vqe'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.7 VQE",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-8-qaoa",
+      "title": "16.8 QAOA",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum Approximate Optimization Algorithm for combinatorial problems.",
+        "explanation": "Ansatz: |ψ(γ,β)⟩ = e^{-iβ_p H_M} e^{-iγ_p H_C} ... e^{-iβ_1 H_M} e^{-iγ_1 H_C} |+⟩⊗ⁿ. Optimize (γ,β) to minimize cost Hamiltonian H_C.",
+        "example": "MaxCut on a graph.",
+        "keyTakeaways": [
+          "Quantum Approximate Optimization Algorithm for combinatorial problems.",
+          "Know what problem or physical phenomenon 16.8 QAOA addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-08286a77",
+          "latex": "H_C = ∑_{(i,j)∈E} ½(I − Z_i Z_j); H_M = ∑_i X_i.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum Approximate Optimization Algorithm for combinatorial problems."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H_C = ∑_{(i,j)∈E} ½(I − Z_i Z_j); H_M = ∑_i X_i.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Ansatz: |ψ(γ,β)⟩ = e^{-iβ_p H_M} e^{-iγ_p H_C} ... e^{-iβ_1 H_M} e^{-iγ_1 H_C} |+⟩⊗ⁿ. Optimize (γ,β) to minimize cost Hamiltonian H_C."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-8-qaoa",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-8-qaoa",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "zz",
+            "targets": [
+              0,
+              1
+            ],
+            "parameter": "gamma"
+          },
+          {
+            "gate": "rx",
+            "targets": [
+              0,
+              1,
+              2
+            ],
+            "parameter": "beta"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-8-qaoa",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-8-qaoa'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.8 QAOA",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "16-16-9-variational-quantum-classifiers",
+      "title": "16.9 Variational Quantum Classifiers",
+      "parentId": null,
+      "content": {
+        "statement": "Classify data using quantum circuits.",
+        "explanation": "Encode data via U_enc(x), apply variational U(θ), measure Z. Classify based on expectation.",
+        "example": "MNIST binary classification.",
+        "keyTakeaways": [
+          "Classify data using quantum circuits.",
+          "Know what problem or physical phenomenon 16.9 Variational Quantum Classifiers addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a81f1e90",
+          "latex": "C(θ) = (1/N)∑ (y_i − ⟨Z⟩_i)².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classify data using quantum circuits."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "C(θ) = (1/N)∑ (y_i − ⟨Z⟩_i)².",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Encode data via U_enc(x), apply variational U(θ), measure Z. Classify based on expectation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-16-16-9-variational-quantum-classifiers",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-16-16-9-variational-quantum-classifiers",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ],
+            "parameter": "theta0"
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "ry",
+            "targets": [
+              1
+            ],
+            "parameter": "theta1"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-16-16-9-variational-quantum-classifiers",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '16-16-9-variational-quantum-classifiers'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+          "url": "https://arxiv.org/abs/1803.11173"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: variational algorithms",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "16.9 Variational Quantum Classifiers",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "McClean et al., The theory of variational hybrid quantum-classical algorithms",
+      "url": "https://arxiv.org/abs/1803.11173"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning: variational algorithms",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

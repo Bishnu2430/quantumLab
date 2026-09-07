@@ -1,0 +1,1537 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 0,
+  "slug": "what-is-quantum-computing",
+  "title": "What is Quantum Computing?",
+  "summary": "Curriculum domain 0: What is Quantum Computing?.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "00-0-1-what-is-computation",
+      "title": "0.1 What is Computation?",
+      "parentId": null,
+      "content": {
+        "statement": "Computation is the process of transforming information according to well-defined rules.",
+        "explanation": "At its core, computation involves taking input data, processing it through a series of logical steps, and producing an output. The formal mathematical model treats computation as a function that maps binary input strings to binary output strings.",
+        "example": "Adding two numbers, sorting a list, or searching a database are all computational tasks. Each can be expressed as a function f: {0,1}ⁿ → {0,1}ᵐ.",
+        "keyTakeaways": [
+          "Computation is the process of transforming information according to well-defined rules.",
+          "Know what problem or physical phenomenon 0.1 What is Computation? addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-4a0de45d",
+          "latex": "f: {0,1}ⁿ → {0,1}ᵐ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Computation is the process of transforming information according to well-defined rules."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "f: {0,1}ⁿ → {0,1}ᵐ",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "At its core, computation involves taking input data, processing it through a series of logical steps, and producing an output. The formal mathematical model treats computation as a function that maps binary input strings to binary output strings."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-0-1-what-is-computation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-0-1-what-is-computation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-0-1-what-is-computation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-0-1-what-is-computation'\ntable = [{'a': a, 'b': b, 'and': a & b, 'or': a | b, 'xor': a ^ b} for a in (0,1) for b in (0,1)]\nprint(json.dumps({'lesson': LESSON_ID, 'table': table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "0.1 What is Computation?",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "00-classical-bits",
+      "title": "Classical Bits",
+      "parentId": null,
+      "content": {
+        "statement": "A classical bit is the fundamental unit of classical information, taking values in {0, 1}.",
+        "explanation": "Bits are the building blocks of all classical computation. They can represent one of two states, typically denoted as 0 and 1. These states can be physically realized in various ways: voltage levels, magnetic orientation, or optical states.",
+        "example": "Voltage: 0V = 0, 5V = 1; Magnetism: South pole = 0, North pole = 1; Optics: No photon = 0, Photon = 1.",
+        "keyTakeaways": [
+          "A classical bit is the fundamental unit of classical information, taking values in {0, 1}.",
+          "Know what problem or physical phenomenon Classical Bits addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-abe7520d",
+          "latex": "b ∈ {0, 1}",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A classical bit is the fundamental unit of classical information, taking values in {0, 1}."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "b ∈ {0, 1}",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Bits are the building blocks of all classical computation. They can represent one of two states, typically denoted as 0 and 1. These states can be physically realized in various ways: voltage levels, magnetic orientation, or optical states."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-classical-bits",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-classical-bits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-classical-bits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-classical-bits'\nbits = [0, 1]\nNOT = {0: 1, 1: 0}\ntruth_table = [{'x': x, 'not_x': NOT[x]} for x in bits]\nprint(json.dumps({'lesson': LESSON_ID, 'truth_table': truth_table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Classical Bits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-classical-logic-gates",
+      "title": "Classical Logic Gates",
+      "parentId": null,
+      "content": {
+        "statement": "Classical computation uses logic gates that implement Boolean functions.",
+        "explanation": "Logic gates are physical or conceptual devices that perform basic Boolean operations on binary inputs to produce binary outputs. These gates can be combined to implement any Boolean function.",
+        "example": "The NOT gate flips a bit: 0→1, 1→0. The AND gate outputs 1 only when both inputs are 1.",
+        "keyTakeaways": [
+          "Classical computation uses logic gates that implement Boolean functions.",
+          "Know what problem or physical phenomenon Classical Logic Gates addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a1bea331",
+          "latex": "NOT: ¬x; AND: x ∧ y; OR: x ∨ y; XOR: x ⊕ y",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classical computation uses logic gates that implement Boolean functions."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "NOT: ¬x; AND: x ∧ y; OR: x ∨ y; XOR: x ⊕ y",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Logic gates are physical or conceptual devices that perform basic Boolean operations on binary inputs to produce binary outputs. These gates can be combined to implement any Boolean function."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-classical-logic-gates",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-classical-logic-gates",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-classical-logic-gates",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-classical-logic-gates'\ntable = [{'a': a, 'b': b, 'and': a & b, 'or': a | b, 'xor': a ^ b} for a in (0,1) for b in (0,1)]\nprint(json.dumps({'lesson': LESSON_ID, 'table': table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Classical Logic Gates",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "00-0-2-why-quantum-computing",
+      "title": "0.2 Why Quantum Computing?",
+      "parentId": null,
+      "content": {
+        "statement": "Certain computational problems appear intractable for classical computers but may be efficiently solvable using quantum mechanical systems.",
+        "explanation": "Classical computers operate using the laws of classical physics. However, some problems—like factoring large numbers, simulating quantum chemistry, or searching unsorted databases—seem to require exponential resources on classical machines. Quantum computers leverage quantum mechanical phenomena like superposition and entanglement to potentially solve these problems exponentially faster.",
+        "example": "Factoring a 2048-bit number would take a classical supercomputer billions of years, but a sufficiently large quantum computer using Shor's algorithm could do it in hours or days.",
+        "keyTakeaways": [
+          "Certain computational problems appear intractable for classical computers but may be efficiently solvable using quantum mechanical systems.",
+          "Know what problem or physical phenomenon 0.2 Why Quantum Computing? addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Certain computational problems appear intractable for classical computers but may be efficiently solvable using quantum mechanical systems."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Classical computers operate using the laws of classical physics. However, some problems—like factoring large numbers, simulating quantum chemistry, or searching unsorted databases—seem to require exponential resources on classical machines. Quantum computers leverage quantum mechanical phenomena like superposition and entanglement to potentially solve these problems exponentially faster."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-0-2-why-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-0-2-why-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-0-2-why-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-0-2-why-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.85004901, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.85004901, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "0.2 Why Quantum Computing?",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "00-0-3-quantum-advantage",
+      "title": "0.3 Quantum Advantage",
+      "parentId": null,
+      "content": {
+        "statement": "A quantum computer demonstrates quantum advantage when it solves a problem significantly faster than any known classical algorithm.",
+        "explanation": "Quantum advantage is the threshold where a quantum algorithm beats the best classical algorithm for a specific problem. This doesn't mean quantum computers are faster for all problems—only for tasks with specific mathematical structure that quantum mechanics can exploit.",
+        "example": "For unstructured search, classical computers require O(N) operations, while Grover's algorithm requires only O(√N) operations.",
+        "keyTakeaways": [
+          "A quantum computer demonstrates quantum advantage when it solves a problem significantly faster than any known classical algorithm.",
+          "Know what problem or physical phenomenon 0.3 Quantum Advantage addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fda051cd",
+          "latex": "Classical: O(f(n)); Quantum: O(g(n)); advantage when lim_{n→∞} g(n)/f(n) = 0",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A quantum computer demonstrates quantum advantage when it solves a problem significantly faster than any known classical algorithm."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Classical: O(f(n)); Quantum: O(g(n)); advantage when lim_{n→∞} g(n)/f(n) = 0",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Quantum advantage is the threshold where a quantum algorithm beats the best classical algorithm for a specific problem. This doesn't mean quantum computers are faster for all problems—only for tasks with specific mathematical structure that quantum mechanics can exploit."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-0-3-quantum-advantage",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-0-3-quantum-advantage",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-0-3-quantum-advantage",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-0-3-quantum-advantage'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.33874120, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.33874120, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "0.3 Quantum Advantage",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-quantum-supremacy",
+      "title": "Quantum Supremacy",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum supremacy (or quantum advantage) is achieved when a quantum computer performs a task that is practically infeasible for classical computers.",
+        "explanation": "The term 'supremacy' denotes a demonstration where a quantum computer solves a problem that no classical computer could solve in a reasonable timeframe. This was first demonstrated by Google in 2019 with random circuit sampling.",
+        "example": "Google Sycamore (2019): random circuit sampling in 200 seconds vs ~10,000 years classically.",
+        "keyTakeaways": [
+          "Quantum supremacy (or quantum advantage) is achieved when a quantum computer performs a task that is practically infeasible for classical computers.",
+          "Know what problem or physical phenomenon Quantum Supremacy addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum supremacy (or quantum advantage) is achieved when a quantum computer performs a task that is practically infeasible for classical computers."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "The term 'supremacy' denotes a demonstration where a quantum computer solves a problem that no classical computer could solve in a reasonable timeframe. This was first demonstrated by Google in 2019 with random circuit sampling."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-quantum-supremacy",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-quantum-supremacy",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-quantum-supremacy",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-quantum-supremacy'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.34586984, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.34586984, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Quantum Supremacy",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "00-0-4-what-quantum-computers-are-good-at",
+      "title": "0.4 What Quantum Computers Are Good At",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum computers excel at specific problem classes where quantum phenomena provide a speedup.",
+        "explanation": "The theoretical advantage of quantum computers comes from their ability to leverage quantum mechanical properties. The most famous examples include factorization, search, simulation of quantum systems, and solving linear systems.",
+        "example": "Shor's algorithm factors integers in polynomial time, exponentially faster than the best known classical algorithms.",
+        "keyTakeaways": [
+          "Quantum computers excel at specific problem classes where quantum phenomena provide a speedup.",
+          "Know what problem or physical phenomenon 0.4 What Quantum Computers Are Good At addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum computers excel at specific problem classes where quantum phenomena provide a speedup."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "The theoretical advantage of quantum computers comes from their ability to leverage quantum mechanical properties. The most famous examples include factorization, search, simulation of quantum systems, and solving linear systems."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-0-4-what-quantum-computers-are-good-at",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-0-4-what-quantum-computers-are-good-at",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-0-4-what-quantum-computers-are-good-at",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-0-4-what-quantum-computers-are-good-at'\ncircuit = QuantumCircuit(1)\ncircuit.rz(6.26573201, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 6.26573201, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "0.4 What Quantum Computers Are Good At",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-proven-quantum-speedups",
+      "title": "Proven Quantum Speedups",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum algorithms provide proven speedups for specific structured problems, but the speedup depends on the problem model, input/output access model, and complexity assumptions.",
+        "explanation": "Examples include Shor-type polynomial-time factoring and Grover-type quadratic query speedups. A rigorous lesson must state the comparison model and avoid implying a universal quantum advantage.",
+        "example": "Compare the query complexity of unstructured search: classical randomized search needs Θ(N) oracle queries in the worst case, while Grover search needs Θ(√N) oracle queries.",
+        "keyTakeaways": [
+          "Know what problem or physical phenomenon Proven Quantum Speedups addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Define the concept of Proven Quantum Speedups."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Apply the relevant postulates, definitions, or experimental assumptions."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-proven-quantum-speedups",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-proven-quantum-speedups",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-proven-quantum-speedups",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-proven-quantum-speedups'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.85521133, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.85521133, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Proven Quantum Speedups",
+        "sourceHadStatement": false,
+        "sourceHadExplanation": false,
+        "sourceHadExample": false,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-1-integer-factorization-shor-s-algorithm",
+      "title": "1. Integer Factorization (Shor's Algorithm)",
+      "parentId": "00-proven-quantum-speedups",
+      "content": {
+        "statement": "Shor's algorithm factors integers in polynomial time, offering exponential speedup over classical algorithms.",
+        "explanation": "Factoring large integers is believed to be hard for classical computers—this forms the basis of RSA cryptography. Shor's algorithm exploits the quantum Fourier transform to find the period of a modular exponential function, which reveals the factors.",
+        "example": "Factoring N = 15 = 3 × 5 using Shor's algorithm.",
+        "keyTakeaways": [
+          "Shor's algorithm factors integers in polynomial time, offering exponential speedup over classical algorithms.",
+          "Know what problem or physical phenomenon 1. Integer Factorization (Shor's Algorithm) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-8029afdd",
+          "latex": "Classical: O(e^(n^(1/3))); Quantum: O(n³), where n = log₂(N)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Shor's algorithm factors integers in polynomial time, offering exponential speedup over classical algorithms."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Classical: O(e^(n^(1/3))); Quantum: O(n³), where n = log₂(N)",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Factoring large integers is believed to be hard for classical computers—this forms the basis of RSA cryptography. Shor's algorithm exploits the quantum Fourier transform to find the period of a modular exponential function, which reveals the factors."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-1-integer-factorization-shor-s-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-1-integer-factorization-shor-s-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-1-integer-factorization-shor-s-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-1-integer-factorization-shor-s-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.48869219, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.48869219, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "1. Integer Factorization (Shor's Algorithm)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-2-unstructured-search-grover-s-algorithm",
+      "title": "2. Unstructured Search (Grover's Algorithm)",
+      "parentId": "00-proven-quantum-speedups",
+      "content": {
+        "statement": "Grover's algorithm searches unsorted databases with quadratic speedup.",
+        "explanation": "Searching an unsorted database of N items requires checking each item one by one classically. Grover's algorithm uses amplitude amplification to find the marked item in only O(√N) queries.",
+        "example": "Finding a specific name in an unsorted phonebook with N entries.",
+        "keyTakeaways": [
+          "Grover's algorithm searches unsorted databases with quadratic speedup.",
+          "Know what problem or physical phenomenon 2. Unstructured Search (Grover's Algorithm) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fbd56a73",
+          "latex": "Classical: O(N); Quantum: O(√N)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Prepare uniform amplitudes",
+            "formula": "|s\\rangle=\\frac1{\\sqrt N}\\sum_x|x\\rangle",
+            "text": "Hadamards place every database item at equal amplitude."
+          },
+          {
+            "step": 2,
+            "title": "Oracle phase flip",
+            "formula": "O|x\\rangle=(-1)^{f(x)}|x\\rangle",
+            "text": "The oracle marks the target by changing its phase."
+          },
+          {
+            "step": 3,
+            "title": "Diffuse about the mean",
+            "formula": "D=2|s\\rangle\\langle s|-I",
+            "text": "The diffusion operator reflects amplitudes about their mean and amplifies the marked state."
+          },
+          {
+            "step": 4,
+            "title": "Repeat near the optimum",
+            "formula": "k\\approx \\pi\\sqrt N/4",
+            "text": "Too many iterations rotate past the target amplitude, so the iteration count is chosen near the first maximum."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-2-unstructured-search-grover-s-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-2-unstructured-search-grover-s-algorithm",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1
+            ]
+          },
+          {
+            "gate": "oracle_phase",
+            "targets": [
+              0,
+              1
+            ]
+          },
+          {
+            "gate": "diffusion",
+            "targets": [
+              0,
+              1
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-2-unstructured-search-grover-s-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-2-unstructured-search-grover-s-algorithm'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\n# Mark |11> with a phase flip.\ncircuit.cz(0, 1)\n# Diffusion operator.\ncircuit.h([0,1])\ncircuit.x([0,1])\ncircuit.h(1)\ncircuit.cx(0,1)\ncircuit.h(1)\ncircuit.x([0,1])\ncircuit.h([0,1])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2. Unstructured Search (Grover's Algorithm)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-3-quantum-simulation",
+      "title": "3. Quantum Simulation",
+      "parentId": "00-proven-quantum-speedups",
+      "content": {
+        "statement": "Quantum computers can simulate quantum systems exponentially faster than classical computers.",
+        "explanation": "Classical simulation of quantum systems requires tracking the entire quantum state, which grows exponentially with system size. Quantum computers use the same physical principles to simulate evolution efficiently.",
+        "example": "Simulating a molecule with n electrons on a quantum computer.",
+        "keyTakeaways": [
+          "Quantum computers can simulate quantum systems exponentially faster than classical computers.",
+          "Know what problem or physical phenomenon 3. Quantum Simulation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-20ae3c71",
+          "latex": "Classical cost: O(2ⁿ) memory and O(2ⁿ·t) time; Quantum cost: O(poly(n)) memory and O(poly(n)·t) time.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum computers can simulate quantum systems exponentially faster than classical computers."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Classical cost: O(2ⁿ) memory and O(2ⁿ·t) time; Quantum cost: O(poly(n)) memory and O(poly(n)·t) time.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Classical simulation of quantum systems requires tracking the entire quantum state, which grows exponentially with system size. Quantum computers use the same physical principles to simulate evolution efficiently."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-3-quantum-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-3-quantum-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-3-quantum-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-3-quantum-simulation'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "3. Quantum Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-4-linear-systems-hhl-algorithm",
+      "title": "4. Linear Systems (HHL Algorithm)",
+      "parentId": "00-proven-quantum-speedups",
+      "content": {
+        "statement": "The HHL algorithm solves linear systems exponentially faster for well-conditioned sparse matrices.",
+        "explanation": "Many problems in science and engineering require solving linear equations Ax = b. The HHL algorithm provides exponential speedup under specific conditions, though the output is a quantum state representing the solution.",
+        "example": "Solving a system of N equations where A is sparse and well-conditioned.",
+        "keyTakeaways": [
+          "The HHL algorithm solves linear systems exponentially faster for well-conditioned sparse matrices.",
+          "Know what problem or physical phenomenon 4. Linear Systems (HHL Algorithm) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e92aaf4a",
+          "latex": "Classical: O(N) for dense, O(Nk) iterative; Quantum: O(log N · k²), where k is condition number.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "The HHL algorithm solves linear systems exponentially faster for well-conditioned sparse matrices."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Classical: O(N) for dense, O(Nk) iterative; Quantum: O(log N · k²), where k is condition number.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Many problems in science and engineering require solving linear equations Ax = b. The HHL algorithm provides exponential speedup under specific conditions, though the output is a quantum state representing the solution."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-4-linear-systems-hhl-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-4-linear-systems-hhl-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-4-linear-systems-hhl-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-4-linear-systems-hhl-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.11184839, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.11184839, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4. Linear Systems (HHL Algorithm)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "00-0-5-what-they-aren-t-good-at",
+      "title": "0.5 What They Aren't Good At",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum computers are not faster at all problems and are not general-purpose replacements for classical computers.",
+        "explanation": "Quantum computers are specialized machines that only provide speedups for problems with exploitable quantum structure. For many everyday computing tasks, they offer no advantage and are often slower than classical computers.",
+        "example": "Quantum computers cannot sort faster than O(n log n), which is the optimal classical bound.",
+        "keyTakeaways": [
+          "Quantum computers are not faster at all problems and are not general-purpose replacements for classical computers.",
+          "Know what problem or physical phenomenon 0.5 What They Aren't Good At addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum computers are not faster at all problems and are not general-purpose replacements for classical computers."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Quantum computers are specialized machines that only provide speedups for problems with exploitable quantum structure. For many everyday computing tasks, they offer no advantage and are often slower than classical computers."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-0-5-what-they-aren-t-good-at",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-0-5-what-they-aren-t-good-at",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-0-5-what-they-aren-t-good-at",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-0-5-what-they-aren-t-good-at'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.09636142, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.09636142, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "0.5 What They Aren't Good At",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "00-0-6-current-limitations",
+      "title": "0.6 Current Limitations",
+      "parentId": null,
+      "content": {
+        "statement": "Current quantum computers are in the NISQ era (Noisy Intermediate-Scale Quantum) with significant limitations.",
+        "explanation": "Today's quantum computers have 50-1000 qubits but suffer from high error rates, short coherence times, and no error correction. Fault-tolerant quantum computing, which would enable large-scale applications, is still years away.",
+        "example": "IBM's quantum computers have hundreds of qubits but can only execute circuits of depth ~100 before noise dominates.",
+        "keyTakeaways": [
+          "Current quantum computers are in the NISQ era (Noisy Intermediate-Scale Quantum) with significant limitations.",
+          "Know what problem or physical phenomenon 0.6 Current Limitations addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Current quantum computers are in the NISQ era (Noisy Intermediate-Scale Quantum) with significant limitations."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Today's quantum computers have 50-1000 qubits but suffer from high error rates, short coherence times, and no error correction. Fault-tolerant quantum computing, which would enable large-scale applications, is still years away."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-00-0-6-current-limitations",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-00-0-6-current-limitations",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-00-0-6-current-limitations",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '00-0-6-current-limitations'\ncircuit = QuantumCircuit(1)\ncircuit.rz(3.01941961, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 3.01941961, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning / Quantum computing concepts",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "0.6 Current Limitations",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Quantum Computation and Quantum Information",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning / Quantum computing concepts",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

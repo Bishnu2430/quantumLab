@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "renderers": {
+    "bloch-sphere": {
+      "package": "three",
+      "reactPackage": "@react-three/fiber",
+      "optionalPackages": [
+        "@react-three/drei"
+      ],
+      "description": "Interactive Bloch sphere; map theta/phi/statevector data to a vector, great circles, axes and basis markers."
+    },
+    "quantum-network": {
+      "package": "three",
+      "reactPackage": "@react-three/fiber",
+      "optionalPackages": [
+        "@react-three/drei"
+      ],
+      "description": "3D nodes/links for quantum-network and entanglement-distribution lessons."
+    },
+    "quantum-circuit": {
+      "package": "react",
+      "reactPackage": "react-svg",
+      "optionalPackages": [
+        "d3-shape"
+      ],
+      "description": "Declarative SVG circuit renderer driven by quantumCircuit.operations."
+    },
+    "quantum-data-plot": {
+      "package": "d3",
+      "reactPackage": "d3",
+      "optionalPackages": [],
+      "description": "Histograms, probability bars, expectation values, density matrices and information-theoretic plots."
+    },
+    "wave-interference": {
+      "package": "d3",
+      "reactPackage": "d3",
+      "optionalPackages": [],
+      "description": "Wavefunction, interference, tunneling and probability-density plots."
+    },
+    "timeline": {
+      "package": "react",
+      "reactPackage": "react-svg",
+      "optionalPackages": [
+        "d3-scale",
+        "d3-shape"
+      ],
+      "description": "Interactive historical timeline with zoom/filter support."
+    },
+    "energy-levels": {
+      "package": "react",
+      "reactPackage": "react-svg",
+      "optionalPackages": [
+        "d3-scale",
+        "d3-shape"
+      ],
+      "description": "Energy-level diagrams, transitions and thermodynamic state illustrations."
+    },
+    "complex-plane": {
+      "package": "d3",
+      "reactPackage": "d3",
+      "optionalPackages": [
+        "d3-scale",
+        "d3-shape"
+      ],
+      "description": "Complex-plane visualization with radius/argument controls."
+    },
+    "linear-algebra": {
+      "package": "d3",
+      "reactPackage": "react-svg",
+      "optionalPackages": [
+        "d3-scale",
+        "d3-shape"
+      ],
+      "description": "Vectors, matrices, eigenvectors and tensor-product diagrams."
+    },
+    "concept-map": {
+      "package": "react",
+      "reactPackage": "react-svg",
+      "optionalPackages": [
+        "d3-force"
+      ],
+      "description": "Generic concept/relationship visualization used when no specialized physics renderer is required."
+    }
+  }
+}

@@ -1,0 +1,759 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 29,
+  "slug": "alternative-quantum-computing-models",
+  "title": "Alternative Quantum Computing Models",
+  "summary": "Curriculum domain 29: Alternative Quantum Computing Models.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "29-29-1-circuit-model",
+      "title": "29.1 Circuit Model",
+      "parentId": null,
+      "content": {
+        "statement": "Standard model: qubits, gates, measurement. Universal: can implement any unitary.",
+        "explanation": "The dominant paradigm for quantum computation.",
+        "example": "IBM, Google, Rigetti.",
+        "keyTakeaways": [
+          "Standard model: qubits, gates, measurement.",
+          "Know what problem or physical phenomenon 29.1 Circuit Model addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Standard model: qubits, gates, measurement. Universal: can implement any unitary."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "The dominant paradigm for quantum computation."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-1-circuit-model",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-1-circuit-model",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-1-circuit-model",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-1-circuit-model'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.20624350, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.20624350, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.1 Circuit Model",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "29-29-2-measurement-based-quantum-computing-mbqc",
+      "title": "29.2 Measurement‑Based Quantum Computing (MBQC)",
+      "parentId": null,
+      "content": {
+        "statement": "Computation by sequential measurements on a cluster state.",
+        "explanation": "Resource: cluster state (graph state). Process: prepare cluster, measure qubits in sequence, adapt bases based on outcomes. Advantages: parallel measurement, natural for photonics.",
+        "example": "One‑way quantum computer.",
+        "keyTakeaways": [
+          "Computation by sequential measurements on a cluster state.",
+          "Know what problem or physical phenomenon 29.2 Measurement‑Based Quantum Computing (MBQC) addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-af460755",
+          "latex": "P(i)=|\\langle i|\\psi\\rangle|^2",
+          "description": "Core relation for 29.2 Measurement‑Based Quantum Computing (MBQC)."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-2-measurement-based-quantum-computing-mbqc",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-2-measurement-based-quantum-computing-mbqc",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-2-measurement-based-quantum-computing-mbqc",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-2-measurement-based-quantum-computing-mbqc'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.2 Measurement‑Based Quantum Computing (MBQC)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "29-29-3-adiabatic-quantum-computing",
+      "title": "29.3 Adiabatic Quantum Computing",
+      "parentId": null,
+      "content": {
+        "statement": "Ground state evolution from H₀ to H₁.",
+        "explanation": "Initial: easy ground state of H₀. Final: solution encoded in H₁. Applications: optimization.",
+        "example": "Solving MaxCut via adiabatic evolution.",
+        "keyTakeaways": [
+          "Ground state evolution from H₀ to H₁.",
+          "Know what problem or physical phenomenon 29.3 Adiabatic Quantum Computing addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-ca98fbe8",
+          "latex": "H(t) = (1−t/T)H₀ + (t/T)H₁.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Ground state evolution from H₀ to H₁."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H(t) = (1−t/T)H₀ + (t/T)H₁.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Initial: easy ground state of H₀. Final: solution encoded in H₁. Applications: optimization."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-3-adiabatic-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-3-adiabatic-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-3-adiabatic-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-3-adiabatic-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.58308729, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.58308729, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.3 Adiabatic Quantum Computing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "29-29-4-quantum-annealing",
+      "title": "29.4 Quantum Annealing",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum version of simulated annealing: H(t) = A(t)H_initial + B(t)H_problem.",
+        "explanation": "Implementation: D‑Wave systems. Applications: optimization, sampling.",
+        "example": "D‑Wave Advantage.",
+        "keyTakeaways": [
+          "Quantum version of simulated annealing: H(t) = A(t)H_initial + B(t)H_problem.",
+          "Know what problem or physical phenomenon 29.4 Quantum Annealing addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-90228b07",
+          "latex": "H(t) = A(t)H_initial + B(t)H_problem.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum version of simulated annealing: H(t) = A(t)H_initial + B(t)H_problem."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H(t) = A(t)H_initial + B(t)H_problem.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Implementation: D‑Wave systems. Applications: optimization, sampling."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-4-quantum-annealing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-4-quantum-annealing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-4-quantum-annealing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-4-quantum-annealing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.90757121, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.90757121, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.4 Quantum Annealing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "29-29-5-topological-quantum-computing",
+      "title": "29.5 Topological Quantum Computing",
+      "parentId": null,
+      "content": {
+        "statement": "Uses non‑abelian anyons as qubits; gates are braiding anyons.",
+        "explanation": "Intrinsic error protection from topological degeneracy. Status: experimental search ongoing.",
+        "example": "Majorana zero modes.",
+        "keyTakeaways": [
+          "Uses non‑abelian anyons as qubits; gates are braiding anyons.",
+          "Know what problem or physical phenomenon 29.5 Topological Quantum Computing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Uses non‑abelian anyons as qubits; gates are braiding anyons."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Intrinsic error protection from topological degeneracy. Status: experimental search ongoing."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-5-topological-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-5-topological-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-5-topological-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-5-topological-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.55014702, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.55014702, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.5 Topological Quantum Computing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "29-29-6-continuous-variable-quantum-computing",
+      "title": "29.6 Continuous‑Variable Quantum Computing",
+      "parentId": null,
+      "content": {
+        "statement": "Qubits are continuous degrees of freedom (optical modes, mechanical oscillators).",
+        "explanation": "Advantages: deterministic gates, natural for photonics. Challenges: error correction, infinite‑dimensional.",
+        "example": "Xanadu's photonic chips.",
+        "keyTakeaways": [
+          "Qubits are continuous degrees of freedom (optical modes, mechanical oscillators).",
+          "Know what problem or physical phenomenon 29.6 Continuous‑Variable Quantum Computing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Qubits are continuous degrees of freedom (optical modes, mechanical oscillators)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Advantages: deterministic gates, natural for photonics. Challenges: error correction, infinite‑dimensional."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-6-continuous-variable-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-6-continuous-variable-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-6-continuous-variable-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-6-continuous-variable-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.31096325, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.31096325, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.6 Continuous‑Variable Quantum Computing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "29-29-7-one-way-quantum-computing",
+      "title": "29.7 One‑Way Quantum Computing",
+      "parentId": null,
+      "content": {
+        "statement": "Synonym for Measurement‑Based Quantum Computing.",
+        "explanation": "Consumes entanglement resource (cluster state) via measurements.",
+        "example": "Cluster state computation.",
+        "keyTakeaways": [
+          "Synonym for Measurement‑Based Quantum Computing.",
+          "Know what problem or physical phenomenon 29.7 One‑Way Quantum Computing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Synonym for Measurement‑Based Quantum Computing."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Consumes entanglement resource (cluster state) via measurements."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-29-29-7-one-way-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-29-29-7-one-way-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-29-29-7-one-way-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '29-29-7-one-way-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.97222205, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.97222205, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 4, 6",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "review",
+          "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+          "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "29.7 One‑Way Quantum Computing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapters 4, 6",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "review",
+      "title": "Raussendorf & Briegel, A One-Way Quantum Computer",
+      "url": "https://doi.org/10.1103/PhysRevLett.86.5188"
+    }
+  ]
+}

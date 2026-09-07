@@ -1,0 +1,1067 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 35,
+  "slug": "famous-thought-experiments",
+  "title": "Famous Thought Experiments",
+  "summary": "Curriculum domain 35: Famous Thought Experiments.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "35-35-1-schr-dinger-s-cat",
+      "title": "35.1 Schrödinger's Cat",
+      "parentId": null,
+      "content": {
+        "statement": "Cat in a box is in superposition |cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+        "explanation": "Highlights the measurement problem. The cat is neither alive nor dead until observed.",
+        "example": "Radioactive atom triggers poison based on quantum decay.",
+        "keyTakeaways": [
+          "Cat in a box is in superposition |cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+          "Know what problem or physical phenomenon 35.1 Schrödinger's Cat addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-468772e2",
+          "latex": "|cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Start from classical energy",
+            "formula": "E=p^2/(2m)+V(x)",
+            "text": "For a nonrelativistic particle, total energy is kinetic plus potential energy."
+          },
+          {
+            "step": 2,
+            "title": "Promote observables to operators",
+            "formula": "E\\to i\\hbar\\partial_t,\\quad p\\to -i\\hbar\\nabla",
+            "text": "Quantum mechanics represents measurable quantities by operators acting on the wavefunction."
+          },
+          {
+            "step": 3,
+            "title": "Substitute",
+            "formula": "i\\hbar\\partial_t\\psi=[-\\hbar^2\\nabla^2/(2m)+V]\\psi",
+            "text": "Substitution gives the time-dependent Schrödinger equation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-1-schr-dinger-s-cat",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-1-schr-dinger-s-cat",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-1-schr-dinger-s-cat",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-1-schr-dinger-s-cat'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.08407045, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.08407045, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.1 Schrödinger's Cat",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-2-einstein-s-photon-box",
+      "title": "35.2 Einstein's Photon Box",
+      "parentId": null,
+      "content": {
+        "statement": "Box with photon; weigh before and after emission to test energy‑time uncertainty.",
+        "explanation": "Paradox: Can we measure both energy and time precisely? Resolution involves general relativity and the box's position uncertainty.",
+        "example": "Weighing a photon box.",
+        "keyTakeaways": [
+          "Box with photon; weigh before and after emission to test energy‑time uncertainty.",
+          "Know what problem or physical phenomenon 35.2 Einstein's Photon Box addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Box with photon; weigh before and after emission to test energy‑time uncertainty."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Paradox: Can we measure both energy and time precisely? Resolution involves general relativity and the box's position uncertainty."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-2-einstein-s-photon-box",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-2-einstein-s-photon-box",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-2-einstein-s-photon-box",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-2-einstein-s-photon-box'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.80998010, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.80998010, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.2 Einstein's Photon Box",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-3-epr",
+      "title": "35.3 EPR",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 8.4.",
+        "explanation": "EPR argued QM incomplete based on locality and reality.",
+        "example": "Entangled particles.",
+        "keyTakeaways": [
+          "See Domain 8.",
+          "Know what problem or physical phenomenon 35.3 EPR addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 8.4."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "EPR argued QM incomplete based on locality and reality."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-3-epr",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-3-epr",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-3-epr",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-3-epr'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.32841654, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.32841654, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.3 EPR",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-4-wigner-s-friend",
+      "title": "35.4 Wigner's Friend",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 23.6.",
+        "explanation": "Friend measures system; Wigner sees friend+system as superposition.",
+        "example": "Different observers have different states.",
+        "keyTakeaways": [
+          "See Domain 23.",
+          "Know what problem or physical phenomenon 35.4 Wigner's Friend addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 23.6."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Friend measures system; Wigner sees friend+system as superposition."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-4-wigner-s-friend",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-4-wigner-s-friend",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-4-wigner-s-friend",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-4-wigner-s-friend'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.74213324, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.74213324, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.4 Wigner's Friend",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-5-maxwell-s-demon",
+      "title": "35.5 Maxwell's Demon",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 21.4.",
+        "explanation": "Resolution: erasure of the demon's memory costs entropy (Landauer).",
+        "example": "Quantum feedback control.",
+        "keyTakeaways": [
+          "See Domain 21.",
+          "Know what problem or physical phenomenon 35.5 Maxwell's Demon addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 21.4."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Resolution: erasure of the demon's memory costs entropy (Landauer)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-5-maxwell-s-demon",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-5-maxwell-s-demon",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-5-maxwell-s-demon",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-5-maxwell-s-demon'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.42600766, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.42600766, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.5 Maxwell's Demon",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-6-stern-gerlach",
+      "title": "35.6 Stern‑Gerlach",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 2.14.",
+        "explanation": "Silver atoms split into two beams, demonstrating spin‑½ quantisation.",
+        "example": "Discrete deflection.",
+        "keyTakeaways": [
+          "See Domain 2.",
+          "Know what problem or physical phenomenon 35.6 Stern‑Gerlach addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-cf3ff19c",
+          "latex": "Ŝ_z|m_s⟩ = m_sℏ|m_s⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "See Domain 2.14."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Ŝ_z|m_s⟩ = m_sℏ|m_s⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Silver atoms split into two beams, demonstrating spin‑½ quantisation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-6-stern-gerlach",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-6-stern-gerlach",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-6-stern-gerlach",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-6-stern-gerlach'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.60570291, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.60570291, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.6 Stern‑Gerlach",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-7-double-slit",
+      "title": "35.7 Double Slit",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 2.14.",
+        "explanation": "Single particles produce interference; which‑path measurement destroys it.",
+        "example": "Electron double‑slit.",
+        "keyTakeaways": [
+          "See Domain 2.",
+          "Know what problem or physical phenomenon 35.7 Double Slit addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 2.14."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Single particles produce interference; which‑path measurement destroys it."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-7-double-slit",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-7-double-slit",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-7-double-slit",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-7-double-slit'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.03687290, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.03687290, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.7 Double Slit",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-8-quantum-eraser",
+      "title": "35.8 Quantum Eraser",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 23.4.",
+        "explanation": "Interference restored when which‑path info is erased.",
+        "example": "Delayed‑choice quantum eraser.",
+        "keyTakeaways": [
+          "See Domain 23.",
+          "Know what problem or physical phenomenon 35.8 Quantum Eraser addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 23.4."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Interference restored when which‑path info is erased."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-8-quantum-eraser",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-8-quantum-eraser",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-8-quantum-eraser",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-8-quantum-eraser'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.09955743, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.09955743, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.8 Quantum Eraser",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-9-delayed-choice",
+      "title": "35.9 Delayed Choice",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 23.5.",
+        "explanation": "Choice of wave/particle measurement made after photon passes.",
+        "example": "Wheeler's delayed‑choice.",
+        "keyTakeaways": [
+          "See Domain 23.",
+          "Know what problem or physical phenomenon 35.9 Delayed Choice addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 23.5."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Choice of wave/particle measurement made after photon passes."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-9-delayed-choice",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-9-delayed-choice",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-9-delayed-choice",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-9-delayed-choice'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.45378561, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.45378561, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.9 Delayed Choice",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "35-35-10-bell-test",
+      "title": "35.10 Bell Test",
+      "parentId": null,
+      "content": {
+        "statement": "Entangled pairs, distant measurements, random basis choice. Violation of Bell inequalities.",
+        "explanation": "Result: no local hidden variables. Confirms quantum nonlocality.",
+        "example": "Aspect experiment.",
+        "keyTakeaways": [
+          "Entangled pairs, distant measurements, random basis choice.",
+          "Know what problem or physical phenomenon 35.10 Bell Test addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-39e02593",
+          "latex": "S ≤ 2 (classical); S = 2√2 (quantum).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define correlations",
+            "formula": "E(a,b)=\\sum_{A,B=\\pm1}AB\\,P(A,B|a,b)",
+            "text": "Correlation is the average product of the two ±1 outcomes."
+          },
+          {
+            "step": 2,
+            "title": "Combine four settings",
+            "formula": "S=E(a,b)-E(a,b')+E(a',b)+E(a',b')",
+            "text": "CHSH combines four correlations into one test statistic."
+          },
+          {
+            "step": 3,
+            "title": "Compare bounds",
+            "formula": "|S|\\le2\\text{ (local hidden variables)},\\quad |S|\\le2\\sqrt2\\text{ (quantum)}",
+            "text": "Quantum theory predicts values that can exceed the local bound."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-35-35-10-bell-test",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-35-35-10-bell-test",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-35-35-10-bell-test",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '35-35-10-bell-test'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nsampler = StatevectorSampler(seed=7)\nresult = sampler.run([circuit], shots=1024).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "review",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "35.10 Bell Test",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+      "url": "https://doi.org/10.1017/9781108587285"
+    },
+    {
+      "type": "review",
+      "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+      "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+    }
+  ]
+}

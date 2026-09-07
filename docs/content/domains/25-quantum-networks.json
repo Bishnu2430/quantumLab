@@ -1,0 +1,612 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 25,
+  "slug": "quantum-networks",
+  "title": "Quantum Networks",
+  "summary": "Curriculum domain 25: Quantum Networks.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "25-25-1-quantum-routing",
+      "title": "25.1 Quantum Routing",
+      "parentId": null,
+      "content": {
+        "statement": "Direct quantum information through a network using entanglement swapping, teleportation, or direct transmission.",
+        "explanation": "No cloning prevents amplification; routing relies on swapping entanglement or teleporting states between nodes.",
+        "example": "Routing a qubit from node A to C via node B using entanglement swapping.",
+        "keyTakeaways": [
+          "Direct quantum information through a network using entanglement swapping, teleportation, or direct transmission.",
+          "Know what problem or physical phenomenon 25.1 Quantum Routing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Direct quantum information through a network using entanglement swapping, teleportation, or direct transmission."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "No cloning prevents amplification; routing relies on swapping entanglement or teleporting states between nodes."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-25-25-1-quantum-routing",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-25-25-1-quantum-routing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-25-25-1-quantum-routing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '25-25-1-quantum-routing'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cx(0,2)\ncircuit.cx(2,1)\nfrom qiskit import transpile\ntranspiled = transpile(circuit, basis_gates=['rz','sx','x','cx'], optimization_level=3)\nprint(json.dumps({'lesson': LESSON_ID, 'original_depth': circuit.depth(), 'transpiled_depth': transpiled.depth(), 'original_ops': circuit.count_ops(), 'transpiled_ops': transpiled.count_ops()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+          "url": "https://doi.org/10.1038/s41586-018-0488-3"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "25.1 Quantum Routing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "25-25-2-entanglement-purification",
+      "title": "25.2 Entanglement Purification",
+      "parentId": null,
+      "content": {
+        "statement": "Purify multiple noisy entangled pairs into fewer high‑fidelity pairs.",
+        "explanation": "Protocol: start with two noisy pairs, apply local operations, measure, post‑select on success. Yield decreases, fidelity increases.",
+        "example": "Purifying two Werner states.",
+        "keyTakeaways": [
+          "Purify multiple noisy entangled pairs into fewer high‑fidelity pairs.",
+          "Know what problem or physical phenomenon 25.2 Entanglement Purification addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-141a2782",
+          "latex": "|\\Phi^+\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2",
+          "description": "Core relation for 25.2 Entanglement Purification."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Purify multiple noisy entangled pairs into fewer high‑fidelity pairs."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Protocol: start with two noisy pairs, apply local operations, measure, post‑select on success. Yield decreases, fidelity increases."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-25-25-2-entanglement-purification",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-25-25-2-entanglement-purification",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-25-25-2-entanglement-purification",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '25-25-2-entanglement-purification'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.90437520, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.90437520, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+          "url": "https://doi.org/10.1038/s41586-018-0488-3"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "25.2 Entanglement Purification",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "25-25-3-repeaters",
+      "title": "25.3 Repeaters",
+      "parentId": null,
+      "content": {
+        "statement": "Three generations: 1st (entanglement swapping + memory), 2nd (error correction), 3rd (all‑photonic, no matter qubits).",
+        "explanation": "Repeaters overcome fiber loss by dividing the link into segments and using entanglement swapping at intermediate nodes.",
+        "example": "Quantum repeater chain for QKD.",
+        "keyTakeaways": [
+          "Three generations: 1st (entanglement swapping + memory), 2nd (error correction), 3rd (all‑photonic, no matter qubits).",
+          "Know what problem or physical phenomenon 25.3 Repeaters addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Three generations: 1st (entanglement swapping + memory), 2nd (error correction), 3rd (all‑photonic, no matter qubits)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Repeaters overcome fiber loss by dividing the link into segments and using entanglement swapping at intermediate nodes."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-25-25-3-repeaters",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-25-25-3-repeaters",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-25-25-3-repeaters",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '25-25-3-repeaters'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0,1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'entangled_state': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+          "url": "https://doi.org/10.1038/s41586-018-0488-3"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "25.3 Repeaters",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "25-25-4-network-protocols",
+      "title": "25.4 Network Protocols",
+      "parentId": null,
+      "content": {
+        "statement": "Layered architecture: Physical (channels), Link (entanglement generation), Network (routing), Transport (end‑to‑end), Application (QKD, computing).",
+        "explanation": "Each layer handles a specific function, similar to classical networking but with quantum resources.",
+        "example": "Quantum internet stack.",
+        "keyTakeaways": [
+          "Layered architecture: Physical (channels), Link (entanglement generation), Network (routing), Transport (end‑to‑end), Application (QKD, computing).",
+          "Know what problem or physical phenomenon 25.4 Network Protocols addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Layered architecture: Physical (channels), Link (entanglement generation), Network (routing), Transport (end‑to‑end), Application (QKD, computing)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Each layer handles a specific function, similar to classical networking but with quantum resources."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-25-25-4-network-protocols",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-25-25-4-network-protocols",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-25-25-4-network-protocols",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '25-25-4-network-protocols'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0,1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'entangled_state': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+          "url": "https://doi.org/10.1038/s41586-018-0488-3"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "25.4 Network Protocols",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "25-25-5-distributed-quantum-computing",
+      "title": "25.5 Distributed Quantum Computing",
+      "parentId": null,
+      "content": {
+        "statement": "Connect multiple quantum processors to scale beyond a single chip.",
+        "explanation": "Benefits: modularity, specialization, scaling. Challenges: interconnect fidelity, synchronization, error correction across nodes.",
+        "example": "Connecting two 50‑qubit chips to form a 100‑qubit system.",
+        "keyTakeaways": [
+          "Connect multiple quantum processors to scale beyond a single chip.",
+          "Know what problem or physical phenomenon 25.5 Distributed Quantum Computing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Connect multiple quantum processors to scale beyond a single chip."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Benefits: modularity, specialization, scaling. Challenges: interconnect fidelity, synchronization, error correction across nodes."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-25-25-5-distributed-quantum-computing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-25-25-5-distributed-quantum-computing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-25-25-5-distributed-quantum-computing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '25-25-5-distributed-quantum-computing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.62512252, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.62512252, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+          "url": "https://doi.org/10.1038/s41586-018-0488-3"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "25.5 Distributed Quantum Computing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "25-25-6-quantum-internet-architecture",
+      "title": "25.6 Quantum Internet Architecture",
+      "parentId": null,
+      "content": {
+        "statement": "Layers: Physical (photons, matter), Link (entanglement generation), Network (routing, switching), Transport (reliable delivery), Application (QKD, sensing, computing).",
+        "explanation": "Standards under development (IETF, ETSI).",
+        "example": "Interoperable quantum networks.",
+        "keyTakeaways": [
+          "Layers: Physical (photons, matter), Link (entanglement generation), Network (routing, switching), Transport (reliable delivery), Application (QKD, sensing, computing).",
+          "Know what problem or physical phenomenon 25.6 Quantum Internet Architecture addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Layers: Physical (photons, matter), Link (entanglement generation), Network (routing, switching), Transport (reliable delivery), Application (QKD, sensing, computing)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Standards under development (IETF, ETSI)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-25-25-6-quantum-internet-architecture",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-25-25-6-quantum-internet-architecture",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-25-25-6-quantum-internet-architecture",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '25-25-6-quantum-internet-architecture'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.06981317, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.06981317, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+          "url": "https://doi.org/10.1038/s41586-018-0488-3"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "25.6 Quantum Internet Architecture",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "review",
+      "title": "Wehner, Elkouss & Hanson, Quantum internet: A vision for the road ahead",
+      "url": "https://doi.org/10.1038/s41586-018-0488-3"
+    }
+  ]
+}

@@ -1,0 +1,1190 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 22,
+  "slug": "foundations-interpretations",
+  "title": "Foundations & Interpretations",
+  "summary": "Curriculum domain 22: Foundations & Interpretations.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "22-22-1-copenhagen-interpretation",
+      "title": "22.1 Copenhagen Interpretation",
+      "parentId": null,
+      "content": {
+        "statement": "Wavefunction is complete; collapse occurs upon measurement; complementarity; probabilistic predictions.",
+        "explanation": "Born rule P(i)=|⟨i|ψ⟩|². Criticisms: measurement problem, role of observer, non-locality.",
+        "example": "Schrödinger's cat illustrates the measurement problem.",
+        "keyTakeaways": [
+          "Wavefunction is complete; collapse occurs upon measurement; complementarity; probabilistic predictions.",
+          "Know what problem or physical phenomenon 22.1 Copenhagen Interpretation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e1803662",
+          "latex": "P(i) = |⟨i|ψ⟩|².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Wavefunction is complete; collapse occurs upon measurement; complementarity; probabilistic predictions."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "P(i) = |⟨i|ψ⟩|².",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Born rule P(i)=|⟨i|ψ⟩|². Criticisms: measurement problem, role of observer, non-locality."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-1-copenhagen-interpretation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-1-copenhagen-interpretation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-1-copenhagen-interpretation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-1-copenhagen-interpretation'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.32841654, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.32841654, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.1 Copenhagen Interpretation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-2-many-worlds-interpretation",
+      "title": "22.2 Many-Worlds Interpretation",
+      "parentId": null,
+      "content": {
+        "statement": "Universal wavefunction; no collapse; all outcomes occur in different branches.",
+        "explanation": "Apparent probability from self-locating uncertainty. Advantages: deterministic, local. Challenges: probability interpretation, ontological extravagance.",
+        "example": "Branching universe for each measurement outcome.",
+        "keyTakeaways": [
+          "Universal wavefunction; no collapse; all outcomes occur in different branches.",
+          "Know what problem or physical phenomenon 22.2 Many-Worlds Interpretation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Universal wavefunction; no collapse; all outcomes occur in different branches."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Apparent probability from self-locating uncertainty. Advantages: deterministic, local. Challenges: probability interpretation, ontological extravagance."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-2-many-worlds-interpretation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-2-many-worlds-interpretation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-2-many-worlds-interpretation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-2-many-worlds-interpretation'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.69493569, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.69493569, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.2 Many-Worlds Interpretation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-3-pilot-wave-theory-bohmian-mechanics",
+      "title": "22.3 Pilot-Wave Theory (Bohmian Mechanics)",
+      "parentId": null,
+      "content": {
+        "statement": "Particles have definite positions guided by the wavefunction.",
+        "explanation": "Guiding equation: dQ_k/dt = (ℏ/m_k) Im(∇_k ψ/ψ). Deterministic, non-local. Advantages: clear ontology. Challenges: explicit non-locality, relativistic extension difficult.",
+        "example": "Two-slit experiment with trajectories.",
+        "keyTakeaways": [
+          "Particles have definite positions guided by the wavefunction.",
+          "Know what problem or physical phenomenon 22.3 Pilot-Wave Theory (Bohmian Mechanics) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-80aa0613",
+          "latex": "dQ_k/dt = (ℏ/m_k) Im(∇_k ψ/ψ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Particles have definite positions guided by the wavefunction."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "dQ_k/dt = (ℏ/m_k) Im(∇_k ψ/ψ).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Guiding equation: dQ_k/dt = (ℏ/m_k) Im(∇_k ψ/ψ). Deterministic, non-local. Advantages: clear ontology. Challenges: explicit non-locality, relativistic extension difficult."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-3-pilot-wave-theory-bohmian-mechanics",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-3-pilot-wave-theory-bohmian-mechanics",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-3-pilot-wave-theory-bohmian-mechanics",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-3-pilot-wave-theory-bohmian-mechanics'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.08923278, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.08923278, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.3 Pilot-Wave Theory (Bohmian Mechanics)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-4-objective-collapse",
+      "title": "22.4 Objective Collapse",
+      "parentId": null,
+      "content": {
+        "statement": "Wavefunction collapse is a real physical process (e.g., GRW model).",
+        "explanation": "Modified Schrödinger equation with collapse terms. Predicts slight deviations from QM, testable experimentally.",
+        "example": "GRW model.",
+        "keyTakeaways": [
+          "Wavefunction collapse is a real physical process (e.",
+          "Know what problem or physical phenomenon 22.4 Objective Collapse addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-1f00d92e",
+          "latex": "dψ/dt = −(i/ℏ)Hψ + collapse terms.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Wavefunction collapse is a real physical process (e.g., GRW model)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "dψ/dt = −(i/ℏ)Hψ + collapse terms.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Modified Schrödinger equation with collapse terms. Predicts slight deviations from QM, testable experimentally."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-4-objective-collapse",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-4-objective-collapse",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-4-objective-collapse",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-4-objective-collapse'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.46607657, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.46607657, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.4 Objective Collapse",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-5-qbism",
+      "title": "22.5 QBism",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum states represent beliefs; measurement is belief update; subjective probabilities; no objective collapse.",
+        "explanation": "Advantages: resolves measurement problem, personalist Bayesian. Challenges: subjectivity, Wigner's friend.",
+        "example": "Bayesian updating of quantum state.",
+        "keyTakeaways": [
+          "Quantum states represent beliefs; measurement is belief update; subjective probabilities; no objective collapse.",
+          "Know what problem or physical phenomenon 22.5 QBism addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum states represent beliefs; measurement is belief update; subjective probabilities; no objective collapse."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Advantages: resolves measurement problem, personalist Bayesian. Challenges: subjectivity, Wigner's friend."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-5-qbism",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-5-qbism",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-5-qbism",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-5-qbism'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.76794487, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.76794487, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.5 QBism",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-6-relational-quantum-mechanics",
+      "title": "22.6 Relational Quantum Mechanics",
+      "parentId": null,
+      "content": {
+        "statement": "States are relative to the observer; no absolute state; information-theoretic.",
+        "explanation": "Wigner's friend has a different state than Wigner. Emphasizes relational nature of quantum facts.",
+        "example": "Wigner's friend scenario.",
+        "keyTakeaways": [
+          "States are relative to the observer; no absolute state; information-theoretic.",
+          "Know what problem or physical phenomenon 22.6 Relational Quantum Mechanics addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "States are relative to the observer; no absolute state; information-theoretic."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Wigner's friend has a different state than Wigner. Emphasizes relational nature of quantum facts."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-6-relational-quantum-mechanics",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-6-relational-quantum-mechanics",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-6-relational-quantum-mechanics",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-6-relational-quantum-mechanics'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.61283155, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.61283155, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.6 Relational Quantum Mechanics",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-7-measurement-problem",
+      "title": "22.7 Measurement Problem",
+      "parentId": null,
+      "content": {
+        "statement": "How does a definite outcome arise from superposition?",
+        "explanation": "Schrödinger's cat: |cat⟩ = (|alive⟩ + |dead⟩)/√2. Proposed solutions: Copenhagen (collapse), Many-Worlds (branching), Bohm (hidden variables), Objective collapse (physical mechanism).",
+        "example": "Cat paradox.",
+        "keyTakeaways": [
+          "How does a definite outcome arise from superposition? Schrödinger's cat: |cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+          "Know what problem or physical phenomenon 22.7 Measurement Problem addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-468772e2",
+          "latex": "|cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-7-measurement-problem",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-7-measurement-problem",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-7-measurement-problem",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-7-measurement-problem'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.7 Measurement Problem",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "22-22-8-wavefunction-realism",
+      "title": "22.8 Wavefunction Realism",
+      "parentId": null,
+      "content": {
+        "statement": "Is the wavefunction real (Ψ-ontic) or epistemic?",
+        "explanation": "PBR theorem shows that, under certain assumptions, the wavefunction must be ontic.",
+        "example": "PBR theorem.",
+        "keyTakeaways": [
+          "Is the wavefunction real (Ψ-ontic) or epistemic? PBR theorem shows that, under certain assumptions, the wavefunction must be ontic.",
+          "Know what problem or physical phenomenon 22.8 Wavefunction Realism addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Is the wavefunction real (Ψ-ontic) or epistemic?"
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "PBR theorem shows that, under certain assumptions, the wavefunction must be ontic."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-8-wavefunction-realism",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-8-wavefunction-realism",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-8-wavefunction-realism",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-8-wavefunction-realism'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.44862328, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.44862328, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.8 Wavefunction Realism",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-9-bell-s-theorem",
+      "title": "22.9 Bell's Theorem",
+      "parentId": null,
+      "content": {
+        "statement": "No local hidden variable theory reproduces QM.",
+        "explanation": "Nature is non-local or non-real. Experimental tests confirm QM.",
+        "example": "Bell tests.",
+        "keyTakeaways": [
+          "No local hidden variable theory reproduces QM.",
+          "Know what problem or physical phenomenon 22.9 Bell's Theorem addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-2f188fe5",
+          "latex": "S ≤ 2 (classical), S = 2√2 (quantum).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define correlations",
+            "formula": "E(a,b)=\\sum_{A,B=\\pm1}AB\\,P(A,B|a,b)",
+            "text": "Correlation is the average product of the two ±1 outcomes."
+          },
+          {
+            "step": 2,
+            "title": "Combine four settings",
+            "formula": "S=E(a,b)-E(a,b')+E(a',b)+E(a',b')",
+            "text": "CHSH combines four correlations into one test statistic."
+          },
+          {
+            "step": 3,
+            "title": "Compare bounds",
+            "formula": "|S|\\le2\\text{ (local hidden variables)},\\quad |S|\\le2\\sqrt2\\text{ (quantum)}",
+            "text": "Quantum theory predicts values that can exceed the local bound."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-9-bell-s-theorem",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-9-bell-s-theorem",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-9-bell-s-theorem",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-9-bell-s-theorem'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nsampler = StatevectorSampler(seed=7)\nresult = sampler.run([circuit], shots=1024).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.9 Bell's Theorem",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-10-kochen-specker-theorem",
+      "title": "22.10 Kochen-Specker Theorem",
+      "parentId": null,
+      "content": {
+        "statement": "Non-contextual hidden variables are impossible.",
+        "explanation": "Measurement outcomes depend on context (what else is measured).",
+        "example": "Cannot assign pre-existing values to all observables.",
+        "keyTakeaways": [
+          "Non-contextual hidden variables are impossible.",
+          "Know what problem or physical phenomenon 22.10 Kochen-Specker Theorem addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Non-contextual hidden variables are impossible."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Measurement outcomes depend on context (what else is measured)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-10-kochen-specker-theorem",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-10-kochen-specker-theorem",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-10-kochen-specker-theorem",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-10-kochen-specker-theorem'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.94247780, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.94247780, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.10 Kochen-Specker Theorem",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "22-22-11-contextuality",
+      "title": "22.11 Contextuality",
+      "parentId": null,
+      "content": {
+        "statement": "Measurement outcome depends on the set of compatible measurements.",
+        "explanation": "Quantum contextuality is a resource for quantum computation advantage.",
+        "example": "Mermin magic square.",
+        "keyTakeaways": [
+          "Measurement outcome depends on the set of compatible measurements.",
+          "Know what problem or physical phenomenon 22.11 Contextuality addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Measurement outcome depends on the set of compatible measurements."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Quantum contextuality is a resource for quantum computation advantage."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-22-22-11-contextuality",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-22-22-11-contextuality",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-22-22-11-contextuality",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '22-22-11-contextuality'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.19198622, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.19198622, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+          "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+        },
+        {
+          "type": "review",
+          "title": "Norsen, Foundations of Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781009038977"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "22.11 Contextuality",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Maudlin, Philosophy of Physics: Quantum Theory",
+      "url": "https://press.princeton.edu/books/paperback/9780691134927/philosophy-of-physics-quantum-theory"
+    },
+    {
+      "type": "review",
+      "title": "Norsen, Foundations of Quantum Mechanics",
+      "url": "https://doi.org/10.1017/9781009038977"
+    }
+  ]
+}

@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 15,
+  "slug": "compilation-transpilation",
+  "title": "Compilation & Transpilation",
+  "summary": "Curriculum domain 15: Compilation & Transpilation.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "15-15-1-logical-vs-physical-qubits",
+      "title": "15.1 Logical vs Physical Qubits",
+      "parentId": null,
+      "content": {
+        "statement": "Logical qubits are abstract; physical qubits are hardware. Mapping assigns logical to physical.",
+        "explanation": "Mapping must respect connectivity and coherence constraints.",
+        "example": "Mapping a 5-qubit algorithm to a 7-qubit chip.",
+        "keyTakeaways": [
+          "Logical qubits are abstract; physical qubits are hardware.",
+          "Know what problem or physical phenomenon 15.1 Logical vs Physical Qubits addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-38af70a1",
+          "latex": "|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle",
+          "description": "Core relation for 15.1 Logical vs Physical Qubits."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Logical qubits are abstract; physical qubits are hardware. Mapping assigns logical to physical."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Mapping must respect connectivity and coherence constraints."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-1-logical-vs-physical-qubits",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-1-logical-vs-physical-qubits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-1-logical-vs-physical-qubits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-1-logical-vs-physical-qubits'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.48869219, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.48869219, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.1 Logical vs Physical Qubits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-2-mapping",
+      "title": "15.2 Mapping",
+      "parentId": null,
+      "content": {
+        "statement": "Assignment of logical qubits to physical qubits.",
+        "explanation": "Optimization minimizes SWAP overhead, crosstalk, and respects coherence times.",
+        "example": "Heuristic algorithms like SABRE.",
+        "keyTakeaways": [
+          "Assignment of logical qubits to physical qubits.",
+          "Know what problem or physical phenomenon 15.2 Mapping addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Assignment of logical qubits to physical qubits."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Optimization minimizes SWAP overhead, crosstalk, and respects coherence times."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-2-mapping",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-2-mapping",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-2-mapping",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-2-mapping'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cx(0,2)\ncircuit.cx(2,1)\nfrom qiskit import transpile\ntranspiled = transpile(circuit, basis_gates=['rz','sx','x','cx'], optimization_level=3)\nprint(json.dumps({'lesson': LESSON_ID, 'original_depth': circuit.depth(), 'transpiled_depth': transpiled.depth(), 'original_ops': circuit.count_ops(), 'transpiled_ops': transpiled.count_ops()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.2 Mapping",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-3-routing",
+      "title": "15.3 Routing",
+      "parentId": null,
+      "content": {
+        "statement": "Inserting SWAP gates to enable gates between non-adjacent qubits.",
+        "explanation": "Each SWAP = 3 CNOTs. Routing increases circuit depth and error rate.",
+        "example": "CNOT on qubits 0 and 2 in a linear chain requires SWAP(1,2) then CNOT(0,1).",
+        "keyTakeaways": [
+          "Inserting SWAP gates to enable gates between non-adjacent qubits.",
+          "Know what problem or physical phenomenon 15.3 Routing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Inserting SWAP gates to enable gates between non-adjacent qubits."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Each SWAP = 3 CNOTs. Routing increases circuit depth and error rate."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-3-routing",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-3-routing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-3-routing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-3-routing'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cx(0,2)\ncircuit.cx(2,1)\nfrom qiskit import transpile\ntranspiled = transpile(circuit, basis_gates=['rz','sx','x','cx'], optimization_level=3)\nprint(json.dumps({'lesson': LESSON_ID, 'original_depth': circuit.depth(), 'transpiled_depth': transpiled.depth(), 'original_ops': circuit.count_ops(), 'transpiled_ops': transpiled.count_ops()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.3 Routing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-4-swap-insertion",
+      "title": "15.4 SWAP Insertion",
+      "parentId": null,
+      "content": {
+        "statement": "Algorithm to route gates with minimal SWAPs.",
+        "explanation": "Identify non-adjacent gates, find shortest path, insert SWAPs, optimize.",
+        "example": "For a grid topology, SWAPs are inserted along Manhattan paths.",
+        "keyTakeaways": [
+          "Algorithm to route gates with minimal SWAPs.",
+          "Know what problem or physical phenomenon 15.4 SWAP Insertion addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Algorithm to route gates with minimal SWAPs."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Identify non-adjacent gates, find shortest path, insert SWAPs, optimize."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-4-swap-insertion",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-4-swap-insertion",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-4-swap-insertion",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-4-swap-insertion'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cx(0,2)\ncircuit.cx(2,1)\nfrom qiskit import transpile\ntranspiled = transpile(circuit, basis_gates=['rz','sx','x','cx'], optimization_level=3)\nprint(json.dumps({'lesson': LESSON_ID, 'original_depth': circuit.depth(), 'transpiled_depth': transpiled.depth(), 'original_ops': circuit.count_ops(), 'transpiled_ops': transpiled.count_ops()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.4 SWAP Insertion",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-5-gate-decomposition",
+      "title": "15.5 Gate Decomposition",
+      "parentId": null,
+      "content": {
+        "statement": "Express gates in native hardware gate set.",
+        "explanation": "For example, U3 can be decomposed into rotations. R_z(θ) can be approximated by T gates.",
+        "example": "U3(θ,φ,λ) = R_z(φ) R_y(θ) R_z(λ).",
+        "keyTakeaways": [
+          "Express gates in native hardware gate set.",
+          "Know what problem or physical phenomenon 15.5 Gate Decomposition addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-4fc1b154",
+          "latex": "R_z(θ) ≈ T^k for discrete gate sets.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Express gates in native hardware gate set."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "R_z(θ) ≈ T^k for discrete gate sets.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "For example, U3 can be decomposed into rotations. R_z(θ) can be approximated by T gates."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-5-gate-decomposition",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-5-gate-decomposition",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-5-gate-decomposition",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-5-gate-decomposition'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.99164166, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.99164166, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.5 Gate Decomposition",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-6-optimization-passes",
+      "title": "15.6 Optimization Passes",
+      "parentId": null,
+      "content": {
+        "statement": "Gate cancellation, merging, commutation, template matching.",
+        "explanation": "Cancel HH=I, XX=I. Merge R_z(θ₁)R_z(θ₂)=R_z(θ₁+θ₂). Reorder commuting gates. Replace subcircuits with cheaper equivalents.",
+        "example": "H-X-H = Z (up to phase).",
+        "keyTakeaways": [
+          "Gate cancellation, merging, commutation, template matching.",
+          "Know what problem or physical phenomenon 15.6 Optimization Passes addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Gate cancellation, merging, commutation, template matching."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Cancel HH=I, XX=I. Merge R_z(θ₁)R_z(θ₂)=R_z(θ₁+θ₂). Reorder commuting gates. Replace subcircuits with cheaper equivalents."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-6-optimization-passes",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-6-optimization-passes",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-6-optimization-passes",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-6-optimization-passes'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.6 Optimization Passes",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-7-circuit-depth",
+      "title": "15.7 Circuit Depth",
+      "parentId": null,
+      "content": {
+        "statement": "Longest path from input to output; critical for coherence limits.",
+        "explanation": "Shallow depth reduces error accumulation. Depth is measured in layers of non-commuting gates.",
+        "example": "Depth 50 on IBM hardware.",
+        "keyTakeaways": [
+          "Longest path from input to output; critical for coherence limits.",
+          "Know what problem or physical phenomenon 15.7 Circuit Depth addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Longest path from input to output; critical for coherence limits."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Shallow depth reduces error accumulation. Depth is measured in layers of non-commuting gates."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-7-circuit-depth",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-7-circuit-depth",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-7-circuit-depth",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-7-circuit-depth'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.12217305, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.12217305, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.7 Circuit Depth",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-8-gate-count",
+      "title": "15.8 Gate Count",
+      "parentId": null,
+      "content": {
+        "statement": "Total gates, especially two-qubit and non-Clifford (T) gates.",
+        "explanation": "Two-qubit gates are most expensive; T gates require magic state distillation.",
+        "example": "Count CNOTs and Ts.",
+        "keyTakeaways": [
+          "Total gates, especially two-qubit and non-Clifford (T) gates.",
+          "Know what problem or physical phenomenon 15.8 Gate Count addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Total gates, especially two-qubit and non-Clifford (T) gates."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Two-qubit gates are most expensive; T gates require magic state distillation."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-8-gate-count",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-8-gate-count",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-8-gate-count",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-8-gate-count'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.16617459, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.16617459, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.8 Gate Count",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-9-connectivity-constraints",
+      "title": "15.9 Connectivity Constraints",
+      "parentId": null,
+      "content": {
+        "statement": "Topologies: linear, 2D grid, heavy-hex, all-to-all.",
+        "explanation": "Limited connectivity increases SWAP overhead. All-to-all (trapped ions) avoids SWAPs.",
+        "example": "IBM heavy-hex, Google Sycamore grid.",
+        "keyTakeaways": [
+          "Topologies: linear, 2D grid, heavy-hex, all-to-all.",
+          "Know what problem or physical phenomenon 15.9 Connectivity Constraints addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Topologies: linear, 2D grid, heavy-hex, all-to-all."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Limited connectivity increases SWAP overhead. All-to-all (trapped ions) avoids SWAPs."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-9-connectivity-constraints",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-9-connectivity-constraints",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-9-connectivity-constraints",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-9-connectivity-constraints'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.12217305, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.12217305, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.9 Connectivity Constraints",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "15-15-10-transpilation",
+      "title": "15.10 Transpilation",
+      "parentId": null,
+      "content": {
+        "statement": "Full pipeline: high-level circuit → optimization → mapping → routing → decomposition → hardware-ready.",
+        "explanation": "Transpilation is backend-specific and includes calibration data.",
+        "example": "Qiskit transpile function.",
+        "keyTakeaways": [
+          "Full pipeline: high-level circuit → optimization → mapping → routing → decomposition → hardware-ready.",
+          "Know what problem or physical phenomenon 15.10 Transpilation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Full pipeline: high-level circuit → optimization → mapping → routing → decomposition → hardware-ready."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Transpilation is backend-specific and includes calibration data."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-15-15-10-transpilation",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-15-15-10-transpilation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-15-15-10-transpilation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '15-15-10-transpilation'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cx(0,2)\ncircuit.cx(2,1)\nfrom qiskit import transpile\ntranspiled = transpile(circuit, basis_gates=['rz','sx','x','cx'], optimization_level=3)\nprint(json.dumps({'lesson': LESSON_ID, 'original_depth': circuit.depth(), 'transpiled_depth': transpiled.depth(), 'original_ops': circuit.count_ops(), 'transpiled_ops': transpiled.count_ops()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: transpilation",
+          "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "15.10 Transpilation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "web",
+      "title": "IBM Quantum Documentation: transpilation",
+      "url": "https://quantum.cloud.ibm.com/docs/en/guides/transpile"
+    },
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapter 4",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    }
+  ]
+}

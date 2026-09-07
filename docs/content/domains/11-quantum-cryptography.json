@@ -1,0 +1,1066 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 11,
+  "slug": "quantum-cryptography",
+  "title": "Quantum Cryptography",
+  "summary": "Curriculum domain 11: Quantum Cryptography.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "11-11-1-quantum-key-distribution",
+      "title": "11.1 Quantum Key Distribution",
+      "parentId": null,
+      "content": {
+        "statement": "Establishes a shared secret key with information‑theoretic security based on quantum mechanics.",
+        "explanation": "Security relies on the no‑cloning theorem, measurement disturbance, and entanglement correlations. Eavesdropping introduces detectable errors.",
+        "example": "BB84 and E91 protocols.",
+        "keyTakeaways": [
+          "Establishes a shared secret key with information‑theoretic security based on quantum mechanics.",
+          "Know what problem or physical phenomenon 11.1 Quantum Key Distribution addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Establishes a shared secret key with information‑theoretic security based on quantum mechanics."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Security relies on the no‑cloning theorem, measurement disturbance, and entanglement correlations. Eavesdropping introduces detectable errors."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-1-quantum-key-distribution",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-1-quantum-key-distribution",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-1-quantum-key-distribution",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-1-quantum-key-distribution'\n# Educational BB84 state preparation for one random bit/basis pair.\nimport random\nbit = random.Random(7).randint(0,1)\nbasis = random.Random(11).randint(0,1)\ncircuit = QuantumCircuit(1)\nif bit: circuit.x(0)\nif basis: circuit.h(0)\nprint(json.dumps({'lesson': LESSON_ID, 'prepared_bit': bit, 'prepared_basis': 'X' if basis else 'Z'}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.1 Quantum Key Distribution",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-2-bb84-protocol",
+      "title": "11.2 BB84 Protocol",
+      "parentId": null,
+      "content": {
+        "statement": "Bennett‑Brassard 1984: uses two bases (Z and X) for encoding and measurement.",
+        "explanation": "Alice chooses random bits and bases (Z or X) to prepare states; Bob chooses random bases to measure. They sift bases, estimate errors, and apply privacy amplification.",
+        "example": "If Eve measures in wrong basis, she induces 25% error rate.",
+        "keyTakeaways": [
+          "Bennett‑Brassard 1984: uses two bases (Z and X) for encoding and measurement.",
+          "Know what problem or physical phenomenon 11.2 BB84 Protocol addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-78dd505c",
+          "latex": "Security based on uncertainty principle.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Bennett‑Brassard 1984: uses two bases (Z and X) for encoding and measurement."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Security based on uncertainty principle.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Alice chooses random bits and bases (Z or X) to prepare states; Bob chooses random bases to measure. They sift bases, estimate errors, and apply privacy amplification."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-2-bb84-protocol",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-2-bb84-protocol",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-2-bb84-protocol",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-2-bb84-protocol'\n# Educational BB84 state preparation for one random bit/basis pair.\nimport random\nbit = random.Random(7).randint(0,1)\nbasis = random.Random(11).randint(0,1)\ncircuit = QuantumCircuit(1)\nif bit: circuit.x(0)\nif basis: circuit.h(0)\nprint(json.dumps({'lesson': LESSON_ID, 'prepared_bit': bit, 'prepared_basis': 'X' if basis else 'Z'}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.2 BB84 Protocol",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-3-e91-protocol",
+      "title": "11.3 E91 Protocol",
+      "parentId": null,
+      "content": {
+        "statement": "Ekert 1991: uses entanglement to generate key.",
+        "explanation": "Alice and Bob share Bell pairs. They measure in random bases and check Bell inequality violation to detect eavesdropping.",
+        "example": "Violation of CHSH ensures key is secure.",
+        "keyTakeaways": [
+          "Ekert 1991: uses entanglement to generate key.",
+          "Know what problem or physical phenomenon 11.3 E91 Protocol addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fe7b89d5",
+          "latex": "S ≤ 2 classically; quantum violation implies security.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Ekert 1991: uses entanglement to generate key."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "S ≤ 2 classically; quantum violation implies security.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Alice and Bob share Bell pairs. They measure in random bases and check Bell inequality violation to detect eavesdropping."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-3-e91-protocol",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-3-e91-protocol",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-3-e91-protocol",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-3-e91-protocol'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.88175958, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.88175958, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.3 E91 Protocol",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-4-b92-protocol",
+      "title": "11.4 B92 Protocol",
+      "parentId": null,
+      "content": {
+        "statement": "Bennett 1992: uses only two non‑orthogonal states.",
+        "explanation": "Uses |0⟩ and |+⟩. Bob uses a POVM with three outcomes (0, 1, inconclusive). Simpler than BB84 but lower efficiency.",
+        "example": "States |0⟩ and |+⟩.",
+        "keyTakeaways": [
+          "Bennett 1992: uses only two non‑orthogonal states.",
+          "Know what problem or physical phenomenon 11.4 B92 Protocol addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Bennett 1992: uses only two non‑orthogonal states."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Uses |0⟩ and |+⟩. Bob uses a POVM with three outcomes (0, 1, inconclusive). Simpler than BB84 but lower efficiency."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-4-b92-protocol",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-4-b92-protocol",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-4-b92-protocol",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-4-b92-protocol'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.98967535, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.98967535, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.4 B92 Protocol",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-5-quantum-authentication",
+      "title": "11.5 Quantum Authentication",
+      "parentId": null,
+      "content": {
+        "statement": "Verifies message authenticity using quantum resources.",
+        "explanation": "Quantum digital signatures and message authentication codes provide information‑theoretic security.",
+        "example": "Quantum signature schemes.",
+        "keyTakeaways": [
+          "Verifies message authenticity using quantum resources.",
+          "Know what problem or physical phenomenon 11.5 Quantum Authentication addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Verifies message authenticity using quantum resources."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Quantum digital signatures and message authentication codes provide information‑theoretic security."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-5-quantum-authentication",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-5-quantum-authentication",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-5-quantum-authentication",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-5-quantum-authentication'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.23402144, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.23402144, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.5 Quantum Authentication",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-6-quantum-secret-sharing",
+      "title": "11.6 Quantum Secret Sharing",
+      "parentId": null,
+      "content": {
+        "statement": "Distribute a secret among n parties such that k out of n are needed to reconstruct.",
+        "explanation": "Uses GHZ states. For a 3‑party scheme, |GHZ⟩ = (|000⟩+|111⟩)/√2. Any two parties can reconstruct, one cannot.",
+        "example": "3‑party secret sharing with GHZ.",
+        "keyTakeaways": [
+          "Distribute a secret among n parties such that k out of n are needed to reconstruct.",
+          "Know what problem or physical phenomenon 11.6 Quantum Secret Sharing addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-abbdd0d8",
+          "latex": "Threshold (k,n) scheme.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Distribute a secret among n parties such that k out of n are needed to reconstruct."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Threshold (k,n) scheme.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Uses GHZ states. For a 3‑party scheme, |GHZ⟩ = (|000⟩+|111⟩)/√2. Any two parties can reconstruct, one cannot."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-6-quantum-secret-sharing",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-6-quantum-secret-sharing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-6-quantum-secret-sharing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-6-quantum-secret-sharing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.89208423, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.89208423, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.6 Quantum Secret Sharing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-7-quantum-random-number-generation",
+      "title": "11.7 Quantum Random Number Generation",
+      "parentId": null,
+      "content": {
+        "statement": "True randomness from quantum measurement.",
+        "explanation": "Measuring |+⟩ in Z basis gives 0 or 1 with equal probability. Can be certified using Bell tests.",
+        "example": "QRNG devices.",
+        "keyTakeaways": [
+          "True randomness from quantum measurement.",
+          "Know what problem or physical phenomenon 11.7 Quantum Random Number Generation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a1c30644",
+          "latex": "P(0)=P(1)=½.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "True randomness from quantum measurement."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "P(0)=P(1)=½.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Measuring |+⟩ in Z basis gives 0 or 1 with equal probability. Can be certified using Bell tests."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-7-quantum-random-number-generation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-7-quantum-random-number-generation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-7-quantum-random-number-generation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-7-quantum-random-number-generation'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=19).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.7 Quantum Random Number Generation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-8-no-cloning-and-cryptography",
+      "title": "11.8 No‑Cloning and Cryptography",
+      "parentId": null,
+      "content": {
+        "statement": "No‑cloning guarantees that eavesdropping is detectable.",
+        "explanation": "Eve cannot copy a quantum state without disturbing it; the disturbance introduces errors that are detected during sifting.",
+        "example": "In BB84, Eve's measurement introduces 25% error.",
+        "keyTakeaways": [
+          "No‑cloning guarantees that eavesdropping is detectable.",
+          "Know what problem or physical phenomenon 11.8 No‑Cloning and Cryptography addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "No‑cloning guarantees that eavesdropping is detectable."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Eve cannot copy a quantum state without disturbing it; the disturbance introduces errors that are detected during sifting."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-8-no-cloning-and-cryptography",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-8-no-cloning-and-cryptography",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-8-no-cloning-and-cryptography",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-8-no-cloning-and-cryptography'\n# Educational BB84 state preparation for one random bit/basis pair.\nimport random\nbit = random.Random(7).randint(0,1)\nbasis = random.Random(11).randint(0,1)\ncircuit = QuantumCircuit(1)\nif bit: circuit.x(0)\nif basis: circuit.h(0)\nprint(json.dumps({'lesson': LESSON_ID, 'prepared_bit': bit, 'prepared_basis': 'X' if basis else 'Z'}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.8 No‑Cloning and Cryptography",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-9-post-quantum-cryptography",
+      "title": "11.9 Post‑Quantum Cryptography",
+      "parentId": null,
+      "content": {
+        "statement": "Classical cryptography schemes secure against quantum computers.",
+        "explanation": "Approaches include lattice‑based (LWE, NTRU), code‑based (McEliece), multivariate, and hash‑based (Merkle signatures). NIST is standardizing.",
+        "example": "Kyber, Dilithium, Falcon.",
+        "keyTakeaways": [
+          "Classical cryptography schemes secure against quantum computers.",
+          "Know what problem or physical phenomenon 11.9 Post‑Quantum Cryptography addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Classical cryptography schemes secure against quantum computers."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Approaches include lattice‑based (LWE, NTRU), code‑based (McEliece), multivariate, and hash‑based (Merkle signatures). NIST is standardizing."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-9-post-quantum-cryptography",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-9-post-quantum-cryptography",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-9-post-quantum-cryptography",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-9-post-quantum-cryptography'\n# Educational BB84 state preparation for one random bit/basis pair.\nimport random\nbit = random.Random(7).randint(0,1)\nbasis = random.Random(11).randint(0,1)\ncircuit = QuantumCircuit(1)\nif bit: circuit.x(0)\nif basis: circuit.h(0)\nprint(json.dumps({'lesson': LESSON_ID, 'prepared_bit': bit, 'prepared_basis': 'X' if basis else 'Z'}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.9 Post‑Quantum Cryptography",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "11-11-10-classical-vs-quantum-cryptography",
+      "title": "11.10 Classical vs Quantum Cryptography",
+      "parentId": null,
+      "content": {
+        "statement": "Classical is based on computational hardness; quantum is based on physical laws.",
+        "explanation": "Classical: RSA, ECC vulnerable to Shor. Quantum: QKD is information‑theoretically secure and future‑proof.",
+        "example": "RSA vs BB84.",
+        "keyTakeaways": [
+          "Classical is based on computational hardness; quantum is based on physical laws.",
+          "Know what problem or physical phenomenon 11.10 Classical vs Quantum Cryptography addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Classical is based on computational hardness; quantum is based on physical laws."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Classical: RSA, ECC vulnerable to Shor. Quantum: QKD is information‑theoretically secure and future‑proof."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-11-11-10-classical-vs-quantum-cryptography",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-11-11-10-classical-vs-quantum-cryptography",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-11-11-10-classical-vs-quantum-cryptography",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '11-11-10-classical-vs-quantum-cryptography'\n# Educational BB84 state preparation for one random bit/basis pair.\nimport random\nbit = random.Random(7).randint(0,1)\nbasis = random.Random(11).randint(0,1)\ncircuit = QuantumCircuit(1)\nif bit: circuit.x(0)\nif basis: circuit.h(0)\nprint(json.dumps({'lesson': LESSON_ID, 'prepared_bit': bit, 'prepared_basis': 'X' if basis else 'Z'}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "standard",
+          "title": "Bennett & Brassard, BB84 (1984)",
+          "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+        },
+        {
+          "type": "web",
+          "title": "NIST Post-Quantum Cryptography",
+          "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "11.10 Classical vs Quantum Cryptography",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "standard",
+      "title": "Bennett & Brassard, BB84 (1984)",
+      "url": "https://doi.org/10.1016/j.tcs.2006.04.011"
+    },
+    {
+      "type": "web",
+      "title": "NIST Post-Quantum Cryptography",
+      "url": "https://csrc.nist.gov/projects/post-quantum-cryptography"
+    }
+  ]
+}

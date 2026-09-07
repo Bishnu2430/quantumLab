@@ -1,0 +1,649 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 20,
+  "slug": "quantum-information-theory",
+  "title": "Quantum Information Theory",
+  "summary": "Curriculum domain 20: Quantum Information Theory.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "20-20-1-classical-information",
+      "title": "20.1 Classical Information",
+      "parentId": null,
+      "content": {
+        "statement": "Shannon entropy H(X) = −∑ p(x) log₂ p(x).",
+        "explanation": "H(X) measures average information content. Maximum for uniform distribution. Additive for independent variables. Mutual information I(X;Y) = H(X)+H(Y)−H(X,Y). Conditional entropy H(X|Y)=H(X,Y)−H(Y).",
+        "example": "Fair coin: H=1 bit.",
+        "keyTakeaways": [
+          "Shannon entropy H(X) = −∑ p(x) log₂ p(x).",
+          "Know what problem or physical phenomenon 20.1 Classical Information addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-902338ab",
+          "latex": "H(X) = −∑ p(x) log₂ p(x); I(X;Y) = H(X)+H(Y)−H(X,Y); H(X|Y)=H(X,Y)−H(Y).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Shannon entropy H(X) = −∑ p(x) log₂ p(x)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H(X) = −∑ p(x) log₂ p(x); I(X;Y) = H(X)+H(Y)−H(X,Y); H(X|Y)=H(X,Y)−H(Y).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "H(X) measures average information content. Maximum for uniform distribution. Additive for independent variables. Mutual information I(X;Y) = H(X)+H(Y)−H(X,Y). Conditional entropy H(X|Y)=H(X,Y)−H(Y)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-20-20-1-classical-information",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-20-20-1-classical-information",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-20-20-1-classical-information",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '20-20-1-classical-information'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.73303829, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.73303829, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Wilde, Quantum Information Theory",
+          "url": "https://doi.org/10.1017/9781316809976"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "20.1 Classical Information",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "20-20-2-quantum-information",
+      "title": "20.2 Quantum Information",
+      "parentId": null,
+      "content": {
+        "statement": "von Neumann entropy S(ρ) = −Tr(ρ log ρ).",
+        "explanation": "Eigenvalue form: S(ρ) = −∑ λᵢ log λᵢ. S=0 iff pure, max log d. Quantum mutual information I(A;B)=S(ρ_A)+S(ρ_B)−S(ρ_AB). Conditional entropy S(A|B)=S(ρ_AB)−S(ρ_B) can be negative for entangled states (e.g., |Φ⁺⟩ → S(A|B)=−1). Relative entropy S(ρ||σ)=Tr(ρ log ρ − ρ log σ).",
+        "example": "For |Φ⁺⟩, S(ρ_A)=1, S(ρ_AB)=0 → I(A;B)=2.",
+        "keyTakeaways": [
+          "von Neumann entropy S(ρ) = −Tr(ρ log ρ).",
+          "Know what problem or physical phenomenon 20.2 Quantum Information addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-393f011f",
+          "latex": "S(ρ) = −Tr(ρ log ρ); I(A;B)=S(ρ_A)+S(ρ_B)−S(ρ_AB); S(A|B)=S(ρ_AB)−S(ρ_B); S(ρ||σ)=Tr(ρ log ρ − ρ log σ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "von Neumann entropy S(ρ) = −Tr(ρ log ρ)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "S(ρ) = −Tr(ρ log ρ); I(A;B)=S(ρ_A)+S(ρ_B)−S(ρ_AB); S(A|B)=S(ρ_AB)−S(ρ_B); S(ρ||σ)=Tr(ρ log ρ − ρ log σ).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Eigenvalue form: S(ρ) = −∑ λᵢ log λᵢ. S=0 iff pure, max log d. Quantum mutual information I(A;B)=S(ρ_A)+S(ρ_B)−S(ρ_AB). Conditional entropy S(A|B)=S(ρ_AB)−S(ρ_B) can be negative for entangled states (e.g., |Φ⁺⟩ → S(A|B)=−1). Relative entropy S(ρ||σ)=Tr(ρ log ρ − ρ log σ)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-20-20-2-quantum-information",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-20-20-2-quantum-information",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-20-20-2-quantum-information",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '20-20-2-quantum-information'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.39822972, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.39822972, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Wilde, Quantum Information Theory",
+          "url": "https://doi.org/10.1017/9781316809976"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "20.2 Quantum Information",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "20-20-3-quantum-channels",
+      "title": "20.3 Quantum Channels",
+      "parentId": null,
+      "content": {
+        "statement": "CPTP (completely positive trace-preserving) maps with Kraus representation ℰ(ρ) = ∑ E_k ρ E_k†, ∑ E_k†E_k = I.",
+        "explanation": "Examples: depolarizing, amplitude damping, phase damping.",
+        "example": "Depolarizing: ℰ(ρ) = (1−p)ρ + (p/3)(XρX+YρY+ZρZ).",
+        "keyTakeaways": [
+          "CPTP (completely positive trace-preserving) maps with Kraus representation ℰ(ρ) = ∑ E_k ρ E_k†, ∑ E_k†E_k = I.",
+          "Know what problem or physical phenomenon 20.3 Quantum Channels addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-2c86f152",
+          "latex": "ℰ(ρ) = ∑ E_k ρ E_k†; ∑ E_k†E_k = I.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "CPTP (completely positive trace-preserving) maps with Kraus representation ℰ(ρ) = ∑ E_k ρ E_k†, ∑ E_k†E_k = I."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ℰ(ρ) = ∑ E_k ρ E_k†; ∑ E_k†E_k = I.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Examples: depolarizing, amplitude damping, phase damping."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-20-20-3-quantum-channels",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-20-20-3-quantum-channels",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-20-20-3-quantum-channels",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '20-20-3-quantum-channels'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nsv = Statevector.from_instruction(circuit)\nrho = sv.to_operator().data @ (sv.to_operator().data.conj().T)\nprint(json.dumps({'lesson': LESSON_ID, 'statevector': [complex(a).__repr__() for a in sv.data], 'rho': [[complex(x).__repr__() for x in row] for row in rho]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Wilde, Quantum Information Theory",
+          "url": "https://doi.org/10.1017/9781316809976"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "20.3 Quantum Channels",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "20-20-4-holevo-bound",
+      "title": "20.4 Holevo Bound",
+      "parentId": null,
+      "content": {
+        "statement": "χ = S(∑ pᵢ ρᵢ) − ∑ pᵢ S(ρᵢ).",
+        "explanation": "The Holevo bound is the maximum classical information that can be extracted from a quantum ensemble. It implies n qubits transmit at most n classical bits.",
+        "example": "For orthogonal states, χ = H(p).",
+        "keyTakeaways": [
+          "χ = S(∑ pᵢ ρᵢ) − ∑ pᵢ S(ρᵢ).",
+          "Know what problem or physical phenomenon 20.4 Holevo Bound addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e43d2116",
+          "latex": "χ = S(∑ pᵢ ρᵢ) − ∑ pᵢ S(ρᵢ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "χ = S(∑ pᵢ ρᵢ) − ∑ pᵢ S(ρᵢ)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "χ = S(∑ pᵢ ρᵢ) − ∑ pᵢ S(ρᵢ).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The Holevo bound is the maximum classical information that can be extracted from a quantum ensemble. It implies n qubits transmit at most n classical bits."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-20-20-4-holevo-bound",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-20-20-4-holevo-bound",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-20-20-4-holevo-bound",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '20-20-4-holevo-bound'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.85521133, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.85521133, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Wilde, Quantum Information Theory",
+          "url": "https://doi.org/10.1017/9781316809976"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "20.4 Holevo Bound",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "20-20-5-quantum-capacity",
+      "title": "20.5 Quantum Capacity",
+      "parentId": null,
+      "content": {
+        "statement": "Q(ℰ) = lim_{n→∞} (1/n) max_ρ I_c(ρ, ℰ⊗ⁿ).",
+        "explanation": "I_c(ρ, ℰ) = S(ℰ(ρ)) − S(ℰ^c(ρ)) is the coherent information. Quantum capacity is the maximum rate of reliable quantum communication.",
+        "example": "For a depolarizing channel, Q>0 only if fidelity > ½.",
+        "keyTakeaways": [
+          "Q(ℰ) = lim_{n→∞} (1/n) max_ρ I_c(ρ, ℰ⊗ⁿ).",
+          "Know what problem or physical phenomenon 20.5 Quantum Capacity addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-64d58f3c",
+          "latex": "I_c(ρ, ℰ) = S(ℰ(ρ)) − S(ℰ^c(ρ)).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Q(ℰ) = lim_{n→∞} (1/n) max_ρ I_c(ρ, ℰ⊗ⁿ)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "I_c(ρ, ℰ) = S(ℰ(ρ)) − S(ℰ^c(ρ)).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "I_c(ρ, ℰ) = S(ℰ(ρ)) − S(ℰ^c(ρ)) is the coherent information. Quantum capacity is the maximum rate of reliable quantum communication."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-20-20-5-quantum-capacity",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-20-20-5-quantum-capacity",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-20-20-5-quantum-capacity",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '20-20-5-quantum-capacity'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.92182849, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.92182849, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Wilde, Quantum Information Theory",
+          "url": "https://doi.org/10.1017/9781316809976"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "20.5 Quantum Capacity",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "20-20-6-data-processing-inequality",
+      "title": "20.6 Data Processing Inequality",
+      "parentId": null,
+      "content": {
+        "statement": "Classical: I(X;Z) ≤ I(X;Y) for Markov chain X→Y→Z. Quantum: S(ℰ(ρ)||ℰ(σ)) ≤ S(ρ||σ).",
+        "explanation": "Information cannot increase under processing (no free lunch).",
+        "example": "Post-processing cannot increase mutual information.",
+        "keyTakeaways": [
+          "Classical: I(X;Z) ≤ I(X;Y) for Markov chain X→Y→Z.",
+          "Know what problem or physical phenomenon 20.6 Data Processing Inequality addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f866ca4a",
+          "latex": "S(ℰ(ρ)||ℰ(σ)) ≤ S(ρ||σ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classical: I(X;Z) ≤ I(X;Y) for Markov chain X→Y→Z. Quantum: S(ℰ(ρ)||ℰ(σ)) ≤ S(ρ||σ)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "S(ℰ(ρ)||ℰ(σ)) ≤ S(ρ||σ).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Information cannot increase under processing (no free lunch)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-20-20-6-data-processing-inequality",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-20-20-6-data-processing-inequality",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-20-20-6-data-processing-inequality",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '20-20-6-data-processing-inequality'\ncircuit = QuantumCircuit(1)\ncircuit.rx(2.77507351, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 2.77507351, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Wilde, Quantum Information Theory",
+          "url": "https://doi.org/10.1017/9781316809976"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "20.6 Data Processing Inequality",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Wilde, Quantum Information Theory",
+      "url": "https://doi.org/10.1017/9781316809976"
+    }
+  ]
+}

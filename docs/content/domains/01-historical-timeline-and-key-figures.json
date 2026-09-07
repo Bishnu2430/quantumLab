@@ -1,0 +1,1203 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 1,
+  "slug": "historical-timeline-and-key-figures",
+  "title": "Historical Timeline and Key Figures",
+  "summary": "Curriculum domain 1: Historical Timeline and Key Figures.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "01-1-1-interactive-timeline",
+      "title": "1.1 Interactive Timeline",
+      "parentId": null,
+      "content": {
+        "statement": "Key milestones in the development of quantum mechanics and quantum computation.",
+        "explanation": "The timeline spans from the birth of quantum theory in 1900 to the first quantum algorithms in the 1990s. Each event marks a fundamental shift in our understanding of physical reality or the invention of a key computational concept.",
+        "example": "Planck's quantization of energy in 1900 resolved the ultraviolet catastrophe and started the quantum revolution.",
+        "keyTakeaways": [
+          "Key milestones in the development of quantum mechanics and quantum computation.",
+          "Know what problem or physical phenomenon 1.1 Interactive Timeline addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Key milestones in the development of quantum mechanics and quantum computation."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "The timeline spans from the birth of quantum theory in 1900 to the first quantum algorithms in the 1990s. Each event marks a fundamental shift in our understanding of physical reality or the invention of a key computational concept."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-1-1-interactive-timeline",
+          "type": "2d",
+          "renderer": "timeline",
+          "interactive": true,
+          "props": {
+            "layout": "horizontal",
+            "zoom": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-1-1-interactive-timeline",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-1-1-interactive-timeline",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-1-1-interactive-timeline'\nevents = [{'year': 1900, 'event': 'Planck quantization'}, {'year': 1926, 'event': 'Schrodinger equation'}, {'year': 1964, 'event': 'Bell theorem'}, {'year': 1994, 'event': 'Shor algorithm'}]\nprint(json.dumps({'lesson': LESSON_ID, 'events': events}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "1.1 Interactive Timeline",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "01-1-2-key-figures-and-contributions",
+      "title": "1.2 Key Figures and Contributions",
+      "parentId": null,
+      "content": {
+        "statement": "The pioneers of quantum mechanics and quantum computing and their essential contributions.",
+        "explanation": "Each scientist introduced ideas, equations, or experiments that form the bedrock of modern quantum theory and its computational applications.",
+        "example": "Planck's constant h appears in all quantum formulas; Feynman's 1981 insight that classical computers cannot simulate quantum systems led to the proposal of quantum computers.",
+        "keyTakeaways": [
+          "The pioneers of quantum mechanics and quantum computing and their essential contributions.",
+          "Know what problem or physical phenomenon 1.2 Key Figures and Contributions addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "The pioneers of quantum mechanics and quantum computing and their essential contributions."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Each scientist introduced ideas, equations, or experiments that form the bedrock of modern quantum theory and its computational applications."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-1-2-key-figures-and-contributions",
+          "type": "2d",
+          "renderer": "timeline",
+          "interactive": true,
+          "props": {
+            "layout": "horizontal",
+            "zoom": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-1-2-key-figures-and-contributions",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-1-2-key-figures-and-contributions",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-1-2-key-figures-and-contributions'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.69813170, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.69813170, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "1.2 Key Figures and Contributions",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-max-planck-1858-1947",
+      "title": "Max Planck (1858–1947)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Quantized energy to solve the ultraviolet catastrophe.",
+        "explanation": "Planck proposed that energy is emitted or absorbed in discrete quanta, E = nhν, with h = 6.626×10⁻³⁴ J·s.",
+        "example": "For a photon of frequency ν, its energy is E = hν.",
+        "keyTakeaways": [
+          "Quantized energy to solve the ultraviolet catastrophe.",
+          "Know what problem or physical phenomenon Max Planck (1858–1947) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-4b2fe22e",
+          "latex": "E = nhν, n ∈ ℕ; B(ν,T) = (2hν³/c²) · 1/(e^(hν/k_BT) − 1)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantized energy to solve the ultraviolet catastrophe."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E = nhν, n ∈ ℕ; B(ν,T) = (2hν³/c²) · 1/(e^(hν/k_BT) − 1)",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Planck proposed that energy is emitted or absorbed in discrete quanta, E = nhν, with h = 6.626×10⁻³⁴ J·s."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-max-planck-1858-1947",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-max-planck-1858-1947",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-max-planck-1858-1947",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-max-planck-1858-1947'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.38077642, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.38077642, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Max Planck (1858–1947)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-albert-einstein-1879-1955",
+      "title": "Albert Einstein (1879–1955)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Photoelectric effect: light consists of discrete photons.",
+        "explanation": "Einstein showed that light energy is quantised and that the maximum kinetic energy of emitted electrons is K_max = hν − φ, where φ is the work function.",
+        "example": "For a metal with work function φ, photons of frequency ν eject electrons only if hν > φ.",
+        "keyTakeaways": [
+          "Photoelectric effect: light consists of discrete photons.",
+          "Know what problem or physical phenomenon Albert Einstein (1879–1955) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-930e840b",
+          "latex": "K_max = hν − φ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Photoelectric effect: light consists of discrete photons."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "K_max = hν − φ",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Einstein showed that light energy is quantised and that the maximum kinetic energy of emitted electrons is K_max = hν − φ, where φ is the work function."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-albert-einstein-1879-1955",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-albert-einstein-1879-1955",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-albert-einstein-1879-1955",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-albert-einstein-1879-1955'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.13446401, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.13446401, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Albert Einstein (1879–1955)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-niels-bohr-1885-1962",
+      "title": "Niels Bohr (1885–1962)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Quantised electron orbits in hydrogen.",
+        "explanation": "Bohr proposed that electrons occupy discrete energy levels with angular momentum L = nℏ, leading to the Rydberg formula.",
+        "example": "The hydrogen spectrum lines correspond to transitions between energy levels Eₙ = −13.6/n² eV.",
+        "keyTakeaways": [
+          "Quantised electron orbits in hydrogen.",
+          "Know what problem or physical phenomenon Niels Bohr (1885–1962) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-b44220f8",
+          "latex": "L = nℏ; Eₙ = −13.6/n² eV; 1/λ = R(1/n₁² − 1/n₂²)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantised electron orbits in hydrogen."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "L = nℏ; Eₙ = −13.6/n² eV; 1/λ = R(1/n₁² − 1/n₂²)",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Bohr proposed that electrons occupy discrete energy levels with angular momentum L = nℏ, leading to the Rydberg formula."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-niels-bohr-1885-1962",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-niels-bohr-1885-1962",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-niels-bohr-1885-1962",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-niels-bohr-1885-1962'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.87463094, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.87463094, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Niels Bohr (1885–1962)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-werner-heisenberg-1901-1976",
+      "title": "Werner Heisenberg (1901–1976)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Matrix mechanics and the uncertainty principle.",
+        "explanation": "Heisenberg formulated the first complete version of quantum mechanics using matrices and derived the fundamental uncertainty relation.",
+        "example": "For position x and momentum p, ΔxΔp ≥ ℏ/2. For any observables A and B, ΔAΔB ≥ ½|⟨[Â, B̂]⟩|.",
+        "keyTakeaways": [
+          "Matrix mechanics and the uncertainty principle.",
+          "Know what problem or physical phenomenon Werner Heisenberg (1901–1976) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-455c0934",
+          "latex": "ΔxΔp ≥ ℏ/2; ΔAΔB ≥ ½|⟨[Â, B̂]⟩|",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Matrix mechanics and the uncertainty principle."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ΔxΔp ≥ ℏ/2; ΔAΔB ≥ ½|⟨[Â, B̂]⟩|",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Heisenberg formulated the first complete version of quantum mechanics using matrices and derived the fundamental uncertainty relation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-werner-heisenberg-1901-1976",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-werner-heisenberg-1901-1976",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-werner-heisenberg-1901-1976",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-werner-heisenberg-1901-1976'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.95157275, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.95157275, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Werner Heisenberg (1901–1976)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-erwin-schr-dinger-1887-1961",
+      "title": "Erwin Schrödinger (1887–1961)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Wave equation governing quantum state evolution.",
+        "explanation": "Schrödinger introduced the wavefunction ψ and the equation iℏ∂ψ/∂t = Ĥψ, with the time‑independent form Ĥψ = Eψ.",
+        "example": "For a free particle, Ĥ = −ℏ²/2m ∇², leading to plane‑wave solutions.",
+        "keyTakeaways": [
+          "Wave equation governing quantum state evolution.",
+          "Know what problem or physical phenomenon Erwin Schrödinger (1887–1961) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-8e5229eb",
+          "latex": "iℏ ∂ψ/∂t = Ĥψ; Ĥ = −ℏ²/2m ∇² + V(r)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Start from classical energy",
+            "formula": "E=p^2/(2m)+V(x)",
+            "text": "For a nonrelativistic particle, total energy is kinetic plus potential energy."
+          },
+          {
+            "step": 2,
+            "title": "Promote observables to operators",
+            "formula": "E\\to i\\hbar\\partial_t,\\quad p\\to -i\\hbar\\nabla",
+            "text": "Quantum mechanics represents measurable quantities by operators acting on the wavefunction."
+          },
+          {
+            "step": 3,
+            "title": "Substitute",
+            "formula": "i\\hbar\\partial_t\\psi=[-\\hbar^2\\nabla^2/(2m)+V]\\psi",
+            "text": "Substitution gives the time-dependent Schrödinger equation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-erwin-schr-dinger-1887-1961",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-erwin-schr-dinger-1887-1961",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-erwin-schr-dinger-1887-1961",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-erwin-schr-dinger-1887-1961'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.21140582, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.21140582, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Erwin Schrödinger (1887–1961)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-paul-dirac-1902-1984",
+      "title": "Paul Dirac (1902–1984)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Relativistic quantum mechanics and antimatter.",
+        "explanation": "Dirac combined quantum mechanics with special relativity, yielding the Dirac equation, which predicted antiparticles (positrons).",
+        "example": "The Dirac equation (iγᵘ∂ᵤ − m)ψ = 0 describes spin‑½ particles and implies the existence of negative‑energy states filled by the Dirac sea.",
+        "keyTakeaways": [
+          "Relativistic quantum mechanics and antimatter.",
+          "Know what problem or physical phenomenon Paul Dirac (1902–1984) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-197b8aaf",
+          "latex": "(iγᵘ∂ᵤ − m)ψ = 0",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Relativistic quantum mechanics and antimatter."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "(iγᵘ∂ᵤ − m)ψ = 0",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Dirac combined quantum mechanics with special relativity, yielding the Dirac equation, which predicted antiparticles (positrons)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-paul-dirac-1902-1984",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-paul-dirac-1902-1984",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-paul-dirac-1902-1984",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-paul-dirac-1902-1984'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.41052068, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.41052068, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Paul Dirac (1902–1984)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-john-bell-1928-1990",
+      "title": "John Bell (1928–1990)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Bell's theorem: no local hidden variable theory can reproduce all quantum predictions.",
+        "explanation": "Bell derived inequalities that any local realistic theory must satisfy, but quantum mechanics violates them, as confirmed experimentally.",
+        "example": "The CHSH form of Bell's inequality: S = E(a,b) − E(a,b') + E(a',b) + E(a',b') ≤ 2, while quantum mechanics gives S ≤ 2√2.",
+        "keyTakeaways": [
+          "Bell's theorem: no local hidden variable theory can reproduce all quantum predictions.",
+          "Know what problem or physical phenomenon John Bell (1928–1990) addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c8a12235",
+          "latex": "S ≤ 2 (classical); S = 2√2 (quantum)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define correlations",
+            "formula": "E(a,b)=\\sum_{A,B=\\pm1}AB\\,P(A,B|a,b)",
+            "text": "Correlation is the average product of the two ±1 outcomes."
+          },
+          {
+            "step": 2,
+            "title": "Combine four settings",
+            "formula": "S=E(a,b)-E(a,b')+E(a',b)+E(a',b')",
+            "text": "CHSH combines four correlations into one test statistic."
+          },
+          {
+            "step": 3,
+            "title": "Compare bounds",
+            "formula": "|S|\\le2\\text{ (local hidden variables)},\\quad |S|\\le2\\sqrt2\\text{ (quantum)}",
+            "text": "Quantum theory predicts values that can exceed the local bound."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-john-bell-1928-1990",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-john-bell-1928-1990",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-john-bell-1928-1990",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-john-bell-1928-1990'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nsampler = StatevectorSampler(seed=7)\nresult = sampler.run([circuit], shots=1024).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "John Bell (1928–1990)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-richard-feynman-1918-1988",
+      "title": "Richard Feynman (1918–1988)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Classical computers cannot efficiently simulate quantum systems; hence we should build computers using quantum mechanical components.",
+        "explanation": "Feynman's 1981 keynote planted the seed for quantum computing, arguing that nature is quantum and simulating it requires quantum hardware.",
+        "example": "Simulating a system of n spin‑½ particles on a classical computer requires 2ⁿ complex numbers, but a quantum computer with n qubits can represent the same state naturally.",
+        "keyTakeaways": [
+          "Classical computers cannot efficiently simulate quantum systems; hence we should build computers using quantum mechanical components.",
+          "Know what problem or physical phenomenon Richard Feynman (1918–1988) addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Classical computers cannot efficiently simulate quantum systems; hence we should build computers using quantum mechanical components."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Feynman's 1981 keynote planted the seed for quantum computing, arguing that nature is quantum and simulating it requires quantum hardware."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-richard-feynman-1918-1988",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-richard-feynman-1918-1988",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-richard-feynman-1918-1988",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-richard-feynman-1918-1988'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.76991118, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.76991118, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Richard Feynman (1918–1988)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "01-david-deutsch-b-1953",
+      "title": "David Deutsch (b. 1953)",
+      "parentId": "01-1-2-key-figures-and-contributions",
+      "content": {
+        "statement": "Universal quantum computer and the first quantum algorithm demonstrating parallelism.",
+        "explanation": "Deutsch formalised the quantum Turing machine in 1985 and in 1989 proposed the Deutsch algorithm, which computes whether a function is constant or balanced with one query instead of two.",
+        "example": "The Deutsch–Jozsa algorithm generalises this to n bits, requiring only one query versus 2ⁿ⁻¹+1 classically.",
+        "keyTakeaways": [
+          "Universal quantum computer and the first quantum algorithm demonstrating parallelism.",
+          "Know what problem or physical phenomenon David Deutsch (b. 1953) addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Universal quantum computer and the first quantum algorithm demonstrating parallelism."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Deutsch formalised the quantum Turing machine in 1985 and in 1989 proposed the Deutsch algorithm, which computes whether a function is constant or balanced with one query instead of two."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-01-david-deutsch-b-1953",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-01-david-deutsch-b-1953",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-01-david-deutsch-b-1953",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '01-david-deutsch-b-1953'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.80285146, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.80285146, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "web",
+          "title": "Nobel Prize: The Nobel Prize in Physics history",
+          "url": "https://www.nobelprize.org/prizes/physics/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "David Deutsch (b. 1953)",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+      "url": "https://doi.org/10.1017/9781108587285"
+    },
+    {
+      "type": "web",
+      "title": "Nobel Prize: The Nobel Prize in Physics history",
+      "url": "https://www.nobelprize.org/prizes/physics/"
+    }
+  ]
+}

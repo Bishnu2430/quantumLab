@@ -1,0 +1,781 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 21,
+  "slug": "quantum-thermodynamics",
+  "title": "Quantum Thermodynamics",
+  "summary": "Curriculum domain 21: Quantum Thermodynamics.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "21-21-1-quantum-heat-engines",
+      "title": "21.1 Quantum Heat Engines",
+      "parentId": null,
+      "content": {
+        "statement": "Working substance is a quantum system; efficiency η = W/Q_h ≤ 1 − T_c/T_h.",
+        "explanation": "Cycle: isothermal expansion (hot), adiabatic expansion, isothermal compression (cold), adiabatic compression. The Carnot bound applies.",
+        "example": "A qubit engine.",
+        "keyTakeaways": [
+          "Working substance is a quantum system; efficiency η = W/Q_h ≤ 1 − T_c/T_h.",
+          "Know what problem or physical phenomenon 21.1 Quantum Heat Engines addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-33d89253",
+          "latex": "η = W/Q_h ≤ 1 − T_c/T_h.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Working substance is a quantum system; efficiency η = W/Q_h ≤ 1 − T_c/T_h."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "η = W/Q_h ≤ 1 − T_c/T_h.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Cycle: isothermal expansion (hot), adiabatic expansion, isothermal compression (cold), adiabatic compression. The Carnot bound applies."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-1-quantum-heat-engines",
+          "type": "2d",
+          "renderer": "energy-levels",
+          "interactive": true,
+          "props": {
+            "showTransitions": true,
+            "showLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-1-quantum-heat-engines",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-1-quantum-heat-engines",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-1-quantum-heat-engines'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.55850536, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.55850536, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.1 Quantum Heat Engines",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "21-21-2-quantum-work",
+      "title": "21.2 Quantum Work",
+      "parentId": null,
+      "content": {
+        "statement": "W = E_f − E_i (two-point measurement). Average work ⟨W⟩ = Tr(H_f ρ_f) − Tr(H_i ρ_i).",
+        "explanation": "Work is the energy change due to external parameter variation. The two-point measurement protocol defines work statistics.",
+        "example": "Compression of a quantum harmonic oscillator.",
+        "keyTakeaways": [
+          "W = E_f − E_i (two-point measurement).",
+          "Know what problem or physical phenomenon 21.2 Quantum Work addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-1c42191d",
+          "latex": "⟨W⟩ = Tr(H_f ρ_f) − Tr(H_i ρ_i).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "W = E_f − E_i (two-point measurement). Average work ⟨W⟩ = Tr(H_f ρ_f) − Tr(H_i ρ_i)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "⟨W⟩ = Tr(H_f ρ_f) − Tr(H_i ρ_i).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Work is the energy change due to external parameter variation. The two-point measurement protocol defines work statistics."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-2-quantum-work",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-2-quantum-work",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-2-quantum-work",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-2-quantum-work'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.63741348, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.63741348, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.2 Quantum Work",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "21-21-3-landauer-principle",
+      "title": "21.3 Landauer Principle",
+      "parentId": null,
+      "content": {
+        "statement": "Erasing 1 bit requires W ≥ k_B T ln 2. Quantum: W ≥ k_B T S(ρ).",
+        "explanation": "Information is physical. Erasure dissipates heat and increases entropy.",
+        "example": "Resetting a qubit to |0⟩.",
+        "keyTakeaways": [
+          "Erasing 1 bit requires W ≥ k_B T ln 2.",
+          "Know what problem or physical phenomenon 21.3 Landauer Principle addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5ab52768",
+          "latex": "W ≥ k_B T ln 2 (classical); W ≥ k_B T S(ρ) (quantum).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Erasing 1 bit requires W ≥ k_B T ln 2. Quantum: W ≥ k_B T S(ρ)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "W ≥ k_B T ln 2 (classical); W ≥ k_B T S(ρ) (quantum).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Information is physical. Erasure dissipates heat and increases entropy."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-3-landauer-principle",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-3-landauer-principle",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-3-landauer-principle",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-3-landauer-principle'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.06981317, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.06981317, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.3 Landauer Principle",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "21-21-4-maxwell-s-demon",
+      "title": "21.4 Maxwell's Demon",
+      "parentId": null,
+      "content": {
+        "statement": "A demon sorting molecules seems to violate the 2nd law.",
+        "explanation": "The resolution: the demon's memory must be erased, incurring Landauer cost. A quantum demon uses measurements.",
+        "example": "Feedback control with a qubit.",
+        "keyTakeaways": [
+          "A demon sorting molecules seems to violate the 2nd law.",
+          "Know what problem or physical phenomenon 21.4 Maxwell's Demon addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "A demon sorting molecules seems to violate the 2nd law."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "The resolution: the demon's memory must be erased, incurring Landauer cost. A quantum demon uses measurements."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-4-maxwell-s-demon",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-4-maxwell-s-demon",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-4-maxwell-s-demon",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-4-maxwell-s-demon'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.11701072, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.11701072, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.4 Maxwell's Demon",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "21-21-5-quantum-refrigerator",
+      "title": "21.5 Quantum Refrigerator",
+      "parentId": null,
+      "content": {
+        "statement": "Extract heat from cold bath using work. COP = Q_c / W.",
+        "explanation": "Quantum implementation uses a three-level system driven by an external field.",
+        "example": "Three-level refrigerator.",
+        "keyTakeaways": [
+          "Extract heat from cold bath using work.",
+          "Know what problem or physical phenomenon 21.5 Quantum Refrigerator addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-69713504",
+          "latex": "COP = Q_c / W.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Extract heat from cold bath using work. COP = Q_c / W."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "COP = Q_c / W.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Quantum implementation uses a three-level system driven by an external field."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-5-quantum-refrigerator",
+          "type": "2d",
+          "renderer": "energy-levels",
+          "interactive": true,
+          "props": {
+            "showTransitions": true,
+            "showLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-5-quantum-refrigerator",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-5-quantum-refrigerator",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-5-quantum-refrigerator'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.37364778, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.37364778, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.5 Quantum Refrigerator",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "21-21-6-fluctuation-theorems",
+      "title": "21.6 Fluctuation Theorems",
+      "parentId": null,
+      "content": {
+        "statement": "Jarzynski: ⟨e^{−βW}⟩ = e^{−βΔF}. Crooks: P_F(W)/P_R(−W) = e^{β(W−ΔF)}.",
+        "explanation": "These equalities hold for non-equilibrium processes. Quantum versions account for measurement backaction.",
+        "example": "Work distribution in a quantum quench.",
+        "keyTakeaways": [
+          "Jarzynski: ⟨e^{−βW}⟩ = e^{−βΔF}.",
+          "Know what problem or physical phenomenon 21.6 Fluctuation Theorems addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-30cea7b6",
+          "latex": "⟨e^{−βW}⟩ = e^{−βΔF}; P_F(W)/P_R(−W) = e^{β(W−ΔF)}.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Jarzynski: ⟨e^{−βW}⟩ = e^{−βΔF}. Crooks: P_F(W)/P_R(−W) = e^{β(W−ΔF)}."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "⟨e^{−βW}⟩ = e^{−βΔF}; P_F(W)/P_R(−W) = e^{β(W−ΔF)}.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "These equalities hold for non-equilibrium processes. Quantum versions account for measurement backaction."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-6-fluctuation-theorems",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-6-fluctuation-theorems",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-6-fluctuation-theorems",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-6-fluctuation-theorems'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.68780705, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.68780705, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.6 Fluctuation Theorems",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "21-21-7-entropy-production",
+      "title": "21.7 Entropy Production",
+      "parentId": null,
+      "content": {
+        "statement": "Σ = ΔS − βQ. Second law: ⟨Σ⟩ ≥ 0.",
+        "explanation": "Entropy production quantifies irreversibility. Quantum version includes measurement entropy.",
+        "example": "Quantum heat engine.",
+        "keyTakeaways": [
+          "Σ = ΔS − βQ.",
+          "Know what problem or physical phenomenon 21.7 Entropy Production addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c1d3eea1",
+          "latex": "Σ = ΔS − βQ; ⟨Σ⟩ ≥ 0.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Σ = ΔS − βQ. Second law: ⟨Σ⟩ ≥ 0."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Σ = ΔS − βQ; ⟨Σ⟩ ≥ 0.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Entropy production quantifies irreversibility. Quantum version includes measurement entropy."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-21-21-7-entropy-production",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-21-21-7-entropy-production",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-21-21-7-entropy-production",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '21-21-7-entropy-production'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.74729557, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.74729557, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Goold et al., The role of quantum information in thermodynamics",
+          "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+        },
+        {
+          "type": "review",
+          "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+          "url": "https://doi.org/10.1080/23746149.2015.1057247"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "21.7 Entropy Production",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Goold et al., The role of quantum information in thermodynamics",
+      "url": "https://doi.org/10.1088/2058-7058/26/06/500302"
+    },
+    {
+      "type": "review",
+      "title": "Vinjanampathy & Anders, Quantum thermodynamics",
+      "url": "https://doi.org/10.1080/23746149.2015.1057247"
+    }
+  ]
+}
