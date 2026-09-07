@@ -1,0 +1,1578 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 2,
+  "slug": "quantum-phenomena",
+  "title": "Quantum Phenomena",
+  "summary": "Curriculum domain 2: Quantum Phenomena.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "02-2-1-quantization",
+      "title": "2.1 Quantization",
+      "parentId": null,
+      "content": {
+        "statement": "Physical quantities take discrete values rather than continuous ranges.",
+        "explanation": "In quantum mechanics, many observables (e.g., energy, angular momentum, spin) are restricted to specific discrete values. This discreteness is what gives rise to quantum 'jumps' and spectral lines.",
+        "example": "The energy levels of hydrogen: Eₙ = −13.6 eV / n², with n = 1,2,3,…",
+        "keyTakeaways": [
+          "Physical quantities take discrete values rather than continuous ranges.",
+          "Know what problem or physical phenomenon 2.1 Quantization addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a5cd5bdd",
+          "latex": "Eₙ = −13.6 eV / n² (n ∈ ℕ)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Physical quantities take discrete values rather than continuous ranges."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Eₙ = −13.6 eV / n² (n ∈ ℕ)",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "In quantum mechanics, many observables (e.g., energy, angular momentum, spin) are restricted to specific discrete values. This discreteness is what gives rise to quantum 'jumps' and spectral lines."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-1-quantization",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-1-quantization",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-1-quantization",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-1-quantization'\ncircuit = QuantumCircuit(1)\ncircuit.rz(3.54301838, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 3.54301838, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.1 Quantization",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-2-wave-particle-duality",
+      "title": "2.2 Wave‑Particle Duality",
+      "parentId": null,
+      "content": {
+        "statement": "All matter exhibits wave‑like properties, with de Broglie wavelength λ = h/p.",
+        "explanation": "Particles such as electrons and photons display both particle and wave characteristics. The double‑slit experiment reveals interference patterns even for single particles, showing wave‑like behaviour.",
+        "example": "An electron moving with momentum p has wavelength λ = h/p.",
+        "keyTakeaways": [
+          "All matter exhibits wave‑like properties, with de Broglie wavelength λ = h/p.",
+          "Know what problem or physical phenomenon 2.2 Wave‑Particle Duality addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-10e77eda",
+          "latex": "λ = h/p; ψ(x,t) = A e^{i(kx − ωt)} with k = 2π/λ, ω = 2πν",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "All matter exhibits wave‑like properties, with de Broglie wavelength λ = h/p."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "λ = h/p; ψ(x,t) = A e^{i(kx − ωt)} with k = 2π/λ, ω = 2πν",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Particles such as electrons and photons display both particle and wave characteristics. The double‑slit experiment reveals interference patterns even for single particles, showing wave‑like behaviour."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-2-wave-particle-duality",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-2-wave-particle-duality",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-2-wave-particle-duality",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-2-wave-particle-duality'\ncircuit = QuantumCircuit(1)\ncircuit.rx(2.72271363, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 2.72271363, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.2 Wave‑Particle Duality",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-3-superposition",
+      "title": "2.3 Superposition",
+      "parentId": null,
+      "content": {
+        "statement": "A quantum system can exist in multiple states simultaneously.",
+        "explanation": "If |0⟩ and |1⟩ are two possible states, a general qubit state is |ψ⟩ = α|0⟩ + β|1⟩ with |α|² + |β|² = 1. The amplitudes α and β evolve coherently.",
+        "example": "The equal superposition |+⟩ = (|0⟩ + |1⟩)/√2.",
+        "keyTakeaways": [
+          "A quantum system can exist in multiple states simultaneously.",
+          "Know what problem or physical phenomenon 2.3 Superposition addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c535f1a7",
+          "latex": "|ψ⟩ = α|0⟩ + β|1⟩, |α|² + |β|² = 1",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Choose a basis",
+            "text": "For a two-level system, use the orthonormal computational basis |0⟩ and |1⟩."
+          },
+          {
+            "step": 2,
+            "title": "Use linearity",
+            "text": "Because quantum states form a complex vector space, any pure qubit state can be written as α|0⟩ + β|1⟩."
+          },
+          {
+            "step": 3,
+            "title": "Normalize",
+            "formula": "⟨ψ|ψ⟩ = |α|² + |β|² = 1",
+            "text": "Normalization follows because total probability must be one."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-3-superposition",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-3-superposition",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-3-superposition",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-3-superposition'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.86430629, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.86430629, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.3 Superposition",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "02-2-4-interference",
+      "title": "2.4 Interference",
+      "parentId": null,
+      "content": {
+        "statement": "Constructive interference occurs when amplitudes add; destructive interference when they cancel.",
+        "explanation": "The probability for a superposition is not simply the sum of probabilities but includes an interference term 2 Re(ψ₁*ψ₂). This is the core of quantum algorithms.",
+        "example": "In the double‑slit experiment, P(x) = |ψ₁(x) + ψ₂(x)|² = |ψ₁|² + |ψ₂|² + 2Re(ψ₁*ψ₂).",
+        "keyTakeaways": [
+          "Constructive interference occurs when amplitudes add; destructive interference when they cancel.",
+          "Know what problem or physical phenomenon 2.4 Interference addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-1f9cf06d",
+          "latex": "P(x) = |ψ₁ + ψ₂|² = |ψ₁|² + |ψ₂|² + 2Re(ψ₁*ψ₂)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Add amplitudes",
+            "formula": "A = a+b",
+            "text": "Alternative quantum paths contribute amplitudes that add as complex numbers."
+          },
+          {
+            "step": 2,
+            "title": "Apply the Born rule",
+            "formula": "P=|A|²=|a+b|²",
+            "text": "Probability is the modulus squared of the total amplitude."
+          },
+          {
+            "step": 3,
+            "title": "Expand",
+            "formula": "|a+b|²=|a|²+|b|²+a^*b+b^*a",
+            "text": "The cross terms combine to 2 Re(a* b), producing constructive or destructive interference."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-4-interference",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-4-interference",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-4-interference",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-4-interference'\ncircuit = QuantumCircuit(1)\ncircuit.rx(2.67035376, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 2.67035376, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.4 Interference",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-5-measurement",
+      "title": "2.5 Measurement",
+      "parentId": null,
+      "content": {
+        "statement": "Measurement causes the wavefunction to collapse to an eigenstate of the observable.",
+        "explanation": "According to the Born rule, the probability of obtaining outcome i is P(i) = |⟨i|ψ⟩|². After measurement, the state becomes |i⟩.",
+        "example": "Measuring a qubit in |ψ⟩ = α|0⟩ + β|1⟩ in the computational basis yields 0 with probability |α|² and 1 with |β|².",
+        "keyTakeaways": [
+          "Measurement causes the wavefunction to collapse to an eigenstate of the observable.",
+          "Know what problem or physical phenomenon 2.5 Measurement addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c0631e3b",
+          "latex": "P(i) = |⟨i|ψ⟩|²",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-5-measurement",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-5-measurement",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-5-measurement",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-5-measurement'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.5 Measurement",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-6-complementarity",
+      "title": "2.6 Complementarity",
+      "parentId": null,
+      "content": {
+        "statement": "Certain properties cannot be observed simultaneously with full precision.",
+        "explanation": "Bohr's principle of complementarity states that wave and particle aspects are mutually exclusive; the experimental setup determines which aspect is revealed.",
+        "example": "Position and momentum are complementary: ΔxΔp ≥ ℏ/2.",
+        "keyTakeaways": [
+          "Certain properties cannot be observed simultaneously with full precision.",
+          "Know what problem or physical phenomenon 2.6 Complementarity addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f5f3ed1e",
+          "latex": "ΔxΔp ≥ ℏ/2",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Certain properties cannot be observed simultaneously with full precision."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ΔxΔp ≥ ℏ/2",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Bohr's principle of complementarity states that wave and particle aspects are mutually exclusive; the experimental setup determines which aspect is revealed."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-6-complementarity",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-6-complementarity",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-6-complementarity",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-6-complementarity'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.53785606, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.53785606, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.6 Complementarity",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-7-uncertainty-principle",
+      "title": "2.7 Uncertainty Principle",
+      "parentId": null,
+      "content": {
+        "statement": "The more precisely one observable is known, the less precisely its conjugate partner can be known.",
+        "explanation": "Heisenberg's uncertainty is a direct consequence of the non‑commutation of operators. For observables A and B, ΔAΔB ≥ ½|⟨[Â, B̂]⟩|.",
+        "example": "Energy‑time uncertainty: ΔEΔt ≥ ℏ/2.",
+        "keyTakeaways": [
+          "The more precisely one observable is known, the less precisely its conjugate partner can be known.",
+          "Know what problem or physical phenomenon 2.7 Uncertainty Principle addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-b417ce84",
+          "latex": "ΔxΔp ≥ ℏ/2; ΔEΔt ≥ ℏ/2; ΔAΔB ≥ ½|⟨[Â, B̂]⟩|",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Center the observables",
+            "formula": "ΔA=A-⟨A⟩I,  ΔB=B-⟨B⟩I",
+            "text": "Subtract the expectation values so the centered operators have zero mean."
+          },
+          {
+            "step": 2,
+            "title": "Apply Cauchy–Schwarz",
+            "formula": "⟨ΔA²⟩⟨ΔB²⟩ ≥ |⟨ΔAΔB⟩|²",
+            "text": "The inequality bounds the product of variances."
+          },
+          {
+            "step": 3,
+            "title": "Extract the commutator",
+            "formula": "|⟨ΔAΔB⟩|² ≥ 1/4 |⟨[A,B]⟩|²",
+            "text": "Separating the antisymmetric part gives the Robertson uncertainty relation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-7-uncertainty-principle",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-7-uncertainty-principle",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-7-uncertainty-principle",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-7-uncertainty-principle'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.07890812, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.07890812, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.7 Uncertainty Principle",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-8-tunneling",
+      "title": "2.8 Tunneling",
+      "parentId": null,
+      "content": {
+        "statement": "Particles can pass through classically forbidden barriers.",
+        "explanation": "The wavefunction does not abruptly drop to zero at a barrier; it decays exponentially inside the barrier. If the barrier is thin enough, there is a finite probability of transmission.",
+        "example": "Transmission probability T ≈ e^{−2κL}, where κ = √(2m(V₀−E)/ℏ²) and L is the barrier width.",
+        "keyTakeaways": [
+          "Particles can pass through classically forbidden barriers.",
+          "Know what problem or physical phenomenon 2.8 Tunneling addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-2711122e",
+          "latex": "T ≈ e^{−2κL}, κ = √(2m(V₀−E))/ℏ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Write the barrier-region equation",
+            "formula": "-\\frac{\\hbar^2}{2m}\\psi(x)+V_0\\psi(x)=E\\psi(x)",
+            "text": "Inside a rectangular barrier with V0>E, the kinetic-energy term is effectively negative."
+          },
+          {
+            "step": 2,
+            "title": "Define the decay constant",
+            "formula": "\\kappa=\\sqrt{2m(V_0-E)}/\\hbar",
+            "text": "The solutions become exponentials e^{±κx}; the physically relevant part decays through the barrier."
+          },
+          {
+            "step": 3,
+            "title": "Relate amplitude to transmission",
+            "formula": "T\\propto e^{-2\\kappa L}",
+            "text": "Because probability is amplitude squared, the barrier thickness L produces the approximate transmission factor."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-8-tunneling",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-8-tunneling",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-8-tunneling",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-8-tunneling'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.63741348, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.63741348, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.8 Tunneling",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-9-entanglement",
+      "title": "2.9 Entanglement",
+      "parentId": null,
+      "content": {
+        "statement": "A quantum state of multiple particles cannot be factored into individual states.",
+        "explanation": "When two particles are entangled, the state of the composite system cannot be written as a tensor product of individual states. This gives rise to non‑local correlations.",
+        "example": "Bell state |Φ⁺⟩ = (|00⟩ + |11⟩)/√2 cannot be written as |ψ_A⟩⊗|ψ_B⟩.",
+        "keyTakeaways": [
+          "A quantum state of multiple particles cannot be factored into individual states.",
+          "Know what problem or physical phenomenon 2.9 Entanglement addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-3007a0f6",
+          "latex": "|Φ⁺⟩ = (|00⟩ + |11⟩)/√2",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "text": "Assume a product form (a|0⟩ + b|1⟩)⊗(c|0⟩ + d|1⟩)."
+          },
+          {
+            "step": 2,
+            "text": "Expanding gives ac|00⟩ + ad|01⟩ + bc|10⟩ + bd|11⟩."
+          },
+          {
+            "step": 3,
+            "text": "For this to equal (|00⟩ + |11⟩)/√2, we need ac = 1/√2, bd = 1/√2, and ad = bc = 0, which implies a=0 or d=0 and b=0 or c=0, leading to a contradiction."
+          },
+          {
+            "step": 4,
+            "text": "Hence it is not a product state."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-9-entanglement",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-9-entanglement",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-9-entanglement",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-9-entanglement'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.57079633, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.57079633, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.9 Entanglement",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-10-nonlocal-correlations",
+      "title": "2.10 Nonlocal Correlations",
+      "parentId": null,
+      "content": {
+        "statement": "Measurement outcomes are correlated beyond classical limits.",
+        "explanation": "Bell correlations violate Bell inequalities, showing that any theory respecting local realism cannot reproduce quantum predictions.",
+        "example": "The CHSH correlation E(a,b) = P(++) + P(−−) − P(+−) − P(−+).",
+        "keyTakeaways": [
+          "Measurement outcomes are correlated beyond classical limits.",
+          "Know what problem or physical phenomenon 2.10 Nonlocal Correlations addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e141d22b",
+          "latex": "E(a,b) = P(++ | a,b) + P(−− | a,b) − P(+− | a,b) − P(−+ | a,b)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Measurement outcomes are correlated beyond classical limits."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E(a,b) = P(++ | a,b) + P(−− | a,b) − P(+− | a,b) − P(−+ | a,b)",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Bell correlations violate Bell inequalities, showing that any theory respecting local realism cannot reproduce quantum predictions."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-10-nonlocal-correlations",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-10-nonlocal-correlations",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-10-nonlocal-correlations",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-10-nonlocal-correlations'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.56047167, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.56047167, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.10 Nonlocal Correlations",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-11-spin",
+      "title": "2.11 Spin",
+      "parentId": null,
+      "content": {
+        "statement": "Intrinsic angular momentum with quantised values.",
+        "explanation": "Spin‑½ particles have two possible eigenvalues ±ℏ/2 for any axis. The Pauli matrices σₓ, σᵧ, σ_z are the spin operators (up to ℏ/2).",
+        "example": "S_z = (ℏ/2)σ_z, eigenvalues ±ℏ/2.",
+        "keyTakeaways": [
+          "Intrinsic angular momentum with quantised values.",
+          "Know what problem or physical phenomenon 2.11 Spin addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f193678c",
+          "latex": "S_x = (ℏ/2)σ_x, S_y = (ℏ/2)σ_y, S_z = (ℏ/2)σ_z; m_s = ±½",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Intrinsic angular momentum with quantised values."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "S_x = (ℏ/2)σ_x, S_y = (ℏ/2)σ_y, S_z = (ℏ/2)σ_z; m_s = ±½",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Spin‑½ particles have two possible eigenvalues ±ℏ/2 for any axis. The Pauli matrices σₓ, σᵧ, σ_z are the spin operators (up to ℏ/2)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-11-spin",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-11-spin",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-11-spin",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-11-spin'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.2, 0)\ncircuit.rz(0.8, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'statevector': [complex(a).__repr__() for a in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.11 Spin",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-12-polarization",
+      "title": "2.12 Polarization",
+      "parentId": null,
+      "content": {
+        "statement": "Photon polarisation is a two‑level quantum system.",
+        "explanation": "The horizontal |H⟩ and vertical |V⟩ states form a basis; any polarisation is a superposition α|H⟩ + β|V⟩.",
+        "example": "Diagonal polarisation |D⟩ = (|H⟩ + |V⟩)/√2.",
+        "keyTakeaways": [
+          "Photon polarisation is a two‑level quantum system.",
+          "Know what problem or physical phenomenon 2.12 Polarization addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6e15e2fb",
+          "latex": "|ψ⟩ = α|H⟩ + β|V⟩",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Photon polarisation is a two‑level quantum system."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩ = α|H⟩ + β|V⟩",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The horizontal |H⟩ and vertical |V⟩ states form a basis; any polarisation is a superposition α|H⟩ + β|V⟩."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-12-polarization",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-12-polarization",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-12-polarization",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-12-polarization'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.2, 0)\ncircuit.rz(0.8, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'statevector': [complex(a).__repr__() for a in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.12 Polarization",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-13-decoherence",
+      "title": "2.13 Decoherence",
+      "parentId": null,
+      "content": {
+        "statement": "Loss of quantum coherence due to environmental interaction.",
+        "explanation": "The environment inevitably interacts with the quantum system, causing the off‑diagonal elements of the density matrix to decay. This destroys superpositions and leads to classical behaviour.",
+        "example": "Density matrix evolution via Kraus operators: ρ(t) = ∑ E_k ρ(0) E_k†.",
+        "keyTakeaways": [
+          "Loss of quantum coherence due to environmental interaction.",
+          "Know what problem or physical phenomenon 2.13 Decoherence addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a560b910",
+          "latex": "ρ(t) = ∑ E_k ρ(0) E_k†; decoherence time T₂.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Loss of quantum coherence due to environmental interaction."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ρ(t) = ∑ E_k ρ(0) E_k†; decoherence time T₂.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The environment inevitably interacts with the quantum system, causing the off‑diagonal elements of the density matrix to decay. This destroys superpositions and leads to classical behaviour."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-13-decoherence",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-13-decoherence",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-13-decoherence",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-13-decoherence'\nfrom qiskit.quantum_info import Statevector\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nideal = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'ideal_probabilities': [float(abs(a)**2) for a in ideal.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.13 Decoherence",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "02-2-14-interactive-experiments",
+      "title": "2.14 Interactive Experiments",
+      "parentId": null,
+      "content": {
+        "statement": "Classic experiments that illustrate quantum phenomena.",
+        "explanation": "The double‑slit, Mach‑Zehnder interferometer, and Stern‑Gerlach experiments are foundational demonstrations of superposition, interference, and spin quantisation.",
+        "example": "Double‑slit: ψ_screen(x) = ψ₁(x) + ψ₂(x), P(x) = |ψ₁ + ψ₂|².",
+        "keyTakeaways": [
+          "Classic experiments that illustrate quantum phenomena.",
+          "Know what problem or physical phenomenon 2.14 Interactive Experiments addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-efc5a962",
+          "latex": "P(x) = |ψ₁ + ψ₂|²",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classic experiments that illustrate quantum phenomena."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "P(x) = |ψ₁ + ψ₂|²",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The double‑slit, Mach‑Zehnder interferometer, and Stern‑Gerlach experiments are foundational demonstrations of superposition, interference, and spin quantisation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-02-2-14-interactive-experiments",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-02-2-14-interactive-experiments",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-02-2-14-interactive-experiments",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '02-2-14-interactive-experiments'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.18682389, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.18682389, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Shankar, Principles of Quantum Mechanics",
+          "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "2.14 Interactive Experiments",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid",
+          "text",
+          "text"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+      "url": "https://doi.org/10.1017/9781108587285"
+    },
+    {
+      "type": "textbook",
+      "title": "Shankar, Principles of Quantum Mechanics",
+      "url": "https://link.springer.com/book/10.1007/978-1-4757-0576-5"
+    }
+  ]
+}

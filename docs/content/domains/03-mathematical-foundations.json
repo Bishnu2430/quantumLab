@@ -1,0 +1,1884 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 3,
+  "slug": "mathematical-foundations",
+  "title": "Mathematical Foundations",
+  "summary": "Curriculum domain 3: Mathematical Foundations.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "03-3-1-linear-algebra",
+      "title": "3.1 Linear Algebra",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum mechanics is formulated in complex vector spaces (Hilbert spaces).",
+        "explanation": "All quantum states are vectors in a Hilbert space, and operations are linear operators. Key concepts include scalars (complex numbers), vectors, inner products, norms, orthogonality, and bases.",
+        "example": "A complex number z = a + ib; its magnitude |z| = √(a²+b²).",
+        "keyTakeaways": [
+          "Quantum mechanics is formulated in complex vector spaces (Hilbert spaces).",
+          "Know what problem or physical phenomenon 3.1 Linear Algebra addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-34752a54",
+          "latex": "z = a + ib, z* = a − ib, |z| = √(z*z)",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum mechanics is formulated in complex vector spaces (Hilbert spaces)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "z = a + ib, z* = a − ib, |z| = √(z*z)",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "All quantum states are vectors in a Hilbert space, and operations are linear operators. Key concepts include scalars (complex numbers), vectors, inner products, norms, orthogonality, and bases."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-3-1-linear-algebra",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-3-1-linear-algebra",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-3-1-linear-algebra",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-3-1-linear-algebra'\nfrom qiskit.quantum_info import Operator\nX = Operator([[0,1],[1,0]])\nstate = Statevector([1,0])\ntransformed = state.evolve(X)\nprint(json.dumps({'lesson': LESSON_ID, 'input': [complex(x).__repr__() for x in state.data], 'output': [complex(x).__repr__() for x in transformed.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "3.1 Linear Algebra",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-scalars",
+      "title": "Scalars",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "Complex numbers form the field underlying quantum mechanics.",
+        "explanation": "Quantum amplitudes are complex; the Born rule uses the modulus squared.",
+        "example": "z = 3 + 4i, |z| = 5.",
+        "keyTakeaways": [
+          "Complex numbers form the field underlying quantum mechanics.",
+          "Know what problem or physical phenomenon Scalars addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-00dec86e",
+          "latex": "z = a + ib, z* = a − ib, |z| = √(a²+b²), polar: z = re^{iθ}",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Complex numbers form the field underlying quantum mechanics."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "z = a + ib, z* = a − ib, |z| = √(a²+b²), polar: z = re^{iθ}",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Quantum amplitudes are complex; the Born rule uses the modulus squared."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-scalars",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-scalars",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-scalars",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-scalars'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.31612558, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.31612558, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Scalars",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-vectors",
+      "title": "Vectors",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "Column vectors represent states.",
+        "explanation": "Vectors are added component‑wise and multiplied by scalars.",
+        "example": "u = (1,2)ᵀ, v = (3,4)ᵀ, u+v = (4,6)ᵀ.",
+        "keyTakeaways": [
+          "Column vectors represent states.",
+          "Know what problem or physical phenomenon Vectors addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-1ed267bd",
+          "latex": "u + v = (u₁+v₁, u₂+v₂, …)ᵀ; c·u = (cu₁, cu₂, …)ᵀ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Column vectors represent states."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "u + v = (u₁+v₁, u₂+v₂, …)ᵀ; c·u = (cu₁, cu₂, …)ᵀ",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Vectors are added component‑wise and multiplied by scalars."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-vectors",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-vectors",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-vectors",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-vectors'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.13126800, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.13126800, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Vectors",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-vector-spaces",
+      "title": "Vector Spaces",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "A set V with addition and scalar multiplication satisfying closure, associativity, commutativity, distributivity, zero vector, and additive inverses.",
+        "explanation": "Hilbert spaces are inner‑product vector spaces complete with respect to the induced norm.",
+        "example": "ℂⁿ is a finite‑dimensional Hilbert space.",
+        "keyTakeaways": [
+          "A set V with addition and scalar multiplication satisfying closure, associativity, commutativity, distributivity, zero vector, and additive inverses.",
+          "Know what problem or physical phenomenon Vector Spaces addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a72c5584",
+          "latex": "V over ℂ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A set V with addition and scalar multiplication satisfying closure, associativity, commutativity, distributivity, zero vector, and additive inverses."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "V over ℂ",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Hilbert spaces are inner‑product vector spaces complete with respect to the induced norm."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-vector-spaces",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-vector-spaces",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-vector-spaces",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-vector-spaces'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.23918377, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.23918377, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Vector Spaces",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-inner-products",
+      "title": "Inner Products",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "⟨u,v⟩ = u†v = ∑ uᵢ* vᵢ.",
+        "explanation": "The inner product satisfies conjugate symmetry, linearity in the second argument, and positive definiteness.",
+        "example": "⟨(1,i), (2,3)⟩ = 1*·2 + i*·3 = 2 − 3i.",
+        "keyTakeaways": [
+          "⟨u,v⟩ = u†v = ∑ uᵢ* vᵢ.",
+          "Know what problem or physical phenomenon Inner Products addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-42bf6056",
+          "latex": "⟨u,v⟩ = ∑ uᵢ* vᵢ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "⟨u,v⟩ = u†v = ∑ uᵢ* vᵢ."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "⟨u,v⟩ = ∑ uᵢ* vᵢ",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The inner product satisfies conjugate symmetry, linearity in the second argument, and positive definiteness."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-inner-products",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-inner-products",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-inner-products",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-inner-products'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.83972435, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.83972435, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Inner Products",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-norms",
+      "title": "Norms",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "||v|| = √⟨v,v⟩.",
+        "explanation": "A normalized vector has unit norm.",
+        "example": "For v = (1,1)/√2, ||v|| = 1.",
+        "keyTakeaways": [
+          "||v|| = √⟨v,v⟩.",
+          "Know what problem or physical phenomenon Norms addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-deeec215",
+          "latex": "||v|| = √⟨v,v⟩; normalised vector: v/||v||.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "||v|| = √⟨v,v⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "||v|| = √⟨v,v⟩; normalised vector: v/||v||.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "A normalized vector has unit norm."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-norms",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-norms",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-norms",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-norms'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.63741348, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.63741348, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Norms",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-orthogonality",
+      "title": "Orthogonality",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "Vectors u and v are orthogonal if ⟨u,v⟩ = 0.",
+        "explanation": "An orthonormal basis has ⟨eᵢ, eⱼ⟩ = δᵢⱼ.",
+        "example": "|0⟩ and |1⟩ in ℂ².",
+        "keyTakeaways": [
+          "Vectors u and v are orthogonal if ⟨u,v⟩ = 0.",
+          "Know what problem or physical phenomenon Orthogonality addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-8cd9f9eb",
+          "latex": "⟨u,v⟩ = 0; orthonormal basis: ⟨eᵢ,eⱼ⟩ = δᵢⱼ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Vectors u and v are orthogonal if ⟨u,v⟩ = 0."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "⟨u,v⟩ = 0; orthonormal basis: ⟨eᵢ,eⱼ⟩ = δᵢⱼ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "An orthonormal basis has ⟨eᵢ, eⱼ⟩ = δᵢⱼ."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-orthogonality",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-orthogonality",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-orthogonality",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-orthogonality'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.90240888, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.90240888, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Orthogonality",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-basis-and-change-of-basis",
+      "title": "Basis and Change of Basis",
+      "parentId": "03-3-1-linear-algebra",
+      "content": {
+        "statement": "Any vector can be expanded in a basis: v = ∑ cᵢ eᵢ, with cᵢ = ⟨eᵢ, v⟩.",
+        "explanation": "A change of basis is a unitary transformation eⱼ′ = ∑ Uᵢⱼ eᵢ, with U†U = I.",
+        "example": "Rotating from the Z‑basis to the X‑basis uses the Hadamard matrix.",
+        "keyTakeaways": [
+          "Any vector can be expanded in a basis: v = ∑ cᵢ eᵢ, with cᵢ = ⟨eᵢ, v⟩.",
+          "Know what problem or physical phenomenon Basis and Change of Basis addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a9f39f94",
+          "latex": "v = ∑ cᵢ eᵢ, cᵢ = ⟨eᵢ, v⟩; eⱼ′ = ∑ Uᵢⱼ eᵢ, U†U = I.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Any vector can be expanded in a basis: v = ∑ cᵢ eᵢ, with cᵢ = ⟨eᵢ, v⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "v = ∑ cᵢ eᵢ, cᵢ = ⟨eᵢ, v⟩; eⱼ′ = ∑ Uᵢⱼ eᵢ, U†U = I.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "A change of basis is a unitary transformation eⱼ′ = ∑ Uᵢⱼ eᵢ, with U†U = I."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-basis-and-change-of-basis",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-basis-and-change-of-basis",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-basis-and-change-of-basis",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-basis-and-change-of-basis'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Basis and Change of Basis",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-3-2-matrices",
+      "title": "3.2 Matrices",
+      "parentId": null,
+      "content": {
+        "statement": "Operators on Hilbert space are represented by matrices.",
+        "explanation": "Key matrix types: Hermitian (observables), unitary (gates), projection operators. Matrix multiplication, conjugate transpose, eigenvalues, and diagonalisation are fundamental.",
+        "example": "Pauli Z matrix [[1,0],[0,−1]] is Hermitian.",
+        "keyTakeaways": [
+          "Operators on Hilbert space are represented by matrices.",
+          "Know what problem or physical phenomenon 3.2 Matrices addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Operators on Hilbert space are represented by matrices."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Key matrix types: Hermitian (observables), unitary (gates), projection operators. Matrix multiplication, conjugate transpose, eigenvalues, and diagonalisation are fundamental."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-3-2-matrices",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-3-2-matrices",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-3-2-matrices",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-3-2-matrices'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.42084533, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.42084533, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "3.2 Matrices",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-matrix-multiplication",
+      "title": "Matrix Multiplication",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "(AB)ᵢⱼ = ∑ₖ Aᵢₖ Bₖⱼ.",
+        "explanation": "Matrix multiplication is associative but not commutative.",
+        "example": "X·Z ≠ Z·X.",
+        "keyTakeaways": [
+          "(AB)ᵢⱼ = ∑ₖ Aᵢₖ Bₖⱼ.",
+          "Know what problem or physical phenomenon Matrix Multiplication addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-77b7aa68",
+          "latex": "(AB)ᵢⱼ = ∑ₖ Aᵢₖ Bₖⱼ",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "(AB)ᵢⱼ = ∑ₖ Aᵢₖ Bₖⱼ."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "(AB)ᵢⱼ = ∑ₖ Aᵢₖ Bₖⱼ",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Matrix multiplication is associative but not commutative."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-matrix-multiplication",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-matrix-multiplication",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-matrix-multiplication",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-matrix-multiplication'\nfrom qiskit.quantum_info import Operator\nX = Operator([[0,1],[1,0]])\nstate = Statevector([1,0])\ntransformed = state.evolve(X)\nprint(json.dumps({'lesson': LESSON_ID, 'input': [complex(x).__repr__() for x in state.data], 'output': [complex(x).__repr__() for x in transformed.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Matrix Multiplication",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-hermitian-matrices",
+      "title": "Hermitian Matrices",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "A = A†.",
+        "explanation": "Hermitian matrices have real eigenvalues and orthogonal eigenvectors. They represent observables.",
+        "example": "Z = [[1,0],[0,−1]] is Hermitian.",
+        "keyTakeaways": [
+          "A = A†.",
+          "Know what problem or physical phenomenon Hermitian Matrices addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a86c4d02",
+          "latex": "A = A†",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A = A†."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "A = A†",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Hermitian matrices have real eigenvalues and orthogonal eigenvectors. They represent observables."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-hermitian-matrices",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-hermitian-matrices",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-hermitian-matrices",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-hermitian-matrices'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.06661716, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.06661716, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Hermitian Matrices",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-unitary-matrices",
+      "title": "Unitary Matrices",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "U†U = UU† = I.",
+        "explanation": "Unitary matrices preserve inner products and represent quantum gates.",
+        "example": "Hadamard H = (1/√2)[[1,1],[1,−1]] is unitary.",
+        "keyTakeaways": [
+          "U†U = UU† = I.",
+          "Know what problem or physical phenomenon Unitary Matrices addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-80735eb8",
+          "latex": "U†U = I; |det(U)| = 1.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "U†U = UU† = I."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "U†U = I; |det(U)| = 1.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Unitary matrices preserve inner products and represent quantum gates."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-unitary-matrices",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-unitary-matrices",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-unitary-matrices",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-unitary-matrices'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.50294947, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.50294947, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Unitary Matrices",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-eigenvalues-and-eigenvectors",
+      "title": "Eigenvalues and Eigenvectors",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "A v = λ v.",
+        "explanation": "Eigenvalues λ are found from det(A − λI) = 0. For Hermitian A, eigenvectors form an orthonormal basis.",
+        "example": "Pauli X has eigenvalues ±1 and eigenvectors (1,1)/√2 and (1,−1)/√2.",
+        "keyTakeaways": [
+          "A v = λ v.",
+          "Know what problem or physical phenomenon Eigenvalues and Eigenvectors addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-1664851a",
+          "latex": "A v = λ v; det(A − λI) = 0.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Set the eigenvalue equation",
+            "formula": "A|v⟩=\\lambda|v⟩",
+            "text": "An eigenstate changes only by a scalar factor under the operator."
+          },
+          {
+            "step": 2,
+            "title": "Solve the characteristic equation",
+            "formula": "det(A-\\lambda I)=0",
+            "text": "Non-zero eigenvectors exist only when A-λI is singular."
+          },
+          {
+            "step": 3,
+            "title": "Normalize eigenvectors",
+            "text": "Orthogonal eigenvectors of a Hermitian observable can be normalized to form a measurement basis."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-eigenvalues-and-eigenvectors",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-eigenvalues-and-eigenvectors",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-eigenvalues-and-eigenvectors",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-eigenvalues-and-eigenvectors'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.26892803, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.26892803, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Eigenvalues and Eigenvectors",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-diagonalisation",
+      "title": "Diagonalisation",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "A = P D P⁻¹ for diagonalisable matrices.",
+        "explanation": "For Hermitian A, spectral decomposition: A = ∑ λᵢ |vᵢ⟩⟨vᵢ|.",
+        "example": "Z = (+1)|0⟩⟨0| + (−1)|1⟩⟨1|.",
+        "keyTakeaways": [
+          "A = P D P⁻¹ for diagonalisable matrices.",
+          "Know what problem or physical phenomenon Diagonalisation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f595a80f",
+          "latex": "A = ∑ λᵢ |vᵢ⟩⟨vᵢ|",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A = P D P⁻¹ for diagonalisable matrices."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "A = ∑ λᵢ |vᵢ⟩⟨vᵢ|",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "For Hermitian A, spectral decomposition: A = ∑ λᵢ |vᵢ⟩⟨vᵢ|."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-diagonalisation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-diagonalisation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-diagonalisation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-diagonalisation'\ncircuit = QuantumCircuit(1)\ncircuit.ry(6.14355897, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 6.14355897, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Diagonalisation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-tensor-products",
+      "title": "Tensor Products",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "A⊗B = [aᵢⱼ B] for matrices.",
+        "explanation": "Tensor products combine subsystems. (A⊗B)(C⊗D) = (AC)⊗(BD), and (A⊗B)† = A†⊗B†.",
+        "example": "CNOT = |0⟩⟨0|⊗I + |1⟩⟨1|⊗X.",
+        "keyTakeaways": [
+          "A⊗B = [aᵢⱼ B] for matrices.",
+          "Know what problem or physical phenomenon Tensor Products addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-190f148b",
+          "latex": "(A⊗B)(C⊗D) = (AC)⊗(BD); (A⊗B)† = A†⊗B†.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Write each subsystem",
+            "text": "Represent subsystem A by |a⟩ and subsystem B by |b⟩."
+          },
+          {
+            "step": 2,
+            "title": "Combine dimensions",
+            "formula": "|a⟩⊗|b⟩",
+            "text": "The composite state space is the tensor product Hilbert space H_A⊗H_B."
+          },
+          {
+            "step": 3,
+            "title": "Expand coefficients",
+            "text": "Tensor products multiply amplitudes, producing coefficients for every pair of basis states."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-tensor-products",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-tensor-products",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-tensor-products",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-tensor-products'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.80998010, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.80998010, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Tensor Products",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-projection-operators",
+      "title": "Projection Operators",
+      "parentId": "03-3-2-matrices",
+      "content": {
+        "statement": "P = |ψ⟩⟨ψ|, with ||ψ||=1.",
+        "explanation": "Projectors are idempotent (P²=P) and Hermitian. A complete set ∑ Pᵢ = I.",
+        "example": "|0⟩⟨0| = [[1,0],[0,0]].",
+        "keyTakeaways": [
+          "P = |ψ⟩⟨ψ|, with ||ψ||=1.",
+          "Know what problem or physical phenomenon Projection Operators addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-07303f91",
+          "latex": "P² = P, P† = P, P|ψ⟩ = |ψ⟩, ∑ Pᵢ = I.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "P = |ψ⟩⟨ψ|, with ||ψ||=1."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "P² = P, P† = P, P|ψ⟩ = |ψ⟩, ∑ Pᵢ = I.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Projectors are idempotent (P²=P) and Hermitian. A complete set ∑ Pᵢ = I."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-projection-operators",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-projection-operators",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-projection-operators",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-projection-operators'\nfrom qiskit.quantum_info import Operator\nX = Operator([[0,1],[1,0]])\nstate = Statevector([1,0])\ntransformed = state.evolve(X)\nprint(json.dumps({'lesson': LESSON_ID, 'input': [complex(x).__repr__() for x in state.data], 'output': [complex(x).__repr__() for x in transformed.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Projection Operators",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "03-3-3-complex-number-visualization",
+      "title": "3.3 Complex Number Visualization",
+      "parentId": null,
+      "content": {
+        "statement": "Complex numbers can be represented in the complex plane or polar form.",
+        "explanation": "Euler's formula e^{iθ} = cos θ + i sin θ is used extensively in quantum mechanics for phase factors.",
+        "example": "z = re^{iθ} with r = |z|, θ = arg(z).",
+        "keyTakeaways": [
+          "Complex numbers can be represented in the complex plane or polar form.",
+          "Know what problem or physical phenomenon 3.3 Complex Number Visualization addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6ea5f47d",
+          "latex": "z = re^{iθ} = r(cos θ + i sin θ); e^{iθ} = cos θ + i sin θ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Complex numbers can be represented in the complex plane or polar form."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "z = re^{iθ} = r(cos θ + i sin θ); e^{iθ} = cos θ + i sin θ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Euler's formula e^{iθ} = cos θ + i sin θ is used extensively in quantum mechanics for phase factors."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-03-3-3-complex-number-visualization",
+          "type": "2d",
+          "renderer": "complex-plane",
+          "interactive": true,
+          "props": {
+            "showPolarGrid": true,
+            "showArgument": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-03-3-3-complex-number-visualization",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-03-3-3-complex-number-visualization",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '03-3-3-complex-number-visualization'\nz = 0.6 + 0.8j\nprint(json.dumps({'lesson': LESSON_ID, 'real': z.real, 'imag': z.imag, 'magnitude': abs(z), 'phase': __import__('cmath').phase(z)}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Axler, Linear Algebra Done Right",
+          "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 2",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "3.3 Complex Number Visualization",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "plot"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Axler, Linear Algebra Done Right",
+      "url": "https://link.springer.com/book/10.1007/978-3-031-41026-0"
+    },
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapter 2",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    }
+  ]
+}

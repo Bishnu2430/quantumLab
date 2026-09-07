@@ -1,0 +1,966 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 32,
+  "slug": "quantum-experiments",
+  "title": "Quantum Experiments",
+  "summary": "Curriculum domain 32: Quantum Experiments.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "32-32-1-experiment-01-single-qubit-measurement",
+      "title": "32.1 Experiment 01: Single‑Qubit Measurement",
+      "parentId": null,
+      "content": {
+        "statement": "Verify Born rule by measuring |+⟩ in Z basis.",
+        "explanation": "Prepare |+⟩ = H|0⟩, measure Z basis 1000 times. Expected P(0)≈50%, P(1)≈50%. Verify with χ² test.",
+        "example": "For 1000 shots, expect ~500 zeros, ~500 ones.",
+        "keyTakeaways": [
+          "Verify Born rule by measuring |+⟩ in Z basis.",
+          "Know what problem or physical phenomenon 32.1 Experiment 01: Single‑Qubit Measurement addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6a5e9b0c",
+          "latex": "χ² = ∑ (O − E)² / E.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-1-experiment-01-single-qubit-measurement",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-1-experiment-01-single-qubit-measurement",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-1-experiment-01-single-qubit-measurement",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-1-experiment-01-single-qubit-measurement'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.1 Experiment 01: Single‑Qubit Measurement",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "32-32-2-experiment-02-hadamard-interference",
+      "title": "32.2 Experiment 02: Hadamard Interference",
+      "parentId": null,
+      "content": {
+        "statement": "Demonstrate constructive/destructive interference.",
+        "explanation": "Circuit: |0⟩ — H — H — Measure yields |0⟩ (constructive). With phase: |0⟩ — H — Z — H — Measure yields |1⟩ (destructive).",
+        "example": "H‑H always gives 0; H‑Z‑H always gives 1.",
+        "keyTakeaways": [
+          "Demonstrate constructive/destructive interference.",
+          "Know what problem or physical phenomenon 32.2 Experiment 02: Hadamard Interference addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-9ca31abe",
+          "latex": "|a+b|^2 = |a|^2 + |b|^2 + 2\\operatorname{Re}(a^*b)",
+          "description": "Core relation for 32.2 Experiment 02: Hadamard Interference."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Add amplitudes",
+            "formula": "A = a+b",
+            "text": "Alternative quantum paths contribute amplitudes that add as complex numbers."
+          },
+          {
+            "step": 2,
+            "title": "Apply the Born rule",
+            "formula": "P=|A|²=|a+b|²",
+            "text": "Probability is the modulus squared of the total amplitude."
+          },
+          {
+            "step": 3,
+            "title": "Expand",
+            "formula": "|a+b|²=|a|²+|b|²+a^*b+b^*a",
+            "text": "The cross terms combine to 2 Re(a* b), producing constructive or destructive interference."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-2-experiment-02-hadamard-interference",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-2-experiment-02-hadamard-interference",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-2-experiment-02-hadamard-interference",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-2-experiment-02-hadamard-interference'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.96705973, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.96705973, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.2 Experiment 02: Hadamard Interference",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "32-32-3-experiment-03-bell-state",
+      "title": "32.3 Experiment 03: Bell State",
+      "parentId": null,
+      "content": {
+        "statement": "Create and verify entanglement.",
+        "explanation": "Circuit: H on q0, CNOT(q0,q1). Verification: measure Z basis (perfect correlation), X basis (perfect correlation), and CHSH inequality violation.",
+        "example": "For |Φ⁺⟩, Z‑basis outcomes are always 00 or 11.",
+        "keyTakeaways": [
+          "Create and verify entanglement.",
+          "Know what problem or physical phenomenon 32.3 Experiment 03: Bell State addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-141a2782",
+          "latex": "|\\Phi^+\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2",
+          "description": "Core relation for 32.3 Experiment 03: Bell State."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define correlations",
+            "formula": "E(a,b)=\\sum_{A,B=\\pm1}AB\\,P(A,B|a,b)",
+            "text": "Correlation is the average product of the two ±1 outcomes."
+          },
+          {
+            "step": 2,
+            "title": "Combine four settings",
+            "formula": "S=E(a,b)-E(a,b')+E(a',b)+E(a',b')",
+            "text": "CHSH combines four correlations into one test statistic."
+          },
+          {
+            "step": 3,
+            "title": "Compare bounds",
+            "formula": "|S|\\le2\\text{ (local hidden variables)},\\quad |S|\\le2\\sqrt2\\text{ (quantum)}",
+            "text": "Quantum theory predicts values that can exceed the local bound."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-3-experiment-03-bell-state",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-3-experiment-03-bell-state",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-3-experiment-03-bell-state",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-3-experiment-03-bell-state'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nsampler = StatevectorSampler(seed=7)\nresult = sampler.run([circuit], shots=1024).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.3 Experiment 03: Bell State",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "32-32-4-experiment-04-quantum-teleportation",
+      "title": "32.4 Experiment 04: Quantum Teleportation",
+      "parentId": null,
+      "content": {
+        "statement": "Teleport an unknown state.",
+        "explanation": "Create Bell pair, prepare unknown state, Bell measurement, classical communication, correction. Verify by tomography of output state; fidelity > 2/3 (classical limit).",
+        "example": "Teleporting |ψ⟩ = (|0⟩ + i|1⟩)/√2.",
+        "keyTakeaways": [
+          "Teleport an unknown state.",
+          "Know what problem or physical phenomenon 32.4 Experiment 04: Quantum Teleportation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Teleport an unknown state."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Create Bell pair, prepare unknown state, Bell measurement, classical communication, correction. Verify by tomography of output state; fidelity > 2/3 (classical limit)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-4-experiment-04-quantum-teleportation",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-4-experiment-04-quantum-teleportation",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 2
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-4-experiment-04-quantum-teleportation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-4-experiment-04-quantum-teleportation'\nimport numpy as np\ncircuit = QuantumCircuit(3, 3)\n# Prepare an arbitrary test state on qubit 0.\ncircuit.ry(0.7, 0)\ncircuit.rz(1.1, 0)\n# Create Bell pair between 1 and 2.\ncircuit.h(1)\ncircuit.cx(1, 2)\n# Bell measurement.\ncircuit.cx(0, 1)\ncircuit.h(0)\n# Classically controlled corrections (deferred measurement is enough for this demo).\ncircuit.measure(0, 0)\ncircuit.measure(1, 1)\ncircuit.x(2).c_if(circuit.clbits[1], 1)\ncircuit.z(2).c_if(circuit.clbits[0], 1)\ncircuit.measure(2, 2)\nprint(circuit)\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.4 Experiment 04: Quantum Teleportation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "32-32-5-experiment-05-grover-search",
+      "title": "32.5 Experiment 05: Grover Search",
+      "parentId": null,
+      "content": {
+        "statement": "Demonstrate quadratic speedup on 3 qubits.",
+        "explanation": "Database of 8 items, 1 marked, 2 iterations. Success probability >90%. Classical average: 4.5 queries; quantum: 2 queries.",
+        "example": "Search for |101⟩.",
+        "keyTakeaways": [
+          "Demonstrate quadratic speedup on 3 qubits.",
+          "Know what problem or physical phenomenon 32.5 Experiment 05: Grover Search addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-ce33e6fe",
+          "latex": "k\\approx \\lfloor\\pi\\sqrt{N}/4\\rfloor",
+          "description": "Core relation for 32.5 Experiment 05: Grover Search."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Prepare uniform amplitudes",
+            "formula": "|s\\rangle=\\frac1{\\sqrt N}\\sum_x|x\\rangle",
+            "text": "Hadamards place every database item at equal amplitude."
+          },
+          {
+            "step": 2,
+            "title": "Oracle phase flip",
+            "formula": "O|x\\rangle=(-1)^{f(x)}|x\\rangle",
+            "text": "The oracle marks the target by changing its phase."
+          },
+          {
+            "step": 3,
+            "title": "Diffuse about the mean",
+            "formula": "D=2|s\\rangle\\langle s|-I",
+            "text": "The diffusion operator reflects amplitudes about their mean and amplifies the marked state."
+          },
+          {
+            "step": 4,
+            "title": "Repeat near the optimum",
+            "formula": "k\\approx \\pi\\sqrt N/4",
+            "text": "Too many iterations rotate past the target amplitude, so the iteration count is chosen near the first maximum."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-5-experiment-05-grover-search",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-5-experiment-05-grover-search",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1
+            ]
+          },
+          {
+            "gate": "oracle_phase",
+            "targets": [
+              0,
+              1
+            ]
+          },
+          {
+            "gate": "diffusion",
+            "targets": [
+              0,
+              1
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-5-experiment-05-grover-search",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-5-experiment-05-grover-search'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\n# Mark |11> with a phase flip.\ncircuit.cz(0, 1)\n# Diffusion operator.\ncircuit.h([0,1])\ncircuit.x([0,1])\ncircuit.h(1)\ncircuit.cx(0,1)\ncircuit.h(1)\ncircuit.x([0,1])\ncircuit.h([0,1])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.5 Experiment 05: Grover Search",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "32-32-6-experiment-06-noise-comparison",
+      "title": "32.6 Experiment 06: Noise Comparison",
+      "parentId": null,
+      "content": {
+        "statement": "Characterise T₁ and T₂ on hardware.",
+        "explanation": "Prepare known state, wait varying times, measure. Fit T₁ decay and T₂ decay. Compare to specifications.",
+        "example": "T₁ measured by inverting |0⟩ and |1⟩ populations.",
+        "keyTakeaways": [
+          "Characterise T₁ and T₂ on hardware.",
+          "Know what problem or physical phenomenon 32.6 Experiment 06: Noise Comparison addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-4ea278c2",
+          "latex": "ρ₁₁(t) = ρ₁₁(0) e^{−t/T₁}; ρ₀₁(t) = ρ₀₁(0) e^{−t/T₂}.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Characterise T₁ and T₂ on hardware."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ρ₁₁(t) = ρ₁₁(0) e^{−t/T₁}; ρ₀₁(t) = ρ₀₁(0) e^{−t/T₂}.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Prepare known state, wait varying times, measure. Fit T₁ decay and T₂ decay. Compare to specifications."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-6-experiment-06-noise-comparison",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-6-experiment-06-noise-comparison",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-6-experiment-06-noise-comparison",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-6-experiment-06-noise-comparison'\nfrom qiskit.quantum_info import Statevector\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nideal = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'ideal_probabilities': [float(abs(a)**2) for a in ideal.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.6 Experiment 06: Noise Comparison",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "32-32-7-experiment-07-qaoa-maxcut",
+      "title": "32.7 Experiment 07: QAOA MaxCut",
+      "parentId": null,
+      "content": {
+        "statement": "Solve MaxCut on a 4‑vertex graph with p=2 layers.",
+        "explanation": "Define graph, build H_C and H_M, optimise (γ,β), sample. Expect approximation ratio >0.9.",
+        "example": "MaxCut on a square graph.",
+        "keyTakeaways": [
+          "Solve MaxCut on a 4‑vertex graph with p=2 layers.",
+          "Know what problem or physical phenomenon 32.7 Experiment 07: QAOA MaxCut addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-740db0fc",
+          "latex": "|\\gamma,\\beta\\rangle=\\prod_p U_B(\\beta_p)U_C(\\gamma_p)|+\\rangle^{\\otimes n}",
+          "description": "Core relation for 32.7 Experiment 07: QAOA MaxCut."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Solve MaxCut on a 4‑vertex graph with p=2 layers."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Define graph, build H_C and H_M, optimise (γ,β), sample. Expect approximation ratio >0.9."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-7-experiment-07-qaoa-maxcut",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-7-experiment-07-qaoa-maxcut",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "zz",
+            "targets": [
+              0,
+              1
+            ],
+            "parameter": "gamma"
+          },
+          {
+            "gate": "rx",
+            "targets": [
+              0,
+              1,
+              2
+            ],
+            "parameter": "beta"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-7-experiment-07-qaoa-maxcut",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-7-experiment-07-qaoa-maxcut'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.7 Experiment 07: QAOA MaxCut",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "32-32-8-experiment-08-vqe-molecular-energy",
+      "title": "32.8 Experiment 08: VQE Molecular Energy",
+      "parentId": null,
+      "content": {
+        "statement": "Compute H₂ ground state energy.",
+        "explanation": "Use 2‑qubit Hamiltonian, UCCSD ansatz, optimise energy. Expected within chemical accuracy (1.6 mHartree) of exact diagonalisation.",
+        "example": "H₂ ground state energy ≈ −1.137 Ha.",
+        "keyTakeaways": [
+          "Compute H₂ ground state energy.",
+          "Know what problem or physical phenomenon 32.8 Experiment 08: VQE Molecular Energy addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-40da7406",
+          "latex": "E(\\theta)=\\langle\\psi(\\theta)|H|\\psi(\\theta)\\rangle",
+          "description": "Core relation for 32.8 Experiment 08: VQE Molecular Energy."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Compute H₂ ground state energy."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Use 2‑qubit Hamiltonian, UCCSD ansatz, optimise energy. Expected within chemical accuracy (1.6 mHartree) of exact diagonalisation."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-32-32-8-experiment-08-vqe-molecular-energy",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-32-32-8-experiment-08-vqe-molecular-energy",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ],
+            "parameter": "theta0"
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "ry",
+            "targets": [
+              1
+            ],
+            "parameter": "theta1"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-32-32-8-experiment-08-vqe-molecular-energy",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '32-32-8-experiment-08-vqe-molecular-energy'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit documentation",
+          "url": "https://qiskit.qotlabs.org/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "32.8 Experiment 08: VQE Molecular Energy",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning",
+      "url": "https://learning.quantum.ibm.com/"
+    },
+    {
+      "type": "web",
+      "title": "Qiskit documentation",
+      "url": "https://qiskit.qotlabs.org/"
+    }
+  ]
+}

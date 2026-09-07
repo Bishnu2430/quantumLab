@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quantum Visual Spec",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "renderer"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "2d",
+        "3d"
+      ]
+    },
+    "renderer": {
+      "type": "string"
+    },
+    "interactive": {
+      "type": "boolean"
+    },
+    "props": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,951 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 31,
+  "slug": "quantum-software-engineering",
+  "title": "Quantum Software Engineering",
+  "summary": "Curriculum domain 31: Quantum Software Engineering.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "31-31-1-circuit-testing",
+      "title": "31.1 Circuit Testing",
+      "parentId": null,
+      "content": {
+        "statement": "Unit tests ensure circuits behave as expected.",
+        "explanation": "Test properties: unitarity, expected output states, gate decomposition equivalence. Use statevector simulation for verification.",
+        "example": "def test_bell_state(): qc = create_bell(); state = simulate(qc); assert np.isclose(state, bell_state).",
+        "keyTakeaways": [
+          "Unit tests ensure circuits behave as expected.",
+          "Know what problem or physical phenomenon 31.1 Circuit Testing addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Unit tests ensure circuits behave as expected."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Test properties: unitarity, expected output states, gate decomposition equivalence. Use statevector simulation for verification."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-1-circuit-testing",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-1-circuit-testing",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-1-circuit-testing",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-1-circuit-testing'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.06465084, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.06465084, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.1 Circuit Testing",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "code"
+        ]
+      }
+    },
+    {
+      "id": "31-31-2-reproducibility",
+      "title": "31.2 Reproducibility",
+      "parentId": null,
+      "content": {
+        "statement": "Challenges: hardware variability, noise, calibration drift.",
+        "explanation": "Solutions: seed control (for simulators), multiple shots, calibration metadata, and versioned circuit descriptions.",
+        "example": "Setting a fixed seed for the simulator ensures reproducible results.",
+        "keyTakeaways": [
+          "Challenges: hardware variability, noise, calibration drift.",
+          "Know what problem or physical phenomenon 31.2 Reproducibility addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Challenges: hardware variability, noise, calibration drift."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Solutions: seed control (for simulators), multiple shots, calibration metadata, and versioned circuit descriptions."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-2-reproducibility",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-2-reproducibility",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-2-reproducibility",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-2-reproducibility'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.18362788, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.18362788, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.2 Reproducibility",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-3-randomized-benchmarking",
+      "title": "31.3 Randomized Benchmarking",
+      "parentId": null,
+      "content": {
+        "statement": "Characterise average gate fidelity via random Clifford sequences.",
+        "explanation": "Apply random Clifford sequences, measure survival probability, fit decay curve. Output: average gate fidelity and error per Clifford.",
+        "example": "RB on a single qubit yields error per gate ~10⁻³.",
+        "keyTakeaways": [
+          "Characterise average gate fidelity via random Clifford sequences.",
+          "Know what problem or physical phenomenon 31.3 Randomized Benchmarking addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f885d0f5",
+          "latex": "Survival probability P(m) = A αᵐ + B, where α = (1 − 2ε) for error ε.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Characterise average gate fidelity via random Clifford sequences."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Survival probability P(m) = A αᵐ + B, where α = (1 − 2ε) for error ε.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Apply random Clifford sequences, measure survival probability, fit decay curve. Output: average gate fidelity and error per Clifford."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-3-randomized-benchmarking",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-3-randomized-benchmarking",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-3-randomized-benchmarking",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-3-randomized-benchmarking'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=19).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.3 Randomized Benchmarking",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-4-circuit-equivalence",
+      "title": "31.4 Circuit Equivalence",
+      "parentId": null,
+      "content": {
+        "statement": "Check that two circuits implement the same unitary.",
+        "explanation": "Methods: statevector comparison, process tomography, randomized testing.",
+        "example": "Compare H-H vs I (identity).",
+        "keyTakeaways": [
+          "Check that two circuits implement the same unitary.",
+          "Know what problem or physical phenomenon 31.4 Circuit Equivalence addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Check that two circuits implement the same unitary."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Methods: statevector comparison, process tomography, randomized testing."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-4-circuit-equivalence",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-4-circuit-equivalence",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-4-circuit-equivalence",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-4-circuit-equivalence'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.21140582, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.21140582, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.4 Circuit Equivalence",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-5-numerical-precision",
+      "title": "31.5 Numerical Precision",
+      "parentId": null,
+      "content": {
+        "statement": "Issues: floating‑point errors, phase accumulation, normalisation drift.",
+        "explanation": "Mitigation: regular renormalisation, high‑precision arithmetic, symbolic computation.",
+        "example": "Using Python's `decimal` or `mpmath` for critical amplitudes.",
+        "keyTakeaways": [
+          "Issues: floating‑point errors, phase accumulation, normalisation drift.",
+          "Know what problem or physical phenomenon 31.5 Numerical Precision addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Issues: floating‑point errors, phase accumulation, normalisation drift."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Mitigation: regular renormalisation, high‑precision arithmetic, symbolic computation."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-5-numerical-precision",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-5-numerical-precision",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-5-numerical-precision",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-5-numerical-precision'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.75049158, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.75049158, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.5 Numerical Precision",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-6-simulation-limits",
+      "title": "31.6 Simulation Limits",
+      "parentId": null,
+      "content": {
+        "statement": "Classical simulation: statevector O(2ⁿ) memory (~30 qubits practical). Tensor networks: more efficient for low entanglement (~50 qubits possible).",
+        "explanation": "Statevector simulation stores all 2ⁿ amplitudes. Tensor networks exploit locality to reduce complexity.",
+        "example": "Simulating a 50‑qubit shallow circuit with tensor networks.",
+        "keyTakeaways": [
+          "Classical simulation: statevector O(2ⁿ) memory (~30 qubits practical).",
+          "Know what problem or physical phenomenon 31.6 Simulation Limits addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a8dac315",
+          "latex": "Memory O(2ⁿ) for statevector; O(χ ⋅ poly(n)) for MPS.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classical simulation: statevector O(2ⁿ) memory (~30 qubits practical). Tensor networks: more efficient for low entanglement (~50 qubits possible)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Memory O(2ⁿ) for statevector; O(χ ⋅ poly(n)) for MPS.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Statevector simulation stores all 2ⁿ amplitudes. Tensor networks exploit locality to reduce complexity."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-6-simulation-limits",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-6-simulation-limits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-6-simulation-limits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-6-simulation-limits'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.6 Simulation Limits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-7-resource-estimation",
+      "title": "31.7 Resource Estimation",
+      "parentId": null,
+      "content": {
+        "statement": "Metrics: qubit count, gate count, circuit depth, T‑gate count.",
+        "explanation": "Tools: Qiskit resource estimator, Microsoft Q# estimator.",
+        "example": "Estimating T‑gates for Shor's algorithm.",
+        "keyTakeaways": [
+          "Metrics: qubit count, gate count, circuit depth, T‑gate count.",
+          "Know what problem or physical phenomenon 31.7 Resource Estimation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Metrics: qubit count, gate count, circuit depth, T‑gate count."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Tools: Qiskit resource estimator, Microsoft Q# estimator."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-7-resource-estimation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-7-resource-estimation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-7-resource-estimation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-7-resource-estimation'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.47123890, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.47123890, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.7 Resource Estimation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-8-versioning",
+      "title": "31.8 Versioning",
+      "parentId": null,
+      "content": {
+        "statement": "Challenges: circuit representation, parameter tracking, result versioning.",
+        "explanation": "Solutions: Git for code, database for results, metadata tracking.",
+        "example": "Using `dvc` (data version control) for quantum experiment data.",
+        "keyTakeaways": [
+          "Challenges: circuit representation, parameter tracking, result versioning.",
+          "Know what problem or physical phenomenon 31.8 Versioning addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Challenges: circuit representation, parameter tracking, result versioning."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Solutions: Git for code, database for results, metadata tracking."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-8-versioning",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-8-versioning",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-8-versioning",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-8-versioning'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.96705973, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.96705973, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.8 Versioning",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "31-31-9-experiment-tracking",
+      "title": "31.9 Experiment Tracking",
+      "parentId": null,
+      "content": {
+        "statement": "Record: circuit parameters, hardware configuration, calibration data, results.",
+        "explanation": "Tools: MLflow, custom databases, lab notebooks.",
+        "example": "Logging shot counts and fidelity per experiment.",
+        "keyTakeaways": [
+          "Record: circuit parameters, hardware configuration, calibration data, results.",
+          "Know what problem or physical phenomenon 31.9 Experiment Tracking addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Record: circuit parameters, hardware configuration, calibration data, results."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Tools: MLflow, custom databases, lab notebooks."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-31-31-9-experiment-tracking",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-31-31-9-experiment-tracking",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-31-31-9-experiment-tracking",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '31-31-9-experiment-tracking'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.21140582, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.21140582, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation",
+          "url": "https://quantum.cloud.ibm.com/docs/"
+        },
+        {
+          "type": "textbook",
+          "title": "Hastings, Quantum Algorithms and Software Engineering references",
+          "url": "https://arxiv.org/abs/2305.18047"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "31.9 Experiment Tracking",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "web",
+      "title": "IBM Quantum Documentation",
+      "url": "https://quantum.cloud.ibm.com/docs/"
+    },
+    {
+      "type": "textbook",
+      "title": "Hastings, Quantum Algorithms and Software Engineering references",
+      "url": "https://arxiv.org/abs/2305.18047"
+    }
+  ]
+}

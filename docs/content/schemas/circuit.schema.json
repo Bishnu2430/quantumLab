@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quantum Circuit Spec",
+  "type": "object",
+  "required": [
+    "id",
+    "qubits",
+    "operations",
+    "renderer"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "qubits": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classicalBits": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "operations": {
+      "type": "array"
+    },
+    "measurement": {
+      "type": "object"
+    },
+    "renderer": {
+      "const": "quantum-circuit"
+    }
+  }
+}

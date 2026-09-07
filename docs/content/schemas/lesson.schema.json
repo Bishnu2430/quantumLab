@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quantum Lesson",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "content",
+    "derivation",
+    "visuals",
+    "quantumCircuit",
+    "codeExamples",
+    "references"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "parentId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "statement",
+        "explanation",
+        "example",
+        "keyTakeaways"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        },
+        "keyTakeaways": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "formulas": {
+      "type": "array"
+    },
+    "derivation": {
+      "type": "object",
+      "required": [
+        "type",
+        "steps"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "mathematical",
+            "conceptual"
+          ]
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "step"
+            ],
+            "properties": {
+              "step": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "formula": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "visuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "renderer"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "2d",
+              "3d"
+            ]
+          },
+          "renderer": {
+            "type": "string"
+          },
+          "interactive": {
+            "type": "boolean"
+          },
+          "props": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "quantumCircuit": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "codeExamples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "language",
+          "framework",
+          "code",
+          "requirements"
+        ]
+      }
+    },
+    "references": {
+      "type": "array"
+    },
+    "sourceAudit": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,1783 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 10,
+  "slug": "quantum-algorithms",
+  "title": "Quantum Algorithms",
+  "summary": "Curriculum domain 10: Quantum Algorithms.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "10-10-1-introductory-algorithms",
+      "title": "10.1 Introductory Algorithms",
+      "parentId": null,
+      "content": {
+        "statement": "Deutsch, Deutsch‑Jozsa, Simon, and Grover algorithms.",
+        "explanation": "These demonstrate quantum speedups: Deutsch (constant vs balanced, 1 query vs 2), Deutsch‑Jozsa (1 query vs 2ⁿ⁻¹+1), Simon (exponential speedup for period finding), Grover (quadratic speedup for search).",
+        "example": "Grover finds marked item in √N queries.",
+        "keyTakeaways": [
+          "Deutsch, Deutsch‑Jozsa, Simon, and Grover algorithms.",
+          "Know what problem or physical phenomenon 10.1 Introductory Algorithms addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Deutsch, Deutsch‑Jozsa, Simon, and Grover algorithms."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "These demonstrate quantum speedups: Deutsch (constant vs balanced, 1 query vs 2), Deutsch‑Jozsa (1 query vs 2ⁿ⁻¹+1), Simon (exponential speedup for period finding), Grover (quadratic speedup for search)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-10-1-introductory-algorithms",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-10-1-introductory-algorithms",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-10-1-introductory-algorithms",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-10-1-introductory-algorithms'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.62315620, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.62315620, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "10.1 Introductory Algorithms",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-deutsch-algorithm",
+      "title": "Deutsch Algorithm",
+      "parentId": "10-10-1-introductory-algorithms",
+      "content": {
+        "statement": "Determines if f:{0,1}→{0,1} is constant or balanced in 1 query.",
+        "explanation": "Initialize |0⟩|1⟩, apply H⊗H, query U_f, apply H on first qubit, measure. Constant → |0⟩, balanced → |1⟩.",
+        "example": "f(x)=x (balanced) gives |1⟩.",
+        "keyTakeaways": [
+          "Determines if f:{0,1}→{0,1} is constant or balanced in 1 query.",
+          "Know what problem or physical phenomenon Deutsch Algorithm addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-3f109372",
+          "latex": "After U_f: ½∑_{x} (−1)^{f(x)}|x⟩(|0⟩−|1⟩). After final H on first qubit, amplitude of |0⟩ is ½[(−1)^{f(0)}+(−1)^{f(1)}].",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Determines if f:{0,1}→{0,1} is constant or balanced in 1 query."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "After U_f: ½∑_{x} (−1)^{f(x)}|x⟩(|0⟩−|1⟩). After final H on first qubit, amplitude of |0⟩ is ½[(−1)^{f(0)}+(−1)^{f(1)}].",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Initialize |0⟩|1⟩, apply H⊗H, query U_f, apply H on first qubit, measure. Constant → |0⟩, balanced → |1⟩."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-deutsch-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-deutsch-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-deutsch-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-deutsch-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.57276264, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.57276264, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Deutsch Algorithm",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-deutsch-jozsa-algorithm",
+      "title": "Deutsch‑Jozsa Algorithm",
+      "parentId": "10-10-1-introductory-algorithms",
+      "content": {
+        "statement": "Determines if f:{0,1}ⁿ→{0,1} is constant or balanced in 1 query.",
+        "explanation": "Generalizes Deutsch. Initialize |0⟩⊗ⁿ|1⟩, apply H⊗(n+1), query U_f, apply H⊗ⁿ on first n, measure. All zeros → constant, otherwise balanced.",
+        "example": "For n=2, f is balanced if measurement ≠ 00.",
+        "keyTakeaways": [
+          "Determines if f:{0,1}ⁿ→{0,1} is constant or balanced in 1 query.",
+          "Know what problem or physical phenomenon Deutsch‑Jozsa Algorithm addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-684b8075",
+          "latex": "Amplitude of |0⟩⊗ⁿ is ½ⁿ∑_{x}(−1)^{f(x)}. If constant, amplitude = ±1; if balanced, amplitude = 0.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Determines if f:{0,1}ⁿ→{0,1} is constant or balanced in 1 query."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Amplitude of |0⟩⊗ⁿ is ½ⁿ∑_{x}(−1)^{f(x)}. If constant, amplitude = ±1; if balanced, amplitude = 0.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Generalizes Deutsch. Initialize |0⟩⊗ⁿ|1⟩, apply H⊗(n+1), query U_f, apply H⊗ⁿ on first n, measure. All zeros → constant, otherwise balanced."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-deutsch-jozsa-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-deutsch-jozsa-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-deutsch-jozsa-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-deutsch-jozsa-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.97418837, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.97418837, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Deutsch‑Jozsa Algorithm",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-simon-s-algorithm",
+      "title": "Simon's Algorithm",
+      "parentId": "10-10-1-introductory-algorithms",
+      "content": {
+        "statement": "Finds hidden period s where f(x)=f(x⊕s) in O(n) queries.",
+        "explanation": "Uses quantum parallelism and Fourier sampling. Gives exponential speedup over classical.",
+        "example": "For n=3, finds s ∈ {0,1}³.",
+        "keyTakeaways": [
+          "Finds hidden period s where f(x)=f(x⊕s) in O(n) queries.",
+          "Know what problem or physical phenomenon Simon's Algorithm addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-7c384d91",
+          "latex": "Find s such that f(x)=f(x⊕s).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Finds hidden period s where f(x)=f(x⊕s) in O(n) queries."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Find s such that f(x)=f(x⊕s).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Uses quantum parallelism and Fourier sampling. Gives exponential speedup over classical."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-simon-s-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-simon-s-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-simon-s-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-simon-s-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.34390352, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.34390352, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Simon's Algorithm",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-grover-s-algorithm",
+      "title": "Grover's Algorithm",
+      "parentId": "10-10-1-introductory-algorithms",
+      "content": {
+        "statement": "Searches unstructured database of N items in O(√N) queries.",
+        "explanation": "Initialize equal superposition, repeat oracle + diffusion operator √N times, measure. Amplitude amplification.",
+        "example": "For N=4, one iteration gives success probability 100%.",
+        "keyTakeaways": [
+          "Searches unstructured database of N items in O(√N) queries.",
+          "Know what problem or physical phenomenon Grover's Algorithm addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-9c3670ee",
+          "latex": "Initial |s⟩ = 1/√N∑|x⟩; Grover iteration G = D·O; after k iterations, amplitude = sin((2k+1)θ) with sinθ=1/√N; optimal k ≈ π/4√N.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Prepare uniform amplitudes",
+            "formula": "|s\\rangle=\\frac1{\\sqrt N}\\sum_x|x\\rangle",
+            "text": "Hadamards place every database item at equal amplitude."
+          },
+          {
+            "step": 2,
+            "title": "Oracle phase flip",
+            "formula": "O|x\\rangle=(-1)^{f(x)}|x\\rangle",
+            "text": "The oracle marks the target by changing its phase."
+          },
+          {
+            "step": 3,
+            "title": "Diffuse about the mean",
+            "formula": "D=2|s\\rangle\\langle s|-I",
+            "text": "The diffusion operator reflects amplitudes about their mean and amplifies the marked state."
+          },
+          {
+            "step": 4,
+            "title": "Repeat near the optimum",
+            "formula": "k\\approx \\pi\\sqrt N/4",
+            "text": "Too many iterations rotate past the target amplitude, so the iteration count is chosen near the first maximum."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-grover-s-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-grover-s-algorithm",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1
+            ]
+          },
+          {
+            "gate": "oracle_phase",
+            "targets": [
+              0,
+              1
+            ]
+          },
+          {
+            "gate": "diffusion",
+            "targets": [
+              0,
+              1
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-grover-s-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-grover-s-algorithm'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\n# Mark |11> with a phase flip.\ncircuit.cz(0, 1)\n# Diffusion operator.\ncircuit.h([0,1])\ncircuit.x([0,1])\ncircuit.h(1)\ncircuit.cx(0,1)\ncircuit.h(1)\ncircuit.x([0,1])\ncircuit.h([0,1])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Grover's Algorithm",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-10-2-intermediate-algorithms",
+      "title": "10.2 Intermediate Algorithms",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum Fourier Transform, Phase Estimation, Quantum Counting, Amplitude Amplification.",
+        "explanation": "QFT is the quantum version of the discrete Fourier transform, with O(n²) gates. Phase estimation estimates eigenvalues of unitaries. Quantum counting combines Grover with phase estimation to count solutions.",
+        "example": "Phase estimation is used in Shor's algorithm.",
+        "keyTakeaways": [
+          "Quantum Fourier Transform, Phase Estimation, Quantum Counting, Amplitude Amplification.",
+          "Know what problem or physical phenomenon 10.2 Intermediate Algorithms addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-7f8b072a",
+          "latex": "QFT|x⟩ = 1/√N∑_{y=0}^{N-1} e^{2πixy/N}|y⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum Fourier Transform, Phase Estimation, Quantum Counting, Amplitude Amplification."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "QFT|x⟩ = 1/√N∑_{y=0}^{N-1} e^{2πixy/N}|y⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "QFT is the quantum version of the discrete Fourier transform, with O(n²) gates. Phase estimation estimates eigenvalues of unitaries. Quantum counting combines Grover with phase estimation to count solutions."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-10-2-intermediate-algorithms",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-10-2-intermediate-algorithms",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-10-2-intermediate-algorithms",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-10-2-intermediate-algorithms'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.35103216, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.35103216, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "10.2 Intermediate Algorithms",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-quantum-fourier-transform",
+      "title": "Quantum Fourier Transform",
+      "parentId": "10-10-2-intermediate-algorithms",
+      "content": {
+        "statement": "QFT|x⟩ = 1/√N∑_{y} e^{2πixy/N}|y⟩.",
+        "explanation": "Circuit uses Hadamard and controlled‑phase rotations. Classical FFT is O(N log N), QFT is O(n²) with n=log N.",
+        "example": "For n=2, QFT maps |00⟩ to (|00⟩+|01⟩+|10⟩+|11⟩)/2.",
+        "keyTakeaways": [
+          "QFT|x⟩ = 1/√N∑_{y} e^{2πixy/N}|y⟩.",
+          "Know what problem or physical phenomenon Quantum Fourier Transform addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-96f02ec6",
+          "latex": "QFT|x⟩ = 1/√N∑_{y} e^{2πixy/N}|y⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "QFT|x⟩ = 1/√N∑_{y} e^{2πixy/N}|y⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "QFT|x⟩ = 1/√N∑_{y} e^{2πixy/N}|y⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Circuit uses Hadamard and controlled‑phase rotations. Classical FFT is O(N log N), QFT is O(n²) with n=log N."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-quantum-fourier-transform",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-quantum-fourier-transform",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-quantum-fourier-transform",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-quantum-fourier-transform'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cp(3.141592653589793/2, 1, 0)\ncircuit.cp(3.141592653589793/4, 2, 0)\ncircuit.h(1)\ncircuit.cp(3.141592653589793/2, 2, 1)\ncircuit.h(2)\n# Reverse qubit order.\ncircuit.swap(0,2)\nprint(circuit)\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Quantum Fourier Transform",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-phase-estimation",
+      "title": "Phase Estimation",
+      "parentId": "10-10-2-intermediate-algorithms",
+      "content": {
+        "statement": "Estimates φ where U|ψ⟩ = e^{2πiφ}|ψ⟩.",
+        "explanation": "Prepare |0⟩⊗ⁿ|ψ⟩, apply H⊗ⁿ, controlled‑U^{2^k}, inverse QFT, measure. Output is an n‑bit approximation of φ.",
+        "example": "If φ=0.5, output 100... (binary).",
+        "keyTakeaways": [
+          "Estimates φ where U|ψ⟩ = e^{2πiφ}|ψ⟩.",
+          "Know what problem or physical phenomenon Phase Estimation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-53f81310",
+          "latex": "Output approximates φ with n bits.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Estimates φ where U|ψ⟩ = e^{2πiφ}|ψ⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Output approximates φ with n bits.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Prepare |0⟩⊗ⁿ|ψ⟩, apply H⊗ⁿ, controlled‑U^{2^k}, inverse QFT, measure. Output is an n‑bit approximation of φ."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-phase-estimation",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-phase-estimation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-phase-estimation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-phase-estimation'\ncircuit = QuantumCircuit(2)\ncircuit.x(1)\ncircuit.h(0)\ncircuit.cp(3.141592653589793/2, 0, 1)\ncircuit.h(0)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Phase Estimation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-quantum-counting",
+      "title": "Quantum Counting",
+      "parentId": "10-10-2-intermediate-algorithms",
+      "content": {
+        "statement": "Counts number of solutions M using Grover + phase estimation.",
+        "explanation": "The Grover operator has eigenvalues e^{±2iθ} where sinθ = √(M/N). Phase estimation gives θ, hence M.",
+        "example": "Estimates number of marked items.",
+        "keyTakeaways": [
+          "Counts number of solutions M using Grover + phase estimation.",
+          "Know what problem or physical phenomenon Quantum Counting addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5e5e6bd4",
+          "latex": "Complexity O(√(N/M)).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Counts number of solutions M using Grover + phase estimation."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Complexity O(√(N/M)).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The Grover operator has eigenvalues e^{±2iθ} where sinθ = √(M/N). Phase estimation gives θ, hence M."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-quantum-counting",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-quantum-counting",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-quantum-counting",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-quantum-counting'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.47320521, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.47320521, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Quantum Counting",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-amplitude-amplification",
+      "title": "Amplitude Amplification",
+      "parentId": "10-10-2-intermediate-algorithms",
+      "content": {
+        "statement": "Generalization of Grover: boost success probability from a to ~1 with O(1/√a) iterations.",
+        "explanation": "Given a unitary A that prepares |ψ⟩ with success amplitude a, repeated application of reflection operators amplifies the good component.",
+        "example": "If a=0.01, need ~10 iterations for success ~1.",
+        "keyTakeaways": [
+          "Generalization of Grover: boost success probability from a to ~1 with O(1/√a) iterations.",
+          "Know what problem or physical phenomenon Amplitude Amplification addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-24238717",
+          "latex": "O(1/√a) iterations.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Generalization of Grover: boost success probability from a to ~1 with O(1/√a) iterations."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "O(1/√a) iterations.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Given a unitary A that prepares |ψ⟩ with success amplitude a, repeated application of reflection operators amplifies the good component."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-amplitude-amplification",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-amplitude-amplification",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-amplitude-amplification",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-amplitude-amplification'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.65806279, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.65806279, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Amplitude Amplification",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-10-3-advanced-algorithms",
+      "title": "10.3 Advanced Algorithms",
+      "parentId": null,
+      "content": {
+        "statement": "Shor's algorithm, Hidden Subgroup Problem, HHL algorithm, Quantum Walks, Hamiltonian Simulation.",
+        "explanation": "Shor factors in polynomial time. HHL solves linear systems exponentially faster. Quantum walks provide speedups for search and element distinctness.",
+        "example": "Shor factors N=15 to get 3 and 5.",
+        "keyTakeaways": [
+          "Shor's algorithm, Hidden Subgroup Problem, HHL algorithm, Quantum Walks, Hamiltonian Simulation.",
+          "Know what problem or physical phenomenon 10.3 Advanced Algorithms addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Shor's algorithm, Hidden Subgroup Problem, HHL algorithm, Quantum Walks, Hamiltonian Simulation."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Shor factors in polynomial time. HHL solves linear systems exponentially faster. Quantum walks provide speedups for search and element distinctness."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-10-3-advanced-algorithms",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-10-3-advanced-algorithms",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-10-3-advanced-algorithms",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-10-3-advanced-algorithms'\ncircuit = QuantumCircuit(1)\ncircuit.rz(3.17649924, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 3.17649924, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "10.3 Advanced Algorithms",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-shor-s-algorithm",
+      "title": "Shor's Algorithm",
+      "parentId": "10-10-3-advanced-algorithms",
+      "content": {
+        "statement": "Factors integer N in O(n³) time.",
+        "explanation": "Classical preprocessing choose a; quantum order‑finding finds r such that aʳ ≡ 1 mod N; classical post‑processing computes gcd(a^{r/2} ± 1, N).",
+        "example": "For N=15, a=7, r=4, factors 3 and 5.",
+        "keyTakeaways": [
+          "Factors integer N in O(n³) time.",
+          "Know what problem or physical phenomenon Shor's Algorithm addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a2566950",
+          "latex": "Classical O(e^{n^{1/3}}), Quantum O(n³).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "text": "Order finding uses phase estimation on U|y⟩ = |ay mod N⟩."
+          },
+          {
+            "step": 2,
+            "text": "The eigenvalues are e^{2πis/r}."
+          },
+          {
+            "step": 3,
+            "text": "The inverse QFT yields s/r, allowing r to be recovered via continued fractions."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-shor-s-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-shor-s-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-shor-s-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-shor-s-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.60250690, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.60250690, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Shor's Algorithm",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-hidden-subgroup-problem",
+      "title": "Hidden Subgroup Problem",
+      "parentId": "10-10-3-advanced-algorithms",
+      "content": {
+        "statement": "Find hidden subgroup H of a group G given oracle f constant on cosets.",
+        "explanation": "Many quantum algorithms (Shor, Simon) are instances of HSP for abelian groups. Non‑abelian HSP (e.g., graph isomorphism) remains open.",
+        "example": "Simon's problem is HSP for G=(ℤ₂)ⁿ, H={0,s}.",
+        "keyTakeaways": [
+          "Find hidden subgroup H of a group G given oracle f constant on cosets.",
+          "Know what problem or physical phenomenon Hidden Subgroup Problem addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c9d81f2f",
+          "latex": "Find H such that f(x)=f(y) iff xH=yH.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Find hidden subgroup H of a group G given oracle f constant on cosets."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Find H such that f(x)=f(y) iff xH=yH.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Many quantum algorithms (Shor, Simon) are instances of HSP for abelian groups. Non‑abelian HSP (e.g., graph isomorphism) remains open."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-hidden-subgroup-problem",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-hidden-subgroup-problem",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-hidden-subgroup-problem",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-hidden-subgroup-problem'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.25663706, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.25663706, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Hidden Subgroup Problem",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-hhl-algorithm",
+      "title": "HHL Algorithm",
+      "parentId": "10-10-3-advanced-algorithms",
+      "content": {
+        "statement": "Solves linear system Ax=b in O(log N · κ²) for sparse A.",
+        "explanation": "Uses phase estimation to extract eigenvalues of A, then rotates ancilla to invert eigenvalues. Output is |x⟩. Requires state preparation and readout caveats.",
+        "example": "Solving a sparse system of N equations.",
+        "keyTakeaways": [
+          "Solves linear system Ax=b in O(log N · κ²) for sparse A.",
+          "Know what problem or physical phenomenon HHL Algorithm addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-af4e75c3",
+          "latex": "Complexity O(log N · κ²) where κ is condition number.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Solves linear system Ax=b in O(log N · κ²) for sparse A."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Complexity O(log N · κ²) where κ is condition number.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Uses phase estimation to extract eigenvalues of A, then rotates ancilla to invert eigenvalues. Output is |x⟩. Requires state preparation and readout caveats."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-hhl-algorithm",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-hhl-algorithm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-hhl-algorithm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-hhl-algorithm'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.13962634, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.13962634, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "HHL Algorithm",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-quantum-walk-algorithms",
+      "title": "Quantum Walk Algorithms",
+      "parentId": "10-10-3-advanced-algorithms",
+      "content": {
+        "statement": "Discrete‑time and continuous‑time quantum walks for search and element distinctness.",
+        "explanation": "Continuous‑time walk: U(t)=e^{-iHt} where H is graph Laplacian. Quadratic speedup for search.",
+        "example": "Search on a 2D grid.",
+        "keyTakeaways": [
+          "Discrete‑time and continuous‑time quantum walks for search and element distinctness.",
+          "Know what problem or physical phenomenon Quantum Walk Algorithms addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6e9a6fc0",
+          "latex": "U = S·(C⊗I) (discrete); e^{-iHt} (continuous).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Discrete‑time and continuous‑time quantum walks for search and element distinctness."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "U = S·(C⊗I) (discrete); e^{-iHt} (continuous).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Continuous‑time walk: U(t)=e^{-iHt} where H is graph Laplacian. Quadratic speedup for search."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-quantum-walk-algorithms",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-quantum-walk-algorithms",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-quantum-walk-algorithms",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-quantum-walk-algorithms'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.08407045, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.08407045, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Quantum Walk Algorithms",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "10-hamiltonian-simulation",
+      "title": "Hamiltonian Simulation",
+      "parentId": "10-10-3-advanced-algorithms",
+      "content": {
+        "statement": "Simulate e^{-iHt} using quantum gates.",
+        "explanation": "Methods include Trotterization (product formula), linear combination of unitaries, and qubitization. Complexity O(t·poly(n)) with error ε.",
+        "example": "Simulating a molecular Hamiltonian.",
+        "keyTakeaways": [
+          "Simulate e^{-iHt} using quantum gates.",
+          "Know what problem or physical phenomenon Hamiltonian Simulation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-08ee7f22",
+          "latex": "Trotter: e^{-i(A+B)t} ≈ (e^{-iAt/n}e^{-iBt/n})ⁿ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Simulate e^{-iHt} using quantum gates."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Trotter: e^{-i(A+B)t} ≈ (e^{-iAt/n}e^{-iBt/n})ⁿ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Methods include Trotterization (product formula), linear combination of unitaries, and qubitization. Complexity O(t·poly(n)) with error ε."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-10-hamiltonian-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-10-hamiltonian-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-10-hamiltonian-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '10-hamiltonian-simulation'\nfrom qiskit.quantum_info import SparsePauliOp\nH = SparsePauliOp.from_list([('ZI', 0.5), ('IZ', -0.3), ('XX', 0.2)])\ncircuit = QuantumCircuit(2)\ncircuit.ry(0.7,0)\ncircuit.ry(1.1,1)\nfrom qiskit.primitives import StatevectorEstimator\nest = StatevectorEstimator().run([(circuit, H)])\nvalue = float(est.result()[0].data.evs[0])\nprint(json.dumps({'lesson': LESSON_ID, 'expectation': value}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 6–6.3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Documentation: primitives",
+          "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "Hamiltonian Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapters 6–6.3",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Documentation: primitives",
+      "url": "https://qiskit.qotlabs.org/docs/api/qiskit/primitives"
+    }
+  ]
+}

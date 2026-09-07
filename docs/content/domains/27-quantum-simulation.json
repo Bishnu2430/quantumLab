@@ -1,0 +1,872 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 27,
+  "slug": "quantum-simulation",
+  "title": "Quantum Simulation",
+  "summary": "Curriculum domain 27: Quantum Simulation.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "27-27-1-digital-quantum-simulation",
+      "title": "27.1 Digital Quantum Simulation",
+      "parentId": null,
+      "content": {
+        "statement": "Use gate‑based quantum computers to simulate quantum systems.",
+        "explanation": "Approach: map system to qubits, decompose evolution into gates, run circuit. Advantages: universal, error correction possible. Challenges: gate errors, circuit depth.",
+        "example": "Simulating the Ising model on a superconducting chip.",
+        "keyTakeaways": [
+          "Use gate‑based quantum computers to simulate quantum systems.",
+          "Know what problem or physical phenomenon 27.1 Digital Quantum Simulation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Use gate‑based quantum computers to simulate quantum systems."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Approach: map system to qubits, decompose evolution into gates, run circuit. Advantages: universal, error correction possible. Challenges: gate errors, circuit depth."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-1-digital-quantum-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-1-digital-quantum-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-1-digital-quantum-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-1-digital-quantum-simulation'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.1 Digital Quantum Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-2-analog-quantum-simulation",
+      "title": "27.2 Analog Quantum Simulation",
+      "parentId": null,
+      "content": {
+        "statement": "Engineer the Hamiltonian directly in a physical platform.",
+        "explanation": "Platforms: cold atoms in optical lattices, trapped ions, superconducting circuits. Advantages: natural evolution, large systems. Challenges: limited control, system‑specific.",
+        "example": "Ultracold atoms in optical lattices simulate the Hubbard model.",
+        "keyTakeaways": [
+          "Engineer the Hamiltonian directly in a physical platform.",
+          "Know what problem or physical phenomenon 27.2 Analog Quantum Simulation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Engineer the Hamiltonian directly in a physical platform."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Platforms: cold atoms in optical lattices, trapped ions, superconducting circuits. Advantages: natural evolution, large systems. Challenges: limited control, system‑specific."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-2-analog-quantum-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-2-analog-quantum-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-2-analog-quantum-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-2-analog-quantum-simulation'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.2 Analog Quantum Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-3-hamiltonian-simulation",
+      "title": "27.3 Hamiltonian Simulation",
+      "parentId": null,
+      "content": {
+        "statement": "Implement the time‑evolution operator e^{−iHt} using quantum gates.",
+        "explanation": "Methods: Trotterization (product formulas), linear combination of unitaries, qubitization.",
+        "example": "Simulating a molecular Hamiltonian with Trotter steps.",
+        "keyTakeaways": [
+          "Implement the time‑evolution operator e^{−iHt} using quantum gates.",
+          "Know what problem or physical phenomenon 27.3 Hamiltonian Simulation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Implement the time‑evolution operator e^{−iHt} using quantum gates."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Methods: Trotterization (product formulas), linear combination of unitaries, qubitization."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-3-hamiltonian-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-3-hamiltonian-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-3-hamiltonian-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-3-hamiltonian-simulation'\nfrom qiskit.quantum_info import SparsePauliOp\nH = SparsePauliOp.from_list([('ZI', 0.5), ('IZ', -0.3), ('XX', 0.2)])\ncircuit = QuantumCircuit(2)\ncircuit.ry(0.7,0)\ncircuit.ry(1.1,1)\nfrom qiskit.primitives import StatevectorEstimator\nest = StatevectorEstimator().run([(circuit, H)])\nvalue = float(est.result()[0].data.evs[0])\nprint(json.dumps({'lesson': LESSON_ID, 'expectation': value}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.3 Hamiltonian Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-4-trotterization",
+      "title": "27.4 Trotterization",
+      "parentId": null,
+      "content": {
+        "statement": "First‑order: e^{−i(A+B)t} ≈ (e^{−iAt/n} e^{−iBt/n})ⁿ. Error O(t²/n).",
+        "explanation": "Splits the Hamiltonian into sum of easy‑to‑simulate terms. Higher‑order Suzuki‑Trotter formulas reduce error.",
+        "example": "Splitting H = H₁ + H₂.",
+        "keyTakeaways": [
+          "First‑order: e^{−i(A+B)t} ≈ (e^{−iAt/n} e^{−iBt/n})ⁿ.",
+          "Know what problem or physical phenomenon 27.4 Trotterization addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-3e0df64d",
+          "latex": "e^{−i(A+B)t} ≈ (e^{−iAt/n} e^{−iBt/n})ⁿ; error O(t²/n).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "First‑order: e^{−i(A+B)t} ≈ (e^{−iAt/n} e^{−iBt/n})ⁿ. Error O(t²/n)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "e^{−i(A+B)t} ≈ (e^{−iAt/n} e^{−iBt/n})ⁿ; error O(t²/n).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Splits the Hamiltonian into sum of easy‑to‑simulate terms. Higher‑order Suzuki‑Trotter formulas reduce error."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-4-trotterization",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-4-trotterization",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-4-trotterization",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-4-trotterization'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.4 Trotterization",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-5-suzuki-trotter-decomposition",
+      "title": "27.5 Suzuki‑Trotter Decomposition",
+      "parentId": null,
+      "content": {
+        "statement": "Second‑order: S₂(t) = e^{−iAt/2n} e^{−iBt/n} e^{−iAt/2n}. Error O(t³/n²).",
+        "explanation": "Higher orders constructed recursively: S_{2k}(t) = S_{2k−2}(p_k t)² S_{2k−2}((1−4p_k)t) S_{2k−2}(p_k t)².",
+        "example": "Fourth‑order Suzuki formula.",
+        "keyTakeaways": [
+          "Second‑order: S₂(t) = e^{−iAt/2n} e^{−iBt/n} e^{−iAt/2n}.",
+          "Know what problem or physical phenomenon 27.5 Suzuki‑Trotter Decomposition addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-aa490c49",
+          "latex": "S₂(t) = e^{−iAt/2n} e^{−iBt/n} e^{−iAt/2n}; error O(t³/n²).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Second‑order: S₂(t) = e^{−iAt/2n} e^{−iBt/n} e^{−iAt/2n}. Error O(t³/n²)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "S₂(t) = e^{−iAt/2n} e^{−iBt/n} e^{−iAt/2n}; error O(t³/n²).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Higher orders constructed recursively: S_{2k}(t) = S_{2k−2}(p_k t)² S_{2k−2}((1−4p_k)t) S_{2k−2}(p_k t)²."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-5-suzuki-trotter-decomposition",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-5-suzuki-trotter-decomposition",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-5-suzuki-trotter-decomposition",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-5-suzuki-trotter-decomposition'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.5 Suzuki‑Trotter Decomposition",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-6-spin-systems",
+      "title": "27.6 Spin Systems",
+      "parentId": null,
+      "content": {
+        "statement": "Ising, Heisenberg, and XY models.",
+        "explanation": "Ising: H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾. Heisenberg: H = J ∑ ⟨i,j⟩ σ⃗⁽ⁱ⁾·σ⃗⁽ʲ⁾. XY: H = ∑ (J_x σ_x⁽ⁱ⁾σ_x⁽ʲ⁾ + J_y σ_y⁽ⁱ⁾σ_y⁽ʲ⁾).",
+        "example": "Heisenberg chain.",
+        "keyTakeaways": [
+          "Ising, Heisenberg, and XY models.",
+          "Know what problem or physical phenomenon 27.6 Spin Systems addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-af1062ab",
+          "latex": "H_Ising = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾; H_Heis = J∑ σ⃗⁽ⁱ⁾·σ⃗⁽ʲ⁾; H_XY = ∑ (J_x σ_x⁽ⁱ⁾σ_x⁽ʲ⁾ + J_y σ_y⁽ⁱ⁾σ_y⁽ʲ⁾).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Ising, Heisenberg, and XY models."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H_Ising = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾; H_Heis = J∑ σ⃗⁽ⁱ⁾·σ⃗⁽ʲ⁾; H_XY = ∑ (J_x σ_x⁽ⁱ⁾σ_x⁽ʲ⁾ + J_y σ_y⁽ⁱ⁾σ_y⁽ʲ⁾).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Ising: H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾. Heisenberg: H = J ∑ ⟨i,j⟩ σ⃗⁽ⁱ⁾·σ⃗⁽ʲ⁾. XY: H = ∑ (J_x σ_x⁽ⁱ⁾σ_x⁽ʲ⁾ + J_y σ_y⁽ⁱ⁾σ_y⁽ʲ⁾)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-6-spin-systems",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-6-spin-systems",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-6-spin-systems",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-6-spin-systems'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.2, 0)\ncircuit.rz(0.8, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'statevector': [complex(a).__repr__() for a in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.6 Spin Systems",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-7-ising-model",
+      "title": "27.7 Ising Model",
+      "parentId": null,
+      "content": {
+        "statement": "Classical: H = −∑ Jᵢⱼ sᵢ sⱼ − ∑ hᵢ sᵢ. Quantum transverse field: H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾ − ∑ Γᵢ σ_x⁽ⁱ⁾.",
+        "explanation": "The transverse field Ising model exhibits a quantum phase transition. Applications: magnetism, optimization, phase transitions.",
+        "example": "1D transverse field Ising model.",
+        "keyTakeaways": [
+          "Classical: H = −∑ Jᵢⱼ sᵢ sⱼ − ∑ hᵢ sᵢ.",
+          "Know what problem or physical phenomenon 27.7 Ising Model addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5fc354dc",
+          "latex": "H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾ − ∑ Γᵢ σ_x⁽ⁱ⁾.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classical: H = −∑ Jᵢⱼ sᵢ sⱼ − ∑ hᵢ sᵢ. Quantum transverse field: H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾ − ∑ Γᵢ σ_x⁽ⁱ⁾."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾ − ∑ Γᵢ σ_x⁽ⁱ⁾.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The transverse field Ising model exhibits a quantum phase transition. Applications: magnetism, optimization, phase transitions."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-7-ising-model",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-7-ising-model",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-7-ising-model",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-7-ising-model'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.7 Ising Model",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "27-27-8-fermionic-simulation",
+      "title": "27.8 Fermionic Simulation",
+      "parentId": null,
+      "content": {
+        "statement": "Challenge: fermionic statistics. Solutions: Jordan‑Wigner (JW) and Bravyi‑Kitaev (BK) transformations.",
+        "explanation": "JW maps fermions to qubits with a string of Z operators. BK uses a binary tree, reducing operator weight to O(log n). Applications: electronic structure, Hubbard model, high‑Tc superconductivity.",
+        "example": "Simulating the Hubbard model.",
+        "keyTakeaways": [
+          "Challenge: fermionic statistics.",
+          "Know what problem or physical phenomenon 27.8 Fermionic Simulation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-04f09593",
+          "latex": "JW: a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Challenge: fermionic statistics. Solutions: Jordan‑Wigner (JW) and Bravyi‑Kitaev (BK) transformations."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "JW: a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "JW maps fermions to qubits with a string of Z operators. BK uses a binary tree, reducing operator weight to O(log n). Applications: electronic structure, Hubbard model, high‑Tc superconductivity."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-27-27-8-fermionic-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-27-27-8-fermionic-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-27-27-8-fermionic-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '27-27-8-fermionic-simulation'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "paper",
+          "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+          "url": "https://arxiv.org/abs/1711.10980"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "27.8 Fermionic Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapter 4 and simulation references",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "paper",
+      "title": "Childs et al., Toward the first quantum simulation with quantum resources",
+      "url": "https://arxiv.org/abs/1711.10980"
+    }
+  ]
+}

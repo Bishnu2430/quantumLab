@@ -1,0 +1,882 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 24,
+  "slug": "quantum-communication",
+  "title": "Quantum Communication",
+  "summary": "Curriculum domain 24: Quantum Communication.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "24-24-1-quantum-teleportation",
+      "title": "24.1 Quantum Teleportation",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 8.7.",
+        "explanation": "Transfer unknown state using entanglement and classical communication.",
+        "example": "Teleporting a qubit.",
+        "keyTakeaways": [
+          "See Domain 8.",
+          "Know what problem or physical phenomenon 24.1 Quantum Teleportation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 8.7."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Transfer unknown state using entanglement and classical communication."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-1-quantum-teleportation",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-1-quantum-teleportation",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 2
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-1-quantum-teleportation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-1-quantum-teleportation'\nimport numpy as np\ncircuit = QuantumCircuit(3, 3)\n# Prepare an arbitrary test state on qubit 0.\ncircuit.ry(0.7, 0)\ncircuit.rz(1.1, 0)\n# Create Bell pair between 1 and 2.\ncircuit.h(1)\ncircuit.cx(1, 2)\n# Bell measurement.\ncircuit.cx(0, 1)\ncircuit.h(0)\n# Classically controlled corrections (deferred measurement is enough for this demo).\ncircuit.measure(0, 0)\ncircuit.measure(1, 1)\ncircuit.x(2).c_if(circuit.clbits[1], 1)\ncircuit.z(2).c_if(circuit.clbits[0], 1)\ncircuit.measure(2, 2)\nprint(circuit)\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.1 Quantum Teleportation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "24-24-2-superdense-coding",
+      "title": "24.2 Superdense Coding",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 8.8.",
+        "explanation": "Send 2 classical bits using 1 qubit and entanglement.",
+        "example": "Encoding 00,01,10,11 with I,X,Z,XZ.",
+        "keyTakeaways": [
+          "See Domain 8.",
+          "Know what problem or physical phenomenon 24.2 Superdense Coding addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 8.8."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Send 2 classical bits using 1 qubit and entanglement."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-2-superdense-coding",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-2-superdense-coding",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-2-superdense-coding",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-2-superdense-coding'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\n# Example message 10: apply X then Z to the sender qubit.\ncircuit.x(0)\ncircuit.z(0)\ncircuit.cx(0, 1)\ncircuit.h(0)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'message_example': '10', 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.2 Superdense Coding",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "24-24-3-entanglement-swapping",
+      "title": "24.3 Entanglement Swapping",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 8.6.",
+        "explanation": "Entangle two previously unentangled particles via Bell measurement at a middle node.",
+        "example": "Quantum repeater.",
+        "keyTakeaways": [
+          "See Domain 8.",
+          "Know what problem or physical phenomenon 24.3 Entanglement Swapping addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-141a2782",
+          "latex": "|\\Phi^+\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2",
+          "description": "Core relation for 24.3 Entanglement Swapping."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 8.6."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Entangle two previously unentangled particles via Bell measurement at a middle node."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-3-entanglement-swapping",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-3-entanglement-swapping",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 2
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-3-entanglement-swapping",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-3-entanglement-swapping'\ncircuit = QuantumCircuit(3)\ncircuit.h(0)\ncircuit.cx(0,2)\ncircuit.cx(2,1)\nfrom qiskit import transpile\ntranspiled = transpile(circuit, basis_gates=['rz','sx','x','cx'], optimization_level=3)\nprint(json.dumps({'lesson': LESSON_ID, 'original_depth': circuit.depth(), 'transpiled_depth': transpiled.depth(), 'original_ops': circuit.count_ops(), 'transpiled_ops': transpiled.count_ops()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.3 Entanglement Swapping",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "24-24-4-quantum-repeaters",
+      "title": "24.4 Quantum Repeaters",
+      "parentId": null,
+      "content": {
+        "statement": "Divide fiber into segments; use entanglement swapping to extend distance.",
+        "explanation": "Photon loss ~0.2 dB/km. Repeaters generate entanglement in segments, perform Bell measurements at nodes to swap entanglement end-to-end. Requires quantum memory.",
+        "example": "Long-distance QKD.",
+        "keyTakeaways": [
+          "Divide fiber into segments; use entanglement swapping to extend distance.",
+          "Know what problem or physical phenomenon 24.4 Quantum Repeaters addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Divide fiber into segments; use entanglement swapping to extend distance."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Photon loss ~0.2 dB/km. Repeaters generate entanglement in segments, perform Bell measurements at nodes to swap entanglement end-to-end. Requires quantum memory."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-4-quantum-repeaters",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-4-quantum-repeaters",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-4-quantum-repeaters",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-4-quantum-repeaters'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0,1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'entangled_state': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.4 Quantum Repeaters",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "24-24-5-quantum-networks",
+      "title": "24.5 Quantum Networks",
+      "parentId": null,
+      "content": {
+        "statement": "Nodes connected by quantum channels, with quantum memories and Bell measurement stations.",
+        "explanation": "Components: quantum channels (fiber, free-space), quantum memories, Bell measurement stations, classical control.",
+        "example": "Quantum internet testbeds.",
+        "keyTakeaways": [
+          "Nodes connected by quantum channels, with quantum memories and Bell measurement stations.",
+          "Know what problem or physical phenomenon 24.5 Quantum Networks addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Nodes connected by quantum channels, with quantum memories and Bell measurement stations."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Components: quantum channels (fiber, free-space), quantum memories, Bell measurement stations, classical control."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-5-quantum-networks",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-5-quantum-networks",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-5-quantum-networks",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-5-quantum-networks'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0,1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'entangled_state': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.5 Quantum Networks",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "24-24-6-quantum-internet",
+      "title": "24.6 Quantum Internet",
+      "parentId": null,
+      "content": {
+        "statement": "Global network of quantum devices for secure communication, distributed computing, and sensing.",
+        "explanation": "Applications: secure communication (QKD), distributed quantum computing, quantum sensor networks, clock synchronization. Challenges: distance (repeaters), interfacing platforms, error correction.",
+        "example": "EU Quantum Internet Alliance.",
+        "keyTakeaways": [
+          "Global network of quantum devices for secure communication, distributed computing, and sensing.",
+          "Know what problem or physical phenomenon 24.6 Quantum Internet addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Global network of quantum devices for secure communication, distributed computing, and sensing."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Applications: secure communication (QKD), distributed quantum computing, quantum sensor networks, clock synchronization. Challenges: distance (repeaters), interfacing platforms, error correction."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-6-quantum-internet",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-6-quantum-internet",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-6-quantum-internet",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-6-quantum-internet'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.85004901, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.85004901, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.6 Quantum Internet",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "24-24-7-quantum-memories",
+      "title": "24.7 Quantum Memories",
+      "parentId": null,
+      "content": {
+        "statement": "Store quantum states with long storage time, high fidelity, on-demand retrieval, wavelength compatibility.",
+        "explanation": "Technologies: atomic ensembles, rare-earth ions, NV centers, quantum dots.",
+        "example": "Atomic vapor cells.",
+        "keyTakeaways": [
+          "Store quantum states with long storage time, high fidelity, on-demand retrieval, wavelength compatibility.",
+          "Know what problem or physical phenomenon 24.7 Quantum Memories addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Store quantum states with long storage time, high fidelity, on-demand retrieval, wavelength compatibility."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Technologies: atomic ensembles, rare-earth ions, NV centers, quantum dots."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-7-quantum-memories",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-7-quantum-memories",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-7-quantum-memories",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-7-quantum-memories'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.76278254, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.76278254, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.7 Quantum Memories",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "24-24-8-entanglement-distribution",
+      "title": "24.8 Entanglement Distribution",
+      "parentId": null,
+      "content": {
+        "statement": "Methods: direct transmission (~100 km), satellite-based (Micius, 1200 km), quantum repeaters (future).",
+        "explanation": "Direct transmission limited by loss. Satellite QKD demonstrated long distances. Repeaters with quantum memory will enable global networks.",
+        "example": "Micius satellite QKD.",
+        "keyTakeaways": [
+          "Methods: direct transmission (~100 km), satellite-based (Micius, 1200 km), quantum repeaters (future).",
+          "Know what problem or physical phenomenon 24.8 Entanglement Distribution addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-141a2782",
+          "latex": "|\\Phi^+\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2",
+          "description": "Core relation for 24.8 Entanglement Distribution."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Methods: direct transmission (~100 km), satellite-based (Micius, 1200 km), quantum repeaters (future)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Direct transmission limited by loss. Satellite QKD demonstrated long distances. Repeaters with quantum memory will enable global networks."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-24-24-8-entanglement-distribution",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-24-24-8-entanglement-distribution",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-24-24-8-entanglement-distribution",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '24-24-8-entanglement-distribution'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.06145483, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.06145483, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 12–13",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "24.8 Entanglement Distribution",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapters 12–13",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

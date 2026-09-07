@@ -1,0 +1,893 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 18,
+  "slug": "quantum-chemistry",
+  "title": "Quantum Chemistry",
+  "summary": "Curriculum domain 18: Quantum Chemistry.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "18-18-1-molecular-simulation",
+      "title": "18.1 Molecular Simulation",
+      "parentId": null,
+      "content": {
+        "statement": "Simulate molecular systems on quantum computers for drug discovery and materials design.",
+        "explanation": "Quantum computers can efficiently represent the electronic structure of molecules.",
+        "example": "Simulating H₂, LiH, or larger molecules.",
+        "keyTakeaways": [
+          "Simulate molecular systems on quantum computers for drug discovery and materials design.",
+          "Know what problem or physical phenomenon 18.1 Molecular Simulation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Simulate molecular systems on quantum computers for drug discovery and materials design."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Quantum computers can efficiently represent the electronic structure of molecules."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-1-molecular-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-1-molecular-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-1-molecular-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-1-molecular-simulation'\nfrom qiskit.quantum_info import SparsePauliOp\nH = SparsePauliOp.from_list([('ZI', 0.5), ('IZ', -0.3), ('XX', 0.2)])\ncircuit = QuantumCircuit(2)\ncircuit.ry(0.7,0)\ncircuit.ry(1.1,1)\nfrom qiskit.primitives import StatevectorEstimator\nest = StatevectorEstimator().run([(circuit, H)])\nvalue = float(est.result()[0].data.evs[0])\nprint(json.dumps({'lesson': LESSON_ID, 'expectation': value}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.1 Molecular Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-2-hamiltonians",
+      "title": "18.2 Hamiltonians",
+      "parentId": null,
+      "content": {
+        "statement": "Electronic structure Hamiltonian in second quantization: H = ∑_{pq} h_{pq} a†_p a_q + ½∑_{pqrs} h_{pqrs} a†_p a†_q a_r a_s.",
+        "explanation": "h_{pq} are one-electron integrals; h_{pqrs} are two-electron integrals. a†, a are fermionic creation/annihilation operators.",
+        "example": "Hydrogen molecule Hamiltonian.",
+        "keyTakeaways": [
+          "Electronic structure Hamiltonian in second quantization: H = ∑_{pq} h_{pq} a†_p a_q + ½∑_{pqrs} h_{pqrs} a†_p a†_q a_r a_s.",
+          "Know what problem or physical phenomenon 18.2 Hamiltonians addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fb07b53a",
+          "latex": "H = ∑ h_{pq} a†_p a_q + ½∑ h_{pqrs} a†_p a†_q a_r a_s.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Electronic structure Hamiltonian in second quantization: H = ∑_{pq} h_{pq} a†_p a_q + ½∑_{pqrs} h_{pqrs} a†_p a†_q a_r a_s."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H = ∑ h_{pq} a†_p a_q + ½∑ h_{pqrs} a†_p a†_q a_r a_s.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "h_{pq} are one-electron integrals; h_{pqrs} are two-electron integrals. a†, a are fermionic creation/annihilation operators."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-2-hamiltonians",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-2-hamiltonians",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-2-hamiltonians",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-2-hamiltonians'\nfrom qiskit.quantum_info import SparsePauliOp\nH = SparsePauliOp.from_list([('ZI', 0.5), ('IZ', -0.3), ('XX', 0.2)])\ncircuit = QuantumCircuit(2)\ncircuit.ry(0.7,0)\ncircuit.ry(1.1,1)\nfrom qiskit.primitives import StatevectorEstimator\nest = StatevectorEstimator().run([(circuit, H)])\nvalue = float(est.result()[0].data.evs[0])\nprint(json.dumps({'lesson': LESSON_ID, 'expectation': value}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.2 Hamiltonians",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-3-pauli-decomposition",
+      "title": "18.3 Pauli Decomposition",
+      "parentId": null,
+      "content": {
+        "statement": "Express Hamiltonian as sum of Pauli strings: H = ∑ c_i P_i, P_i ∈ {I,X,Y,Z}⊗ⁿ.",
+        "explanation": "This is needed for measurement on quantum hardware. Example for H₂: H = c₀I + c₁Z₀ + c₂Z₁ + c₃Z₀Z₁ + c₄X₀X₁ + c₅Y₀Y₁.",
+        "example": "H₂ Pauli decomposition.",
+        "keyTakeaways": [
+          "Express Hamiltonian as sum of Pauli strings: H = ∑ c_i P_i, P_i ∈ {I,X,Y,Z}⊗ⁿ.",
+          "Know what problem or physical phenomenon 18.3 Pauli Decomposition addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-ed81b4bc",
+          "latex": "H = ∑ c_i P_i.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Express Hamiltonian as sum of Pauli strings: H = ∑ c_i P_i, P_i ∈ {I,X,Y,Z}⊗ⁿ."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H = ∑ c_i P_i.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "This is needed for measurement on quantum hardware. Example for H₂: H = c₀I + c₁Z₀ + c₂Z₁ + c₃Z₀Z₁ + c₄X₀X₁ + c₅Y₀Y₁."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-3-pauli-decomposition",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-3-pauli-decomposition",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-3-pauli-decomposition",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-3-pauli-decomposition'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.11184839, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.11184839, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.3 Pauli Decomposition",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-4-jordan-wigner-transformation",
+      "title": "18.4 Jordan-Wigner Transformation",
+      "parentId": null,
+      "content": {
+        "statement": "Maps fermions to qubits: a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2.",
+        "explanation": "Preserves anti-commutation relations. Uses a string of Z operators (Jordan-Wigner string) to enforce fermionic statistics. n fermions → n qubits.",
+        "example": "For two fermions: a†₀ = (X₀−iY₀)/2, a†₁ = Z₀ (X₁−iY₁)/2.",
+        "keyTakeaways": [
+          "Maps fermions to qubits: a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2.",
+          "Know what problem or physical phenomenon 18.4 Jordan-Wigner Transformation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-52080d2b",
+          "latex": "a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2; a_j = (∏_{k<j} Z_k) (X_j + iY_j)/2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Maps fermions to qubits: a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "a†_j = (∏_{k<j} Z_k) (X_j − iY_j)/2; a_j = (∏_{k<j} Z_k) (X_j + iY_j)/2.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Preserves anti-commutation relations. Uses a string of Z operators (Jordan-Wigner string) to enforce fermionic statistics. n fermions → n qubits."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-4-jordan-wigner-transformation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-4-jordan-wigner-transformation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-4-jordan-wigner-transformation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-4-jordan-wigner-transformation'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.60054059, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.60054059, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.4 Jordan-Wigner Transformation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-5-bravyi-kitaev-transformation",
+      "title": "18.5 Bravyi-Kitaev Transformation",
+      "parentId": null,
+      "content": {
+        "statement": "Alternative mapping with O(log n) operator weight vs O(n) for JW.",
+        "explanation": "Uses a binary tree structure; more efficient for many Hamiltonians. Implementation is more complex.",
+        "example": "Used in some quantum chemistry packages.",
+        "keyTakeaways": [
+          "Alternative mapping with O(log n) operator weight vs O(n) for JW.",
+          "Know what problem or physical phenomenon 18.5 Bravyi-Kitaev Transformation addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Alternative mapping with O(log n) operator weight vs O(n) for JW."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Uses a binary tree structure; more efficient for many Hamiltonians. Implementation is more complex."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-5-bravyi-kitaev-transformation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-5-bravyi-kitaev-transformation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-5-bravyi-kitaev-transformation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-5-bravyi-kitaev-transformation'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.42084533, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.42084533, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.5 Bravyi-Kitaev Transformation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-6-vqe-for-chemistry",
+      "title": "18.6 VQE for Chemistry",
+      "parentId": null,
+      "content": {
+        "statement": "VQE applied to molecular Hamiltonians.",
+        "explanation": "Prepare Hamiltonian (compute integrals, map to qubits), choose ansatz (UCCSD or hardware-efficient), run VQE, extract ground state energy.",
+        "example": "H₂: H = c₀I + c₁Z₀ + c₂Z₁ + c₃Z₀Z₁ + c₄X₀X₁ + c₅Y₀Y₁; ansatz U(θ) = e^{iθ(X₀X₁+Y₀Y₁)}.",
+        "keyTakeaways": [
+          "VQE applied to molecular Hamiltonians.",
+          "Know what problem or physical phenomenon 18.6 VQE for Chemistry addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6a72280b",
+          "latex": "E(θ) = ⟨00|U†(θ)HU(θ)|00⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "VQE applied to molecular Hamiltonians."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E(θ) = ⟨00|U†(θ)HU(θ)|00⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Prepare Hamiltonian (compute integrals, map to qubits), choose ansatz (UCCSD or hardware-efficient), run VQE, extract ground state energy."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-6-vqe-for-chemistry",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-6-vqe-for-chemistry",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ],
+            "parameter": "theta0"
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "ry",
+            "targets": [
+              1
+            ],
+            "parameter": "theta1"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-6-vqe-for-chemistry",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-6-vqe-for-chemistry'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.6 VQE for Chemistry",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-7-ground-state-energy",
+      "title": "18.7 Ground-State Energy",
+      "parentId": null,
+      "content": {
+        "statement": "Variational bound E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩. Chemical accuracy ~1 kcal/mol ≈ 1.6 mHartree.",
+        "explanation": "Achieving chemical accuracy is the benchmark. Noisy hardware is a challenge.",
+        "example": "H₂ ground state energy exactly -1.137 Ha (Hartree).",
+        "keyTakeaways": [
+          "Variational bound E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩.",
+          "Know what problem or physical phenomenon 18.7 Ground-State Energy addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-1694d59d",
+          "latex": "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩; 1 kcal/mol ≈ 1.6×10⁻³ Ha.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Variational bound E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩. Chemical accuracy ~1 kcal/mol ≈ 1.6 mHartree."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E₀ ≤ ⟨ψ(θ)|H|ψ(θ)⟩; 1 kcal/mol ≈ 1.6×10⁻³ Ha.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Achieving chemical accuracy is the benchmark. Noisy hardware is a challenge."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-7-ground-state-energy",
+          "type": "2d",
+          "renderer": "energy-levels",
+          "interactive": true,
+          "props": {
+            "showTransitions": true,
+            "showLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-7-ground-state-energy",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-7-ground-state-energy",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-7-ground-state-energy'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.48549618, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.48549618, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.7 Ground-State Energy",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "18-18-8-hamiltonian-simulation",
+      "title": "18.8 Hamiltonian Simulation",
+      "parentId": null,
+      "content": {
+        "statement": "Simulate time evolution e^{-iHt} using Trotterization, LCU, or qubitization.",
+        "explanation": "Trotter: e^{-i(A+B)t} ≈ (e^{-iAt/n}e^{-iBt/n})ⁿ. Applications: reaction dynamics, excited states, spectroscopy.",
+        "example": "Simulating a chemical reaction.",
+        "keyTakeaways": [
+          "Simulate time evolution e^{-iHt} using Trotterization, LCU, or qubitization.",
+          "Know what problem or physical phenomenon 18.8 Hamiltonian Simulation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-08ee7f22",
+          "latex": "Trotter: e^{-i(A+B)t} ≈ (e^{-iAt/n}e^{-iBt/n})ⁿ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Simulate time evolution e^{-iHt} using Trotterization, LCU, or qubitization."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Trotter: e^{-i(A+B)t} ≈ (e^{-iAt/n}e^{-iBt/n})ⁿ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Trotter: e^{-i(A+B)t} ≈ (e^{-iAt/n}e^{-iBt/n})ⁿ. Applications: reaction dynamics, excited states, spectroscopy."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-18-18-8-hamiltonian-simulation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-18-18-8-hamiltonian-simulation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-18-18-8-hamiltonian-simulation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '18-18-8-hamiltonian-simulation'\nfrom qiskit.quantum_info import SparsePauliOp\nH = SparsePauliOp.from_list([('ZI', 0.5), ('IZ', -0.3), ('XX', 0.2)])\ncircuit = QuantumCircuit(2)\ncircuit.ry(0.7,0)\ncircuit.ry(1.1,1)\nfrom qiskit.primitives import StatevectorEstimator\nest = StatevectorEstimator().run([(circuit, H)])\nvalue = float(est.result()[0].data.evs[0])\nprint(json.dumps({'lesson': LESSON_ID, 'expectation': value}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+          "url": "https://doi.org/10.1038/s42254-022-00551-1"
+        },
+        {
+          "type": "web",
+          "title": "Qiskit Nature documentation",
+          "url": "https://qiskit-community.github.io/qiskit-nature/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "18.8 Hamiltonian Simulation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Tilly et al., The Variational Quantum Eigensolver: a review",
+      "url": "https://doi.org/10.1038/s42254-022-00551-1"
+    },
+    {
+      "type": "web",
+      "title": "Qiskit Nature documentation",
+      "url": "https://qiskit-community.github.io/qiskit-nature/"
+    }
+  ]
+}
