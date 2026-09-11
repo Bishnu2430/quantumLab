@@ -17,12 +17,16 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import { QuantumNeuralBackground } from "./QuantumNeuralBackground";
+import { QuantumCopilotDrawer } from "@/components/copilot/QuantumCopilotDrawer";
+
 interface AppShellProps {
   children: React.ReactNode;
 }
 
 const NAV_ITEMS = [
   { label: "Curriculum", href: "/learn", icon: BookOpen },
+  { label: "Visualizations", href: "/visualizations", icon: Sparkles },
   { label: "Simulator", href: "/simulator", icon: Cpu },
   { label: "Playground", href: "/playground", icon: FlaskConical },
   { label: "Challenges", href: "/challenges", icon: Trophy },
@@ -30,14 +34,19 @@ const NAV_ITEMS = [
 ];
 
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname || "";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
+  const [isCopilotOpen, setIsCopilotOpen] = useState<boolean>(false);
 
-  const pathSegments = pathname.split("/").filter(Boolean);
+  const pathSegments = pathname ? pathname.split("/").filter(Boolean) : [];
 
   return (
-    <div className="min-h-screen flex flex-col antialiased bg-[#F8FAFC] text-[#0F172A]">
+    <div className="min-h-screen flex flex-col antialiased bg-[#F8FAFC] text-[#0F172A] relative">
+      {/* Quantum Rotating Neural Background */}
+      <QuantumNeuralBackground />
+
       {/* Top Professional Navigation Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-[#E2E8F0] shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
@@ -89,11 +98,16 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
               <Settings className="w-4 h-4 text-[#2563EB]" />
             </Link>
 
-            {/* AI Copilot Badge */}
-            <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#EFF6FF] border border-[#BFDBFE] text-[#1E40AF] text-xs font-mono font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" />
+            {/* AI Copilot Interactive Button */}
+            <button
+              onClick={() => setIsCopilotOpen(true)}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-[#EFF6FF] hover:bg-[#DBEAFE] border border-[#BFDBFE] text-[#1E40AF] text-xs font-mono font-semibold transition shadow-2xs group focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:outline-none"
+              title="Open QUANTUM AI Copilot (Groq LPU)"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#2563EB] group-hover:rotate-12 transition-transform" />
               <span>AI Copilot</span>
-            </div>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
+            </button>
 
             {/* Auth Shell: [Log in] [Create account] */}
             <div className="flex items-center gap-2 border-l border-[#E2E8F0] pl-3">
@@ -124,6 +138,19 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-b border-[#E2E8F0] px-4 py-3 space-y-2">
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsCopilotOpen(true);
+              }}
+              className="w-full flex items-center justify-between px-3 py-2 rounded-md text-xs font-semibold bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]"
+            >
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#2563EB]" />
+                <span>QUANTUM AI Copilot</span>
+              </div>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            </button>
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
@@ -163,7 +190,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       )}
 
       {/* Main Page Content */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+      <main className="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6 relative z-10">
         {children}
       </main>
 
@@ -217,6 +244,27 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
           </div>
         </div>
       )}
+
+      {/* Floating Copilot Quick-Access Button */}
+      {!isCopilotOpen && (
+        <button
+          onClick={() => setIsCopilotOpen(true)}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 group focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:outline-none"
+          title="Open QUANTUM AI Copilot (Groq LPU)"
+        >
+          <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+            <Sparkles className="w-3.5 h-3.5 text-white group-hover:rotate-12 transition-transform" />
+          </div>
+          <span className="text-xs font-bold tracking-tight pr-1">Ask QUANTUM</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+        </button>
+      )}
+
+      {/* QUANTUM AI Copilot Drawer */}
+      <QuantumCopilotDrawer
+        isOpen={isCopilotOpen}
+        onClose={() => setIsCopilotOpen(false)}
+      />
     </div>
   );
 };
