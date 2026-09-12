@@ -1,0 +1,1247 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 5,
+  "slug": "the-qubit",
+  "title": "The Qubit",
+  "summary": "Curriculum domain 5: The Qubit.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "05-5-1-classical-bit",
+      "title": "5.1 Classical Bit",
+      "parentId": null,
+      "content": {
+        "statement": "A classical bit is a two‑state system {0,1}.",
+        "explanation": "Operations like NOT, AND, OR are performed on bits. Physical implementations include transistors and magnetic domains.",
+        "example": "A transistor can represent 0 (off) or 1 (on).",
+        "keyTakeaways": [
+          "A classical bit is a two‑state system {0,1}.",
+          "Know what problem or physical phenomenon 5.1 Classical Bit addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-2493d65d",
+          "latex": "b ∈ {0,1}",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A classical bit is a two‑state system {0,1}."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "b ∈ {0,1}",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Operations like NOT, AND, OR are performed on bits. Physical implementations include transistors and magnetic domains."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-1-classical-bit",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-1-classical-bit",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-1-classical-bit",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-1-classical-bit'\nbits = [0, 1]\nNOT = {0: 1, 1: 0}\ntruth_table = [{'x': x, 'not_x': NOT[x]} for x in bits]\nprint(json.dumps({'lesson': LESSON_ID, 'truth_table': truth_table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.1 Classical Bit",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-2-qubit",
+      "title": "5.2 Qubit",
+      "parentId": null,
+      "content": {
+        "statement": "A two‑level quantum system with state |ψ⟩ = α|0⟩ + β|1⟩, α,β ∈ ℂ, |α|²+|β|²=1.",
+        "explanation": "The qubit is the quantum analogue of the bit, but it can exist in a continuum of superposition states.",
+        "example": "|ψ⟩ = (|0⟩ + i|1⟩)/√2 is a valid qubit state.",
+        "keyTakeaways": [
+          "A two‑level quantum system with state |ψ⟩ = α|0⟩ + β|1⟩, α,β ∈ ℂ, |α|²+|β|²=1.",
+          "Know what problem or physical phenomenon 5.2 Qubit addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-90e6b170",
+          "latex": "|ψ⟩ = α|0⟩ + β|1⟩, |α|²+|β|²=1; vector form: (α, β)ᵀ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A two‑level quantum system with state |ψ⟩ = α|0⟩ + β|1⟩, α,β ∈ ℂ, |α|²+|β|²=1."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩ = α|0⟩ + β|1⟩, |α|²+|β|²=1; vector form: (α, β)ᵀ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The qubit is the quantum analogue of the bit, but it can exist in a continuum of superposition states."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-2-qubit",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-2-qubit",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-2-qubit",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-2-qubit'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.06145483, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.06145483, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.2 Qubit",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-3-computational-basis",
+      "title": "5.3 Computational Basis",
+      "parentId": null,
+      "content": {
+        "statement": "Basis states |0⟩ = (1,0)ᵀ and |1⟩ = (0,1)ᵀ.",
+        "explanation": "They are orthonormal: ⟨0|1⟩=0, and complete: |0⟩⟨0|+|1⟩⟨1|=I.",
+        "example": "|0⟩⟨0| = [[1,0],[0,0]]; |1⟩⟨1| = [[0,0],[0,1]].",
+        "keyTakeaways": [
+          "Basis states |0⟩ = (1,0)ᵀ and |1⟩ = (0,1)ᵀ.",
+          "Know what problem or physical phenomenon 5.3 Computational Basis addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-af3b0e3f",
+          "latex": "|0⟩=(1,0)ᵀ, |1⟩=(0,1)ᵀ; ⟨0|1⟩=0; |0⟩⟨0|+|1⟩⟨1|=I.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Basis states |0⟩ = (1,0)ᵀ and |1⟩ = (0,1)ᵀ."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|0⟩=(1,0)ᵀ, |1⟩=(0,1)ᵀ; ⟨0|1⟩=0; |0⟩⟨0|+|1⟩⟨1|=I.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "They are orthonormal: ⟨0|1⟩=0, and complete: |0⟩⟨0|+|1⟩⟨1|=I."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-3-computational-basis",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-3-computational-basis",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-3-computational-basis",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-3-computational-basis'\ntable = [{'a': a, 'b': b, 'and': a & b, 'or': a | b, 'xor': a ^ b} for a in (0,1) for b in (0,1)]\nprint(json.dumps({'lesson': LESSON_ID, 'table': table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.3 Computational Basis",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-4-superposition",
+      "title": "5.4 Superposition",
+      "parentId": null,
+      "content": {
+        "statement": "General state |ψ⟩ = α|0⟩ + β|1⟩.",
+        "explanation": "Equal superposition states |+⟩ = (|0⟩+|1⟩)/√2 and |−⟩ = (|0⟩−|1⟩)/√2 are important.",
+        "example": "|+⟩ is the eigenstate of X with eigenvalue +1.",
+        "keyTakeaways": [
+          "General state |ψ⟩ = α|0⟩ + β|1⟩.",
+          "Know what problem or physical phenomenon 5.4 Superposition addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fd68e3e8",
+          "latex": "|+⟩ = (|0⟩+|1⟩)/√2; |−⟩ = (|0⟩−|1⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Choose a basis",
+            "text": "For a two-level system, use the orthonormal computational basis |0⟩ and |1⟩."
+          },
+          {
+            "step": 2,
+            "title": "Use linearity",
+            "text": "Because quantum states form a complex vector space, any pure qubit state can be written as α|0⟩ + β|1⟩."
+          },
+          {
+            "step": 3,
+            "title": "Normalize",
+            "formula": "⟨ψ|ψ⟩ = |α|² + |β|² = 1",
+            "text": "Normalization follows because total probability must be one."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-4-superposition",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-4-superposition",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-4-superposition",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-4-superposition'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.94444411, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.94444411, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.4 Superposition",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-5-amplitudes",
+      "title": "5.5 Amplitudes",
+      "parentId": null,
+      "content": {
+        "statement": "Complex coefficients α and β; probabilities P(0)=|α|², P(1)=|β|².",
+        "explanation": "The global phase e^{iθ} does not affect physical predictions.",
+        "example": "|ψ⟩ and −|ψ⟩ represent the same physical state.",
+        "keyTakeaways": [
+          "Complex coefficients α and β; probabilities P(0)=|α|², P(1)=|β|².",
+          "Know what problem or physical phenomenon 5.5 Amplitudes addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5498e177",
+          "latex": "P(0)=|α|², P(1)=|β|²; global phase e^{iθ} is irrelevant.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Complex coefficients α and β; probabilities P(0)=|α|², P(1)=|β|²."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "P(0)=|α|², P(1)=|β|²; global phase e^{iθ} is irrelevant.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The global phase e^{iθ} does not affect physical predictions."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-5-amplitudes",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-5-amplitudes",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-5-amplitudes",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-5-amplitudes'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.68067841, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.68067841, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.5 Amplitudes",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-6-phase",
+      "title": "5.6 Phase",
+      "parentId": null,
+      "content": {
+        "statement": "Relative phase e^{iφ} between |0⟩ and |1⟩ affects interference.",
+        "explanation": "|ψ⟩ = (|0⟩ + e^{iφ}|1⟩)/√2; different φ lead to different measurement statistics in other bases.",
+        "example": "φ=0 gives |+⟩; φ=π gives |−⟩.",
+        "keyTakeaways": [
+          "Relative phase e^{iφ} between |0⟩ and |1⟩ affects interference.",
+          "Know what problem or physical phenomenon 5.6 Phase addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-788a8f24",
+          "latex": "|ψ⟩ = (|0⟩ + e^{iφ}|1⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Relative phase e^{iφ} between |0⟩ and |1⟩ affects interference."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩ = (|0⟩ + e^{iφ}|1⟩)/√2.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "|ψ⟩ = (|0⟩ + e^{iφ}|1⟩)/√2; different φ lead to different measurement statistics in other bases."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-6-phase",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-6-phase",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-6-phase",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-6-phase'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.41052068, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.41052068, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.6 Phase",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-7-bloch-sphere",
+      "title": "5.7 Bloch Sphere",
+      "parentId": null,
+      "content": {
+        "statement": "Any qubit state can be written as |ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩.",
+        "explanation": "The Bloch vector r = (sinθ cosφ, sinθ sinφ, cosθ) maps the qubit to a point on the unit sphere. The density matrix is ρ = ½(I + r·σ).",
+        "example": "|0⟩ is the north pole (θ=0); |1⟩ is the south pole (θ=π).",
+        "keyTakeaways": [
+          "Any qubit state can be written as |ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩.",
+          "Know what problem or physical phenomenon 5.7 Bloch Sphere addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-669de4b1",
+          "latex": "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩; r = (sinθ cosφ, sinθ sinφ, cosθ); ρ = ½(I + r·σ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Parameterize the amplitudes",
+            "formula": "\\alpha=\\cos(\\theta/2),\\quad \\beta=e^{i\\phi}\\sin(\\theta/2)",
+            "text": "Normalization allows every pure qubit state to be represented using two angles plus an irrelevant global phase."
+          },
+          {
+            "step": 2,
+            "title": "Map to Cartesian coordinates",
+            "formula": "x=\\sin\\theta\\cos\\phi,\\ y=\\sin\\theta\\sin\\phi,\\ z=\\cos\\theta",
+            "text": "The amplitudes determine a point on the unit Bloch sphere."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-7-bloch-sphere",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-7-bloch-sphere",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-7-bloch-sphere",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-7-bloch-sphere'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.21656815, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.21656815, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.7 Bloch Sphere",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "05-5-8-global-phase",
+      "title": "5.8 Global Phase",
+      "parentId": null,
+      "content": {
+        "statement": "Global phase e^{iγ}|ψ⟩ is physically indistinguishable from |ψ⟩.",
+        "explanation": "All measurement probabilities |⟨φ|ψ⟩|² are invariant under global phase.",
+        "example": "|ψ⟩ and i|ψ⟩ give the same measurement outcomes.",
+        "keyTakeaways": [
+          "Global phase e^{iγ}|ψ⟩ is physically indistinguishable from |ψ⟩.",
+          "Know what problem or physical phenomenon 5.8 Global Phase addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-20fad641",
+          "latex": "|⟨φ|e^{iγ}ψ⟩|² = |⟨φ|ψ⟩|².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Global phase e^{iγ}|ψ⟩ is physically indistinguishable from |ψ⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|⟨φ|e^{iγ}ψ⟩|² = |⟨φ|ψ⟩|².",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "All measurement probabilities |⟨φ|ψ⟩|² are invariant under global phase."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-8-global-phase",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-8-global-phase",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-8-global-phase",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-8-global-phase'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.69493569, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.69493569, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.8 Global Phase",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-9-relative-phase",
+      "title": "5.9 Relative Phase",
+      "parentId": null,
+      "content": {
+        "statement": "The phase difference between components is physically observable.",
+        "explanation": "|+⟩ and |−⟩ differ only by relative phase (φ=0 vs φ=π), yet they are orthogonal and yield different results when measured in the X‑basis.",
+        "example": "⟨+|X|+⟩ = +1, ⟨−|X|−⟩ = −1.",
+        "keyTakeaways": [
+          "The phase difference between components is physically observable.",
+          "Know what problem or physical phenomenon 5.9 Relative Phase addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fd68e3e8",
+          "latex": "|+⟩ = (|0⟩+|1⟩)/√2; |−⟩ = (|0⟩−|1⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "The phase difference between components is physically observable."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|+⟩ = (|0⟩+|1⟩)/√2; |−⟩ = (|0⟩−|1⟩)/√2.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "|+⟩ and |−⟩ differ only by relative phase (φ=0 vs φ=π), yet they are orthogonal and yield different results when measured in the X‑basis."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-9-relative-phase",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-9-relative-phase",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-9-relative-phase",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-9-relative-phase'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.85521133, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.85521133, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.9 Relative Phase",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-10-measurement",
+      "title": "5.10 Measurement",
+      "parentId": null,
+      "content": {
+        "statement": "Measuring in the computational basis yields 0 with probability |α|² and 1 with probability |β|²; the state collapses to the observed outcome.",
+        "explanation": "After measurement, the superposition is destroyed.",
+        "example": "If |ψ⟩ = (|0⟩+|1⟩)/√2 and we measure 0, the state becomes |0⟩.",
+        "keyTakeaways": [
+          "Measuring in the computational basis yields 0 with probability |α|² and 1 with probability |β|²; the state collapses to the observed outcome.",
+          "Know what problem or physical phenomenon 5.10 Measurement addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-8f74ae92",
+          "latex": "P(0)=|α|², P(1)=|β|²; |ψ⟩ → |0⟩ or |1⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-10-measurement",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-10-measurement",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-10-measurement",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-10-measurement'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.10 Measurement",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "05-5-11-basis-measurement",
+      "title": "5.11 Basis Measurement",
+      "parentId": null,
+      "content": {
+        "statement": "In a general basis {|φ₀⟩, |φ₁⟩}, P(i) = |⟨φᵢ|ψ⟩|².",
+        "explanation": "For example, measuring in the X‑basis: P(+) = |⟨+|ψ⟩|², P(−) = |⟨−|ψ⟩|².",
+        "example": "If |ψ⟩ = |0⟩, then P(+) = ½, P(−) = ½.",
+        "keyTakeaways": [
+          "In a general basis {|φ₀⟩, |φ₁⟩}, P(i) = |⟨φᵢ|ψ⟩|².",
+          "Know what problem or physical phenomenon 5.11 Basis Measurement addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-91a5101f",
+          "latex": "P(i) = |⟨φᵢ|ψ⟩|².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-05-5-11-basis-measurement",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-05-5-11-basis-measurement",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-05-5-11-basis-measurement",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '05-5-11-basis-measurement'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 1",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: Qubits",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "5.11 Basis Measurement",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapter 1",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning: Qubits",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 19,
+  "slug": "quantum-optimization",
+  "title": "Quantum Optimization",
+  "summary": "Curriculum domain 19: Quantum Optimization.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "19-19-1-qaoa",
+      "title": "19.1 QAOA",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum Approximate Optimization Algorithm for combinatorial problems (see Domain 16.8).",
+        "explanation": "QAOA uses alternating cost and mixing Hamiltonians to approximate solutions to MaxCut, QUBO, and constraint satisfaction problems.",
+        "example": "MaxCut on 4-vertex graph.",
+        "keyTakeaways": [
+          "Quantum Approximate Optimization Algorithm for combinatorial problems (see Domain 16.",
+          "Know what problem or physical phenomenon 19.1 QAOA addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-4e5040f3",
+          "latex": "|ψ(γ,β)⟩ = e^{-iβ_p H_M} e^{-iγ_p H_C} ... e^{-iβ_1 H_M} e^{-iγ_1 H_C}|+⟩⊗ⁿ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum Approximate Optimization Algorithm for combinatorial problems (see Domain 16.8)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ(γ,β)⟩ = e^{-iβ_p H_M} e^{-iγ_p H_C} ... e^{-iβ_1 H_M} e^{-iγ_1 H_C}|+⟩⊗ⁿ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "QAOA uses alternating cost and mixing Hamiltonians to approximate solutions to MaxCut, QUBO, and constraint satisfaction problems."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-1-qaoa",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-1-qaoa",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "zz",
+            "targets": [
+              0,
+              1
+            ],
+            "parameter": "gamma"
+          },
+          {
+            "gate": "rx",
+            "targets": [
+              0,
+              1,
+              2
+            ],
+            "parameter": "beta"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-1-qaoa",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-1-qaoa'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.1 QAOA",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-2-ising-models",
+      "title": "19.2 Ising Models",
+      "parentId": null,
+      "content": {
+        "statement": "H = ∑ᵢ hᵢ σ_z⁽ⁱ⁾ + ∑ᵢ<ⱼ Jᵢⱼ σ_z⁽ⁱ⁾ σ_z⁽ʲ⁾.",
+        "explanation": "The Ising model is a classical model of magnetism, but its quantum version includes a transverse field: H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾ − ∑ Γᵢ σ_x⁽ⁱ⁾. It is used in optimization and statistical physics.",
+        "example": "Ferromagnetic Ising with J>0.",
+        "keyTakeaways": [
+          "H = ∑ᵢ hᵢ σ_z⁽ⁱ⁾ + ∑ᵢ<ⱼ Jᵢⱼ σ_z⁽ⁱ⁾ σ_z⁽ʲ⁾.",
+          "Know what problem or physical phenomenon 19.2 Ising Models addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f08ad114",
+          "latex": "H = ∑ᵢ hᵢ σ_z⁽ⁱ⁾ + ∑ᵢ<ⱼ Jᵢⱼ σ_z⁽ⁱ⁾ σ_z⁽ʲ⁾.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "H = ∑ᵢ hᵢ σ_z⁽ⁱ⁾ + ∑ᵢ<ⱼ Jᵢⱼ σ_z⁽ⁱ⁾ σ_z⁽ʲ⁾."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "H = ∑ᵢ hᵢ σ_z⁽ⁱ⁾ + ∑ᵢ<ⱼ Jᵢⱼ σ_z⁽ⁱ⁾ σ_z⁽ʲ⁾.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The Ising model is a classical model of magnetism, but its quantum version includes a transverse field: H = −∑ Jᵢⱼ σ_z⁽ⁱ⁾σ_z⁽ʲ⁾ − ∑ hᵢ σ_z⁽ⁱ⁾ − ∑ Γᵢ σ_x⁽ⁱ⁾. It is used in optimization and statistical physics."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-2-ising-models",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-2-ising-models",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-2-ising-models",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-2-ising-models'\ncircuit = QuantumCircuit(2)\ncircuit.h([0,1])\nsteps = 3\ndt = 0.2\nfor _ in range(steps):\n    circuit.rzz(2*dt, 0, 1)\n    circuit.rx(2*dt, 0)\n    circuit.rx(2*dt, 1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'time': steps*dt, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.2 Ising Models",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-3-qubo",
+      "title": "19.3 QUBO",
+      "parentId": null,
+      "content": {
+        "statement": "Quadratic Unconstrained Binary Optimization: min_{x∈{0,1}ⁿ} xᵀQx + cᵀx.",
+        "explanation": "QUBO is a canonical NP-hard problem. It maps to Ising via xᵢ = (1 − zᵢ)/2, where zᵢ ∈ {−1,+1}.",
+        "example": "MaxCut is a QUBO problem.",
+        "keyTakeaways": [
+          "Quadratic Unconstrained Binary Optimization: min_{x∈{0,1}ⁿ} xᵀQx + cᵀx.",
+          "Know what problem or physical phenomenon 19.3 QUBO addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-8f111a2e",
+          "latex": "min xᵀQx + cᵀx; mapping: xᵢ = (1−zᵢ)/2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quadratic Unconstrained Binary Optimization: min_{x∈{0,1}ⁿ} xᵀQx + cᵀx."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "min xᵀQx + cᵀx; mapping: xᵢ = (1−zᵢ)/2.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "QUBO is a canonical NP-hard problem. It maps to Ising via xᵢ = (1 − zᵢ)/2, where zᵢ ∈ {−1,+1}."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-3-qubo",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-3-qubo",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-3-qubo",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-3-qubo'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.94960644, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.94960644, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.3 QUBO",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-4-maxcut",
+      "title": "19.4 MaxCut",
+      "parentId": null,
+      "content": {
+        "statement": "Partition graph vertices to maximize cut edges.",
+        "explanation": "QUBO formulation: max ∑_{(i,j)∈E} (xᵢ + xⱼ − 2xᵢxⱼ). Ising: max ½∑(1−sᵢsⱼ). QAOA Hamiltonian: H_C = ∑_{(i,j)∈E} ½(I−ZᵢZⱼ), H_M = ∑ᵢ Xᵢ.",
+        "example": "MaxCut on a triangle.",
+        "keyTakeaways": [
+          "Partition graph vertices to maximize cut edges.",
+          "Know what problem or physical phenomenon 19.4 MaxCut addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-b14e34ee",
+          "latex": "max ½∑_{(i,j)∈E}(1 − sᵢsⱼ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Partition graph vertices to maximize cut edges."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "max ½∑_{(i,j)∈E}(1 − sᵢsⱼ).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "QUBO formulation: max ∑_{(i,j)∈E} (xᵢ + xⱼ − 2xᵢxⱼ). Ising: max ½∑(1−sᵢsⱼ). QAOA Hamiltonian: H_C = ∑_{(i,j)∈E} ½(I−ZᵢZⱼ), H_M = ∑ᵢ Xᵢ."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-4-maxcut",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-4-maxcut",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "zz",
+            "targets": [
+              0,
+              1
+            ],
+            "parameter": "gamma"
+          },
+          {
+            "gate": "rx",
+            "targets": [
+              0,
+              1,
+              2
+            ],
+            "parameter": "beta"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-4-maxcut",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-4-maxcut'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.4 MaxCut",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "19-19-5-traveling-salesman",
+      "title": "19.5 Traveling Salesman",
+      "parentId": null,
+      "content": {
+        "statement": "Find shortest tour visiting all cities.",
+        "explanation": "QUBO formulation: min ∑_{i,j,k} dᵢⱼ xᵢ,ₖ xⱼ,ₖ₊₁. Constraints: each city visited once, one city per time step. Large overhead.",
+        "example": "TSP with 5 cities.",
+        "keyTakeaways": [
+          "Find shortest tour visiting all cities.",
+          "Know what problem or physical phenomenon 19.5 Traveling Salesman addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5118e65d",
+          "latex": "min ∑ dᵢⱼ xᵢ,ₖ xⱼ,ₖ₊₁.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Find shortest tour visiting all cities."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "min ∑ dᵢⱼ xᵢ,ₖ xⱼ,ₖ₊₁.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "QUBO formulation: min ∑_{i,j,k} dᵢⱼ xᵢ,ₖ xⱼ,ₖ₊₁. Constraints: each city visited once, one city per time step. Large overhead."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-5-traveling-salesman",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-5-traveling-salesman",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-5-traveling-salesman",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-5-traveling-salesman'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.76474886, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.76474886, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.5 Traveling Salesman",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-6-scheduling",
+      "title": "19.6 Scheduling",
+      "parentId": null,
+      "content": {
+        "statement": "Job scheduling, resource allocation, timetabling.",
+        "explanation": "Binary variables for assignments. Constraints ensure no overlap and resource limits.",
+        "example": "Job shop scheduling.",
+        "keyTakeaways": [
+          "Job scheduling, resource allocation, timetabling.",
+          "Know what problem or physical phenomenon 19.6 Scheduling addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Job scheduling, resource allocation, timetabling."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Binary variables for assignments. Constraints ensure no overlap and resource limits."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-6-scheduling",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-6-scheduling",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-6-scheduling",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-6-scheduling'\ncircuit = QuantumCircuit(1)\ncircuit.rx(2.67035376, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 2.67035376, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.6 Scheduling",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-7-portfolio-optimization",
+      "title": "19.7 Portfolio Optimization",
+      "parentId": null,
+      "content": {
+        "statement": "Allocate assets to maximize return, minimize risk.",
+        "explanation": "Objective: max μᵀx − λ xᵀΣx. QUBO: min −μᵀx + λ xᵀΣx.",
+        "example": "Selecting stocks with budget constraint.",
+        "keyTakeaways": [
+          "Allocate assets to maximize return, minimize risk.",
+          "Know what problem or physical phenomenon 19.7 Portfolio Optimization addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-05a269f3",
+          "latex": "max μᵀx − λ xᵀΣx.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Allocate assets to maximize return, minimize risk."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "max μᵀx − λ xᵀΣx.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Objective: max μᵀx − λ xᵀΣx. QUBO: min −μᵀx + λ xᵀΣx."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-7-portfolio-optimization",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-7-portfolio-optimization",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-7-portfolio-optimization",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-7-portfolio-optimization'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.7 Portfolio Optimization",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-8-constraint-satisfaction",
+      "title": "19.8 Constraint Satisfaction",
+      "parentId": null,
+      "content": {
+        "statement": "Find assignment satisfying constraints (SAT, graph coloring, Sudoku).",
+        "explanation": "Encode constraints in cost Hamiltonian. QAOA finds assignments with minimal penalty.",
+        "example": "3-SAT.",
+        "keyTakeaways": [
+          "Find assignment satisfying constraints (SAT, graph coloring, Sudoku).",
+          "Know what problem or physical phenomenon 19.8 Constraint Satisfaction addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Find assignment satisfying constraints (SAT, graph coloring, Sudoku)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Encode constraints in cost Hamiltonian. QAOA finds assignments with minimal penalty."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-8-constraint-satisfaction",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-8-constraint-satisfaction",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-8-constraint-satisfaction",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-8-constraint-satisfaction'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.67232007, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.67232007, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.8 Constraint Satisfaction",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "19-19-9-interactive-demo-maxcut-with-qaoa",
+      "title": "19.9 Interactive Demo: MaxCut with QAOA",
+      "parentId": null,
+      "content": {
+        "statement": "Visualize MaxCut solution with QAOA.",
+        "explanation": "Setup: define graph, construct H_C and H_M, choose p, optimize (γ,β), sample solution. Show graph with cut, energy vs iteration, compare to classical.",
+        "example": "4-vertex graph with p=2.",
+        "keyTakeaways": [
+          "Visualize MaxCut solution with QAOA.",
+          "Know what problem or physical phenomenon 19.9 Interactive Demo: MaxCut with QAOA addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-740db0fc",
+          "latex": "|\\gamma,\\beta\\rangle=\\prod_p U_B(\\beta_p)U_C(\\gamma_p)|+\\rangle^{\\otimes n}",
+          "description": "Core relation for 19.9 Interactive Demo: MaxCut with QAOA."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Visualize MaxCut solution with QAOA."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Setup: define graph, construct H_C and H_M, choose p, optimize (γ,β), sample solution. Show graph with cut, energy vs iteration, compare to classical."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-19-19-9-interactive-demo-maxcut-with-qaoa",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-19-19-9-interactive-demo-maxcut-with-qaoa",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "zz",
+            "targets": [
+              0,
+              1
+            ],
+            "parameter": "gamma"
+          },
+          {
+            "gate": "rx",
+            "targets": [
+              0,
+              1,
+              2
+            ],
+            "parameter": "beta"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-19-19-9-interactive-demo-maxcut-with-qaoa",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '19-19-9-interactive-demo-maxcut-with-qaoa'\ncircuit = QuantumCircuit(3)\ncircuit.h([0,1,2])\n# One QAOA cost layer for MaxCut on edges (0,1),(1,2).\ngamma = 0.6\nbeta = 0.4\nfor a,b in [(0,1),(1,2)]:\n    circuit.cx(a,b)\n    circuit.rz(2*gamma, b)\n    circuit.cx(a,b)\ncircuit.rx(2*beta, [0,1,2])\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "paper",
+          "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+          "url": "https://arxiv.org/abs/1411.4028"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "19.9 Interactive Demo: MaxCut with QAOA",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "paper",
+      "title": "Farhi, Goldstone, Gutmann, A Quantum Approximate Optimization Algorithm",
+      "url": "https://arxiv.org/abs/1411.4028"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

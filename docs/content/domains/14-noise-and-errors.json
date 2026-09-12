@@ -1,0 +1,483 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 14,
+  "slug": "noise-and-errors",
+  "title": "Noise and Errors",
+  "summary": "Curriculum domain 14: Noise and Errors.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "14-14-1-decoherence",
+      "title": "14.1 Decoherence",
+      "parentId": null,
+      "content": {
+        "statement": "Loss of quantum coherence due to environment, described by T₁ and T₂.",
+        "explanation": "Mechanisms: energy relaxation (T₁), dephasing (T₂), leakage. Master equation: dρ/dt = −(i/ℏ)[H,ρ] + ∑ D[L_k]ρ, where D[L]ρ = LρL† − ½{L†L, ρ}.",
+        "example": "Spontaneous emission causes T₁ decay.",
+        "keyTakeaways": [
+          "Loss of quantum coherence due to environment, described by T₁ and T₂.",
+          "Know what problem or physical phenomenon 14.1 Decoherence addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-85b55ff2",
+          "latex": "dρ/dt = −(i/ℏ)[H,ρ] + ∑ₖ (LₖρLₖ† − ½{Lₖ†Lₖ, ρ}).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Loss of quantum coherence due to environment, described by T₁ and T₂."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "dρ/dt = −(i/ℏ)[H,ρ] + ∑ₖ (LₖρLₖ† − ½{Lₖ†Lₖ, ρ}).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Mechanisms: energy relaxation (T₁), dephasing (T₂), leakage. Master equation: dρ/dt = −(i/ℏ)[H,ρ] + ∑ D[L_k]ρ, where D[L]ρ = LρL† − ½{L†L, ρ}."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-14-14-1-decoherence",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-14-14-1-decoherence",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-14-14-1-decoherence",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '14-14-1-decoherence'\nfrom qiskit.quantum_info import Statevector\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nideal = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'ideal_probabilities': [float(abs(a)**2) for a in ideal.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 8",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: noise",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "14.1 Decoherence",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "14-14-2-noise-channels",
+      "title": "14.2 Noise Channels",
+      "parentId": null,
+      "content": {
+        "statement": "Depolarizing, amplitude damping, phase damping, and thermal noise.",
+        "explanation": "Depolarizing: random Pauli error with prob p. Amplitude damping: energy relaxation (spontaneous emission). Phase damping: loss of phase info. Thermal noise: finite temperature effects.",
+        "example": "Amplitude damping: E₀ = [[1,0],[0,√(1−γ)]], E₁ = [[0,√γ],[0,0]].",
+        "keyTakeaways": [
+          "Depolarizing, amplitude damping, phase damping, and thermal noise.",
+          "Know what problem or physical phenomenon 14.2 Noise Channels addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-69880b9d",
+          "latex": "Depolarizing: ℰ(ρ) = (1−p)ρ + (p/3)(XρX+YρY+ZρZ); Amplitude damping: E₀, E₁ as above; Phase damping: E₀ = √(1−λ)I, E₁ = √λ Z.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Depolarizing, amplitude damping, phase damping, and thermal noise."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Depolarizing: ℰ(ρ) = (1−p)ρ + (p/3)(XρX+YρY+ZρZ); Amplitude damping: E₀, E₁ as above; Phase damping: E₀ = √(1−λ)I, E₁ = √λ Z.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Depolarizing: random Pauli error with prob p. Amplitude damping: energy relaxation (spontaneous emission). Phase damping: loss of phase info. Thermal noise: finite temperature effects."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-14-14-2-noise-channels",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-14-14-2-noise-channels",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-14-14-2-noise-channels",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '14-14-2-noise-channels'\nfrom qiskit.quantum_info import Statevector\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nideal = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'ideal_probabilities': [float(abs(a)**2) for a in ideal.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 8",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: noise",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "14.2 Noise Channels",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "14-14-3-measurement-noise",
+      "title": "14.3 Measurement Noise",
+      "parentId": null,
+      "content": {
+        "statement": "Readout error modeled by assignment probabilities.",
+        "explanation": "P(read 0|state 0) = 1−ε₀, P(read 1|state 1) = 1−ε₁. Calibrated by measuring known states.",
+        "example": "ε₀=0.02, ε₁=0.03.",
+        "keyTakeaways": [
+          "Readout error modeled by assignment probabilities.",
+          "Know what problem or physical phenomenon 14.3 Measurement Noise addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e0936453",
+          "latex": "Assignment fidelity matrix.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-14-14-3-measurement-noise",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-14-14-3-measurement-noise",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-14-14-3-measurement-noise",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '14-14-3-measurement-noise'\nfrom qiskit.quantum_info import Statevector\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nideal = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'ideal_probabilities': [float(abs(a)**2) for a in ideal.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 8",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: noise",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "14.3 Measurement Noise",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "14-14-4-error-mitigation",
+      "title": "14.4 Error Mitigation",
+      "parentId": null,
+      "content": {
+        "statement": "Zero-Noise Extrapolation (ZNE), Probabilistic Error Cancellation (PEC), Dynamical Decoupling (DD).",
+        "explanation": "ZNE: run at different noise levels and extrapolate to zero. PEC: represent ideal operation as linear combination of noisy ops; cost exponential overhead. DD: apply pulses to average out noise (Hahn echo, CPMG, XY4).",
+        "example": "ZNE linear extrapolation: ⟨O⟩_ideal ≈ 2⟨O⟩_λ − ⟨O⟩_{2λ}.",
+        "keyTakeaways": [
+          "Zero-Noise Extrapolation (ZNE), Probabilistic Error Cancellation (PEC), Dynamical Decoupling (DD).",
+          "Know what problem or physical phenomenon 14.4 Error Mitigation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-9ff05a47",
+          "latex": "ZNE: ⟨O⟩_ideal ≈ ∑ c_i ⟨O⟩_{λ_i}; DD sequences extend T₂.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Zero-Noise Extrapolation (ZNE), Probabilistic Error Cancellation (PEC), Dynamical Decoupling (DD)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ZNE: ⟨O⟩_ideal ≈ ∑ c_i ⟨O⟩_{λ_i}; DD sequences extend T₂.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "ZNE: run at different noise levels and extrapolate to zero. PEC: represent ideal operation as linear combination of noisy ops; cost exponential overhead. DD: apply pulses to average out noise (Hahn echo, CPMG, XY4)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-14-14-4-error-mitigation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-14-14-4-error-mitigation",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "encode_repetition",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "error",
+            "targets": [
+              1
+            ]
+          },
+          {
+            "gate": "decode_repetition",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-14-14-4-error-mitigation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '14-14-4-error-mitigation'\nfrom qiskit.quantum_info import Statevector\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nideal = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'ideal_probabilities': [float(abs(a)**2) for a in ideal.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 8",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: noise",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "14.4 Error Mitigation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapter 8",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning: noise",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

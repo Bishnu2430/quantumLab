@@ -1,0 +1,651 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 33,
+  "slug": "quantum-myths",
+  "title": "Quantum Myths",
+  "summary": "Curriculum domain 33: Quantum Myths.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "33-33-1-a-qubit-is-both-0-and-1",
+      "title": "33.1 ✗ 'A qubit is both 0 and 1.'",
+      "parentId": null,
+      "content": {
+        "statement": "A qubit is in superposition, not simultaneously 0 and 1.",
+        "explanation": "State: |ψ⟩ = α|0⟩ + β|1⟩. Measurement yields 0 OR 1 with probabilities |α|² and |β|².",
+        "example": "|+⟩ = (|0⟩+|1⟩)/√2 gives 0 or 1 with 50% each.",
+        "keyTakeaways": [
+          "A qubit is in superposition, not simultaneously 0 and 1.",
+          "Know what problem or physical phenomenon 33.1 ✗ 'A qubit is both 0 and 1.' addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6ba7e80c",
+          "latex": "|ψ⟩ = α|0⟩ + β|1⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A qubit is in superposition, not simultaneously 0 and 1."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩ = α|0⟩ + β|1⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "State: |ψ⟩ = α|0⟩ + β|1⟩. Measurement yields 0 OR 1 with probabilities |α|² and |β|²."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-33-33-1-a-qubit-is-both-0-and-1",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-33-33-1-a-qubit-is-both-0-and-1",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-33-33-1-a-qubit-is-both-0-and-1",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '33-33-1-a-qubit-is-both-0-and-1'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.27089434, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.27089434, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "33.1 ✗ 'A qubit is both 0 and 1.'",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "33-33-2-quantum-computers-try-every-answer-simultaneously",
+      "title": "33.2 ✗ 'Quantum computers try every answer simultaneously.'",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum parallelism exists but you cannot access all results at once.",
+        "explanation": "Measurement gives one outcome; interference is used to extract the answer (e.g., Grover uses amplitude amplification).",
+        "example": "Grover does not try all items at once; it amplifies the marked state.",
+        "keyTakeaways": [
+          "Quantum parallelism exists but you cannot access all results at once.",
+          "Know what problem or physical phenomenon 33.2 ✗ 'Quantum computers try every answer simultaneously.' addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum parallelism exists but you cannot access all results at once."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Measurement gives one outcome; interference is used to extract the answer (e.g., Grover uses amplitude amplification)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-33-33-2-quantum-computers-try-every-answer-simultaneously",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-33-33-2-quantum-computers-try-every-answer-simultaneously",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-33-33-2-quantum-computers-try-every-answer-simultaneously",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '33-33-2-quantum-computers-try-every-answer-simultaneously'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.26376570, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.26376570, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "33.2 ✗ 'Quantum computers try every answer simultaneously.'",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "33-33-3-quantum-computers-will-replace-classical-computers",
+      "title": "33.3 ✗ 'Quantum computers will replace classical computers.'",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum computers are specialised, not general‑purpose replacements.",
+        "explanation": "Good for: factoring, simulation, optimisation. Bad for: word processing, web browsing, most tasks. Future is hybrid.",
+        "example": "You won't run Windows on a quantum computer.",
+        "keyTakeaways": [
+          "Quantum computers are specialised, not general‑purpose replacements.",
+          "Know what problem or physical phenomenon 33.3 ✗ 'Quantum computers will replace classical computers.' addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum computers are specialised, not general‑purpose replacements."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Good for: factoring, simulation, optimisation. Bad for: word processing, web browsing, most tasks. Future is hybrid."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-33-33-3-quantum-computers-will-replace-classical-computers",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-33-33-3-quantum-computers-will-replace-classical-computers",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-33-33-3-quantum-computers-will-replace-classical-computers",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '33-33-3-quantum-computers-will-replace-classical-computers'\ncircuit = QuantumCircuit(1)\ncircuit.rz(6.26573201, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 6.26573201, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "33.3 ✗ 'Quantum computers will replace classical computers.'",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "33-33-4-entanglement-lets-you-send-information-faster-than-light",
+      "title": "33.4 ✗ 'Entanglement lets you send information faster than light.'",
+      "parentId": null,
+      "content": {
+        "statement": "No‑signalling theorem: entanglement correlations are instantaneous but cannot transmit information.",
+        "explanation": "Classical communication is still required (e.g., teleportation needs 2 classical bits).",
+        "example": "Alice's measurement instantly affects Bob's state, but Bob cannot tell if Alice measured.",
+        "keyTakeaways": [
+          "No‑signalling theorem: entanglement correlations are instantaneous but cannot transmit information.",
+          "Know what problem or physical phenomenon 33.4 ✗ 'Entanglement lets you send information faster than light.' addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-141a2782",
+          "latex": "|\\Phi^+\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2",
+          "description": "Core relation for 33.4 ✗ 'Entanglement lets you send information faster than light.'."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "No‑signalling theorem: entanglement correlations are instantaneous but cannot transmit information."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Classical communication is still required (e.g., teleportation needs 2 classical bits)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-33-33-4-entanglement-lets-you-send-information-faster-than-light",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-33-33-4-entanglement-lets-you-send-information-faster-than-light",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-33-33-4-entanglement-lets-you-send-information-faster-than-light",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '33-33-4-entanglement-lets-you-send-information-faster-than-light'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.52359878, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.52359878, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "33.4 ✗ 'Entanglement lets you send information faster than light.'",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "33-33-5-quantum-computers-are-just-really-fast-classical-computers",
+      "title": "33.5 ✗ 'Quantum computers are just really fast classical computers.'",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum computers work fundamentally differently: amplitudes, interference, entanglement.",
+        "explanation": "Speedup is algorithm‑dependent, not uniform.",
+        "example": "Sorting has no quantum speedup.",
+        "keyTakeaways": [
+          "Quantum computers work fundamentally differently: amplitudes, interference, entanglement.",
+          "Know what problem or physical phenomenon 33.5 ✗ 'Quantum computers are just really fast classical computers.' addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum computers work fundamentally differently: amplitudes, interference, entanglement."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Speedup is algorithm‑dependent, not uniform."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-33-33-5-quantum-computers-are-just-really-fast-classical-computers",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-33-33-5-quantum-computers-are-just-really-fast-classical-computers",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-33-33-5-quantum-computers-are-just-really-fast-classical-computers",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '33-33-5-quantum-computers-are-just-really-fast-classical-computers'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.39306739, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.39306739, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "33.5 ✗ 'Quantum computers are just really fast classical computers.'",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "33-33-6-quantum-advantage-means-every-problem-is-faster",
+      "title": "33.6 ✗ 'Quantum advantage means every problem is faster.'",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum advantage is problem‑specific.",
+        "explanation": "Proven: factoring, search, simulation. Unknown: most NP problems. No advantage: sorting, basic arithmetic.",
+        "example": "Shor gives exponential speedup for factoring, but not for matrix multiplication.",
+        "keyTakeaways": [
+          "Quantum advantage is problem‑specific.",
+          "Know what problem or physical phenomenon 33.6 ✗ 'Quantum advantage means every problem is faster.' addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum advantage is problem‑specific."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Proven: factoring, search, simulation. Unknown: most NP problems. No advantage: sorting, basic arithmetic."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-33-33-6-quantum-advantage-means-every-problem-is-faster",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-33-33-6-quantum-advantage-means-every-problem-is-faster",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-33-33-6-quantum-advantage-means-every-problem-is-faster",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '33-33-6-quantum-advantage-means-every-problem-is-faster'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.15191731, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.15191731, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "33.6 ✗ 'Quantum advantage means every problem is faster.'",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning",
+      "url": "https://learning.quantum.ibm.com/"
+    },
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    }
+  ]
+}

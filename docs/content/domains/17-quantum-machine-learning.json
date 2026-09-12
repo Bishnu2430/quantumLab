@@ -1,0 +1,1079 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 17,
+  "slug": "quantum-machine-learning",
+  "title": "Quantum Machine Learning",
+  "summary": "Curriculum domain 17: Quantum Machine Learning.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "17-17-1-quantum-feature-maps",
+      "title": "17.1 Quantum Feature Maps",
+      "parentId": null,
+      "content": {
+        "statement": "Map classical data to quantum Hilbert space: x → |φ(x)⟩.",
+        "explanation": "Feature maps can create high-dimensional (exponential) feature spaces. Example: ⨂ R_y(x_i)|0⟩.",
+        "example": "Angle encoding.",
+        "keyTakeaways": [
+          "Map classical data to quantum Hilbert space: x → |φ(x)⟩.",
+          "Know what problem or physical phenomenon 17.1 Quantum Feature Maps addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-94cefd62",
+          "latex": "|φ(x)⟩ = ⨂ᵢ R_y(x_i)|0⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Map classical data to quantum Hilbert space: x → |φ(x)⟩."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|φ(x)⟩ = ⨂ᵢ R_y(x_i)|0⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Feature maps can create high-dimensional (exponential) feature spaces. Example: ⨂ R_y(x_i)|0⟩."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-1-quantum-feature-maps",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-1-quantum-feature-maps",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-1-quantum-feature-maps",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-1-quantum-feature-maps'\ncircuit = QuantumCircuit(1)\ncircuit.ry(2.53072742, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 2.53072742, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.1 Quantum Feature Maps",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-2-data-encoding",
+      "title": "17.2 Data Encoding",
+      "parentId": null,
+      "content": {
+        "statement": "Amplitude, angle, and basis encoding.",
+        "explanation": "Amplitude: x → ∑ x_i|i⟩ uses log N qubits but expensive state prep. Angle: one feature per qubit, shallow. Basis: binary data directly.",
+        "example": "Angle encoding: x=(x₁,x₂) → R_y(x₁)|0⟩⊗R_y(x₂)|0⟩.",
+        "keyTakeaways": [
+          "Amplitude, angle, and basis encoding.",
+          "Know what problem or physical phenomenon 17.2 Data Encoding addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5124d0b4",
+          "latex": "Amplitude: |ψ_x⟩ = ∑ x_i|i⟩; Angle: ⨂ R_y(x_i)|0⟩; Basis: binary string.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Amplitude, angle, and basis encoding."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Amplitude: |ψ_x⟩ = ∑ x_i|i⟩; Angle: ⨂ R_y(x_i)|0⟩; Basis: binary string.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Amplitude: x → ∑ x_i|i⟩ uses log N qubits but expensive state prep. Angle: one feature per qubit, shallow. Basis: binary data directly."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-2-data-encoding",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-2-data-encoding",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-2-data-encoding",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-2-data-encoding'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.46804289, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.46804289, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.2 Data Encoding",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-3-quantum-kernels",
+      "title": "17.3 Quantum Kernels",
+      "parentId": null,
+      "content": {
+        "statement": "k(x,x′) = |⟨φ(x)|φ(x′)⟩|².",
+        "explanation": "Kernel matrix is positive semi-definite. Computed via quantum circuits. Can be hard to compute classically, offering potential advantage.",
+        "example": "QSVM uses quantum kernels.",
+        "keyTakeaways": [
+          "k(x,x′) = |⟨φ(x)|φ(x′)⟩|².",
+          "Know what problem or physical phenomenon 17.3 Quantum Kernels addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-83333f46",
+          "latex": "k(x,x′) = |⟨φ(x)|φ(x′)⟩|².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "k(x,x′) = |⟨φ(x)|φ(x′)⟩|²."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "k(x,x′) = |⟨φ(x)|φ(x′)⟩|².",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Kernel matrix is positive semi-definite. Computed via quantum circuits. Can be hard to compute classically, offering potential advantage."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-3-quantum-kernels",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-3-quantum-kernels",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-3-quantum-kernels",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-3-quantum-kernels'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.52556509, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.52556509, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.3 Quantum Kernels",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-4-qsvm",
+      "title": "17.4 QSVM",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum Support Vector Machine using quantum kernels.",
+        "explanation": "Compute kernel matrix K_ij = k(x_i, x_j), solve dual classically, classify new points.",
+        "example": "Binary classification.",
+        "keyTakeaways": [
+          "Quantum Support Vector Machine using quantum kernels.",
+          "Know what problem or physical phenomenon 17.4 QSVM addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-130566ce",
+          "latex": "f(x) = sign(∑ α_i y_i k(x_i, x) + b).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Quantum Support Vector Machine using quantum kernels."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "f(x) = sign(∑ α_i y_i k(x_i, x) + b).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Compute kernel matrix K_ij = k(x_i, x_j), solve dual classically, classify new points."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-4-qsvm",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-4-qsvm",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-4-qsvm",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-4-qsvm'\ncircuit = QuantumCircuit(1)\ncircuit.rz(6.21337214, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 6.21337214, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.4 QSVM",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-5-variational-quantum-classifiers",
+      "title": "17.5 Variational Quantum Classifiers",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 16.9.",
+        "explanation": "Uses parameterized circuits for classification.",
+        "example": "Data re-uploading.",
+        "keyTakeaways": [
+          "See Domain 16.",
+          "Know what problem or physical phenomenon 17.5 Variational Quantum Classifiers addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 16.9."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Uses parameterized circuits for classification."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-5-variational-quantum-classifiers",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-5-variational-quantum-classifiers",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "ry",
+            "targets": [
+              0
+            ],
+            "parameter": "theta0"
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "ry",
+            "targets": [
+              1
+            ],
+            "parameter": "theta1"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-5-variational-quantum-classifiers",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-5-variational-quantum-classifiers'\nfrom qiskit.circuit import Parameter\nfrom qiskit.quantum_info import SparsePauliOp\nfrom qiskit.primitives import StatevectorEstimator\n\ntheta = Parameter('theta')\ncircuit = QuantumCircuit(1)\ncircuit.ry(theta, 0)\nobservable = SparsePauliOp.from_list([('Z', 1.0)])\nestimator = StatevectorEstimator()\nfor value in (0.0, 1.0, 2.0):\n    job = estimator.run([(circuit, observable, [[value]])])\n    ev = float(job.result()[0].data.evs[0])\n    print(json.dumps({'lesson': LESSON_ID, 'theta': value, 'expectation_z': ev}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.5 Variational Quantum Classifiers",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-6-quantum-neural-networks",
+      "title": "17.6 Quantum Neural Networks",
+      "parentId": null,
+      "content": {
+        "statement": "Input encoding → variational layers → measurement → post-processing.",
+        "explanation": "Training via gradient-based optimization. Challenges: barren plateaus.",
+        "example": "Hybrid quantum-classical NN.",
+        "keyTakeaways": [
+          "Input encoding → variational layers → measurement → post-processing.",
+          "Know what problem or physical phenomenon 17.6 Quantum Neural Networks addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Input encoding → variational layers → measurement → post-processing."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Training via gradient-based optimization. Challenges: barren plateaus."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-6-quantum-neural-networks",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-6-quantum-neural-networks",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-6-quantum-neural-networks",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-6-quantum-neural-networks'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0,1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'entangled_state': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.6 Quantum Neural Networks",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-7-quantum-convolutional-neural-networks",
+      "title": "17.7 Quantum Convolutional Neural Networks",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum version of CNNs with convolutional and pooling layers.",
+        "explanation": "Apply quantum convolutions (e.g., two-qubit unitaries) and pooling (measurement of some qubits).",
+        "example": "Image recognition.",
+        "keyTakeaways": [
+          "Quantum version of CNNs with convolutional and pooling layers.",
+          "Know what problem or physical phenomenon 17.7 Quantum Convolutional Neural Networks addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum version of CNNs with convolutional and pooling layers."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Apply quantum convolutions (e.g., two-qubit unitaries) and pooling (measurement of some qubits)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-7-quantum-convolutional-neural-networks",
+          "type": "3d",
+          "renderer": "quantum-network",
+          "interactive": true,
+          "props": {
+            "orbitControls": true,
+            "animatePackets": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-7-quantum-convolutional-neural-networks",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-7-quantum-convolutional-neural-networks",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-7-quantum-convolutional-neural-networks'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0,1)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'entangled_state': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.7 Quantum Convolutional Neural Networks",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-8-quantum-generative-models",
+      "title": "17.8 Quantum Generative Models",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum GANs, Boltzmann machines, autoencoders.",
+        "explanation": "GANs: generator is quantum circuit, discriminator classical or quantum. Boltzmann machines use thermal sampling. Autoencoders compress quantum states.",
+        "example": "Generating quantum states.",
+        "keyTakeaways": [
+          "Quantum GANs, Boltzmann machines, autoencoders.",
+          "Know what problem or physical phenomenon 17.8 Quantum Generative Models addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum GANs, Boltzmann machines, autoencoders."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "GANs: generator is quantum circuit, discriminator classical or quantum. Boltzmann machines use thermal sampling. Autoencoders compress quantum states."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-8-quantum-generative-models",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-8-quantum-generative-models",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-8-quantum-generative-models",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-8-quantum-generative-models'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.18682389, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.18682389, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.8 Quantum Generative Models",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-9-quantum-autoencoders",
+      "title": "17.9 Quantum Autoencoders",
+      "parentId": null,
+      "content": {
+        "statement": "Compress quantum states using encoder and decoder.",
+        "explanation": "Encoder U_enc applies to |ψ⟩, truncate qubits, decoder U_dec. Minimize reconstruction error.",
+        "example": "State compression.",
+        "keyTakeaways": [
+          "Compress quantum states using encoder and decoder.",
+          "Know what problem or physical phenomenon 17.9 Quantum Autoencoders addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Compress quantum states using encoder and decoder."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Encoder U_enc applies to |ψ⟩, truncate qubits, decoder U_dec. Minimize reconstruction error."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-9-quantum-autoencoders",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-9-quantum-autoencoders",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-9-quantum-autoencoders",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-9-quantum-autoencoders'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.43116999, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.43116999, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.9 Quantum Autoencoders",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "17-17-10-reality-check",
+      "title": "17.10 Reality Check",
+      "parentId": null,
+      "content": {
+        "statement": "Promising areas: quantum data, kernel methods, generative modeling. Hype: classical data, simple tasks, current hardware.",
+        "explanation": "Quantum advantage requires quantum data, exponentially large feature spaces, or specific problem structure.",
+        "example": "Quantum chemistry simulation.",
+        "keyTakeaways": [
+          "Promising areas: quantum data, kernel methods, generative modeling.",
+          "Know what problem or physical phenomenon 17.10 Reality Check addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Promising areas: quantum data, kernel methods, generative modeling. Hype: classical data, simple tasks, current hardware."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Quantum advantage requires quantum data, exponentially large feature spaces, or specific problem structure."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-17-17-10-reality-check",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-17-17-10-reality-check",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "x",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-17-17-10-reality-check",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '17-17-10-reality-check'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.93411946, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.93411946, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "review",
+          "title": "Biamonte et al., Quantum machine learning",
+          "url": "https://doi.org/10.1038/s41567-017-0035-6"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "17.10 Reality Check",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "review",
+      "title": "Biamonte et al., Quantum machine learning",
+      "url": "https://doi.org/10.1038/s41567-017-0035-6"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

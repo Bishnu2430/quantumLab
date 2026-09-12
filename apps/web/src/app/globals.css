@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-page: #f8fafc;
+  --surface-card: #ffffff;
+  --surface-elevated: #f1f5f9;
+  --border-subtle: #cbd5e1;
+  --border-active: #2563eb;
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --accent-primary: #2563eb;
+  --accent-light: #eff6ff;
+}
+
+body {
+  color: #0f172a;
+  background-color: #f8fafc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Accessible High-Contrast Focus Rings */
+*:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* University Scientific Card Panel */
+.glass-panel {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  color: #0f172a;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
+}
+
+.glass-panel-active {
+  background: #ffffff;
+  border: 1px solid #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
+
+/* Gate Badges */
+.gate-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 4px;
+  user-select: none;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.gate-h { background: #2563eb; color: #ffffff; border: 1px solid #1d4ed8; }
+.gate-x { background: #0284c7; color: #ffffff; border: 1px solid #0369a1; }
+.gate-y { background: #0d9488; color: #ffffff; border: 1px solid #0f766e; }
+.gate-z { background: #7e22ce; color: #ffffff; border: 1px solid #6b21a8; }
+.gate-cx { background: #be185d; color: #ffffff; border: 1px solid #9d174d; }
+.gate-cz { background: #a21caf; color: #ffffff; border: 1px solid #86198f; }
+.gate-swap { background: #ea580c; color: #ffffff; border: 1px solid #c2410c; }
+.gate-measure { background: #d97706; color: #ffffff; border: 1px solid #b45309; }
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

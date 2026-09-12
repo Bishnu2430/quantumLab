@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Executable Quantum Code Example",
+  "type": "object",
+  "required": [
+    "id",
+    "language",
+    "framework",
+    "code",
+    "requirements"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "language": {
+      "const": "python"
+    },
+    "framework": {
+      "const": "qiskit"
+    },
+    "entrypoint": {
+      "type": "string"
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "code": {
+      "type": "string"
+    },
+    "sandboxSafe": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

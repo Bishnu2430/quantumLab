@@ -1,0 +1,976 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 7,
+  "slug": "multiple-qubits",
+  "title": "Multiple Qubits",
+  "summary": "Curriculum domain 7: Multiple Qubits.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "07-7-1-tensor-products",
+      "title": "7.1 Tensor Products",
+      "parentId": null,
+      "content": {
+        "statement": "For two qubits, the combined state space is the tensor product ℋ₂ ⊗ ℋ₂, with basis {|00⟩, |01⟩, |10⟩, |11⟩}.",
+        "explanation": "A general two‑qubit state is |ψ⟩ = α₀₀|00⟩ + α₀₁|01⟩ + α₁₀|10⟩ + α₁₁|11⟩ with ∑|α|²=1. The tensor product of matrices A (m×n) and B (p×q) is A⊗B, and (A⊗B)(C⊗D) = (AC)⊗(BD).",
+        "example": "(|0⟩⟨0| ⊗ X) acts as X on the second qubit if the first is |0⟩.",
+        "keyTakeaways": [
+          "For two qubits, the combined state space is the tensor product ℋ₂ ⊗ ℋ₂, with basis {|00⟩, |01⟩, |10⟩, |11⟩}.",
+          "Know what problem or physical phenomenon 7.1 Tensor Products addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a3f0c310",
+          "latex": "|ψ⟩ = ∑ᵢⱼ αᵢⱼ |i⟩⊗|j⟩; (A⊗B)(C⊗D) = (AC)⊗(BD); (A⊗B)† = A†⊗B†.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Write each subsystem",
+            "text": "Represent subsystem A by |a⟩ and subsystem B by |b⟩."
+          },
+          {
+            "step": 2,
+            "title": "Combine dimensions",
+            "formula": "|a⟩⊗|b⟩",
+            "text": "The composite state space is the tensor product Hilbert space H_A⊗H_B."
+          },
+          {
+            "step": 3,
+            "title": "Expand coefficients",
+            "text": "Tensor products multiply amplitudes, producing coefficients for every pair of basis states."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-1-tensor-products",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-1-tensor-products",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-1-tensor-products",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-1-tensor-products'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.88692191, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.88692191, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.1 Tensor Products",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-2-two-qubit-states",
+      "title": "7.2 Two‑Qubit States",
+      "parentId": null,
+      "content": {
+        "statement": "A two‑qubit state is a vector in ℂ⁴.",
+        "explanation": "It can be represented as a column vector (α₀₀, α₀₁, α₁₀, α₁₁)ᵀ. The computational basis is ordered as 00, 01, 10, 11.",
+        "example": "|ψ⟩ = ½(|00⟩ + |01⟩ + |10⟩ + |11⟩) = |+⟩⊗|+⟩.",
+        "keyTakeaways": [
+          "A two‑qubit state is a vector in ℂ⁴.",
+          "Know what problem or physical phenomenon 7.2 Two‑Qubit States addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c548656a",
+          "latex": "|ψ⟩ = (α₀₀, α₀₁, α₁₀, α₁₁)ᵀ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A two‑qubit state is a vector in ℂ⁴."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩ = (α₀₀, α₀₁, α₁₀, α₁₁)ᵀ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "It can be represented as a column vector (α₀₀, α₀₁, α₁₀, α₁₁)ᵀ. The computational basis is ordered as 00, 01, 10, 11."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-2-two-qubit-states",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-2-two-qubit-states",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-2-two-qubit-states",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-2-two-qubit-states'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.58505361, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.58505361, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.2 Two‑Qubit States",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-3-product-states",
+      "title": "7.3 Product States",
+      "parentId": null,
+      "content": {
+        "statement": "A state that can be written as |ψ⟩ = |ψ_A⟩ ⊗ |ψ_B⟩.",
+        "explanation": "Product states have no correlations beyond classical mixtures. The reduced density matrices are pure.",
+        "example": "(a|0⟩+b|1⟩)⊗(c|0⟩+d|1⟩) = ac|00⟩ + ad|01⟩ + bc|10⟩ + bd|11⟩.",
+        "keyTakeaways": [
+          "A state that can be written as |ψ⟩ = |ψ_A⟩ ⊗ |ψ_B⟩.",
+          "Know what problem or physical phenomenon 7.3 Product States addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c54b68f1",
+          "latex": "|ψ⟩ = |ψ_A⟩ ⊗ |ψ_B⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Write each subsystem",
+            "text": "Represent subsystem A by |a⟩ and subsystem B by |b⟩."
+          },
+          {
+            "step": 2,
+            "title": "Combine dimensions",
+            "formula": "|a⟩⊗|b⟩",
+            "text": "The composite state space is the tensor product Hilbert space H_A⊗H_B."
+          },
+          {
+            "step": 3,
+            "title": "Expand coefficients",
+            "text": "Tensor products multiply amplitudes, producing coefficients for every pair of basis states."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-3-product-states",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-3-product-states",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-3-product-states",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-3-product-states'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.76794487, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.76794487, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.3 Product States",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-4-entangled-states",
+      "title": "7.4 Entangled States",
+      "parentId": null,
+      "content": {
+        "statement": "States that cannot be written as a product state.",
+        "explanation": "Entanglement is a non‑classical correlation. A pure state is entangled iff its Schmidt rank > 1.",
+        "example": "|Φ⁺⟩ = (|00⟩+|11⟩)/√2 is entangled.",
+        "keyTakeaways": [
+          "States that cannot be written as a product state.",
+          "Know what problem or physical phenomenon 7.4 Entangled States addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-137c3eb8",
+          "latex": "Cannot find |ψ_A⟩, |ψ_B⟩ such that |ψ⟩ = |ψ_A⟩⊗|ψ_B⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "text": "Assume |Φ⁺⟩ = (a|0⟩+b|1⟩)⊗(c|0⟩+d|1⟩)."
+          },
+          {
+            "step": 2,
+            "text": "Expanding gives ac=1/√2, bd=1/√2, ad=bc=0, which leads to a=0 or d=0 and b=0 or c=0, contradiction."
+          },
+          {
+            "step": 3,
+            "text": "Hence entangled."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-4-entangled-states",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-4-entangled-states",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-4-entangled-states",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-4-entangled-states'\ncircuit = QuantumCircuit(1)\ncircuit.rz(6.21337214, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 6.21337214, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.4 Entangled States",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-5-bell-states",
+      "title": "7.5 Bell States",
+      "parentId": null,
+      "content": {
+        "statement": "Four maximally entangled orthonormal states: |Φ⁺⟩, |Φ⁻⟩, |Ψ⁺⟩, |Ψ⁻⟩.",
+        "explanation": "They form a basis for ℂ⁴. They are used in teleportation and superdense coding.",
+        "example": "|Ψ⁺⟩ = (|01⟩ + |10⟩)/√2.",
+        "keyTakeaways": [
+          "Four maximally entangled orthonormal states: |Φ⁺⟩, |Φ⁻⟩, |Ψ⁺⟩, |Ψ⁻⟩.",
+          "Know what problem or physical phenomenon 7.5 Bell States addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-cc641580",
+          "latex": "|Φ⁺⟩ = (|00⟩+|11⟩)/√2; |Φ⁻⟩ = (|00⟩−|11⟩)/√2; |Ψ⁺⟩ = (|01⟩+|10⟩)/√2; |Ψ⁻⟩ = (|01⟩−|10⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define correlations",
+            "formula": "E(a,b)=\\sum_{A,B=\\pm1}AB\\,P(A,B|a,b)",
+            "text": "Correlation is the average product of the two ±1 outcomes."
+          },
+          {
+            "step": 2,
+            "title": "Combine four settings",
+            "formula": "S=E(a,b)-E(a,b')+E(a',b)+E(a',b')",
+            "text": "CHSH combines four correlations into one test statistic."
+          },
+          {
+            "step": 3,
+            "title": "Compare bounds",
+            "formula": "|S|\\le2\\text{ (local hidden variables)},\\quad |S|\\le2\\sqrt2\\text{ (quantum)}",
+            "text": "Quantum theory predicts values that can exceed the local bound."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-5-bell-states",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-5-bell-states",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-5-bell-states",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-5-bell-states'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nsampler = StatevectorSampler(seed=7)\nresult = sampler.run([circuit], shots=1024).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.5 Bell States",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "07-7-6-computational-basis",
+      "title": "7.6 Computational Basis",
+      "parentId": null,
+      "content": {
+        "statement": "For n qubits, basis states are |x⟩ with x ∈ {0,1}ⁿ.",
+        "explanation": "There are 2ⁿ basis states. For 3 qubits: |000⟩, |001⟩, |010⟩, |011⟩, |100⟩, |101⟩, |110⟩, |111⟩.",
+        "example": "|101⟩ represents qubits in states |1⟩, |0⟩, |1⟩.",
+        "keyTakeaways": [
+          "For n qubits, basis states are |x⟩ with x ∈ {0,1}ⁿ.",
+          "Know what problem or physical phenomenon 7.6 Computational Basis addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-aff0f8ce",
+          "latex": "|x⟩, x ∈ {0,1}ⁿ.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "For n qubits, basis states are |x⟩ with x ∈ {0,1}ⁿ."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|x⟩, x ∈ {0,1}ⁿ.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "There are 2ⁿ basis states. For 3 qubits: |000⟩, |001⟩, |010⟩, |011⟩, |100⟩, |101⟩, |110⟩, |111⟩."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-6-computational-basis",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-6-computational-basis",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-6-computational-basis",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-6-computational-basis'\ntable = [{'a': a, 'b': b, 'and': a & b, 'or': a | b, 'xor': a ^ b} for a in (0,1) for b in (0,1)]\nprint(json.dumps({'lesson': LESSON_ID, 'table': table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.6 Computational Basis",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-7-measurement-of-multiple-qubits",
+      "title": "7.7 Measurement of Multiple Qubits",
+      "parentId": null,
+      "content": {
+        "statement": "Joint measurement probability P(x) = |⟨x|ψ⟩|².",
+        "explanation": "Measuring all qubits simultaneously projects onto the basis state |x⟩.",
+        "example": "For |ψ⟩ = |Φ⁺⟩, P(00)=½, P(11)=½, P(01)=P(10)=0.",
+        "keyTakeaways": [
+          "Joint measurement probability P(x) = |⟨x|ψ⟩|².",
+          "Know what problem or physical phenomenon 7.7 Measurement of Multiple Qubits addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-471b61cf",
+          "latex": "P(x) = |⟨x|ψ⟩|².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-7-measurement-of-multiple-qubits",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-7-measurement-of-multiple-qubits",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-7-measurement-of-multiple-qubits",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-7-measurement-of-multiple-qubits'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.7 Measurement of Multiple Qubits",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-8-correlation",
+      "title": "7.8 Correlation",
+      "parentId": null,
+      "content": {
+        "statement": "Classical correlations come from shared randomness; quantum correlations arise from entanglement.",
+        "explanation": "Correlation functions, e.g., E(a,b) = ⟨ψ|(a·σ)⊗(b·σ)|ψ⟩, can violate Bell inequalities.",
+        "example": "For |Φ⁺⟩, E(θ_A, θ_B) = −cos(2(θ_A − θ_B)).",
+        "keyTakeaways": [
+          "Classical correlations come from shared randomness; quantum correlations arise from entanglement.",
+          "Know what problem or physical phenomenon 7.8 Correlation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6e58ea3a",
+          "latex": "E(a,b) = ⟨ψ| (a·σ)⊗(b·σ) |ψ⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Classical correlations come from shared randomness; quantum correlations arise from entanglement."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "E(a,b) = ⟨ψ| (a·σ)⊗(b·σ) |ψ⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Correlation functions, e.g., E(a,b) = ⟨ψ|(a·σ)⊗(b·σ)|ψ⟩, can violate Bell inequalities."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-8-correlation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-8-correlation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-8-correlation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-8-correlation'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.83259571, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.83259571, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.8 Correlation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "07-7-9-advanced-topics",
+      "title": "7.9 Advanced Topics",
+      "parentId": null,
+      "content": {
+        "statement": "Schmidt decomposition, Schmidt rank, reduced density matrices, partial trace, and entanglement entropy.",
+        "explanation": "Any bipartite pure state |ψ⟩_AB = ∑ λᵢ |i_A⟩⊗|i_B⟩ with λᵢ ≥ 0, ∑ λᵢ² = 1. Schmidt rank = number of non‑zero λᵢ. Product state has rank 1; maximally entangled has all λᵢ = 1/√d. Reduced density ρ_A = Tr_B(|ψ⟩⟨ψ|). Entanglement entropy S_A = −Tr(ρ_A log ρ_A).",
+        "example": "For |Φ⁺⟩, λ₁=λ₂=1/√2, ρ_A = I/2, S_A = 1.",
+        "keyTakeaways": [
+          "Schmidt decomposition, Schmidt rank, reduced density matrices, partial trace, and entanglement entropy.",
+          "Know what problem or physical phenomenon 7.9 Advanced Topics addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-fccec9b9",
+          "latex": "|ψ⟩_AB = ∑ λᵢ |i_A⟩⊗|i_B⟩; ρ_A = Tr_B(|ψ⟩⟨ψ|); S_A = −Tr(ρ_A log ρ_A).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Schmidt decomposition, Schmidt rank, reduced density matrices, partial trace, and entanglement entropy."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩_AB = ∑ λᵢ |i_A⟩⊗|i_B⟩; ρ_A = Tr_B(|ψ⟩⟨ψ|); S_A = −Tr(ρ_A log ρ_A).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Any bipartite pure state |ψ⟩_AB = ∑ λᵢ |i_A⟩⊗|i_B⟩ with λᵢ ≥ 0, ∑ λᵢ² = 1. Schmidt rank = number of non‑zero λᵢ. Product state has rank 1; maximally entangled has all λᵢ = 1/√d. Reduced density ρ_A = Tr_B(|ψ⟩⟨ψ|). Entanglement entropy S_A = −Tr(ρ_A log ρ_A)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-07-7-9-advanced-topics",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-07-7-9-advanced-topics",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-07-7-9-advanced-topics",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '07-7-9-advanced-topics'\ncircuit = QuantumCircuit(1)\ncircuit.ry(4.93928178, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 4.93928178, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "7.9 Advanced Topics",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapters 2–3",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    }
+  ]
+}

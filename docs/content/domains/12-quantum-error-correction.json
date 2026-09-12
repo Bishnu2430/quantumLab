@@ -1,0 +1,480 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 12,
+  "slug": "quantum-error-correction",
+  "title": "Quantum Error Correction",
+  "summary": "Curriculum domain 12: Quantum Error Correction.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "12-12-1-fundamentals",
+      "title": "12.1 Fundamentals",
+      "parentId": null,
+      "content": {
+        "statement": "Noise sources: decoherence, gate errors, measurement errors, crosstalk.",
+        "explanation": "Types: bit flip (X), phase flip (Z), depolarizing (random Pauli), amplitude damping (energy relaxation).",
+        "example": "Bit flip error with probability p: ρ → (1−p)ρ + p XρX.",
+        "keyTakeaways": [
+          "Noise sources: decoherence, gate errors, measurement errors, crosstalk.",
+          "Know what problem or physical phenomenon 12.1 Fundamentals addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-dbce0338",
+          "latex": "Bit flip: X; Phase flip: Z; Depolarizing: ℰ(ρ) = (1−p)ρ + (p/3)(XρX+YρY+ZρZ); Amplitude damping: Kraus operators E₀ = [[1,0],[0,√(1−γ)]], E₁ = [[0,√γ],[0,0]].",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Noise sources: decoherence, gate errors, measurement errors, crosstalk."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Bit flip: X; Phase flip: Z; Depolarizing: ℰ(ρ) = (1−p)ρ + (p/3)(XρX+YρY+ZρZ); Amplitude damping: Kraus operators E₀ = [[1,0],[0,√(1−γ)]], E₁ = [[0,√γ],[0,0]].",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Types: bit flip (X), phase flip (Z), depolarizing (random Pauli), amplitude damping (energy relaxation)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-12-12-1-fundamentals",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-12-12-1-fundamentals",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-12-12-1-fundamentals",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '12-12-1-fundamentals'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.18166156, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.18166156, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 10",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: error correction",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "12.1 Fundamentals",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "12-12-2-error-correction-codes",
+      "title": "12.2 Error Correction Codes",
+      "parentId": null,
+      "content": {
+        "statement": "Bit‑flip, phase‑flip, Shor 9‑qubit, and Steane 7‑qubit codes.",
+        "explanation": "Bit‑flip code: |0⟩→|000⟩, |1⟩→|111⟩; corrects single bit flip. Phase‑flip code: same but in X‑basis. Shor code corrects arbitrary single‑qubit errors. Steane code is a [[7,1,3]] CSS code.",
+        "example": "Bit‑flip code corrects X error on one qubit by majority vote.",
+        "keyTakeaways": [
+          "Bit‑flip, phase‑flip, Shor 9‑qubit, and Steane 7‑qubit codes.",
+          "Know what problem or physical phenomenon 12.2 Error Correction Codes addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-3ba78f17",
+          "latex": "Bit‑flip: |0⟩_L = |000⟩, |1⟩_L = |111⟩; Shor: |0⟩_L = (|000⟩+|111⟩)⊗³ / (2√2).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Bit‑flip, phase‑flip, Shor 9‑qubit, and Steane 7‑qubit codes."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Bit‑flip: |0⟩_L = |000⟩, |1⟩_L = |111⟩; Shor: |0⟩_L = (|000⟩+|111⟩)⊗³ / (2√2).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Bit‑flip code: |0⟩→|000⟩, |1⟩→|111⟩; corrects single bit flip. Phase‑flip code: same but in X‑basis. Shor code corrects arbitrary single‑qubit errors. Steane code is a [[7,1,3]] CSS code."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-12-12-2-error-correction-codes",
+          "type": "2d",
+          "renderer": "quantum-circuit",
+          "interactive": true,
+          "props": {
+            "showGateLabels": true,
+            "showWireLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-12-12-2-error-correction-codes",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "encode_repetition",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "gate": "error",
+            "targets": [
+              1
+            ]
+          },
+          {
+            "gate": "decode_repetition",
+            "targets": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-12-12-2-error-correction-codes",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '12-12-2-error-correction-codes'\ncircuit = QuantumCircuit(3)\ncircuit.x(0)\n# Encode a bit using a three-qubit repetition code.\ncircuit.cx(0,1)\ncircuit.cx(0,2)\n# Demonstrate a possible single-qubit error.\ncircuit.x(1)\n# Decode.\ncircuit.cx(0,1)\ncircuit.cx(0,2)\ncircuit.ccx(1,2,0)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nresult = StatevectorSampler(seed=7).run([circuit], shots=256).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 10",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: error correction",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "12.2 Error Correction Codes",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "12-12-3-advanced-concepts",
+      "title": "12.3 Advanced Concepts",
+      "parentId": null,
+      "content": {
+        "statement": "Surface code, syndrome measurement, logical qubits, overhead.",
+        "explanation": "Surface code is a topological code on a 2D lattice with high threshold (~1%). Syndrome measurements detect errors without disturbing the logical state. Logical qubits are encoded in the topology. Overhead: 1000–10000 physical qubits per logical qubit.",
+        "example": "Surface code with distance d uses 2d²−1 physical qubits.",
+        "keyTakeaways": [
+          "Surface code, syndrome measurement, logical qubits, overhead.",
+          "Know what problem or physical phenomenon 12.3 Advanced Concepts addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-104d6569",
+          "latex": "Stabilizers: X‑type plaquettes and Z‑type vertices. Logical X and Z are chains of operators.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Surface code, syndrome measurement, logical qubits, overhead."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Stabilizers: X‑type plaquettes and Z‑type vertices. Logical X and Z are chains of operators.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Surface code is a topological code on a 2D lattice with high threshold (~1%). Syndrome measurements detect errors without disturbing the logical state. Logical qubits are encoded in the topology. Overhead: 1000–10000 physical qubits per logical qubit."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-12-12-3-advanced-concepts",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-12-12-3-advanced-concepts",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-12-12-3-advanced-concepts",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '12-12-3-advanced-concepts'\ncircuit = QuantumCircuit(1)\ncircuit.rz(2.70526034, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 2.70526034, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 10",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: error correction",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "12.3 Advanced Concepts",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "12-12-4-advanced-topics",
+      "title": "12.4 Advanced Topics",
+      "parentId": null,
+      "content": {
+        "statement": "Fault tolerance, threshold theorem, stabilizer formalism, magic state distillation.",
+        "explanation": "Fault tolerance requires error rate below threshold (≈1% for surface code). The threshold theorem states that arbitrary long computation is possible if p < p_th. Stabilizer formalism defines codes by an abelian subgroup of the Pauli group. Magic state distillation produces high‑fidelity non‑Clifford states (e.g., T gates) using Clifford operations.",
+        "example": "Surface code threshold ~1%.",
+        "keyTakeaways": [
+          "Fault tolerance, threshold theorem, stabilizer formalism, magic state distillation.",
+          "Know what problem or physical phenomenon 12.4 Advanced Topics addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5c231267",
+          "latex": "Resources ∝ poly(log(1/ε)) for target error ε.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Fault tolerance, threshold theorem, stabilizer formalism, magic state distillation."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Resources ∝ poly(log(1/ε)) for target error ε.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Fault tolerance requires error rate below threshold (≈1% for surface code). The threshold theorem states that arbitrary long computation is possible if p < p_th. Stabilizer formalism defines codes by an abelian subgroup of the Pauli group. Magic state distillation produces high‑fidelity non‑Clifford states (e.g., T gates) using Clifford operations."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-12-12-4-advanced-topics",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-12-12-4-advanced-topics",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-12-12-4-advanced-topics",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '12-12-4-advanced-topics'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.09955743, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.09955743, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapter 10",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        },
+        {
+          "type": "web",
+          "title": "IBM Quantum Learning: error correction",
+          "url": "https://learning.quantum.ibm.com/"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "12.4 Advanced Topics",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapter 10",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    },
+    {
+      "type": "web",
+      "title": "IBM Quantum Learning: error correction",
+      "url": "https://learning.quantum.ibm.com/"
+    }
+  ]
+}

@@ -1,0 +1,1680 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 4,
+  "slug": "quantum-mechanics-formalism",
+  "title": "Quantum Mechanics Formalism",
+  "summary": "Curriculum domain 4: Quantum Mechanics Formalism.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "04-4-1-state-vectors",
+      "title": "4.1 State Vectors",
+      "parentId": null,
+      "content": {
+        "statement": "A quantum state is a vector |ψ⟩ in a Hilbert space, normalised to 1.",
+        "explanation": "All physical information about a system is contained in its state vector.",
+        "example": "|ψ⟩ = α|0⟩ + β|1⟩ with |α|²+|β|²=1.",
+        "keyTakeaways": [
+          "A quantum state is a vector |ψ⟩ in a Hilbert space, normalised to 1.",
+          "Know what problem or physical phenomenon 4.1 State Vectors addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-5dfa1792",
+          "latex": "|ψ⟩ ∈ ℋ, ⟨ψ|ψ⟩ = 1.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A quantum state is a vector |ψ⟩ in a Hilbert space, normalised to 1."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "|ψ⟩ ∈ ℋ, ⟨ψ|ψ⟩ = 1.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "All physical information about a system is contained in its state vector."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-1-state-vectors",
+          "type": "3d",
+          "renderer": "bloch-sphere",
+          "interactive": true,
+          "props": {
+            "showAxes": true,
+            "showStateVector": true,
+            "showBasisLabels": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-1-state-vectors",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-1-state-vectors",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-1-state-vectors'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.97738438, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.97738438, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.1 State Vectors",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-2-bra-ket-notation",
+      "title": "4.2 Bra‑Ket Notation",
+      "parentId": null,
+      "content": {
+        "statement": "Ket |ψ⟩ is a column vector; Bra ⟨ψ| is its conjugate transpose (row vector).",
+        "explanation": "The inner product is a bracket ⟨φ|ψ⟩; the outer product |ψ⟩⟨φ| is a matrix.",
+        "example": "|0⟩ = (1,0)ᵀ, ⟨0| = (1,0), |0⟩⟨0| = [[1,0],[0,0]].",
+        "keyTakeaways": [
+          "Ket |ψ⟩ is a column vector; Bra ⟨ψ| is its conjugate transpose (row vector).",
+          "Know what problem or physical phenomenon 4.2 Bra‑Ket Notation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-cfed6a34",
+          "latex": "⟨φ|ψ⟩ = ∑ φᵢ* ψᵢ; |ψ⟩⟨φ| = matrix.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Ket |ψ⟩ is a column vector; Bra ⟨ψ| is its conjugate transpose (row vector)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "⟨φ|ψ⟩ = ∑ φᵢ* ψᵢ; |ψ⟩⟨φ| = matrix.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The inner product is a bracket ⟨φ|ψ⟩; the outer product |ψ⟩⟨φ| is a matrix."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-2-bra-ket-notation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-2-bra-ket-notation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-2-bra-ket-notation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-2-bra-ket-notation'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.45058959, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.45058959, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.2 Bra‑Ket Notation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-3-hilbert-spaces",
+      "title": "4.3 Hilbert Spaces",
+      "parentId": null,
+      "content": {
+        "statement": "A complete inner‑product space.",
+        "explanation": "Quantum mechanics uses separable complex Hilbert spaces: finite‑dimensional ℂⁿ or infinite‑dimensional L²(ℝ).",
+        "example": "ℂ² for a qubit; L²(ℝ) for a particle on a line.",
+        "keyTakeaways": [
+          "A complete inner‑product space.",
+          "Know what problem or physical phenomenon 4.3 Hilbert Spaces addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-c9358e5a",
+          "latex": "ℋ ≅ ℂⁿ or L²(ℝ).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "A complete inner‑product space."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ℋ ≅ ℂⁿ or L²(ℝ).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Quantum mechanics uses separable complex Hilbert spaces: finite‑dimensional ℂⁿ or infinite‑dimensional L²(ℝ)."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-3-hilbert-spaces",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-3-hilbert-spaces",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-3-hilbert-spaces",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-3-hilbert-spaces'\ncircuit = QuantumCircuit(1)\ncircuit.rz(0.71558499, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 0.71558499, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.3 Hilbert Spaces",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-4-observables",
+      "title": "4.4 Observables",
+      "parentId": null,
+      "content": {
+        "statement": "Physical quantities are represented by Hermitian operators.",
+        "explanation": "Observables such as position, momentum, and energy have real eigenvalues.",
+        "example": "Position operator x̂, momentum p̂.",
+        "keyTakeaways": [
+          "Physical quantities are represented by Hermitian operators.",
+          "Know what problem or physical phenomenon 4.4 Observables addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6479f741",
+          "latex": "Â = Â†",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Set the eigenvalue equation",
+            "formula": "A|v⟩=\\lambda|v⟩",
+            "text": "An eigenstate changes only by a scalar factor under the operator."
+          },
+          {
+            "step": 2,
+            "title": "Solve the characteristic equation",
+            "formula": "det(A-\\lambda I)=0",
+            "text": "Non-zero eigenvectors exist only when A-λI is singular."
+          },
+          {
+            "step": 3,
+            "title": "Normalize eigenvectors",
+            "text": "Orthogonal eigenvectors of a Hermitian observable can be normalized to form a measurement basis."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-4-observables",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-4-observables",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-4-observables",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-4-observables'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.85201532, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.85201532, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.4 Observables",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-5-operators",
+      "title": "4.5 Operators",
+      "parentId": null,
+      "content": {
+        "statement": "Linear operators map states to states.",
+        "explanation": "Hermitian operators satisfy Â = Â†; unitary operators satisfy Û†Û = I.",
+        "example": "Hadamard H is both Hermitian and unitary.",
+        "keyTakeaways": [
+          "Linear operators map states to states.",
+          "Know what problem or physical phenomenon 4.5 Operators addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-216c2c55",
+          "latex": "Â(α|ψ⟩ + β|φ⟩) = αÂ|ψ⟩ + βÂ|φ⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Linear operators map states to states."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Â(α|ψ⟩ + β|φ⟩) = αÂ|ψ⟩ + βÂ|φ⟩.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Hermitian operators satisfy Â = Â†; unitary operators satisfy Û†Û = I."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-5-operators",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-5-operators",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-5-operators",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-5-operators'\nfrom qiskit.quantum_info import Operator\nX = Operator([[0,1],[1,0]])\nstate = Statevector([1,0])\ntransformed = state.evolve(X)\nprint(json.dumps({'lesson': LESSON_ID, 'input': [complex(x).__repr__() for x in state.data], 'output': [complex(x).__repr__() for x in transformed.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.5 Operators",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-6-eigenstates-and-eigenvalues",
+      "title": "4.6 Eigenstates and Eigenvalues",
+      "parentId": null,
+      "content": {
+        "statement": "Â|ψₙ⟩ = aₙ|ψₙ⟩.",
+        "explanation": "If a system is in an eigenstate of Â, measurement of A yields aₙ with certainty.",
+        "example": "|0⟩ is an eigenstate of Z with eigenvalue +1.",
+        "keyTakeaways": [
+          "Â|ψₙ⟩ = aₙ|ψₙ⟩.",
+          "Know what problem or physical phenomenon 4.6 Eigenstates and Eigenvalues addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-7efcdda7",
+          "latex": "Â|ψₙ⟩ = aₙ|ψₙ⟩",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Set the eigenvalue equation",
+            "formula": "A|v⟩=\\lambda|v⟩",
+            "text": "An eigenstate changes only by a scalar factor under the operator."
+          },
+          {
+            "step": 2,
+            "title": "Solve the characteristic equation",
+            "formula": "det(A-\\lambda I)=0",
+            "text": "Non-zero eigenvectors exist only when A-λI is singular."
+          },
+          {
+            "step": 3,
+            "title": "Normalize eigenvectors",
+            "text": "Orthogonal eigenvectors of a Hermitian observable can be normalized to form a measurement basis."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-6-eigenstates-and-eigenvalues",
+          "type": "2d",
+          "renderer": "linear-algebra",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showCoordinates": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-6-eigenstates-and-eigenvalues",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-6-eigenstates-and-eigenvalues",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-6-eigenstates-and-eigenvalues'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.20427718, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.20427718, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.6 Eigenstates and Eigenvalues",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-7-measurement",
+      "title": "4.7 Measurement",
+      "parentId": null,
+      "content": {
+        "statement": "Possible outcomes are eigenvalues; probability of aₙ is |⟨ψₙ|ψ⟩|²; the state collapses to |ψₙ⟩.",
+        "explanation": "This is the Born rule plus the projection postulate.",
+        "example": "For |ψ⟩ = (|0⟩+|1⟩)/√2, P(0)=P(1)=½.",
+        "keyTakeaways": [
+          "Possible outcomes are eigenvalues; probability of aₙ is |⟨ψₙ|ψ⟩|²; the state collapses to |ψₙ⟩.",
+          "Know what problem or physical phenomenon 4.7 Measurement addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-04349c26",
+          "latex": "P(aₙ) = |⟨ψₙ|ψ⟩|²; |ψ⟩ → |ψₙ⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-7-measurement",
+          "type": "2d",
+          "renderer": "quantum-data-plot",
+          "interactive": true,
+          "props": {
+            "mode": "auto",
+            "showAxes": true,
+            "showTooltip": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-7-measurement",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "operation": "measure"
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-7-measurement",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-7-measurement'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.7 Measurement",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-8-born-rule",
+      "title": "4.8 Born Rule",
+      "parentId": null,
+      "content": {
+        "statement": "Probability density P(x) = |ψ(x)|², with ∫|ψ|² dx = 1.",
+        "explanation": "The modulus squared of the wavefunction gives the probability distribution for position.",
+        "example": "For a Gaussian wavepacket, P(x) is a Gaussian.",
+        "keyTakeaways": [
+          "Probability density P(x) = |ψ(x)|², with ∫|ψ|² dx = 1.",
+          "Know what problem or physical phenomenon 4.8 Born Rule addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-d5e13d08",
+          "latex": "P(x) = |ψ(x)|²; ∫|ψ|² dx = 1.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Expand in the measurement basis",
+            "text": "Write |ψ⟩ = Σ_i c_i|i⟩ in the orthonormal eigenbasis of the observable."
+          },
+          {
+            "step": 2,
+            "title": "Project onto outcome i",
+            "formula": "⟨i|ψ⟩ = c_i",
+            "text": "Orthogonality isolates the amplitude associated with outcome i."
+          },
+          {
+            "step": 3,
+            "title": "Apply Born rule",
+            "formula": "P(i)=|c_i|²",
+            "text": "Squaring the modulus gives the probability of observing outcome i."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-8-born-rule",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-8-born-rule",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-8-born-rule",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-8-born-rule'\ncircuit = QuantumCircuit(1)\ncircuit.h(0)\nfrom qiskit.primitives import StatevectorSampler\ncircuit.measure_all()\nresult = StatevectorSampler(seed=7).run([circuit], shots=512).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.8 Born Rule",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-9-expectation-values",
+      "title": "4.9 Expectation Values",
+      "parentId": null,
+      "content": {
+        "statement": "⟨A⟩ = ⟨ψ|Â|ψ⟩ = ∑ aₙ P(aₙ).",
+        "explanation": "The expectation value is the average of many measurements on identically prepared systems.",
+        "example": "For |ψ⟩ = |+⟩, ⟨Z⟩ = 0.",
+        "keyTakeaways": [
+          "⟨A⟩ = ⟨ψ|Â|ψ⟩ = ∑ aₙ P(aₙ).",
+          "Know what problem or physical phenomenon 4.9 Expectation Values addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e58cb83e",
+          "latex": "⟨A⟩ = ⟨ψ|Â|ψ⟩ = ∑ aₙ |⟨ψₙ|ψ⟩|².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "⟨A⟩ = ⟨ψ|Â|ψ⟩ = ∑ aₙ P(aₙ)."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "⟨A⟩ = ⟨ψ|Â|ψ⟩ = ∑ aₙ |⟨ψₙ|ψ⟩|².",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "The expectation value is the average of many measurements on identically prepared systems."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-9-expectation-values",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-9-expectation-values",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-9-expectation-values",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-9-expectation-values'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.54105207, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.54105207, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.9 Expectation Values",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-10-variance",
+      "title": "4.10 Variance",
+      "parentId": null,
+      "content": {
+        "statement": "(ΔA)² = ⟨A²⟩ − ⟨A⟩².",
+        "explanation": "The uncertainty ΔA = √(⟨A²⟩−⟨A⟩²) quantifies the spread of measurement outcomes.",
+        "example": "For |+⟩, ⟨Z⟩=0, ⟨Z²⟩=1, so ΔZ=1.",
+        "keyTakeaways": [
+          "(ΔA)² = ⟨A²⟩ − ⟨A⟩².",
+          "Know what problem or physical phenomenon 4.10 Variance addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-0fc7490e",
+          "latex": "(ΔA)² = ⟨A²⟩ − ⟨A⟩².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define the deviation",
+            "formula": "\\Delta A=A-\\langle A\\rangle I",
+            "text": "Measure each outcome relative to the mean."
+          },
+          {
+            "step": 2,
+            "title": "Square and average",
+            "formula": "(\\Delta A)^2=\\langle(A-\\langle A\\rangle I)^2\\rangle",
+            "text": "The variance is the expectation value of squared deviations."
+          },
+          {
+            "step": 3,
+            "title": "Expand",
+            "formula": "(\\Delta A)^2=\\langle A^2\\rangle-\\langle A\\rangle^2",
+            "text": "Linearity of expectation removes the cross terms."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-10-variance",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-10-variance",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-10-variance",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-10-variance'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.18879020, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.18879020, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.10 Variance",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-11-commutators",
+      "title": "4.11 Commutators",
+      "parentId": null,
+      "content": {
+        "statement": "[Â, B̂] = ÂB̂ − B̂Â.",
+        "explanation": "Non‑commuting observables cannot be simultaneously measured with arbitrary precision. The canonical commutation relation is [x̂, p̂] = iℏ.",
+        "example": "[X, Z] = XZ − ZX = −2iY.",
+        "keyTakeaways": [
+          "[Â, B̂] = ÂB̂ − B̂Â.",
+          "Know what problem or physical phenomenon 4.11 Commutators addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-6a92d7b1",
+          "latex": "[x̂, p̂] = iℏ; [Â, B̂+Ĉ] = [Â,B̂]+[Â,Ĉ]; [Â,B̂Ĉ] = [Â,B̂]Ĉ + B̂[Â,Ĉ].",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Center the observables",
+            "formula": "ΔA=A-⟨A⟩I,  ΔB=B-⟨B⟩I",
+            "text": "Subtract the expectation values so the centered operators have zero mean."
+          },
+          {
+            "step": 2,
+            "title": "Apply Cauchy–Schwarz",
+            "formula": "⟨ΔA²⟩⟨ΔB²⟩ ≥ |⟨ΔAΔB⟩|²",
+            "text": "The inequality bounds the product of variances."
+          },
+          {
+            "step": 3,
+            "title": "Extract the commutator",
+            "formula": "|⟨ΔAΔB⟩|² ≥ 1/4 |⟨[A,B]⟩|²",
+            "text": "Separating the antisymmetric part gives the Robertson uncertainty relation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-11-commutators",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-11-commutators",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-11-commutators",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-11-commutators'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.29350996, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.29350996, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.11 Commutators",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-12-schr-dinger-equation",
+      "title": "4.12 Schrödinger Equation",
+      "parentId": null,
+      "content": {
+        "statement": "iℏ ∂|ψ⟩/∂t = Ĥ|ψ⟩.",
+        "explanation": "The time‑dependent Schrödinger equation governs the evolution of a quantum state. The time‑independent form Ĥ|ψₙ⟩ = Eₙ|ψₙ⟩ gives the energy eigenstates.",
+        "example": "For a free particle, Ĥ = p̂²/2m.",
+        "keyTakeaways": [
+          "iℏ ∂|ψ⟩/∂t = Ĥ|ψ⟩.",
+          "Know what problem or physical phenomenon 4.12 Schrödinger Equation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-a5e64be4",
+          "latex": "iℏ ∂|ψ(t)⟩/∂t = Ĥ|ψ(t)⟩; Ĥ|ψₙ⟩ = Eₙ|ψₙ⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Start from classical energy",
+            "formula": "E=p^2/(2m)+V(x)",
+            "text": "For a nonrelativistic particle, total energy is kinetic plus potential energy."
+          },
+          {
+            "step": 2,
+            "title": "Promote observables to operators",
+            "formula": "E\\to i\\hbar\\partial_t,\\quad p\\to -i\\hbar\\nabla",
+            "text": "Quantum mechanics represents measurable quantities by operators acting on the wavefunction."
+          },
+          {
+            "step": 3,
+            "title": "Substitute",
+            "formula": "i\\hbar\\partial_t\\psi=[-\\hbar^2\\nabla^2/(2m)+V]\\psi",
+            "text": "Substitution gives the time-dependent Schrödinger equation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-12-schr-dinger-equation",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-12-schr-dinger-equation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-12-schr-dinger-equation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-12-schr-dinger-equation'\ncircuit = QuantumCircuit(1)\ncircuit.ry(1.58824962, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 1.58824962, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.12 Schrödinger Equation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-13-time-evolution",
+      "title": "4.13 Time Evolution",
+      "parentId": null,
+      "content": {
+        "statement": "|ψ(t)⟩ = Û(t)|ψ(0)⟩, with Û(t) = e^{−iĤt/ℏ}.",
+        "explanation": "The time‑evolution operator is unitary, ensuring probability conservation.",
+        "example": "For a qubit under Ĥ = (ℏω/2)Z, Û(t) = e^{−iωtZ/2}.",
+        "keyTakeaways": [
+          "|ψ(t)⟩ = Û(t)|ψ(0)⟩, with Û(t) = e^{−iĤt/ℏ}.",
+          "Know what problem or physical phenomenon 4.13 Time Evolution addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-e57c663d",
+          "latex": "Û(t) = e^{−iĤt/ℏ}; Û†Û = I.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Separate variables in time",
+            "formula": "i\\hbar\\frac{d}{dt}|\\psi(t)\\rangle=H|\\psi(t)\\rangle",
+            "text": "For a time-independent Hamiltonian, H is constant in time."
+          },
+          {
+            "step": 2,
+            "title": "Solve the first-order linear equation",
+            "formula": "|\\psi(t)\\rangle=e^{-iHt/\\hbar}|\\psi(0)\\rangle",
+            "text": "The matrix exponential is the unique solution with the specified initial state."
+          },
+          {
+            "step": 3,
+            "title": "Check norm preservation",
+            "formula": "U^\\dagger U=I",
+            "text": "Hermiticity of H makes U unitary, so probabilities are conserved."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-13-time-evolution",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-13-time-evolution",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-13-time-evolution",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-13-time-evolution'\ncircuit = QuantumCircuit(1)\ncircuit.rx(1.98967535, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 1.98967535, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.13 Time Evolution",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": true,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-14-unitary-evolution",
+      "title": "4.14 Unitary Evolution",
+      "parentId": null,
+      "content": {
+        "statement": "Inner products are preserved: ⟨ψ(t)|φ(t)⟩ = ⟨ψ(0)|φ(0)⟩.",
+        "explanation": "Unitarity ensures that probabilities sum to 1 and that the evolution is reversible.",
+        "example": "Hadamard H is unitary, so H†H = I.",
+        "keyTakeaways": [
+          "Inner products are preserved: ⟨ψ(t)|φ(t)⟩ = ⟨ψ(0)|φ(0)⟩.",
+          "Know what problem or physical phenomenon 4.14 Unitary Evolution addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f75b1b76",
+          "latex": "⟨ψ(t)|φ(t)⟩ = ⟨ψ(0)|φ(0)⟩.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Separate variables in time",
+            "formula": "i\\hbar\\frac{d}{dt}|\\psi(t)\\rangle=H|\\psi(t)\\rangle",
+            "text": "For a time-independent Hamiltonian, H is constant in time."
+          },
+          {
+            "step": 2,
+            "title": "Solve the first-order linear equation",
+            "formula": "|\\psi(t)\\rangle=e^{-iHt/\\hbar}|\\psi(0)\\rangle",
+            "text": "The matrix exponential is the unique solution with the specified initial state."
+          },
+          {
+            "step": 3,
+            "title": "Check norm preservation",
+            "formula": "U^\\dagger U=I",
+            "text": "Hermiticity of H makes U unitary, so probabilities are conserved."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-14-unitary-evolution",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-14-unitary-evolution",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-14-unitary-evolution",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-14-unitary-evolution'\ncircuit = QuantumCircuit(1)\ncircuit.rz(5.37561410, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 5.37561410, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.14 Unitary Evolution",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "04-4-15-advanced-topics",
+      "title": "4.15 Advanced Topics",
+      "parentId": null,
+      "content": {
+        "statement": "Density matrices, pure/mixed states, partial trace, purification, quantum channels, Kraus operators, POVMs, projective measurements, and the Lindblad master equation.",
+        "explanation": "These tools are essential for describing open quantum systems, decoherence, and generalised measurements.",
+        "example": "A pure state |ψ⟩ has density matrix ρ = |ψ⟩⟨ψ|; a mixed state is ρ = ∑ pᵢ|ψᵢ⟩⟨ψᵢ|.",
+        "keyTakeaways": [
+          "Density matrices, pure/mixed states, partial trace, purification, quantum channels, Kraus operators, POVMs, projective measurements, and the Lindblad master equation.",
+          "Know what problem or physical phenomenon 4.15 Advanced Topics addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-10ab93db",
+          "latex": "ρ = ∑ pᵢ|ψᵢ⟩⟨ψᵢ|; Tr(ρ)=1; ρ²=ρ for pure; partial trace ρ_A = Tr_B(ρ_AB); Kraus: ℰ(ρ) = ∑ E_k ρ E_k†; POVM: ∑ E_i = I, P(i)=Tr(ρE_i); Lindblad: dρ/dt = −(i/ℏ)[H,ρ] + ∑ₖ (LₖρLₖ† − ½{Lₖ†Lₖ,ρ}).",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Density matrices, pure/mixed states, partial trace, purification, quantum channels, Kraus operators, POVMs, projective measurements, and the Lindblad master equation."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "ρ = ∑ pᵢ|ψᵢ⟩⟨ψᵢ|; Tr(ρ)=1; ρ²=ρ for pure; partial trace ρ_A = Tr_B(ρ_AB); Kraus: ℰ(ρ) = ∑ E_k ρ E_k†; POVM: ∑ E_i = I, P(i)=Tr(ρE_i); Lindblad: dρ/dt = −(i/ℏ)[H,ρ] + ∑ₖ (LₖρLₖ† − ½{Lₖ†Lₖ,ρ}).",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "These tools are essential for describing open quantum systems, decoherence, and generalised measurements."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-04-4-15-advanced-topics",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-04-4-15-advanced-topics",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-04-4-15-advanced-topics",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '04-4-15-advanced-topics'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.27605667, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.27605667, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+          "url": "https://doi.org/10.1017/9781108587285"
+        },
+        {
+          "type": "textbook",
+          "title": "Nielsen & Chuang, Chapters 2–3",
+          "url": "https://doi.org/10.1017/CBO9780511976839"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "4.15 Advanced Topics",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Griffiths & Schroeter, Introduction to Quantum Mechanics",
+      "url": "https://doi.org/10.1017/9781108587285"
+    },
+    {
+      "type": "textbook",
+      "title": "Nielsen & Chuang, Chapters 2–3",
+      "url": "https://doi.org/10.1017/CBO9780511976839"
+    }
+  ]
+}

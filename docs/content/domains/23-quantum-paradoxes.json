@@ -1,0 +1,1037 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 23,
+  "slug": "quantum-paradoxes",
+  "title": "Quantum Paradoxes",
+  "summary": "Curriculum domain 23: Quantum Paradoxes.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "23-23-1-schr-dinger-s-cat",
+      "title": "23.1 Schrödinger's Cat",
+      "parentId": null,
+      "content": {
+        "statement": "Cat in a box is in superposition |cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+        "explanation": "Paradox: cat seems both alive and dead until observed. Highlights the measurement problem.",
+        "example": "Radioactive atom triggers poison.",
+        "keyTakeaways": [
+          "Cat in a box is in superposition |cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+          "Know what problem or physical phenomenon 23.1 Schrödinger's Cat addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-468772e2",
+          "latex": "|cat⟩ = (|alive⟩ + |dead⟩)/√2.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Start from classical energy",
+            "formula": "E=p^2/(2m)+V(x)",
+            "text": "For a nonrelativistic particle, total energy is kinetic plus potential energy."
+          },
+          {
+            "step": 2,
+            "title": "Promote observables to operators",
+            "formula": "E\\to i\\hbar\\partial_t,\\quad p\\to -i\\hbar\\nabla",
+            "text": "Quantum mechanics represents measurable quantities by operators acting on the wavefunction."
+          },
+          {
+            "step": 3,
+            "title": "Substitute",
+            "formula": "i\\hbar\\partial_t\\psi=[-\\hbar^2\\nabla^2/(2m)+V]\\psi",
+            "text": "Substitution gives the time-dependent Schrödinger equation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-1-schr-dinger-s-cat",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-1-schr-dinger-s-cat",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-1-schr-dinger-s-cat",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-1-schr-dinger-s-cat'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.99680399, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.99680399, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.1 Schrödinger's Cat",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-2-epr-paradox",
+      "title": "23.2 EPR Paradox",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 8.4.",
+        "explanation": "EPR argued QM is incomplete based on locality and reality.",
+        "example": "Entangled particles with correlated properties.",
+        "keyTakeaways": [
+          "See Domain 8.",
+          "Know what problem or physical phenomenon 23.2 EPR Paradox addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 8.4."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "EPR argued QM is incomplete based on locality and reality."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-2-epr-paradox",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-2-epr-paradox",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-2-epr-paradox",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-2-epr-paradox'\ncircuit = QuantumCircuit(1)\ncircuit.rz(3.75245789, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 3.75245789, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.2 EPR Paradox",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-3-quantum-zeno-effect",
+      "title": "23.3 Quantum Zeno Effect",
+      "parentId": null,
+      "content": {
+        "statement": "Frequent measurement prevents evolution.",
+        "explanation": "P(t) = |⟨ψ(0)|ψ(t)⟩|² ≈ 1 − (ΔH)² t². With measurements every τ, P(nτ) ≈ (1 − (ΔH)²τ²)ⁿ → 1 as τ→0. Applications: state preservation.",
+        "example": "Watching a pot never boils (quantumly).",
+        "keyTakeaways": [
+          "Frequent measurement prevents evolution.",
+          "Know what problem or physical phenomenon 23.3 Quantum Zeno Effect addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-67e5cb3b",
+          "latex": "P(t) ≈ 1 − (ΔH)² t²; P(nτ) → 1 as τ → 0.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Frequent measurement prevents evolution."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "P(t) ≈ 1 − (ΔH)² t²; P(nτ) → 1 as τ → 0.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "P(t) = |⟨ψ(0)|ψ(t)⟩|² ≈ 1 − (ΔH)² t². With measurements every τ, P(nτ) ≈ (1 − (ΔH)²τ²)ⁿ → 1 as τ→0. Applications: state preservation."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-3-quantum-zeno-effect",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-3-quantum-zeno-effect",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-3-quantum-zeno-effect",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-3-quantum-zeno-effect'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.06981317, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.06981317, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.3 Quantum Zeno Effect",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-4-quantum-eraser",
+      "title": "23.4 Quantum Eraser",
+      "parentId": null,
+      "content": {
+        "statement": "Interference is restored when which-path information is erased.",
+        "explanation": "Information, not physical disturbance, destroys interference.",
+        "example": "Double-slit with which-path markers.",
+        "keyTakeaways": [
+          "Interference is restored when which-path information is erased.",
+          "Know what problem or physical phenomenon 23.4 Quantum Eraser addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Interference is restored when which-path information is erased."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Information, not physical disturbance, destroys interference."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-4-quantum-eraser",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-4-quantum-eraser",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-4-quantum-eraser",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-4-quantum-eraser'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.64257581, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.64257581, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.4 Quantum Eraser",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-5-delayed-choice-experiment",
+      "title": "23.5 Delayed-Choice Experiment",
+      "parentId": null,
+      "content": {
+        "statement": "Choice of wave or particle measurement made after photon passes slits.",
+        "explanation": "Behavior matches the choice, challenging intuition but no retrocausality.",
+        "example": "Wheeler's delayed-choice.",
+        "keyTakeaways": [
+          "Choice of wave or particle measurement made after photon passes slits.",
+          "Know what problem or physical phenomenon 23.5 Delayed-Choice Experiment addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Choice of wave or particle measurement made after photon passes slits."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Behavior matches the choice, challenging intuition but no retrocausality."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-5-delayed-choice-experiment",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-5-delayed-choice-experiment",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-5-delayed-choice-experiment",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-5-delayed-choice-experiment'\ncircuit = QuantumCircuit(1)\ncircuit.rz(3.80481777, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 3.80481777, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.5 Delayed-Choice Experiment",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-6-wigner-s-friend",
+      "title": "23.6 Wigner's Friend",
+      "parentId": null,
+      "content": {
+        "statement": "Friend measures system; Wigner describes friend+system as superposition.",
+        "explanation": "Different observers have different states. Implications: observer-dependent facts.",
+        "example": "Wigner's friend experiment.",
+        "keyTakeaways": [
+          "Friend measures system; Wigner describes friend+system as superposition.",
+          "Know what problem or physical phenomenon 23.6 Wigner's Friend addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Friend measures system; Wigner describes friend+system as superposition."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Different observers have different states. Implications: observer-dependent facts."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-6-wigner-s-friend",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-6-wigner-s-friend",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-6-wigner-s-friend",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-6-wigner-s-friend'\ncircuit = QuantumCircuit(1)\ncircuit.rx(4.76474886, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 4.76474886, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.6 Wigner's Friend",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-7-double-slit",
+      "title": "23.7 Double Slit",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 2.14.",
+        "explanation": "Single particles produce interference; which-path measurement destroys it.",
+        "example": "Electron double-slit.",
+        "keyTakeaways": [
+          "See Domain 2.",
+          "Know what problem or physical phenomenon 23.7 Double Slit addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "See Domain 2.14."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Single particles produce interference; which-path measurement destroys it."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-7-double-slit",
+          "type": "2d",
+          "renderer": "wave-interference",
+          "interactive": true,
+          "props": {
+            "animate": true,
+            "showProbabilityDensity": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-7-double-slit",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-7-double-slit",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-7-double-slit'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.40339204, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.40339204, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.7 Double Slit",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-8-which-path-paradoxes",
+      "title": "23.8 Which-Path Paradoxes",
+      "parentId": null,
+      "content": {
+        "statement": "Complementarity: V² + D² ≤ 1, where V is visibility, D is distinguishability.",
+        "explanation": "Which-path information destroys interference. The more you know the path, the less you see interference.",
+        "example": "Quantum eraser.",
+        "keyTakeaways": [
+          "Complementarity: V² + D² ≤ 1, where V is visibility, D is distinguishability.",
+          "Know what problem or physical phenomenon 23.8 Which-Path Paradoxes addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-4e5e0bb4",
+          "latex": "V² + D² ≤ 1.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Complementarity: V² + D² ≤ 1, where V is visibility, D is distinguishability."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "V² + D² ≤ 1.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Which-path information destroys interference. The more you know the path, the less you see interference."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-8-which-path-paradoxes",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-8-which-path-paradoxes",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "rz",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-8-which-path-paradoxes",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-8-which-path-paradoxes'\ncircuit = QuantumCircuit(1)\ncircuit.rx(5.34070751, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 5.34070751, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.8 Which-Path Paradoxes",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-9-bell-s-theorem",
+      "title": "23.9 Bell's Theorem",
+      "parentId": null,
+      "content": {
+        "statement": "See Domain 8.2.",
+        "explanation": "Violation of Bell inequalities rules out local hidden variables.",
+        "example": "CHSH test.",
+        "keyTakeaways": [
+          "See Domain 8.",
+          "Know what problem or physical phenomenon 23.9 Bell's Theorem addresses."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-141a2782",
+          "latex": "|\\Phi^+\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2",
+          "description": "Core relation for 23.9 Bell's Theorem."
+        }
+      ],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Define correlations",
+            "formula": "E(a,b)=\\sum_{A,B=\\pm1}AB\\,P(A,B|a,b)",
+            "text": "Correlation is the average product of the two ±1 outcomes."
+          },
+          {
+            "step": 2,
+            "title": "Combine four settings",
+            "formula": "S=E(a,b)-E(a,b')+E(a',b)+E(a',b')",
+            "text": "CHSH combines four correlations into one test statistic."
+          },
+          {
+            "step": 3,
+            "title": "Compare bounds",
+            "formula": "|S|\\le2\\text{ (local hidden variables)},\\quad |S|\\le2\\sqrt2\\text{ (quantum)}",
+            "text": "Quantum theory predicts values that can exceed the local bound."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-9-bell-s-theorem",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-9-bell-s-theorem",
+        "qubits": 2,
+        "classicalBits": 2,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-9-bell-s-theorem",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-9-bell-s-theorem'\ncircuit = QuantumCircuit(2)\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.measure_all()\nfrom qiskit.primitives import StatevectorSampler\nsampler = StatevectorSampler(seed=7)\nresult = sampler.run([circuit], shots=1024).result()\nprint(json.dumps({'lesson': LESSON_ID, 'counts': result[0].data.meas.get_counts()}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.9 Bell's Theorem",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "23-23-10-ghz-paradox",
+      "title": "23.10 GHZ Paradox",
+      "parentId": null,
+      "content": {
+        "statement": "GHZ state gives a single-shot contradiction with local realism.",
+        "explanation": "For |GHZ⟩ = (|000⟩+|111⟩)/√2, measuring X or Y on each qubit. Classical prediction: product of outcomes = +1; quantum prediction: product = −1. No statistics needed.",
+        "example": "Three-qubit GHZ.",
+        "keyTakeaways": [
+          "GHZ state gives a single-shot contradiction with local realism.",
+          "Know what problem or physical phenomenon 23.10 GHZ Paradox addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-cf3f23c9",
+          "latex": "Classical: product = +1; Quantum: product = −1.",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "GHZ state gives a single-shot contradiction with local realism."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "Classical: product = +1; Quantum: product = −1.",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "For |GHZ⟩ = (|000⟩+|111⟩)/√2, measuring X or Y on each qubit. Classical prediction: product of outcomes = +1; quantum prediction: product = −1. No statistics needed."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-23-23-10-ghz-paradox",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-23-23-10-ghz-paradox",
+        "qubits": 3,
+        "classicalBits": 3,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          },
+          {
+            "gate": "cx",
+            "control": 0,
+            "target": 1
+          },
+          {
+            "gate": "cx",
+            "control": 1,
+            "target": 2
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-23-23-10-ghz-paradox",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '23-23-10-ghz-paradox'\ncircuit = QuantumCircuit(1)\ncircuit.rx(3.97935069, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 3.97935069, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+          "url": "https://doi.org/10.1201/9780429494764"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "23.10 GHZ Paradox",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Sakurai & Napolitano, Modern Quantum Mechanics",
+      "url": "https://doi.org/10.1201/9780429494764"
+    }
+  ]
+}

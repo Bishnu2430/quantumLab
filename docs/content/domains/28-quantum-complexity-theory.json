@@ -1,0 +1,989 @@
+{
+  "schemaVersion": "2.0.0",
+  "id": 28,
+  "slug": "quantum-complexity-theory",
+  "title": "Quantum Complexity Theory",
+  "summary": "Curriculum domain 28: Quantum Complexity Theory.",
+  "learningScope": "Expanded from the supplied curriculum and normalized for application integration.",
+  "sections": [
+    {
+      "id": "28-28-1-p",
+      "title": "28.1 P",
+      "parentId": null,
+      "content": {
+        "statement": "Problems solvable in polynomial time on a classical computer.",
+        "explanation": "Examples: sorting, matrix multiplication, shortest paths.",
+        "example": "Sorting O(n log n).",
+        "keyTakeaways": [
+          "Problems solvable in polynomial time on a classical computer.",
+          "Know what problem or physical phenomenon 28.1 P addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Problems solvable in polynomial time on a classical computer."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Examples: sorting, matrix multiplication, shortest paths."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-1-p",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-1-p",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-1-p",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-1-p'\ncircuit = QuantumCircuit(1)\ncircuit.rz(1.44862328, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 1.44862328, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.1 P",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-2-np",
+      "title": "28.2 NP",
+      "parentId": null,
+      "content": {
+        "statement": "Problems verifiable in polynomial time.",
+        "explanation": "Examples: SAT, traveling salesman. Open question: P = NP?",
+        "example": "3‑SAT.",
+        "keyTakeaways": [
+          "Problems verifiable in polynomial time.",
+          "Know what problem or physical phenomenon 28.2 NP addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Problems verifiable in polynomial time."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Examples: SAT, traveling salesman. Open question: P = NP?"
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-2-np",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-2-np",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-2-np",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-2-np'\ncircuit = QuantumCircuit(1)\ncircuit.ry(5.61996019, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 5.61996019, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.2 NP",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-3-bpp",
+      "title": "28.3 BPP",
+      "parentId": null,
+      "content": {
+        "statement": "Bounded‑error probabilistic polynomial time (classical randomized algorithms).",
+        "explanation": "Examples: primality testing (before AKS), Monte Carlo algorithms.",
+        "example": "Miller‑Rabin primality test.",
+        "keyTakeaways": [
+          "Bounded‑error probabilistic polynomial time (classical randomized algorithms).",
+          "Know what problem or physical phenomenon 28.3 BPP addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Bounded‑error probabilistic polynomial time (classical randomized algorithms)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Examples: primality testing (before AKS), Monte Carlo algorithms."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-3-bpp",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-3-bpp",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-3-bpp",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-3-bpp'\ncircuit = QuantumCircuit(1)\ncircuit.ry(0.27925268, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 0.27925268, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.3 BPP",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-4-bqp",
+      "title": "28.4 BQP",
+      "parentId": null,
+      "content": {
+        "statement": "Bounded‑error quantum polynomial time. Quantum analogue of BPP.",
+        "explanation": "Contains P and BPP. Relationship to NP is unknown. Example problems: factoring (Shor), unstructured search (Grover).",
+        "example": "Shor's algorithm is in BQP.",
+        "keyTakeaways": [
+          "Bounded‑error quantum polynomial time.",
+          "Know what problem or physical phenomenon 28.4 BQP addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Bounded‑error quantum polynomial time. Quantum analogue of BPP."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Contains P and BPP. Relationship to NP is unknown. Example problems: factoring (Shor), unstructured search (Grover)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-4-bqp",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-4-bqp",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-4-bqp",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-4-bqp'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.95673508, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.95673508, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.4 BQP",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "mermaid"
+        ]
+      }
+    },
+    {
+      "id": "28-28-5-qma",
+      "title": "28.5 QMA",
+      "parentId": null,
+      "content": {
+        "statement": "Quantum Merlin‑Arthur. Quantum analogue of NP.",
+        "explanation": "Problems where a quantum proof can be verified in polynomial time. Example: local Hamiltonian problem (QMA‑complete).",
+        "example": "Ground state energy of a local Hamiltonian.",
+        "keyTakeaways": [
+          "Quantum Merlin‑Arthur.",
+          "Know what problem or physical phenomenon 28.5 QMA addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Quantum Merlin‑Arthur. Quantum analogue of NP."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Problems where a quantum proof can be verified in polynomial time. Example: local Hamiltonian problem (QMA‑complete)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-5-qma",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-5-qma",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-5-qma",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-5-qma'\ncircuit = QuantumCircuit(1)\ncircuit.rz(4.01425728, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rz', 'angle': 4.01425728, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.5 QMA",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-6-np-hardness",
+      "title": "28.6 NP‑Hardness",
+      "parentId": null,
+      "content": {
+        "statement": "At least as hard as any NP problem. Quantum: QMA‑hard problems.",
+        "explanation": "Example: ground state energy of local Hamiltonians is QMA‑hard.",
+        "example": "Quantum k‑local Hamiltonian problem.",
+        "keyTakeaways": [
+          "At least as hard as any NP problem.",
+          "Know what problem or physical phenomenon 28.6 NP‑Hardness addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "At least as hard as any NP problem. Quantum: QMA‑hard problems."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Example: ground state energy of local Hamiltonians is QMA‑hard."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-6-np-hardness",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-6-np-hardness",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-6-np-hardness",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-6-np-hardness'\ncircuit = QuantumCircuit(1)\ncircuit.ry(3.78736448, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'ry', 'angle': 3.78736448, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.6 NP‑Hardness",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-7-quantum-speedup",
+      "title": "28.7 Quantum Speedup",
+      "parentId": null,
+      "content": {
+        "statement": "Types: polynomial (Grover: O(√N) vs O(N)), exponential (Shor: O(n³) vs O(e^{n^{1/3}})), superpolynomial (between polynomial and exponential).",
+        "explanation": "Not all problems show speedup; some have no proven advantage.",
+        "example": "Grover: O(√N) vs O(N).",
+        "keyTakeaways": [
+          "Types: polynomial (Grover: O(√N) vs O(N)), exponential (Shor: O(n³) vs O(e^{n^{1/3}})), superpolynomial (between polynomial and exponential).",
+          "Know what problem or physical phenomenon 28.7 Quantum Speedup addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Types: polynomial (Grover: O(√N) vs O(N)), exponential (Shor: O(n³) vs O(e^{n^{1/3}})), superpolynomial (between polynomial and exponential)."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Not all problems show speedup; some have no proven advantage."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-7-quantum-speedup",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-7-quantum-speedup",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-7-quantum-speedup",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-7-quantum-speedup'\ncircuit = QuantumCircuit(1)\ncircuit.rx(6.17846555, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 6.17846555, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.7 Quantum Speedup",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-8-oracle-models",
+      "title": "28.8 Oracle Models",
+      "parentId": null,
+      "content": {
+        "statement": "Black‑box function (oracle) queries. Query complexity measures number of calls.",
+        "explanation": "Deutsch‑Jozsa: 1 quantum vs 2ⁿ⁻¹+1 classical queries.",
+        "example": "Simon's problem.",
+        "keyTakeaways": [
+          "Black‑box function (oracle) queries.",
+          "Know what problem or physical phenomenon 28.8 Oracle Models addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Black‑box function (oracle) queries. Query complexity measures number of calls."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Deutsch‑Jozsa: 1 quantum vs 2ⁿ⁻¹+1 classical queries."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-8-oracle-models",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-8-oracle-models",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-8-oracle-models",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-8-oracle-models'\ncircuit = QuantumCircuit(1)\ncircuit.rx(0.73303829, 0)\nsv = Statevector.from_instruction(circuit)\nprint(json.dumps({'lesson': LESSON_ID, 'gate': 'rx', 'angle': 0.73303829, 'statevector': [complex(x).__repr__() for x in sv.data]}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.8 Oracle Models",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    },
+    {
+      "id": "28-28-9-query-complexity",
+      "title": "28.9 Query Complexity",
+      "parentId": null,
+      "content": {
+        "statement": "Minimum number of oracle queries needed.",
+        "explanation": "Quantum vs classical table: Unstructured search O(√N) vs O(N); Parity N/2 vs N/2; Period finding O(polylog N) vs O(√N).",
+        "example": "Grover search.",
+        "keyTakeaways": [
+          "Minimum number of oracle queries needed.",
+          "Know what problem or physical phenomenon 28.9 Query Complexity addresses."
+        ]
+      },
+      "formulas": [],
+      "derivation": {
+        "type": "conceptual",
+        "steps": [
+          {
+            "step": 1,
+            "title": "State the setup",
+            "text": "Minimum number of oracle queries needed."
+          },
+          {
+            "step": 2,
+            "title": "Reason from the principles",
+            "text": "Quantum vs classical table: Unstructured search O(√N) vs O(N); Parity N/2 vs N/2; Period finding O(polylog N) vs O(√N)."
+          },
+          {
+            "step": 3,
+            "title": "Connect to an observable consequence",
+            "text": "Use the concept to predict, calculate, or distinguish a measurable outcome."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-9-query-complexity",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-9-query-complexity",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-9-query-complexity",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-9-query-complexity'\nz = 0.6 + 0.8j\nprint(json.dumps({'lesson': LESSON_ID, 'real': z.real, 'imag': z.imag, 'magnitude': abs(z), 'phase': __import__('cmath').phase(z)}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.9 Query Complexity",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": false,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": true,
+        "legacyVisualTypes": [
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "28-28-10-adiabatic-computation",
+      "title": "28.10 Adiabatic Computation",
+      "parentId": null,
+      "content": {
+        "statement": "Evolve Hamiltonian slowly from H₀ to H₁: H(t) = (1−t/T)H₀ + (t/T)H₁.",
+        "explanation": "Adiabatic theorem: T ≫ max|⟨1|dH/dt|0⟩| / min Δ², where Δ is the energy gap. Adiabatic QC is equivalent to circuit‑model QC.",
+        "example": "Solving optimization problems via quantum annealing.",
+        "keyTakeaways": [
+          "Evolve Hamiltonian slowly from H₀ to H₁: H(t) = (1−t/T)H₀ + (t/T)H₁.",
+          "Know what problem or physical phenomenon 28.10 Adiabatic Computation addresses.",
+          "Be able to interpret every symbol and state the assumptions behind the formula."
+        ]
+      },
+      "formulas": [
+        {
+          "id": "eq-f5569210",
+          "latex": "T ≫ max|⟨1|dH/dt|0⟩| / min Δ².",
+          "description": "Formula carried from the source curriculum; verify notation against the surrounding lesson."
+        }
+      ],
+      "derivation": {
+        "type": "mathematical",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Identify the quantity",
+            "text": "Evolve Hamiltonian slowly from H₀ to H₁: H(t) = (1−t/T)H₀ + (t/T)H₁."
+          },
+          {
+            "step": 2,
+            "title": "Apply the defining relation",
+            "formula": "T ≫ max|⟨1|dH/dt|0⟩| / min Δ².",
+            "text": "Use the defining equation under the assumptions stated in the lesson."
+          },
+          {
+            "step": 3,
+            "title": "Interpret the result",
+            "text": "Adiabatic theorem: T ≫ max|⟨1|dH/dt|0⟩| / min Δ², where Δ is the energy gap. Adiabatic QC is equivalent to circuit‑model QC."
+          }
+        ]
+      },
+      "visuals": [
+        {
+          "id": "viz-28-28-10-adiabatic-computation",
+          "type": "2d",
+          "renderer": "concept-map",
+          "interactive": true,
+          "props": {
+            "expandable": true
+          }
+        }
+      ],
+      "quantumCircuit": {
+        "id": "circ-28-28-10-adiabatic-computation",
+        "qubits": 1,
+        "classicalBits": 1,
+        "operations": [
+          {
+            "gate": "h",
+            "targets": [
+              0
+            ]
+          }
+        ],
+        "measurement": {
+          "mode": "optional",
+          "basis": "Z"
+        },
+        "renderer": "quantum-circuit"
+      },
+      "codeExamples": [
+        {
+          "id": "code-28-28-10-adiabatic-computation",
+          "language": "python",
+          "framework": "qiskit",
+          "entrypoint": "main",
+          "requirements": [
+            "qiskit>=2.5.0"
+          ],
+          "code": "from qiskit import QuantumCircuit\nfrom qiskit.quantum_info import Statevector\nimport json\n\nLESSON_ID = '28-28-10-adiabatic-computation'\ntable = [{'a': a, 'b': b, 'and': a & b, 'or': a | b, 'xor': a ^ b} for a in (0,1) for b in (0,1)]\nprint(json.dumps({'lesson': LESSON_ID, 'table': table}))\n",
+          "stdoutFormat": "json-or-text",
+          "sandboxSafe": true,
+          "notes": "Designed as a standalone educational example; backend should execute in an isolated process with time/memory limits."
+        }
+      ],
+      "references": [
+        {
+          "type": "textbook",
+          "title": "Watrous, The Theory of Quantum Information",
+          "url": "https://doi.org/10.1017/9781316848142"
+        }
+      ],
+      "sourceAudit": {
+        "sourceTitle": "28.10 Adiabatic Computation",
+        "sourceHadStatement": true,
+        "sourceHadExplanation": true,
+        "sourceHadExample": true,
+        "sourceHadFormula": true,
+        "sourceHadDerivation": false,
+        "sourceHadVisuals": false,
+        "legacyVisualTypes": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "textbook",
+      "title": "Watrous, The Theory of Quantum Information",
+      "url": "https://doi.org/10.1017/9781316848142"
+    }
+  ]
+}
