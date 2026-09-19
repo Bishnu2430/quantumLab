@@ -133,11 +133,12 @@ export const QuantumNeuralBackground: React.FC = () => {
       ctx.rotate(rotation);
 
       // Color scheme:
-      // Idle: Deep solid slate/black (#0F172A) representing quantum on white background
-      // Hovered: Glowing Royal Quantum Blue (#2563EB)
-      const strokeColor = isHovered ? "#2563EB" : "#0F172A";
-      const badgeFill = isHovered ? "#2563EB" : "#0F172A";
-      const ellipseColor = isHovered ? "#3B82F6" : "#334155";
+      // Colours are read from the active theme's design tokens rather than
+      // hardcoded, so the canvas follows light/dark like the rest of the UI.
+      const theme = readThemeColors();
+      const strokeColor = isHovered ? theme.accent : theme.ink;
+      const badgeFill = isHovered ? theme.accent : theme.ink;
+      const ellipseColor = isHovered ? theme.accent : theme.muted;
 
       // 1. Outer Sphere Circle
       ctx.beginPath();
@@ -178,7 +179,7 @@ export const QuantumNeuralBackground: React.FC = () => {
       ctx.arc(0, -r, badgeR, 0, Math.PI * 2);
       ctx.fillStyle = badgeFill;
       ctx.fill();
-      ctx.fillStyle = "#FFFFFF";
+      ctx.fillStyle = theme.onAccent;
       ctx.font = `bold ${Math.round(r * 0.34)}px monospace`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
@@ -189,7 +190,7 @@ export const QuantumNeuralBackground: React.FC = () => {
       ctx.arc(0, r, badgeR, 0, Math.PI * 2);
       ctx.fillStyle = badgeFill;
       ctx.fill();
-      ctx.fillStyle = "#FFFFFF";
+      ctx.fillStyle = theme.onAccent;
       ctx.fillText("1", 0, r);
 
       // 5. State Vector Arrow (pointing from center at vecAngle)
@@ -418,7 +419,9 @@ export const QuantumNeuralBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-20"
+      // z-0 keeps the canvas behind page content. At z-20 it painted over
+      // `main`, hiding everything below the fold.
+      className="fixed inset-0 pointer-events-none z-0"
       style={{
         background: "transparent",
         width: "100vw",
@@ -427,3 +430,27 @@ export const QuantumNeuralBackground: React.FC = () => {
     />
   );
 };
+
+/**
+ * Reads the current theme's colours from the CSS custom properties.
+ *
+ * Canvas cannot use CSS classes, so the tokens are resolved from the computed
+ * style of :root. Re-read each frame so a theme switch takes effect without a
+ * remount.
+ */
+function readThemeColors() {
+  if (typeof window === "undefined") {
+    return { ink: "#0f172a", muted: "#334155", accent: "#2563eb", onAccent: "#ffffff" };
+  }
+  const styles = getComputedStyle(document.documentElement);
+  const rgb = (name: string, fallback: string) => {
+    const value = styles.getPropertyValue(name).trim();
+    return value ? `rgb(${value})` : fallback;
+  };
+  return {
+    ink: rgb("--color-text", "#0f172a"),
+    muted: rgb("--color-text-muted", "#334155"),
+    accent: rgb("--color-accent", "#2563eb"),
+    onAccent: rgb("--color-canvas", "#ffffff"),
+  };
+}

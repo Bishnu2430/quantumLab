@@ -10,6 +10,8 @@
  * placeholder panel.
  */
 
+import type { QuantumGate } from "@/lib/api/quantum";
+
 export type Difficulty = "beginner" | "intermediate" | "advanced";
 
 /** Renderers available to a lesson, mirroring docs/content/visual-registry.json. */
@@ -115,7 +117,8 @@ export interface VisualSpec {
 /** A circuit operation, in the backend's canonical Quantum IR form. */
 export interface LessonOperation {
   id: string;
-  gate: string;
+  /** Shares the API's gate union so a lesson cannot name a gate the backend rejects. */
+  gate: QuantumGate;
   targets: number[];
   controls?: number[];
   clbits?: number[];

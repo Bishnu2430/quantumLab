@@ -2,79 +2,271 @@
 @tailwind components;
 @tailwind utilities;
 
+/* KaTeX ships its own stylesheet; it is imported in the math component. */
+
+/**
+ * Design tokens.
+ *
+ * Colours are stored as space-separated RGB channels so Tailwind can apply
+ * opacity modifiers (`bg-surface/60`). Components reference semantic names
+ * only — never a raw hex — which is what lets the whole app switch themes
+ * without touching a single component.
+ */
 :root {
-  --bg-page: #f8fafc;
-  --surface-card: #ffffff;
-  --surface-elevated: #f1f5f9;
-  --border-subtle: #cbd5e1;
-  --border-active: #2563eb;
-  --text-main: #0f172a;
-  --text-muted: #334155;
-  --accent-primary: #2563eb;
-  --accent-light: #eff6ff;
+  /* surfaces */
+  --color-canvas: 248 250 252;
+  --color-surface: 255 255 255;
+  --color-surface-raised: 241 245 249;
+  --color-surface-sunken: 226 232 240;
+
+  /* borders */
+  --color-border: 203 213 225;
+  --color-border-strong: 148 163 184;
+
+  /* text */
+  --color-text: 15 23 42;
+  --color-text-muted: 71 85 105;
+  --color-text-subtle: 100 116 139;
+  --color-text-inverse: 248 250 252;
+
+  /* accent */
+  --color-accent: 37 99 235;
+  --color-accent-hover: 29 78 216;
+  --color-accent-soft: 239 246 255;
+  --color-accent-border: 191 219 254;
+  --color-accent-text: 30 64 175;
+
+  /* semantic states, used by callouts and validation */
+  --color-success: 22 101 52;
+  --color-success-soft: 240 253 244;
+  --color-success-border: 134 239 172;
+
+  --color-warning: 146 64 14;
+  --color-warning-soft: 255 251 235;
+  --color-warning-border: 252 211 77;
+
+  --color-danger: 153 27 27;
+  --color-danger-soft: 254 242 242;
+  --color-danger-border: 252 165 165;
+
+  --color-info: 30 58 138;
+  --color-info-soft: 239 246 255;
+  --color-info-border: 147 197 253;
+
+  /**
+   * Data-visualisation palette.
+   *
+   * Declared separately from the UI colours because charts and 3D scenes need
+   * hues that stay distinguishable against both a light and a dark canvas.
+   * These are overridden in dark mode to keep contrast, not merely inverted.
+   */
+  --viz-primary: 37 99 235;
+  --viz-secondary: 217 70 239;
+  --viz-tertiary: 13 148 136;
+  --viz-quaternary: 234 88 12;
+  --viz-positive: 22 163 74;
+  --viz-negative: 220 38 38;
+  --viz-axis: 148 163 184;
+  --viz-grid: 226 232 240;
+  --viz-label: 51 65 85;
+  --viz-sphere: 37 99 235;
+  --viz-sphere-wire: 148 163 184;
+
+  --shadow-card: 0 1px 3px 0 rgb(15 23 42 / 0.06);
+  --shadow-raised: 0 4px 12px rgb(15 23 42 / 0.08);
 }
 
-body {
-  color: #0f172a;
-  background-color: #f8fafc;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  overflow-x: hidden;
+/**
+ * Dark theme.
+ *
+ * Applied when the user explicitly chooses dark, or when they have no stored
+ * preference and their system asks for it. The `:root:not([data-theme="light"])`
+ * guard is what stops an explicit light choice being overridden by the OS.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-canvas: 9 12 20;
+    --color-surface: 17 23 36;
+    --color-surface-raised: 27 35 51;
+    --color-surface-sunken: 12 17 27;
+
+    --color-border: 41 52 74;
+    --color-border-strong: 71 85 105;
+
+    --color-text: 226 232 240;
+    --color-text-muted: 148 163 184;
+    --color-text-subtle: 100 116 139;
+    --color-text-inverse: 15 23 42;
+
+    --color-accent: 96 165 250;
+    --color-accent-hover: 147 197 253;
+    --color-accent-soft: 23 37 64;
+    --color-accent-border: 40 63 105;
+    --color-accent-text: 147 197 253;
+
+    --color-success: 134 239 172;
+    --color-success-soft: 15 40 27;
+    --color-success-border: 27 78 51;
+
+    --color-warning: 252 211 77;
+    --color-warning-soft: 44 33 11;
+    --color-warning-border: 92 66 17;
+
+    --color-danger: 252 165 165;
+    --color-danger-soft: 47 17 17;
+    --color-danger-border: 95 32 32;
+
+    --color-info: 147 197 253;
+    --color-info-soft: 20 34 61;
+    --color-info-border: 36 60 102;
+
+    /* Brightened rather than inverted: these must read against a dark canvas. */
+    --viz-primary: 96 165 250;
+    --viz-secondary: 232 121 249;
+    --viz-tertiary: 45 212 191;
+    --viz-quaternary: 251 146 60;
+    --viz-positive: 74 222 128;
+    --viz-negative: 248 113 113;
+    --viz-axis: 71 85 105;
+    --viz-grid: 30 41 59;
+    --viz-label: 148 163 184;
+    --viz-sphere: 96 165 250;
+    --viz-sphere-wire: 71 85 105;
+
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+    --shadow-raised: 0 4px 12px rgb(0 0 0 / 0.5);
+  }
 }
 
-/* Accessible High-Contrast Focus Rings */
-*:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
+/* An explicit choice always wins over the system preference. */
+:root[data-theme="dark"] {
+  --color-canvas: 9 12 20;
+  --color-surface: 17 23 36;
+  --color-surface-raised: 27 35 51;
+  --color-surface-sunken: 12 17 27;
+
+  --color-border: 41 52 74;
+  --color-border-strong: 71 85 105;
+
+  --color-text: 226 232 240;
+  --color-text-muted: 148 163 184;
+  --color-text-subtle: 100 116 139;
+  --color-text-inverse: 15 23 42;
+
+  --color-accent: 96 165 250;
+  --color-accent-hover: 147 197 253;
+  --color-accent-soft: 23 37 64;
+  --color-accent-border: 40 63 105;
+  --color-accent-text: 147 197 253;
+
+  --color-success: 134 239 172;
+  --color-success-soft: 15 40 27;
+  --color-success-border: 27 78 51;
+
+  --color-warning: 252 211 77;
+  --color-warning-soft: 44 33 11;
+  --color-warning-border: 92 66 17;
+
+  --color-danger: 252 165 165;
+  --color-danger-soft: 47 17 17;
+  --color-danger-border: 95 32 32;
+
+  --color-info: 147 197 253;
+  --color-info-soft: 20 34 61;
+  --color-info-border: 36 60 102;
+
+  --viz-primary: 96 165 250;
+  --viz-secondary: 232 121 249;
+  --viz-tertiary: 45 212 191;
+  --viz-quaternary: 251 146 60;
+  --viz-positive: 74 222 128;
+  --viz-negative: 248 113 113;
+  --viz-axis: 71 85 105;
+  --viz-grid: 30 41 59;
+  --viz-label: 148 163 184;
+  --viz-sphere: 96 165 250;
+  --viz-sphere-wire: 71 85 105;
+
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-raised: 0 4px 12px rgb(0 0 0 / 0.5);
 }
 
-/* University Scientific Card Panel */
-.glass-panel {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  color: #0f172a;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Anchored headings clear the sticky header. */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: rgb(var(--color-canvas));
+    color: rgb(var(--color-text));
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-accent) / 0.25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
-.glass-panel-active {
-  background: #ffffff;
-  border: 1px solid #2563eb;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+@layer components {
+  .panel {
+    @apply bg-surface border border-border rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .panel-raised {
+    @apply bg-surface border border-accent-border rounded-xl;
+    box-shadow: var(--shadow-raised);
+  }
+
+  .gate-badge {
+    @apply inline-flex items-center justify-center font-bold font-mono rounded-md
+           border select-none transition-colors;
+  }
+
+  /* Prose defaults for authored lesson text. */
+  .lesson-prose {
+    @apply text-[15px] leading-7 text-text-muted;
+  }
+
+  .lesson-prose strong {
+    @apply font-semibold text-text;
+  }
+
+  .lesson-prose code {
+    @apply font-mono text-[13px] px-1.5 py-0.5 rounded
+           bg-surface-raised border border-border text-text;
+  }
 }
 
-/* Gate Badges */
-.gate-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  border-radius: 4px;
-  user-select: none;
-  cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+/* KaTeX inherits the surrounding colour rather than forcing its own. */
+.katex {
+  color: inherit;
+  font-size: 1.05em;
 }
 
-.gate-h { background: #2563eb; color: #ffffff; border: 1px solid #1d4ed8; }
-.gate-x { background: #0284c7; color: #ffffff; border: 1px solid #0369a1; }
-.gate-y { background: #0d9488; color: #ffffff; border: 1px solid #0f766e; }
-.gate-z { background: #7e22ce; color: #ffffff; border: 1px solid #6b21a8; }
-.gate-cx { background: #be185d; color: #ffffff; border: 1px solid #9d174d; }
-.gate-cz { background: #a21caf; color: #ffffff; border: 1px solid #86198f; }
-.gate-swap { background: #ea580c; color: #ffffff; border: 1px solid #c2410c; }
-.gate-measure { background: #d97706; color: #ffffff; border: 1px solid #b45309; }
-
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+.katex-display {
+  margin: 0;
+  padding: 0.25rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
