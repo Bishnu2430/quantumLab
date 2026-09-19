@@ -1,28 +1,42 @@
-from typing import List, Optional, Dict, Literal
+from typing import Literal
+
 from pydantic import BaseModel, Field
+
+from app.services.quantum.gate_registry import GateId
+
 
 class QuantumOperation(BaseModel):
     id: str = Field(description="Unique operation identifier e.g. 'op-001'")
-    gate: Literal["h", "x", "y", "z", "s", "t", "rx", "ry", "rz", "cx", "cz", "swap", "toffoli", "ccx", "measure", "reset", "barrier"]
-    targets: List[int] = Field(description="Target qubit indices")
-    controls: Optional[List[int]] = Field(default=[], description="Control qubit indices")
-    clbits: Optional[List[int]] = Field(default=[], description="Classical bit indices for measurement")
-    params: Optional[List[float]] = Field(default=[], description="Gate parameters e.g. rotation angles")
-    moment: Optional[int] = Field(default=0, description="Column or time step index in canvas")
+    gate: GateId = Field(description="Gate identifier; see GateRegistry for the supported set")
+    targets: list[int] = Field(description="Target qubit indices")
+    controls: list[int] | None = Field(
+        default=[], description="Control qubit indices"
+    )
+    clbits: list[int] | None = Field(
+        default=[], description="Classical bit indices for measurement"
+    )
+    params: list[float] | None = Field(
+        default=[], description="Gate parameters e.g. rotation angles"
+    )
+    moment: int | None = Field(default=0, description="Column or time step index in canvas")
 
 class QuantumIR(BaseModel):
     numQubits: int = Field(ge=1, le=32, description="Number of qubits in circuit")
     numClbits: int = Field(default=0, ge=0, le=32, description="Number of classical bits")
-    operations: List[QuantumOperation] = Field(default=[], description="List of operations in sequence")
+    operations: list[QuantumOperation] = Field(
+        default=[], description="List of operations in sequence"
+    )
 
 class SimulationOptions(BaseModel):
     shots: int = Field(default=1024, ge=1, le=100000, description="Number of measurement shots")
-    mode: Literal["statevector", "shots", "both"] = Field(default="both", description="Simulation calculation mode")
-    seed: Optional[int] = Field(default=None, description="Random seed for reproducibility")
+    mode: Literal["statevector", "shots", "both"] = Field(
+        default="both", description="Simulation calculation mode"
+    )
+    seed: int | None = Field(default=None, description="Random seed for reproducibility")
 
 class SimulationRequest(BaseModel):
     circuit: QuantumIR
-    options: Optional[SimulationOptions] = Field(default_factory=SimulationOptions)
+    options: SimulationOptions | None = Field(default_factory=SimulationOptions)
 
 class ComplexAmplitude(BaseModel):
     state: str = Field(description="Binary basis state label, e.g., '00', '01'")
@@ -35,8 +49,10 @@ class SimulationResult(BaseModel):
     backend: str = "qiskit-aer"
     numQubits: int
     shots: int
-    counts: Optional[Dict[str, int]] = Field(default=None, description="Shot outcome counts")
-    probabilities: Dict[str, float] = Field(description="State probability distribution")
-    statevector: Optional[List[ComplexAmplitude]] = Field(default=None, description="Complex statevector amplitudes")
+    counts: dict[str, int] | None = Field(default=None, description="Shot outcome counts")
+    probabilities: dict[str, float] = Field(description="State probability distribution")
+    statevector: list[ComplexAmplitude] | None = Field(
+        default=None, description="Complex statevector amplitudes"
+    )
     durationMs: float = Field(description="Execution time in milliseconds")
     circuitDepth: int = Field(description="Compiled circuit depth")

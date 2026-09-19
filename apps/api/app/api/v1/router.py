@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from app.api.v1.circuits import router as circuits_router
 from app.api.v1.simulations import router as simulations_router
 
