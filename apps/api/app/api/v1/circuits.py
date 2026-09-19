@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
+
 from app.schemas.quantum import QuantumIR
-from app.services.quantum.simulator import QiskitQuantumBackend, CircuitValidationError
+from app.services.quantum.simulator import CircuitValidationError, QiskitQuantumBackend
 
 router = APIRouter(prefix="/circuits", tags=["circuits"])
 backend = QiskitQuantumBackend()
@@ -20,5 +21,5 @@ def validate_circuit(circuit: QuantumIR):
     except CircuitValidationError as e:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail={"code": "CIRCUIT_VALIDATION_ERROR", "message": str(e)}
-        )
+            detail={"code": "CIRCUIT_VALIDATION_ERROR", "message": str(e)},
+        ) from e

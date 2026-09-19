@@ -1,18 +1,20 @@
 import time
+
 import numpy as np
-from typing import Dict, List, Tuple
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
 from qiskit_aer import AerSimulator
 
 from app.schemas.quantum import (
+    ComplexAmplitude,
     QuantumIR,
     SimulationOptions,
     SimulationResult,
-    ComplexAmplitude,
 )
 from app.services.quantum.backends.base import AbstractQuantumBackend
+from app.services.quantum.ir_normalizer import normalize_circuit
 from app.services.quantum.ir_validator import IRValidator
+
 
 class QiskitAerBackend(AbstractQuantumBackend):
     """Qiskit Aer execution backend adapter."""
@@ -22,10 +24,13 @@ class QiskitAerBackend(AbstractQuantumBackend):
         return "qiskit-aer"
 
     def validate(self, circuit: QuantumIR) -> None:
-        IRValidator.validate(circuit)
+        IRValidator.validate(normalize_circuit(circuit))
 
-    def compile_ir(self, circuit: QuantumIR) -> Tuple[QuantumCircuit, QuantumCircuit]:
-        self.validate(circuit)
+    def compile_ir(self, circuit: QuantumIR) -> tuple[QuantumCircuit, QuantumCircuit]:
+        # Normalize before validating so the loop below can assume canonical
+        # operand placement: controls in `controls`, aliases already resolved.
+        circuit = normalize_circuit(circuit)
+        IRValidator.validate(circuit)
         num_q = circuit.numQubits
         num_c = max(circuit.numClbits, 1)
 
@@ -66,28 +71,28 @@ class QiskitAerBackend(AbstractQuantumBackend):
                 eval_qc.rz(angle, op.targets[0])
                 measure_qc.rz(angle, op.targets[0])
             elif gate == "cx":
-                control = op.controls[0] if op.controls else op.targets[0]
-                target = op.targets[0] if op.controls else op.targets[1]
-                eval_qc.cx(control, target)
-                measure_qc.cx(control, target)
+                eval_qc.cx(op.controls[0], op.targets[0])
+                measure_qc.cx(op.controls[0], op.targets[0])
             elif gate == "cz":
-                control = op.controls[0] if op.controls else op.targets[0]
-                target = op.targets[0] if op.controls else op.targets[1]
-                eval_qc.cz(control, target)
-                measure_qc.cz(control, target)
+                eval_qc.cz(op.controls[0], op.targets[0])
+                measure_qc.cz(op.controls[0], op.targets[0])
             elif gate == "swap":
                 t1, t2 = op.targets[0], op.targets[1]
                 eval_qc.swap(t1, t2)
                 measure_qc.swap(t1, t2)
-            elif gate in ["toffoli", "ccx"]:
+            elif gate == "ccx":
                 c1, c2 = op.controls[0], op.controls[1]
-                target = op.targets[0]
-                eval_qc.ccx(c1, c2, target)
-                measure_qc.ccx(c1, c2, target)
+                eval_qc.ccx(c1, c2, op.targets[0])
+                measure_qc.ccx(c1, c2, op.targets[0])
             elif gate == "measure":
-                target_q = op.targets[0]
-                target_c = op.clbits[0] if op.clbits else 0
-                measure_qc.measure(target_q, target_c)
+                # Validated 1:1 against clbits, so zip covers every target.
+                for target_q, target_c in zip(op.targets, op.clbits, strict=True):
+                    measure_qc.measure(target_q, target_c)
+            elif gate == "reset":
+                # Non-unitary: collapses the qubit to |0> in both circuits.
+                for target_q in op.targets:
+                    eval_qc.reset(target_q)
+                    measure_qc.reset(target_q)
             elif gate == "barrier":
                 eval_qc.barrier(op.targets)
                 measure_qc.barrier(op.targets)
@@ -107,8 +112,8 @@ class QiskitAerBackend(AbstractQuantumBackend):
         shots = options.shots
 
         # Statevector computation
-        statevector_list: List[ComplexAmplitude] = []
-        probabilities_dict: Dict[str, float] = {}
+        statevector_list: list[ComplexAmplitude] = []
+        probabilities_dict: dict[str, float] = {}
 
         sv = Statevector.from_instruction(eval_qc)
         raw_probs = sv.probabilities()
@@ -137,7 +142,7 @@ class QiskitAerBackend(AbstractQuantumBackend):
             )
 
         # Shot execution
-        counts_dict: Dict[str, int] = {}
+        counts_dict: dict[str, int] = {}
         if options.mode in ["shots", "both"]:
             simulator = AerSimulator()
             job = simulator.run(measure_qc, shots=shots, seed_simulator=options.seed)

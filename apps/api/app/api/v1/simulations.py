@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from app.schemas.quantum import SimulationRequest, SimulationResult, SimulationOptions
+
+from app.schemas.quantum import SimulationOptions, SimulationRequest, SimulationResult
 from app.services.quantum.backends.qiskit_aer import QiskitAerBackend
 from app.services.quantum.ir_validator import CircuitValidationError
 
@@ -15,10 +16,10 @@ def run_simulation(request: SimulationRequest):
     except CircuitValidationError as e:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail={"code": "CIRCUIT_VALIDATION_ERROR", "message": str(e)}
-        )
+            detail={"code": "CIRCUIT_VALIDATION_ERROR", "message": str(e)},
+        ) from e
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={"code": "SIMULATION_EXECUTION_ERROR", "message": str(e)}
-        )
+            detail={"code": "SIMULATION_EXECUTION_ERROR", "message": str(e)},
+        ) from e

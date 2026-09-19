@@ -1,6 +1,8 @@
 import pytest
+
 from app.schemas.quantum import QuantumIR, QuantumOperation, SimulationOptions
-from app.services.quantum.simulator import QiskitQuantumBackend, CircuitValidationError
+from app.services.quantum.simulator import CircuitValidationError, QiskitQuantumBackend
+
 
 def test_bell_state_simulation():
     backend = QiskitQuantumBackend()

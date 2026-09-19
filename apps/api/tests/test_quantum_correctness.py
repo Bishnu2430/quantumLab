@@ -1,7 +1,9 @@
 import pytest
+
 from app.schemas.quantum import QuantumIR, QuantumOperation, SimulationOptions
 from app.services.quantum.backends.qiskit_aer import QiskitAerBackend
 from app.services.quantum.ir_validator import CircuitValidationError
+
 
 @pytest.fixture
 def backend():
@@ -93,7 +95,8 @@ def test_toffoli_ccx_gate(backend):
         operations=[
             QuantumOperation(id="op-1", gate="x", targets=[0]), # q[0] = 1
             QuantumOperation(id="op-2", gate="x", targets=[1]), # q[1] = 1
-            QuantumOperation(id="op-3", gate="ccx", controls=[0, 1], targets=[2]) # CCX -> q[2] flips to 1
+            # CCX -> q[2] flips to 1
+            QuantumOperation(id="op-3", gate="ccx", controls=[0, 1], targets=[2]),
         ]
     )
     res = backend.run(circuit, SimulationOptions(shots=100))
@@ -105,7 +108,8 @@ def test_swap_gate(backend):
         numQubits=2,
         operations=[
             QuantumOperation(id="op-1", gate="x", targets=[1]), # q[1]=1 -> bitstring "10"
-            QuantumOperation(id="op-2", gate="swap", targets=[0, 1]) # SWAP -> q[0]=1, q[1]=0 -> bitstring "01"
+            # SWAP -> q[0]=1, q[1]=0 -> bitstring "01"
+            QuantumOperation(id="op-2", gate="swap", targets=[0, 1]),
         ]
     )
     res = backend.run(circuit, SimulationOptions(shots=100))
