@@ -1,128 +1,110 @@
-"use client";
-
-import React from "react";
 import Link from "next/link";
-import { CircleDot, Layers2, BarChart3, Waypoints, GitBranch, ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
+import { BookOpen, Clock, Code2, Cpu, Eye } from "lucide-react";
 
-interface ModuleCardSpec {
-  id: string;
-  number: string;
-  title: string;
-  description: string;
-  difficulty: string;
-  minutes: number;
-  href: string;
-  icon: any;
-}
+import { LESSONS } from "@/content";
 
-const MODULES: ModuleCardSpec[] = [
-  {
-    id: "qubits",
-    number: "01",
-    title: "Qubits & State Vector",
-    description: "Learn how a qubit is represented, how amplitudes describe its state, and how the Bloch sphere gives that state a geometric picture.",
-    difficulty: "Beginner",
-    minutes: 15,
-    href: "/learn/qubits",
-    icon: CircleDot,
-  },
-  {
-    id: "superposition",
-    number: "02",
-    title: "Superposition & Hadamard",
-    description: "See how a qubit can be placed into superposition and follow the Hadamard transformation from matrix to measurement.",
-    difficulty: "Beginner",
-    minutes: 20,
-    href: "/learn/superposition",
-    icon: Layers2,
-  },
-  {
-    id: "measurement",
-    number: "03",
-    title: "Measurement & Collapse",
-    description: "Explore what happens when a quantum state is measured and how repeated shots reveal the underlying probabilities.",
-    difficulty: "Beginner",
-    minutes: 15,
-    href: "/learn/measurement",
-    icon: BarChart3,
-  },
-  {
-    id: "gates",
-    number: "04",
-    title: "Single-Qubit Gates",
-    description: "Study X, Y, Z and Hadamard gates through their matrices, state transformations and Bloch-sphere rotations.",
-    difficulty: "Intermediate",
-    minutes: 15,
-    href: "/learn/gates",
-    icon: Waypoints,
-  },
-  {
-    id: "entanglement",
-    number: "05",
-    title: "CNOT & Entanglement",
-    description: "Master multi-qubit basis states |00⟩..|11⟩, the Controlled-NOT gate, non-separability, and prepare Bell state |Φ⁺⟩.",
-    difficulty: "Intermediate",
-    minutes: 25,
-    href: "/learn/entanglement",
-    icon: GitBranch,
-  },
-];
+export const metadata: Metadata = {
+  title: "Curriculum — PBQuantum Labs",
+  description:
+    "A sequenced course in quantum computing: derivations, interactive visuals, and circuits you run on a real simulator.",
+};
 
-export default function CurriculumOverviewPage() {
+const DIFFICULTY_STYLES: Record<string, string> = {
+  beginner: "bg-success-soft text-success border-success-border",
+  intermediate: "bg-warning-soft text-warning border-warning-border",
+  advanced: "bg-danger-soft text-danger border-danger-border",
+};
+
+export default function CurriculumPage() {
+  const totalMinutes = LESSONS.reduce((sum, lesson) => sum + lesson.estimatedMinutes, 0);
+
   return (
-    <div className="space-y-8 pb-12 max-w-5xl mx-auto">
-      {/* Header Banner */}
-      <div className="glass-panel p-6 sm:p-8 space-y-3 bg-white border border-[#E2E8F0]">
-        <div className="text-xs font-mono text-[#2563EB] font-semibold uppercase tracking-wider">
-          PBQuantum Labs · Interactive Curriculum
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#0F172A] tracking-tight">
-          Learn Quantum Computing
-        </h1>
-        <p className="text-sm text-[#475569] max-w-2xl leading-relaxed">
-          Build the fundamentals step by step, then test what you learn with interactive circuits and simulations.
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+      <header className="mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-text">Curriculum</h1>
+        <p className="mt-2 text-[15px] leading-7 text-text-muted max-w-prose">
+          Each lesson builds the mathematics, then lets you test it. Every circuit here runs on
+          Qiskit Aer, and every stated result is verified against that simulator before it ships.
         </p>
-      </div>
+        <p className="mt-3 text-[13px] text-text-subtle">
+          {LESSONS.length} lessons · about {Math.round(totalMinutes / 60 * 10) / 10} hours
+        </p>
+      </header>
 
-      {/* Module Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {MODULES.map((mod) => {
-          const Icon = mod.icon;
-          return (
+      <ol className="space-y-3">
+        {LESSONS.map((lesson) => (
+          <li key={lesson.slug}>
             <Link
-              key={mod.id}
-              href={mod.href}
-              className="glass-panel p-6 border border-[#E2E8F0] hover:border-[#2563EB] transition-all group flex flex-col justify-between space-y-4 bg-white focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:outline-none rounded-xl shadow-xs"
+              href={`/learn/${lesson.slug}`}
+              className="block panel p-4 hover:border-accent-border transition-colors group"
             >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="font-semibold text-[#2563EB] bg-[#EFF6FF] px-2.5 py-1 rounded border border-[#BFDBFE]">
-                    Module {mod.number}
-                  </span>
-                  <span className="text-[#64748B] font-medium">{mod.difficulty} · {mod.minutes} min</span>
-                </div>
+              <div className="flex items-start gap-4">
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 w-9 h-9 rounded-lg bg-accent-soft border border-accent-border
+                             flex items-center justify-center font-mono text-xs font-bold text-accent-text"
+                >
+                  {String(lesson.order).padStart(2, "0")}
+                </span>
 
-                <div className="flex items-start gap-3.5 pt-1">
-                  <div className="p-2.5 rounded-lg bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] shrink-0">
-                    <Icon className="w-5 h-5" />
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <h2 className="text-[15px] font-semibold text-text group-hover:text-accent transition-colors">
+                      {lesson.title}
+                    </h2>
+                    <span
+                      className={`px-1.5 py-0.5 rounded text-[10px] font-medium capitalize border ${
+                        DIFFICULTY_STYLES[lesson.difficulty]
+                      }`}
+                    >
+                      {lesson.difficulty}
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-[#0F172A] group-hover:text-[#2563EB] transition-colors">
-                      {mod.title}
-                    </h3>
-                    <p className="text-xs text-[#475569] leading-relaxed mt-1">{mod.description}</p>
+
+                  <p className="text-[13px] leading-6 text-text-muted">{lesson.summary}</p>
+
+                  {/* Badges reflect what the lesson actually contains, so a
+                      theory lesson never advertises a circuit it does not have. */}
+                  <div className="flex flex-wrap items-center gap-3 mt-2.5 text-[11px] text-text-subtle">
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="w-3 h-3" aria-hidden="true" />
+                      {lesson.estimatedMinutes} min
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <BookOpen className="w-3 h-3" aria-hidden="true" />
+                      {lesson.sections.length} sections
+                    </span>
+                    {lesson.visual && (
+                      <span className="inline-flex items-center gap-1">
+                        <Eye className="w-3 h-3" aria-hidden="true" />
+                        Interactive
+                      </span>
+                    )}
+                    {lesson.circuit && (
+                      <span className="inline-flex items-center gap-1 text-accent">
+                        <Cpu className="w-3 h-3" aria-hidden="true" />
+                        Runnable circuit
+                      </span>
+                    )}
+                    {lesson.code && (
+                      <span className="inline-flex items-center gap-1">
+                        <Code2 className="w-3 h-3" aria-hidden="true" />
+                        Code
+                      </span>
+                    )}
                   </div>
                 </div>
-              </div>
-
-              <div className="flex items-center justify-end text-xs font-semibold text-[#2563EB] group-hover:translate-x-1 transition-transform pt-3 border-t border-[#E2E8F0]">
-                <span className="mr-1.5">Start lesson</span>
-                <ArrowRight className="w-4 h-4 text-[#2563EB]" />
               </div>
             </Link>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ol>
+
+      <p className="mt-8 text-[13px] text-text-subtle">
+        More lessons are being written. Only completed lessons appear here — nothing is listed
+        until its content, visuals and verified circuits are finished.
+      </p>
     </div>
   );
 }

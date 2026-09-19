@@ -1,6 +1,13 @@
+/** Gate identifiers accepted by the API, mirroring the backend GateId enum. */
+export type QuantumGate =
+  | "h" | "x" | "y" | "z" | "s" | "t"
+  | "rx" | "ry" | "rz"
+  | "cx" | "cz" | "swap" | "ccx" | "toffoli"
+  | "measure" | "reset" | "barrier";
+
 export interface QuantumOperation {
   id: string;
-  gate: "h" | "x" | "y" | "z" | "s" | "t" | "rx" | "ry" | "rz" | "cx" | "cz" | "swap" | "ccx" | "toffoli" | "measure" | "barrier";
+  gate: QuantumGate;
   targets: number[];
   controls?: number[];
   clbits?: number[];
