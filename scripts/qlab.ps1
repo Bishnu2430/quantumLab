@@ -96,6 +96,11 @@ function Invoke-Dev {
 
 function Invoke-Test {
     Assert-Command uv
+    # Re-export first: the curriculum verification reads the JSON artifact, and
+    # a stale one would test yesterday's content.
+    Write-Info 'Exporting curriculum'
+    Push-Location $WebDir
+    try { npm run --silent content:export; if (-not $?) { exit 1 } } finally { Pop-Location }
     Write-Info 'Backend tests'
     Push-Location $ApiDir
     try { uv run pytest; if (-not $?) { exit 1 } } finally { Pop-Location }

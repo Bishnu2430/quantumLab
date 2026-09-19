@@ -34,3 +34,6 @@ yarn-error.log*
 
 # TypeScript incremental build info
 *.tsbuildinfo
+
+# Generated from apps/web/src/content — regenerate with `npm run content:export`
+packages/curriculum/curriculum.json

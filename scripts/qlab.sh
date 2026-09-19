@@ -97,6 +97,10 @@ cmd_dev() {
 
 cmd_test() {
   require uv
+  # Re-export first: the curriculum verification reads the JSON artifact, and a
+  # stale one would test yesterday's content.
+  c_info "Exporting curriculum"
+  (cd "$WEB_DIR" && npm run --silent content:export)
   c_info "Backend tests"
   (cd "$API_DIR" && uv run pytest)
   c_info "Frontend typecheck"
