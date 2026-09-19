@@ -19,6 +19,7 @@ dependencies = [
     "pyjwt[crypto]>=2.9.0",
     "python-multipart>=0.0.12",
     "httpx>=0.27.0",
+    "email-validator>=2.2.0",
 ]
 
 [project.optional-dependencies]
@@ -41,6 +42,7 @@ dev = [
     "pytest-cov>=5.0.0",
     "ruff>=0.7.0",
     "mypy>=1.11.0",
+    "aiosqlite>=0.22.1",
 ]
 
 [tool.uv]
@@ -50,6 +52,7 @@ default-groups = ["dev"]
 testpaths = ["tests"]
 pythonpath = ["."]
 addopts = "-q --strict-markers"
+asyncio_mode = "auto"
 markers = [
     "quantum: requires the qiskit extra to be installed",
 ]

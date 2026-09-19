@@ -1,40 +1,62 @@
-import os
+"""FastAPI application entrypoint."""
+
+from __future__ import annotations
+
+import logging
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_v1_router
+from app.core.config import get_settings
+from app.db.session import dispose_engine
+
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
+    app_settings = get_settings()
+    app_settings.validate_for_production()
+    logger.info("Starting quantum-lab-api in %s mode", app_settings.environment)
+    yield
+    await dispose_engine()
+
+
+settings = get_settings()
 
 app = FastAPI(
-    title="Quantum Lab Engine API",
-    description="AI-powered interactive quantum computing engine and simulation backend.",
-    version="0.1.0",
+    title="PBQuantum Labs API",
+    description="Quantum simulation, curriculum delivery, and sandboxed code execution.",
+    version="0.2.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
-# Configure CORS origins safely (Fix #19)
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",")
-
+# Credentials now travel in cookies, so the origin list must be explicit.
+# Browsers reject `Access-Control-Allow-Origin: *` on credentialed requests,
+# so the previous wildcard-in-development branch would have silently broken
+# authentication for every local developer.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins if os.getenv("ENVIRONMENT") == "production" else ["*"],
+    allow_origins=settings.allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
 )
 
 app.include_router(api_v1_router)
 
+
 @app.get("/health", tags=["system"])
-def health_check():
+def health_check() -> dict[str, str]:
     return {
         "status": "online",
         "service": "quantum-lab-api",
-        "version": "0.1.0",
-        "backend": "qiskit-aer"
+        "version": "0.2.0",
+        "backend": "qiskit-aer",
+        "environment": settings.environment,
     }
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
