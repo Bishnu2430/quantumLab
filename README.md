@@ -5,9 +5,9 @@ by step, every circuit runs on a real simulator, and **every stated result is
 verified against that simulator in CI** — if a lesson claims physics the
 simulator does not reproduce, the build fails and the content does not ship.
 
-Named for the idea the whole curriculum turns on: amplitudes are complex and can
-cancel, which is exactly what separates quantum mechanics from classical
-probability.
+Seventeen lessons take you from "what is a qubit" to Grover's search and BB84,
+each with worked derivations, an interactive visual, a circuit you run, and
+Python you execute in a sandbox.
 
 ---
 
@@ -146,7 +146,7 @@ cd apps/web && npm run dev
 ./scripts/qlab.sh test
 ```
 
-Runs 209 backend tests and the frontend typecheck. The suite uses file-backed
+Runs 217 backend tests and the frontend typecheck. The suite uses file-backed
 SQLite so it needs no database daemon; set `TEST_DATABASE_URL` to run it against
 Postgres.
 
