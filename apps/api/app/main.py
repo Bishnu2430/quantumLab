@@ -21,6 +21,16 @@ async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
     app_settings = get_settings()
     app_settings.validate_for_production()
     logger.info("Starting quantum-lab-api in %s mode", app_settings.environment)
+
+    # A sandbox container can outlive the process that launched it, so
+    # clear any strays before serving traffic.
+    try:
+        from app.services.execution.docker_runner import reap_orphaned_sandboxes
+
+        await reap_orphaned_sandboxes()
+    except Exception:
+        logger.debug("Sandbox reaper did not run.", exc_info=True)
+
     yield
     await dispose_engine()
 

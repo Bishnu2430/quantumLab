@@ -8,13 +8,9 @@
 FROM python:3.12-slim-bookworm
 
 # Pinned so an upstream release cannot silently change what learners execute.
-RUN pip install --no-cache-dir --require-hashes=false \
-      "numpy==2.3.4" \
-      "scipy==1.16.3" \
-      "qiskit==2.5.2" \
-      "qiskit-aer==0.17.2" \
- && find /usr/local -name "__pycache__" -type d -prune -exec rm -rf {} + \
- && find /usr/local -name "tests" -type d -prune -exec rm -rf {} +
+# Versions pinned so an upstream release cannot silently change what learners
+# execute. Caches and test suites are stripped to keep the image small.
+RUN pip install --no-cache-dir       "numpy==2.3.4"       "scipy==1.16.3"       "qiskit==2.5.2"       "qiskit-aer==0.17.2"  && find /usr/local/lib/python3.12 -type d -name "__pycache__" -exec rm -rf {} +  && find /usr/local/lib/python3.12 -type d -name "tests" -exec rm -rf {} +  && rm -rf /root/.cache
 
 # Matches the --user flag the runner passes; the image must not run as root
 # even if the flag is ever omitted.
@@ -24,5 +20,8 @@ RUN groupadd --gid 1001 sandbox \
 USER 1001:1001
 WORKDIR /sandbox
 
-# Overridden by the runner, which passes the script path explicitly.
-ENTRYPOINT ["python", "-I", "-B"]
+# No ENTRYPOINT on purpose. The runner passes the full command, so the
+# interpreter flags live next to the security flags rather than being split
+# across the image and the caller -- where they previously combined into
+# `python -I -B python -I -B main.py`.
+CMD ["python", "-c", "print('Provide a script to run.')"]

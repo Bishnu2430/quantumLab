@@ -14,6 +14,8 @@ interface GateSpec {
   /** Number of angle parameters the gate takes. */
   params: number;
   description: string;
+  /** What changes in the state when this gate is placed. */
+  effect: string;
 }
 
 /** Mirrors the backend GateRegistry; arity here must match arity there. */
@@ -21,37 +23,37 @@ export const PALETTE: { group: string; gates: GateSpec[] }[] = [
   {
     group: "Single qubit",
     gates: [
-      { gate: "h", label: "H", operands: ["target"], params: 0, description: "Hadamard — creates an equal superposition" },
-      { gate: "x", label: "X", operands: ["target"], params: 0, description: "Bit flip: |0⟩ ↔ |1⟩" },
-      { gate: "y", label: "Y", operands: ["target"], params: 0, description: "Bit and phase flip" },
-      { gate: "z", label: "Z", operands: ["target"], params: 0, description: "Phase flip: negates |1⟩" },
-      { gate: "s", label: "S", operands: ["target"], params: 0, description: "Quarter turn about z" },
-      { gate: "t", label: "T", operands: ["target"], params: 0, description: "Eighth turn about z" },
+      { gate: "h", label: "H", operands: ["target"], params: 0, description: "Hadamard — creates an equal superposition", effect: "Turns a definite 0 or 1 into an equal superposition, so the next measurement becomes a fair coin. Apply it twice and the qubit returns exactly to where it started." },
+      { gate: "x", label: "X", operands: ["target"], params: 0, description: "Bit flip: |0⟩ ↔ |1⟩", effect: "Swaps the amplitudes of |0⟩ and |1⟩. On a definite state this is an ordinary NOT; on a superposition it exchanges the two weights." },
+      { gate: "y", label: "Y", operands: ["target"], params: 0, description: "Bit and phase flip", effect: "Flips the bit and adds a phase at the same time — a half-turn about the y-axis of the Bloch sphere." },
+      { gate: "z", label: "Z", operands: ["target"], params: 0, description: "Phase flip: negates |1⟩", effect: "Negates the |1⟩ amplitude. Measurement probabilities do not move at all, but any later interference will notice." },
+      { gate: "s", label: "S", operands: ["target"], params: 0, description: "Quarter turn about z", effect: "A quarter turn about z: multiplies |1⟩ by i. Invisible to a measurement now, decisive once the branches recombine." },
+      { gate: "t", label: "T", operands: ["target"], params: 0, description: "Eighth turn about z", effect: "An eighth turn about z. Four of them make a Z. This is the gate that makes a circuit hard to simulate classically." },
     ],
   },
   {
     group: "Rotations",
     gates: [
-      { gate: "rx", label: "RX", operands: ["target"], params: 1, description: "Rotation about x by θ" },
-      { gate: "ry", label: "RY", operands: ["target"], params: 1, description: "Rotation about y by θ" },
-      { gate: "rz", label: "RZ", operands: ["target"], params: 1, description: "Rotation about z by θ" },
+      { gate: "rx", label: "RX", operands: ["target"], params: 1, description: "Rotation about x by θ", effect: "Rotates the state about the x-axis by your chosen angle, moving probability continuously between 0 and 1." },
+      { gate: "ry", label: "RY", operands: ["target"], params: 1, description: "Rotation about y by θ", effect: "Rotates about the y-axis, which tips the state between the poles using only real amplitudes. The usual way to set a specific P(0)." },
+      { gate: "rz", label: "RZ", operands: ["target"], params: 1, description: "Rotation about z by θ", effect: "Spins the state around the equator by your chosen angle. Changes the relative phase and nothing you can measure directly." },
     ],
   },
   {
     group: "Multi qubit",
     gates: [
-      { gate: "cx", label: "CX", operands: ["control", "target"], params: 0, description: "CNOT — flips the target when the control is |1⟩" },
-      { gate: "cz", label: "CZ", operands: ["control", "target"], params: 0, description: "Applies Z to the target when the control is |1⟩" },
-      { gate: "swap", label: "SWAP", operands: ["target", "target"], params: 0, description: "Exchanges two qubits" },
-      { gate: "ccx", label: "CCX", operands: ["control", "control", "target"], params: 0, description: "Toffoli — flips the target when both controls are |1⟩" },
+      { gate: "cx", label: "CX", operands: ["control", "target"], params: 0, description: "CNOT — flips the target when the control is |1⟩", effect: "Flips the target only on the branches where the control is 1. If the control is in superposition, the two qubits come out entangled." },
+      { gate: "cz", label: "CZ", operands: ["control", "target"], params: 0, description: "Applies Z to the target when the control is |1⟩", effect: "Negates the |11⟩ amplitude alone. Symmetric in its two qubits despite the naming, and equal to a CNOT with Hadamards on the target." },
+      { gate: "swap", label: "SWAP", operands: ["target", "target"], params: 0, description: "Exchanges two qubits", effect: "Exchanges the two qubits entirely. Creates no entanglement — it is three CNOTs whose effects cancel." },
+      { gate: "ccx", label: "CCX", operands: ["control", "control", "target"], params: 0, description: "Toffoli — flips the target when both controls are |1⟩", effect: "Flips the target only when both controls are 1. Enough on its own for any classical reversible computation." },
     ],
   },
   {
     group: "Other",
     gates: [
-      { gate: "measure", label: "M", operands: ["target"], params: 0, description: "Measures into a classical bit" },
-      { gate: "reset", label: "|0⟩", operands: ["target"], params: 0, description: "Returns the qubit to |0⟩" },
-      { gate: "barrier", label: "‖", operands: ["target"], params: 0, description: "Blocks optimisation across this point" },
+      { gate: "measure", label: "M", operands: ["target"], params: 0, description: "Measures into a classical bit", effect: "Collapses the qubit to 0 or 1 and records the result. Irreversible: any superposition or entanglement on that qubit is destroyed." },
+      { gate: "reset", label: "|0⟩", operands: ["target"], params: 0, description: "Returns the qubit to |0⟩", effect: "Forces the qubit back to |0⟩ whatever it held. Non-unitary, so it discards information rather than transforming it." },
+      { gate: "barrier", label: "‖", operands: ["target"], params: 0, description: "Blocks optimisation across this point", effect: "Stops the compiler merging gates across this point. Changes nothing physically; it exists to keep a circuit readable and un-optimised." },
     ],
   },
 ];
@@ -255,15 +257,23 @@ export const CircuitBuilder: React.FC<Props> = ({ circuit, onChange }) => {
       {/* Placement prompt. Multi-qubit gates need two or three picks, so the
           prompt states exactly which operand comes next. */}
       {hint && (
-        <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-accent-soft border border-accent-border">
-          <p className="text-xs text-accent-text">{hint}</p>
-          <button
-            type="button"
-            onClick={() => { setPlacement(null); setHint(null); }}
-            className="text-[11px] text-accent-text underline hover:no-underline"
-          >
-            Cancel
-          </button>
+        <div className="px-3 py-2.5 rounded-lg bg-accent-soft border border-accent-border">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-medium text-accent-text">{hint}</p>
+            <button
+              type="button"
+              onClick={() => { setPlacement(null); setHint(null); }}
+              className="text-[11px] text-accent-text underline hover:no-underline shrink-0"
+            >
+              Cancel
+            </button>
+          </div>
+          {/* What placing this gate will actually do, before it is placed. */}
+          {placement && (
+            <p className="text-[11px] leading-5 text-text-muted mt-1.5 pt-1.5 border-t border-accent-border">
+              {placement.spec.effect}
+            </p>
+          )}
         </div>
       )}
 
@@ -379,6 +389,9 @@ export const CircuitBuilder: React.FC<Props> = ({ circuit, onChange }) => {
             <p className="text-xs font-semibold text-text">
               <span className="font-mono uppercase text-accent mr-1.5">{selected.gate}</span>
               {SPEC_BY_GATE.get(selected.gate)?.description}
+            </p>
+            <p className="text-[11px] leading-5 text-text-muted mt-1">
+              {SPEC_BY_GATE.get(selected.gate)?.effect}
             </p>
             <p className="text-[11px] font-mono text-text-subtle mt-1">
               targets [{selected.targets.join(", ")}]

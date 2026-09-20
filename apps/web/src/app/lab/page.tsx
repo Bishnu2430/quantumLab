@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { AlertCircle, Cpu, Loader2, Play } from "lucide-react";
+import { AlertCircle, Cpu, Info, Loader2, Play } from "lucide-react";
 
 import { CircuitBuilder } from "@/components/lab/CircuitBuilder";
 import { CodeRunner } from "@/components/lab/CodeRunner";
@@ -23,6 +23,13 @@ const INITIAL: QuantumIR = {
 
 type Tab = "results" | "code";
 
+/** Shot counts, each paired with what that number actually buys you. */
+const SHOT_OPTIONS = [
+  { value: 100, meaning: "100 shots: roughly ±5% on each probability — enough to see the shape, not the detail." },
+  { value: 1024, meaning: "1024 shots: roughly ±1.6%. The common default, and a fair balance." },
+  { value: 8192, meaning: "8192 shots: roughly ±0.6%. Slower, but the counts track the exact probabilities closely." },
+] as const;
+
 /**
  * The lab: build a circuit, simulate it, then run the generated code.
  *
@@ -38,6 +45,7 @@ export default function LabPage() {
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("results");
+  const [showShotHelp, setShowShotHelp] = useState(false);
 
   const simulate = useCallback(async () => {
     setRunning(true);
@@ -59,6 +67,7 @@ export default function LabPage() {
   }, [simulate]);
 
   const generatedCode = generateQiskitPythonCode(circuit, shots);
+  const activeShots = SHOT_OPTIONS.find((option) => option.value === shots) ?? SHOT_OPTIONS[1];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
@@ -78,18 +87,30 @@ export default function LabPage() {
         <section aria-label="Results" className="space-y-3">
           <div className="panel p-3">
             <div className="flex items-center justify-between gap-2 mb-3">
-              <label className="flex items-center gap-2 text-xs text-text">
-                Shots
+              <div className="flex items-center gap-1.5">
+                <label htmlFor="shots" className="text-xs text-text">Shots</label>
                 <select
+                  id="shots"
                   value={shots}
                   onChange={(event) => setShots(Number(event.target.value))}
                   className="bg-surface-raised border border-border rounded px-2 py-1 text-[11px] font-mono text-text"
                 >
-                  {[100, 1024, 8192].map((value) => (
-                    <option key={value} value={value}>{value}</option>
+                  {SHOT_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>{option.value}</option>
                   ))}
                 </select>
-              </label>
+                <button
+                  type="button"
+                  onClick={() => setShowShotHelp((open) => !open)}
+                  aria-expanded={showShotHelp}
+                  aria-label="What do shots do?"
+                  className={`p-0.5 rounded transition-colors ${
+                    showShotHelp ? "text-accent" : "text-text-subtle hover:text-accent"
+                  }`}
+                >
+                  <Info className="w-3.5 h-3.5" aria-hidden="true" />
+                </button>
+              </div>
 
               <button
                 type="button"
@@ -107,6 +128,22 @@ export default function LabPage() {
                 Simulate
               </button>
             </div>
+
+            <p className="text-[11px] leading-4 text-text-subtle mb-2">
+              {activeShots.meaning}
+            </p>
+
+            {showShotHelp && (
+              <p className="text-[11px] leading-5 text-text-muted mb-3 p-2.5 rounded-lg bg-surface-sunken border border-border">
+                A shot is one full run of the circuit followed by one measurement, which
+                yields a single outcome. Probabilities are recovered by repeating and
+                counting, so the measured counts only approach the exact probabilities as
+                the shot count grows. The error shrinks like 1/&radic;N, meaning four times
+                the shots halves the error &mdash; which is why the exact probabilities are
+                shown alongside: the simulator can compute them directly, while real
+                hardware can only ever sample.
+              </p>
+            )}
 
             <div className="flex gap-1 mb-3" role="tablist">
               {(["results", "code"] as Tab[]).map((value) => (

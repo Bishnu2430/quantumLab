@@ -95,6 +95,43 @@ cmd_dev() {
   c_info "web  → cd apps/web && npm run dev"
 }
 
+# Opens an interactive psql session against the project database.
+# Falls back to a local psql client when the container is not running, so the
+# command works whether or not the stack is up.
+cmd_db() {
+  docker_up
+  # shellcheck disable=SC1091
+  [ -f "$ROOT/.env" ] && set -a && . "$ROOT/.env" && set +a
+
+  local user="${POSTGRES_USER:-quantum}"
+  local database="${POSTGRES_DB:-quantumlab}"
+
+  if docker compose ps --status running db 2>/dev/null | grep -q db; then
+    c_info "psql as '$user' on '$database' (inside the db container)"
+    c_info "Try: \dt to list tables, \d users to describe one, \q to quit"
+    docker compose exec db psql -U "$user" -d "$database"
+    return
+  fi
+
+  c_warn "The db container is not running."
+  if command -v psql >/dev/null 2>&1; then
+    c_info "Connecting with the local psql client instead"
+    PGPASSWORD="${POSTGRES_PASSWORD:-quantum}"       psql -h localhost -p "${POSTGRES_PORT:-5432}" -U "$user" -d "$database"
+  else
+    c_err "Start it first with: ./scripts/qlab.sh up   (or 'dev' for just Postgres)"
+    exit 1
+  fi
+}
+
+# Runs a single statement and exits, for scripting and quick checks.
+cmd_dbq() {
+  docker_up
+  [ $# -ge 1 ] || { c_err "usage: qlab dbq \"SELECT count(*) FROM users;\""; exit 1; }
+  # shellcheck disable=SC1091
+  [ -f "$ROOT/.env" ] && set -a && . "$ROOT/.env" && set +a
+  docker compose exec -T db psql -U "${POSTGRES_USER:-quantum}"     -d "${POSTGRES_DB:-quantumlab}" -c "$*"
+}
+
 cmd_test() {
   require uv
   # Re-export first: the curriculum verification reads the JSON artifact, and a
@@ -134,6 +171,8 @@ Amplitude Lab
     migrate          apply migrations
     revision "msg"   autogenerate a migration
     create-admin <email> [name]
+    db               open an interactive psql session on the project database
+    dbq "SQL"        run one statement and print the result
 
   Quality
     test             backend tests and frontend typecheck
@@ -152,6 +191,8 @@ case "${1:-help}" in
   migrate)      shift; cmd_migrate "$@" ;;
   revision)     shift; cmd_revision "$@" ;;
   create-admin) shift; cmd_create_admin "$@" ;;
+  db)           shift; cmd_db "$@" ;;
+  dbq)          shift; cmd_dbq "$@" ;;
   test)         shift; cmd_test "$@" ;;
   lint)         shift; cmd_lint "$@" ;;
   format)       shift; cmd_format "$@" ;;

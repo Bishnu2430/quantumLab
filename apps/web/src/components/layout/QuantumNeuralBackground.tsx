@@ -227,6 +227,8 @@ export const QuantumNeuralBackground: React.FC = () => {
     const connectDist = 155; // Distance for inter-qubit neural connections
     const mouseHoverDist = 180; // Distance for mouse hover neural connections
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
     const render = () => {
       frame++;
       ctx.clearRect(0, 0, width, height);
@@ -403,13 +405,28 @@ export const QuantumNeuralBackground: React.FC = () => {
         );
       }
 
-      animId = requestAnimationFrame(render);
+      // Draw one frame and stop when the viewer has asked for less motion, or
+      // while the tab is in the background. A decorative animation should not
+      // cost battery on a page nobody is looking at.
+      if (!reducedMotion.matches && !document.hidden) {
+        animId = requestAnimationFrame(render);
+      }
+    };
+
+    const restart = () => {
+      cancelAnimationFrame(animId);
+      render();
     };
 
     render();
 
+    reducedMotion.addEventListener("change", restart);
+    document.addEventListener("visibilitychange", restart);
+
     return () => {
       cancelAnimationFrame(animId);
+      reducedMotion.removeEventListener("change", restart);
+      document.removeEventListener("visibilitychange", restart);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);

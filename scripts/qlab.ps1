@@ -94,6 +94,49 @@ function Invoke-Dev {
     Write-Info 'web  -> cd apps\web; npm run dev'
 }
 
+function Get-EnvValue {
+    param([string]$Key, [string]$Fallback)
+    $envPath = Join-Path $Root '.env'
+    if (Test-Path $envPath) {
+        $line = Select-String -Path $envPath -Pattern "^$Key=" -ErrorAction SilentlyContinue |
+                Select-Object -First 1
+        if ($line) { return ($line.Line -split '=', 2)[1].Trim() }
+    }
+    return $Fallback
+}
+
+function Invoke-Db {
+    Assert-Docker
+    $user = Get-EnvValue 'POSTGRES_USER' 'quantum'
+    $database = Get-EnvValue 'POSTGRES_DB' 'quantumlab'
+
+    $running = docker compose ps --status running db 2>$null
+    if ($running -match 'db') {
+        Write-Info "psql as '$user' on '$database' (inside the db container)"
+        Write-Info 'Try: \dt to list tables, \d users to describe one, \q to quit'
+        docker compose exec db psql -U $user -d $database
+        return
+    }
+
+    Write-Warn 'The db container is not running.'
+    if (Get-Command psql -ErrorAction SilentlyContinue) {
+        Write-Info 'Connecting with the local psql client instead'
+        $env:PGPASSWORD = Get-EnvValue 'POSTGRES_PASSWORD' 'quantum'
+        psql -h localhost -p (Get-EnvValue 'POSTGRES_PORT' '5432') -U $user -d $database
+    } else {
+        Write-Err 'Start it first with: .\scripts\qlab.ps1 up   (or "dev" for just Postgres)'
+        exit 1
+    }
+}
+
+function Invoke-DbQuery {
+    param([string]$Sql)
+    Assert-Docker
+    if (-not $Sql) { Write-Err 'usage: qlab dbq "SELECT count(*) FROM users;"'; exit 1 }
+    docker compose exec -T db psql -U (Get-EnvValue 'POSTGRES_USER' 'quantum') `
+        -d (Get-EnvValue 'POSTGRES_DB' 'quantumlab') -c $Sql
+}
+
 function Invoke-Test {
     Assert-Command uv
     # Re-export first: the curriculum verification reads the JSON artifact, and
@@ -144,6 +187,8 @@ Amplitude Lab
     migrate          apply migrations
     revision "msg"   autogenerate a migration
     create-admin <email> [name]
+    db               open an interactive psql session on the project database
+    dbq "SQL"        run one statement and print the result
 
   Quality
     test             backend tests and frontend typecheck
@@ -175,6 +220,8 @@ switch ($Command.ToLower()) {
         $name = if ($Rest.Count -gt 1) { $Rest[1] } else { 'Administrator' }
         docker compose exec -T api python -m app.cli create-admin --email $Rest[0] --name $name
     }
+    'db'     { Invoke-Db }
+    'dbq'    { Invoke-DbQuery -Sql ($Rest -join ' ') }
     'test'   { Invoke-Test }
     'lint'   { Invoke-Lint }
     'format' { Invoke-Format }

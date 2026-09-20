@@ -1,6 +1,9 @@
 # syntax=docker/dockerfile:1.7
 # Multi-stage build: dependencies resolve in a builder, the runtime image
-# carries only the virtualenv and application source.
+# carries only the virtualenv, the application source and the curriculum.
+#
+# The build context is the repository root, not apps/api, because the exported
+# curriculum lives in packages/ and has to travel with the image.
 
 FROM python:3.12-slim-bookworm AS builder
 
@@ -12,13 +15,21 @@ ENV UV_COMPILE_BYTECODE=1 \
 
 WORKDIR /app
 
-# Dependencies install in their own layer so application edits don't force a
+# Dependencies install in their own layer so application edits do not force a
 # reinstall of the (large) quantum stack on every build.
-COPY pyproject.toml uv.lock ./
+COPY apps/api/pyproject.toml apps/api/uv.lock ./
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-install-project --extra quantum --extra server
 
-COPY . .
+# Application source, flattened so `app` is importable from /app.
+COPY apps/api/app ./app
+COPY apps/api/alembic ./alembic
+COPY apps/api/alembic.ini ./alembic.ini
+
+# The exported curriculum travels with the image so lesson code execution works
+# in a container that has no access to the repository.
+COPY packages/curriculum ./curriculum
+
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --extra quantum --extra server
 
@@ -35,7 +46,9 @@ COPY --from=builder --chown=quantum:quantum /app /app
 
 ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=/app \
+    CURRICULUM_PATH=/app/curriculum/curriculum.json
 
 USER quantum
 

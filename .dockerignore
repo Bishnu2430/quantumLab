@@ -1,0 +1,16 @@
+# Applies to the api build, whose context is the repo root.
+**/node_modules/
+**/.venv/
+**/.next/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+.git/
+.kilo/
+docs/
+apps/web/
+apps/sandbox/
+**/.env
+**/*.db
