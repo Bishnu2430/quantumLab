@@ -26,74 +26,6 @@ wheels = [
 ]
 
 [[package]]
-name = "amplitude-lab-api"
-version = "0.2.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "alembic" },
-    { name = "argon2-cffi" },
-    { name = "email-validator" },
-    { name = "fastapi" },
-    { name = "httpx" },
-    { name = "psycopg", extra = ["binary"] },
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "pyjwt", extra = ["crypto"] },
-    { name = "python-multipart" },
-    { name = "sqlalchemy" },
-]
-
-[package.optional-dependencies]
-quantum = [
-    { name = "numpy" },
-    { name = "qiskit" },
-    { name = "qiskit-aer" },
-]
-server = [
-    { name = "uvicorn", extra = ["standard"] },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "aiosqlite" },
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "alembic", specifier = ">=1.13.0" },
-    { name = "argon2-cffi", specifier = ">=23.1.0" },
-    { name = "email-validator", specifier = ">=2.2.0" },
-    { name = "fastapi", specifier = ">=0.115.0" },
-    { name = "httpx", specifier = ">=0.27.0" },
-    { name = "numpy", marker = "extra == 'quantum'", specifier = ">=1.26.0" },
-    { name = "psycopg", extras = ["binary"], specifier = ">=3.2.0" },
-    { name = "pydantic", specifier = ">=2.9.0" },
-    { name = "pydantic-settings", specifier = ">=2.5.0" },
-    { name = "pyjwt", extras = ["crypto"], specifier = ">=2.9.0" },
-    { name = "python-multipart", specifier = ">=0.0.12" },
-    { name = "qiskit", marker = "extra == 'quantum'", specifier = ">=1.2.0" },
-    { name = "qiskit-aer", marker = "extra == 'quantum'", specifier = ">=0.15.0" },
-    { name = "sqlalchemy", specifier = ">=2.0.35" },
-    { name = "uvicorn", extras = ["standard"], marker = "extra == 'server'", specifier = ">=0.30.0" },
-]
-provides-extras = ["quantum", "server"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "aiosqlite", specifier = ">=0.22.1" },
-    { name = "mypy", specifier = ">=1.11.0" },
-    { name = "pytest", specifier = ">=8.3.0" },
-    { name = "pytest-asyncio", specifier = ">=0.24.0" },
-    { name = "pytest-cov", specifier = ">=5.0.0" },
-    { name = "ruff", specifier = ">=0.7.0" },
-]
-
-[[package]]
 name = "annotated-doc"
 version = "0.0.5"
 source = { registry = "https://pypi.org/simple" }
@@ -854,6 +786,74 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/30/cc/c47b356b90dd00b9b19fdcaa8f6776613db0885630f7095f92659f62b5c8/qiskit_aer-0.17.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7a8857aad723036ff818af14bbd4c3375559741366bffce7b36b4eeb306b88cf", size = 12375640, upload-time = "2025-09-17T13:54:24.582Z" },
     { url = "https://files.pythonhosted.org/packages/06/eb/8b796a34622392ee1f66b7d03ba31385ef559cd3a145ec6de2556ebb983e/qiskit_aer-0.17.2-cp312-cp312-win32.whl", hash = "sha256:a9abdb24318c417b69867c6d43aed4684b67320b1e7010f4c57c84fdeff89a13", size = 6922323, upload-time = "2025-09-17T13:54:26.703Z" },
     { url = "https://files.pythonhosted.org/packages/30/f7/5943ba7f6be0a02667593ef5f684359a62d5a46ba9dac9a0367c3ab3d1d8/qiskit_aer-0.17.2-cp312-cp312-win_amd64.whl", hash = "sha256:80c419bb3fb65a5135286ce4e98abd68b9dc836b77affbbc4b06721d53ce1e3c", size = 9563069, upload-time = "2025-09-17T13:54:28.885Z" },
+]
+
+[[package]]
+name = "quantum-lab-api"
+version = "0.2.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "alembic" },
+    { name = "argon2-cffi" },
+    { name = "email-validator" },
+    { name = "fastapi" },
+    { name = "httpx" },
+    { name = "psycopg", extra = ["binary"] },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "pyjwt", extra = ["crypto"] },
+    { name = "python-multipart" },
+    { name = "sqlalchemy" },
+]
+
+[package.optional-dependencies]
+quantum = [
+    { name = "numpy" },
+    { name = "qiskit" },
+    { name = "qiskit-aer" },
+]
+server = [
+    { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "aiosqlite" },
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alembic", specifier = ">=1.13.0" },
+    { name = "argon2-cffi", specifier = ">=23.1.0" },
+    { name = "email-validator", specifier = ">=2.2.0" },
+    { name = "fastapi", specifier = ">=0.115.0" },
+    { name = "httpx", specifier = ">=0.27.0" },
+    { name = "numpy", marker = "extra == 'quantum'", specifier = ">=1.26.0" },
+    { name = "psycopg", extras = ["binary"], specifier = ">=3.2.0" },
+    { name = "pydantic", specifier = ">=2.9.0" },
+    { name = "pydantic-settings", specifier = ">=2.5.0" },
+    { name = "pyjwt", extras = ["crypto"], specifier = ">=2.9.0" },
+    { name = "python-multipart", specifier = ">=0.0.12" },
+    { name = "qiskit", marker = "extra == 'quantum'", specifier = ">=1.2.0" },
+    { name = "qiskit-aer", marker = "extra == 'quantum'", specifier = ">=0.15.0" },
+    { name = "sqlalchemy", specifier = ">=2.0.35" },
+    { name = "uvicorn", extras = ["standard"], marker = "extra == 'server'", specifier = ">=0.30.0" },
+]
+provides-extras = ["quantum", "server"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "aiosqlite", specifier = ">=0.22.1" },
+    { name = "mypy", specifier = ">=1.11.0" },
+    { name = "pytest", specifier = ">=8.3.0" },
+    { name = "pytest-asyncio", specifier = ">=0.24.0" },
+    { name = "pytest-cov", specifier = ">=5.0.0" },
+    { name = "ruff", specifier = ">=0.7.0" },
 ]
 
 [[package]]

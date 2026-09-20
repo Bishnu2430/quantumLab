@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Amplitude Lab stack management (PowerShell).
+  Quantum Lab stack management (PowerShell).
 .DESCRIPTION
   Windows-native equivalent of scripts/qlab.sh. Run `.\scripts\qlab.ps1 help`
   for the command list. Every command is idempotent and safe to re-run.
@@ -173,7 +173,7 @@ function Invoke-Format {
 
 function Show-Help {
     @'
-Amplitude Lab
+Quantum Lab
 
   Stack
     up               build and start everything, then migrate

@@ -1,7 +1,7 @@
-# Amplitude Lab — full local stack.
+# Quantum Lab — full local stack.
 # Managed through scripts/qlab (see `scripts/qlab help`).
 
-name: amplitude-lab
+name: quantum-lab
 
 services:
   db:

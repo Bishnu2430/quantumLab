@@ -89,7 +89,7 @@ async def _stats() -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="qlab", description="Amplitude Lab admin commands")
+    parser = argparse.ArgumentParser(prog="qlab", description="Quantum Lab admin commands")
     sub = parser.add_subparsers(dest="command", required=True)
 
     create = sub.add_parser("create-admin", help="Create or promote an admin account")

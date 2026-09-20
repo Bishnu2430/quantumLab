@@ -25,12 +25,20 @@ from app.services.execution.base import (
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_IMAGE = "pbquantum/sandbox:latest"
+DEFAULT_IMAGE = "quantumlab/sandbox:latest"
+SANDBOX_LABEL = "app=quantum-lab-sandbox"
+
+# A healthy daemon starts a trivial container well inside this. Anything
+# slower means the sandbox is not usable, whatever `docker info` reports.
+PROBE_TIMEOUT_SECONDS = 20
+PROBE_CACHE_SECONDS = 60
 
 
 class DockerSandboxRunner(AbstractSandboxRunner):
     def __init__(self, image: str = DEFAULT_IMAGE) -> None:
         self._image = image
+        self._probe_result: bool | None = None
+        self._probe_at = 0.0
 
     @property
     def name(self) -> str:
@@ -41,16 +49,52 @@ class DockerSandboxRunner(AbstractSandboxRunner):
         return True
 
     async def available(self) -> bool:
+        """Whether Docker can actually run a container right now.
+
+        Checking `docker info` alone is not enough. A daemon can answer status
+        queries while being unable to start containers — when that happens every
+        execution stalls and gets reported to the learner as *their* code timing
+        out, which is both wrong and unhelpful. So the probe starts a real
+        container and requires it to finish quickly.
+
+        The result is cached briefly, because this costs a container start and
+        the answer does not change from one request to the next.
+        """
         if shutil.which("docker") is None:
             return False
+
+        now = time.monotonic()
+        if self._probe_result is not None and now - self._probe_at < PROBE_CACHE_SECONDS:
+            return self._probe_result
+
+        ok = await self._probe()
+        self._probe_result = ok
+        self._probe_at = now
+        if not ok:
+            logger.warning(
+                "Docker is installed but could not start a container within "
+                "%ss; treating the sandbox as unavailable.",
+                PROBE_TIMEOUT_SECONDS,
+            )
+        return ok
+
+    async def _probe(self) -> bool:
         try:
             proc = await asyncio.create_subprocess_exec(
-                "docker", "info", "--format", "{{.ServerVersion}}",
+                "docker", "run", "--rm", "--network", "none",
+                "--label", SANDBOX_LABEL,
+                self._image, "python", "-c", "pass",
                 stdout=asyncio.subprocess.DEVNULL,
                 stderr=asyncio.subprocess.DEVNULL,
             )
-            return await asyncio.wait_for(proc.wait(), timeout=5) == 0
-        except (TimeoutError, OSError):
+        except OSError:
+            return False
+
+        try:
+            return await asyncio.wait_for(proc.wait(), timeout=PROBE_TIMEOUT_SECONDS) == 0
+        except TimeoutError:
+            proc.kill()
+            await proc.wait()
             return False
 
     def _docker_args(
@@ -62,7 +106,7 @@ class DockerSandboxRunner(AbstractSandboxRunner):
             # Named and labelled so a run that outlives its client can
             # still be found and stopped.
             "--name", name,
-            "--label", "app=amplitude-lab-sandbox",
+            "--label", SANDBOX_LABEL,
             # No network at all: the code cannot exfiltrate anything or reach
             # internal services, and cannot pull in unpinned dependencies.
             "--network", "none",
@@ -85,7 +129,7 @@ class DockerSandboxRunner(AbstractSandboxRunner):
 
     async def run(self, code: str, limits: ExecutionLimits) -> ExecutionResult:
         start = time.perf_counter()
-        container = f"amplitude-sandbox-{uuid.uuid4().hex[:12]}"
+        container = f"quantum-sandbox-{uuid.uuid4().hex[:12]}"
 
         with tempfile.TemporaryDirectory(prefix="pbq-sandbox-") as tmp:
             script_dir = Path(tmp)
@@ -173,7 +217,7 @@ async def reap_orphaned_sandboxes() -> int:
     """
     try:
         proc = await asyncio.create_subprocess_exec(
-            "docker", "ps", "--quiet", "--filter", "label=app=amplitude-lab-sandbox",
+            "docker", "ps", "--quiet", "--filter", f"label={SANDBOX_LABEL}",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.DEVNULL,
         )
