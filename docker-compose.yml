@@ -39,6 +39,18 @@ services:
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GROQ_MODEL: ${GROQ_MODEL:-llama-3.3-70b-versatile}
+    # The API starts one throwaway container per code execution, so it needs to
+    # talk to the host daemon. This is docker-out-of-docker: the socket grants
+    # effective root on the host, so the API container is trusted infrastructure
+    # and the untrusted code runs in the container it spawns, never here.
+    #
+    # For a hostile multi-tenant deployment, replace this with a dedicated
+    # executor service or a provider sandbox. Without the socket the API falls
+    # back to the unsandboxed local runner and says so in the UI.
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - "${DOCKER_GID:-0}"
     ports:
       - "${API_PORT:-8000}:8000"
 

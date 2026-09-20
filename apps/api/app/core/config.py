@@ -7,11 +7,12 @@ one place rather than scattered `os.getenv` calls.
 
 from __future__ import annotations
 
+import json
 from functools import lru_cache
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import Field, SecretStr, field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 Environment = Literal["development", "test", "production"]
 
@@ -47,7 +48,13 @@ class Settings(BaseSettings):
     cookie_samesite: Literal["lax", "strict", "none"] = "lax"
 
     # --- http -------------------------------------------------------------
-    allowed_origins: list[str] = Field(
+    # NoDecode is required, not cosmetic. Without it pydantic-settings treats a
+    # list-typed field as JSON and calls json.loads() on the raw env value at
+    # the *source* level, before any field validator runs -- so a perfectly
+    # ordinary `ALLOWED_ORIGINS=a,b` crashes the service on startup with an
+    # opaque JSONDecodeError. NoDecode hands the string through untouched so
+    # the validator below can split it.
+    allowed_origins: Annotated[list[str], NoDecode] = Field(
         default=["http://localhost:3000", "http://127.0.0.1:3000"]
     )
 
@@ -58,10 +65,25 @@ class Settings(BaseSettings):
     @field_validator("allowed_origins", mode="before")
     @classmethod
     def _split_origins(cls, value: object) -> object:
-        """Accept a comma-separated string, which is how env vars carry lists."""
-        if isinstance(value, str):
-            return [origin.strip() for origin in value.split(",") if origin.strip()]
-        return value
+        """Accept either a comma-separated string or a JSON array.
+
+        Comma-separated is what `.env.example` documents and what compose
+        passes. JSON is what some deployment tooling emits, and since NoDecode
+        turned off the built-in JSON handling it has to be dealt with here.
+        """
+        if not isinstance(value, str):
+            return value
+
+        text = value.strip()
+        if text.startswith("["):
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError:
+                # Fall through: a malformed array is better reported as a
+                # normal validation error than as a raw JSON exception.
+                pass
+
+        return [origin.strip() for origin in text.split(",") if origin.strip()]
 
     @property
     def is_production(self) -> bool:

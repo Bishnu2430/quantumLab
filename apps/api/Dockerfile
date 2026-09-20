@@ -42,6 +42,22 @@ RUN groupadd --system --gid 1001 quantum \
 
 WORKDIR /app
 
+# The Docker CLI, so the API can start sandbox containers on a daemon whose
+# socket is shared in. Client only — no daemon runs inside this image.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates curl gnupg \
+ && install -m 0755 -d /etc/apt/keyrings \
+ && curl -fsSL https://download.docker.com/linux/debian/gpg \
+      -o /etc/apt/keyrings/docker.asc \
+ && chmod a+r /etc/apt/keyrings/docker.asc \
+ && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends docker-ce-cli \
+ && apt-get purge -y gnupg \
+ && apt-get autoremove -y \
+ && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder --chown=quantum:quantum /app /app
 
 ENV PATH="/app/.venv/bin:$PATH" \
