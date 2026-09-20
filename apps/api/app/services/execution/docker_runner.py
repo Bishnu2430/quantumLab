@@ -13,6 +13,7 @@ import logging
 import shutil
 import time
 import uuid
+from contextlib import suppress
 
 from app.services.execution.base import (
     AbstractSandboxRunner,
@@ -157,9 +158,17 @@ class DockerSandboxRunner(AbstractSandboxRunner):
             # proc is the `docker run` client. Killing it detaches from the
             # container but leaves it running, so the container itself must be
             # removed or a runaway loop keeps a core busy forever.
+            #
+            # Both halves are tolerant of the other having already happened:
+            # removing the container makes the client exit on its own, so a
+            # plain proc.kill() afterwards raced and raised ProcessLookupError,
+            # which escaped and turned a learner's infinite loop into a crashed
+            # request instead of a clean timeout.
+            with suppress(ProcessLookupError):
+                proc.kill()
             await _force_remove(container)
-            proc.kill()
-            await proc.wait()
+            with suppress(ProcessLookupError):
+                await proc.wait()
             return ExecutionResult(
                 status=ExecutionStatus.TIMEOUT,
                 stderr=f"Execution exceeded {limits.timeout_seconds}s and was stopped.",
