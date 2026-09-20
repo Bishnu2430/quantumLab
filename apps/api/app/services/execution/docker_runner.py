@@ -11,10 +11,8 @@ from __future__ import annotations
 import asyncio
 import logging
 import shutil
-import tempfile
 import time
 import uuid
-from pathlib import Path
 
 from app.services.execution.base import (
     AbstractSandboxRunner,
@@ -97,12 +95,15 @@ class DockerSandboxRunner(AbstractSandboxRunner):
             await proc.wait()
             return False
 
-    def _docker_args(
-        self, script_dir: Path, limits: ExecutionLimits, name: str
-    ) -> list[str]:
+    def _docker_args(self, limits: ExecutionLimits, name: str) -> list[str]:
         return [
             "docker", "run",
             "--rm",
+            # The script arrives on stdin rather than through a bind mount.
+            # A mount would name a path on the *daemon's* host, which is not
+            # the API container's filesystem when the socket is shared in —
+            # and it makes the runner immune to host path translation.
+            "-i",
             # Named and labelled so a run that outlives its client can
             # still be found and stopped.
             "--name", name,
@@ -121,54 +122,50 @@ class DockerSandboxRunner(AbstractSandboxRunner):
             "--cap-drop", "ALL",
             "--security-opt", "no-new-privileges",
             "--user", "1001:1001",
-            "--workdir", "/sandbox",
-            "-v", f"{script_dir.as_posix()}:/sandbox:ro",
+            "--workdir", "/tmp",
             self._image,
-            "python", "-I", "-B", "/sandbox/main.py",
+            "python", "-I", "-B", "-",
         ]
 
     async def run(self, code: str, limits: ExecutionLimits) -> ExecutionResult:
         start = time.perf_counter()
         container = f"quantum-sandbox-{uuid.uuid4().hex[:12]}"
 
-        with tempfile.TemporaryDirectory(prefix="pbq-sandbox-") as tmp:
-            script_dir = Path(tmp)
-            (script_dir / "main.py").write_text(code, encoding="utf-8")
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                *self._docker_args(limits, container),
+                stdin=asyncio.subprocess.PIPE,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+        except OSError as exc:
+            logger.warning("Failed to start the sandbox container: %s", exc)
+            return ExecutionResult(
+                status=ExecutionStatus.UNAVAILABLE,
+                stderr="Could not start the sandbox.",
+                runner=self.name,
+                duration_ms=_elapsed(start),
+            )
 
-            try:
-                proc = await asyncio.create_subprocess_exec(
-                    *self._docker_args(script_dir, limits, container),
-                    stdout=asyncio.subprocess.PIPE,
-                    stderr=asyncio.subprocess.PIPE,
-                )
-            except OSError as exc:
-                logger.warning("Failed to start the sandbox container: %s", exc)
-                return ExecutionResult(
-                    status=ExecutionStatus.UNAVAILABLE,
-                    stderr="Could not start the sandbox.",
-                    runner=self.name,
-                    duration_ms=_elapsed(start),
-                )
-
-            try:
-                # A second of slack over the in-container limit, so the
-                # container's own timeout reports first where possible.
-                stdout, stderr = await asyncio.wait_for(
-                    proc.communicate(), timeout=limits.timeout_seconds + 5
-                )
-            except TimeoutError:
-                # proc is the `docker run` client. Killing it detaches from the
-                # container but leaves it running, so the container itself must
-                # be removed or a runaway loop keeps a core busy forever.
-                await _force_remove(container)
-                proc.kill()
-                await proc.wait()
-                return ExecutionResult(
-                    status=ExecutionStatus.TIMEOUT,
-                    stderr=f"Execution exceeded {limits.timeout_seconds}s and was stopped.",
-                    runner=self.name,
-                    duration_ms=_elapsed(start),
-                )
+        try:
+            # A second of slack over the in-container limit, so the
+            # container's own timeout reports first where possible.
+            stdout, stderr = await asyncio.wait_for(
+                proc.communicate(code.encode("utf-8")), timeout=limits.timeout_seconds + 5
+            )
+        except TimeoutError:
+            # proc is the `docker run` client. Killing it detaches from the
+            # container but leaves it running, so the container itself must be
+            # removed or a runaway loop keeps a core busy forever.
+            await _force_remove(container)
+            proc.kill()
+            await proc.wait()
+            return ExecutionResult(
+                status=ExecutionStatus.TIMEOUT,
+                stderr=f"Execution exceeded {limits.timeout_seconds}s and was stopped.",
+                runner=self.name,
+                duration_ms=_elapsed(start),
+            )
 
         exit_code = proc.returncode
         out = _truncate(stdout.decode("utf-8", "replace"), limits.max_output_bytes)
