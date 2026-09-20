@@ -128,14 +128,14 @@ export default function ChallengesPage() {
   };
 
   return (
-    <div className="space-y-6 bg-white">
+    <div className="space-y-6 bg-surface">
       {/* Title Banner */}
-      <div className="glass-panel p-6 bg-slate-50 border border-slate-300 space-y-2">
-        <div className="flex items-center gap-2 text-blue-600 font-mono text-xs font-black uppercase tracking-wider">
-          <Trophy className="w-4 h-4 text-blue-600" /> Quantum Challenges Hub
+      <div className="panel p-6 bg-surface-raised border border-text-muted space-y-2">
+        <div className="flex items-center gap-2 text-accent font-mono text-xs font-bold uppercase tracking-wider">
+          <Trophy className="w-4 h-4 text-accent" /> Quantum Challenges Hub
         </div>
-        <h1 className="text-2xl font-black text-black tracking-tight">Interactive Challenges</h1>
-        <p className="text-xs text-slate-800 font-medium max-w-2xl leading-relaxed">
+        <h1 className="text-2xl font-bold text-text tracking-tight">Interactive Challenges</h1>
+        <p className="text-xs text-surface-raised font-medium max-w-2xl leading-relaxed">
           Test your quantum computing skills by building circuits that solve specific state-preparation targets.
         </p>
       </div>
@@ -143,7 +143,7 @@ export default function ChallengesPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Challenge Selection List (Col-span-5) */}
         <div className="lg:col-span-5 space-y-3">
-          <div className="text-xs font-mono text-blue-600 font-black uppercase tracking-wider px-1">Select Challenge</div>
+          <div className="text-xs font-mono text-accent font-bold uppercase tracking-wider px-1">Select Challenge</div>
           {CHALLENGE_LIST.map((ch) => {
             const isSelected = selectedChallenge.id === ch.id;
             return (
@@ -155,18 +155,18 @@ export default function ChallengesPage() {
                 }}
                 className={`w-full text-left p-4 rounded-xl border transition-all ${
                   isSelected
-                    ? "bg-blue-50 border-blue-500 shadow-md font-bold"
-                    : "bg-white border-slate-300 hover:border-blue-400"
+                    ? "bg-accent-soft border-accent-border shadow-md font-bold"
+                    : "bg-surface border-text-muted hover:border-accent-border"
                 }`}
               >
                 <div className="flex items-center justify-between text-xs font-mono mb-1">
-                  <span className="text-blue-600 font-black">{ch.category}</span>
-                  <span className="px-2 py-0.5 bg-amber-50 border border-amber-300 text-amber-800 rounded font-bold">
+                  <span className="text-accent font-bold">{ch.category}</span>
+                  <span className="px-2 py-0.5 bg-warning-soft border border-warning-border text-warning rounded font-bold">
                     +{ch.points} pts
                   </span>
                 </div>
-                <h3 className="font-black text-sm text-black">{ch.title}</h3>
-                <p className="text-xs text-slate-800 font-medium mt-1 line-clamp-2">{ch.description}</p>
+                <h3 className="font-bold text-sm text-text">{ch.title}</h3>
+                <p className="text-xs text-surface-raised font-medium mt-1 line-clamp-2">{ch.description}</p>
               </button>
             );
           })}
@@ -174,18 +174,18 @@ export default function ChallengesPage() {
 
         {/* Selected Challenge Details & Runner (Col-span-7) */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="glass-panel p-6 bg-slate-50 border border-slate-300 space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-300 pb-3">
-              <h2 className="font-black text-lg text-black">{selectedChallenge.title}</h2>
-              <span className="text-xs font-mono text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-300 font-bold">
+          <div className="panel p-6 bg-surface-raised border border-text-muted space-y-4">
+            <div className="flex items-center justify-between border-b border-text-muted pb-3">
+              <h2 className="font-bold text-lg text-text">{selectedChallenge.title}</h2>
+              <span className="text-xs font-mono text-accent bg-accent-soft px-2.5 py-1 rounded border border-accent-border font-bold">
                 {selectedChallenge.difficulty}
               </span>
             </div>
 
-            <p className="text-xs text-slate-800 font-medium leading-relaxed">{selectedChallenge.description}</p>
+            <p className="text-xs text-surface-raised font-medium leading-relaxed">{selectedChallenge.description}</p>
 
-            <div className="p-3 bg-white border border-slate-300 rounded-lg text-xs font-mono text-slate-900 font-bold space-y-1">
-              <div className="text-blue-600 text-[11px] font-black">Hint / Strategy</div>
+            <div className="p-3 bg-surface border border-text-muted rounded-lg text-xs font-mono text-surface font-bold space-y-1">
+              <div className="text-accent text-[11px] font-bold">Hint / Strategy</div>
               <div>{selectedChallenge.hint}</div>
             </div>
 
@@ -193,7 +193,7 @@ export default function ChallengesPage() {
               <button
                 onClick={handleTestChallenge}
                 disabled={evaluating}
-                className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-lg text-xs shadow-md transition disabled:opacity-50"
+                className="flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent text-white font-bold rounded-lg text-xs shadow-md transition disabled:opacity-50"
               >
                 <Play className="w-4 h-4 fill-white text-white" />
                 {evaluating ? "Executing Qiskit Aer..." : "Run & Test Circuit"}
@@ -204,12 +204,12 @@ export default function ChallengesPage() {
               <div
                 className={`p-4 rounded-lg border text-xs font-mono font-bold ${
                   testResult.passed
-                    ? "bg-emerald-50 border-emerald-300 text-emerald-950"
-                    : "bg-red-50 border-red-300 text-red-950"
+                    ? "bg-success-soft border-success-border text-success"
+                    : "bg-danger-soft border-danger-border text-danger"
                 }`}
               >
-                <div className="flex items-center gap-2 font-black mb-1">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <div className="flex items-center gap-2 font-bold mb-1">
+                  <CheckCircle2 className="w-4 h-4 text-success" />
                   <span>{testResult.passed ? "Challenge Solved!" : "Test Failed"}</span>
                 </div>
                 <p>{testResult.message}</p>

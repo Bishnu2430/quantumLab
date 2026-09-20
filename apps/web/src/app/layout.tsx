@@ -2,13 +2,14 @@ import "./globals.css";
 import React from "react";
 import type { Metadata } from "next";
 
+import { AuthProvider } from "@/components/auth/AuthProvider";
 import { AppShell } from "@/components/layout/AppShell";
 import { ThemeProvider, themeInitScript } from "@/components/theme/ThemeProvider";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "PBQuantum Labs — Interactive Quantum Computing Laboratory",
-  description:
-    "Learn quantum computing through derivations, interactive visuals, and circuits executed on IBM Qiskit Aer.",
+  title: { default: `${BRAND.name} — ${BRAND.tagline}`, template: `%s · ${BRAND.name}` },
+  description: BRAND.description,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ThemeProvider>
-          <AppShell>{children}</AppShell>
+          <AuthProvider>
+            <AppShell>{children}</AppShell>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

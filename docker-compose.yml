@@ -1,7 +1,7 @@
-# PBQuantum Labs — full local stack.
+# Amplitude Lab — full local stack.
 # Managed through scripts/qlab (see `scripts/qlab help`).
 
-name: pbquantum
+name: amplitude-lab
 
 services:
   db:

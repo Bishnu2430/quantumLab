@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PBQuantum Labs — stack management.
+# Amplitude Lab — stack management.
 #
 #   ./scripts/qlab.sh <command>
 #
@@ -120,7 +120,7 @@ cmd_format() {
 
 cmd_help() {
   cat <<'USAGE'
-PBQuantum Labs
+Amplitude Lab
 
   Stack
     up               build and start everything, then migrate

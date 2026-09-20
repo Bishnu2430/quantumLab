@@ -20,6 +20,6 @@ def validate_circuit(circuit: QuantumIR):
         }
     except CircuitValidationError as e:
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail={"code": "CIRCUIT_VALIDATION_ERROR", "message": str(e)},
         ) from e

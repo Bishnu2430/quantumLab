@@ -37,3 +37,6 @@ yarn-error.log*
 
 # Generated from apps/web/src/content — regenerate with `npm run content:export`
 packages/curriculum/curriculum.json
+
+# Local development database
+*.db

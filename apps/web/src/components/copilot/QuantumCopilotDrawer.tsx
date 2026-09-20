@@ -138,7 +138,7 @@ export const QuantumCopilotDrawer: React.FC<QuantumCopilotDrawerProps> = ({
       id: "welcome-msg",
       role: "assistant",
       content:
-        "Greetings! I am **QUANTUM**, your advanced AI research companion powered by **Groq LPU** inference.\n\nI possess deep, curriculum-grounded mastery across all **36 domains of PBQuantum Labs**, from elementary Bloch sphere rotations to **VQE molecular simulations, Lindblad master equations, surface code stabilizer decoders, and production Qiskit 1.0 code**.\n\nSelect a domain or pick an advanced research prompt below to begin!",
+        "I am **QUANTUM**, the assistant for this course.\n\nAsk about anything in the curriculum — amplitudes, interference, gates, measurement — or describe a circuit and I will walk through what it does.\n\nI can be wrong. When it matters, run the circuit and check.",
       timestamp: "Just now",
     },
   ]);

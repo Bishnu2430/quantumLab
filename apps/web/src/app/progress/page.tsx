@@ -1,87 +1,152 @@
 "use client";
 
-import React from "react";
-import { BarChart2, CheckCircle2, Award, BookOpen, Clock, Cpu } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { BookOpen, Check, RotateCcw } from "lucide-react";
 
+import { LESSONS } from "@/content";
+
+const STORAGE_KEY = "pbq-progress";
+
+/**
+ * Lesson progress.
+ *
+ * Reads real state rather than the hardcoded "Module 01–04 completed" list
+ * this page previously showed for modules that no longer exist. Progress lives
+ * in browser storage for now, which means it is per-device and honest about
+ * that; moving it behind the accounts system is a later change.
+ */
 export default function ProgressPage() {
-  const completedModules = [
-    { title: "Module 01: Qubits", status: "Completed", date: "Verified" },
-    { title: "Module 02: Superposition & Hadamard", status: "Completed", date: "Verified" },
-    { title: "Module 03: Measurement & Collapse", status: "Completed", date: "Verified" },
-    { title: "Module 04: Single-Qubit Gates", status: "Completed", date: "Verified" },
-  ];
+  const [completed, setCompleted] = useState<Set<string>>(new Set());
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) setCompleted(new Set(JSON.parse(stored) as string[]));
+    } catch {
+      // Blocked or unavailable storage: start empty rather than failing.
+    }
+    setLoaded(true);
+  }, []);
+
+  const persist = (next: Set<string>) => {
+    setCompleted(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]));
+    } catch {
+      // The toggle still applies for this session.
+    }
+  };
+
+  const toggle = (slug: string) => {
+    const next = new Set(completed);
+    if (next.has(slug)) next.delete(slug);
+    else next.add(slug);
+    persist(next);
+  };
+
+  const done = LESSONS.filter((lesson) => completed.has(lesson.slug));
+  const percent = LESSONS.length ? Math.round((done.length / LESSONS.length) * 100) : 0;
+  const minutesDone = done.reduce((sum, lesson) => sum + lesson.estimatedMinutes, 0);
+  const minutesLeft =
+    LESSONS.reduce((sum, lesson) => sum + lesson.estimatedMinutes, 0) - minutesDone;
 
   return (
-    <div className="space-y-6 bg-white">
-      {/* Title Header */}
-      <div className="glass-panel p-6 bg-slate-50 border border-slate-300 space-y-2">
-        <div className="flex items-center gap-2 text-blue-600 font-mono text-xs font-black uppercase tracking-wider">
-          <BarChart2 className="w-4 h-4 text-blue-600" /> Student Progress Tracker
-        </div>
-        <h1 className="text-2xl font-black text-black tracking-tight">Learning Overview</h1>
-        <p className="text-xs text-slate-800 font-medium max-w-2xl leading-relaxed">
-          Track your curriculum completion, unlocked achievement badges, and simulation metrics.
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      <header className="mb-6">
+        <h1 className="text-2xl font-bold tracking-tight text-text">Progress</h1>
+        <p className="mt-1.5 text-[14px] text-text-muted">
+          Mark a lesson complete once you can meet its objectives without rereading it.
         </p>
-      </div>
+      </header>
 
-      {/* Progress Metric Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 font-mono">
-        <div className="glass-panel p-4 bg-slate-50 border border-slate-300 space-y-1">
-          <span className="text-slate-800 text-xs font-bold flex items-center gap-1.5">
-            <BookOpen className="w-3.5 h-3.5 text-blue-600" /> Curriculum
-          </span>
-          <div className="text-2xl font-black text-black">4 / 4</div>
-          <span className="text-[11px] text-emerald-700 font-black">100% Modules Complete</span>
+      <section className="panel p-5 mb-6">
+        <div className="flex items-end justify-between gap-4 mb-3">
+          <div>
+            <p className="text-3xl font-bold text-text">{percent}%</p>
+            <p className="text-[13px] text-text-subtle mt-0.5">
+              {done.length} of {LESSONS.length} lessons
+            </p>
+          </div>
+          <div className="text-right text-[13px] text-text-subtle">
+            <p>{minutesDone} min done</p>
+            <p>{minutesLeft} min remaining</p>
+          </div>
         </div>
 
-        <div className="glass-panel p-4 bg-slate-50 border border-slate-300 space-y-1">
-          <span className="text-slate-800 text-xs font-bold flex items-center gap-1.5">
-            <Cpu className="w-3.5 h-3.5 text-blue-600" /> Qiskit Runs
-          </span>
-          <div className="text-2xl font-black text-black">128</div>
-          <span className="text-[11px] text-blue-700 font-black">Qiskit Aer Executions</span>
+        <div
+          className="h-2 rounded-full bg-surface-sunken overflow-hidden"
+          role="progressbar"
+          aria-valuenow={percent}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Curriculum completion"
+        >
+          <div className="h-full bg-accent rounded-full transition-[width] duration-300"
+               style={{ width: `${percent}%` }} />
         </div>
 
-        <div className="glass-panel p-4 bg-slate-50 border border-slate-300 space-y-1">
-          <span className="text-slate-800 text-xs font-bold flex items-center gap-1.5">
-            <Award className="w-3.5 h-3.5 text-blue-600" /> Badges Unlocked
-          </span>
-          <div className="text-2xl font-black text-black">3</div>
-          <span className="text-[11px] text-amber-700 font-black">Achievement Badges</span>
-        </div>
+        {loaded && done.length > 0 && (
+          <button
+            type="button"
+            onClick={() => persist(new Set())}
+            className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-text-subtle hover:text-danger transition-colors"
+          >
+            <RotateCcw className="w-3 h-3" aria-hidden="true" />
+            Reset progress
+          </button>
+        )}
+      </section>
 
-        <div className="glass-panel p-4 bg-slate-50 border border-slate-300 space-y-1">
-          <span className="text-slate-800 text-xs font-bold flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-blue-600" /> Lab Time
-          </span>
-          <div className="text-2xl font-black text-black">1h 05m</div>
-          <span className="text-[11px] text-purple-700 font-black">Interactive Learning</span>
-        </div>
-      </div>
+      <ol className="space-y-2">
+        {LESSONS.map((lesson) => {
+          const isDone = completed.has(lesson.slug);
+          return (
+            <li key={lesson.slug} className="panel p-3 flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => toggle(lesson.slug)}
+                aria-pressed={isDone}
+                aria-label={`Mark ${lesson.title} as ${isDone ? "not complete" : "complete"}`}
+                className={`w-6 h-6 shrink-0 rounded-md border flex items-center justify-center transition-colors ${
+                  isDone
+                    ? "bg-success-soft border-success-border text-success"
+                    : "bg-surface border-border text-transparent hover:border-accent-border"
+                }`}
+              >
+                <Check className="w-3.5 h-3.5" aria-hidden="true" />
+              </button>
 
-      {/* Completed Modules Breakdown */}
-      <div className="glass-panel p-6 bg-slate-50 border border-slate-300 space-y-4">
-        <h3 className="font-black text-base text-black border-b border-slate-300 pb-3">
-          Completed Curriculum Modules
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {completedModules.map((m, idx) => (
-            <div
-              key={idx}
-              className="p-3.5 rounded-lg bg-white border border-slate-300 flex items-center justify-between font-mono text-xs shadow-xs"
-            >
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="text-black font-black">{m.title}</span>
+              <div className="min-w-0 flex-1">
+                <Link
+                  href={`/learn/${lesson.slug}`}
+                  className="text-[14px] font-medium text-text hover:text-accent transition-colors"
+                >
+                  {lesson.title}
+                </Link>
+                <p className="text-[11px] text-text-subtle mt-0.5">
+                  {lesson.estimatedMinutes} min · {lesson.sections.length} sections
+                  {lesson.circuit && " · runnable circuit"}
+                </p>
               </div>
-              <span className="text-emerald-800 font-black text-[11px] bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300">
-                {m.status}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
+
+              <Link
+                href={`/learn/${lesson.slug}`}
+                className="p-1.5 rounded-md text-text-subtle hover:text-accent transition-colors shrink-0"
+                aria-label={`Open ${lesson.title}`}
+              >
+                <BookOpen className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </li>
+          );
+        })}
+      </ol>
+
+      <p className="mt-6 text-[12px] text-text-subtle">
+        Progress is stored in this browser only, so it will not follow you to another
+        device. Account-backed progress comes with the accounts system.
+      </p>
     </div>
   );
 }

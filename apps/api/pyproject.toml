@@ -1,7 +1,7 @@
 [project]
-name = "pbquantum-api"
+name = "amplitude-lab-api"
 version = "0.2.0"
-description = "PBQuantum Labs API — quantum simulation, curriculum delivery, sandboxed code execution."
+description = "Amplitude Lab API — quantum simulation, curriculum delivery, sandboxed code execution."
 requires-python = ">=3.12,<3.13"
 
 # Core service dependencies. Deliberately excludes the quantum stack so the

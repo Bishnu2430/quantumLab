@@ -15,7 +15,7 @@ def run_simulation(request: SimulationRequest):
         return backend.run(request.circuit, options)
     except CircuitValidationError as e:
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail={"code": "CIRCUIT_VALIDATION_ERROR", "message": str(e)},
         ) from e
     except Exception as e:

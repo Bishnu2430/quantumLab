@@ -28,7 +28,7 @@ async def lifespan(_: FastAPI) -> AsyncGenerator[None, None]:
 settings = get_settings()
 
 app = FastAPI(
-    title="PBQuantum Labs API",
+    title="Amplitude Lab API",
     description="Quantum simulation, curriculum delivery, and sandboxed code execution.",
     version="0.2.0",
     docs_url="/docs",

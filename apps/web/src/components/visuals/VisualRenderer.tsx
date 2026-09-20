@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import { AlertTriangle } from "lucide-react";
 
 import type { VisualSpec } from "@/content/types";
@@ -9,6 +10,31 @@ import { BlochSphereVisual } from "./BlochSphereVisual";
 import { ComplexPlaneVisual } from "./ComplexPlaneVisual";
 import { ConceptMapVisual } from "./ConceptMapVisual";
 import { OperatorMatrixVisual } from "./OperatorMatrixVisual";
+
+/** Heavy studios load on demand so they do not inflate every lesson bundle. */
+const loading = () => (
+  <div className="panel p-8 text-center text-xs text-text-subtle">Loading visualisation…</div>
+);
+const WaveMechanicsLab = dynamic(
+  () => import("@/components/visualization/WaveMechanicsLab").then((m) => m.WaveMechanicsLab),
+  { ssr: false, loading },
+);
+const Entanglement3DStudio = dynamic(
+  () => import("@/components/visualization/Entanglement3DStudio").then((m) => m.Entanglement3DStudio),
+  { ssr: false, loading },
+);
+const GroverAlgorithmLab = dynamic(
+  () => import("@/components/visualization/GroverAlgorithmLab").then((m) => m.GroverAlgorithmLab),
+  { ssr: false, loading },
+);
+const BB84SecurityLab = dynamic(
+  () => import("@/components/visualization/BB84SecurityLab").then((m) => m.BB84SecurityLab),
+  { ssr: false, loading },
+);
+const MultiQubitMatrixLab = dynamic(
+  () => import("@/components/visualization/MultiQubitMatrixLab").then((m) => m.MultiQubitMatrixLab),
+  { ssr: false, loading },
+);
 
 /**
  * Maps a lesson's visual spec onto the component that renders it.
@@ -35,6 +61,16 @@ export const VisualRenderer: React.FC<{ visual: VisualSpec }> = ({ visual }) => 
       return <ConceptMapVisual {...as<React.ComponentProps<typeof ConceptMapVisual>>()} />;
     case "quantum-data-plot":
       return <AmplitudeStepsVisual {...as<React.ComponentProps<typeof AmplitudeStepsVisual>>()} />;
+    case "wave-interference":
+      return <WaveMechanicsLab />;
+    case "entanglement-studio":
+      return <Entanglement3DStudio />;
+    case "grover-studio":
+      return <GroverAlgorithmLab />;
+    case "bb84-studio":
+      return <BB84SecurityLab />;
+    case "multi-qubit-matrix":
+      return <MultiQubitMatrixLab />;
     default:
       return <NotImplemented renderer={visual.renderer} />;
   }

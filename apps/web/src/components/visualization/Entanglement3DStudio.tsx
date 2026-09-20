@@ -143,29 +143,29 @@ export const Entanglement3DStudio: React.FC = () => {
   const isViolating = chshS > 2.0;
 
   return (
-    <div className="flex flex-col bg-slate-950 text-slate-100 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden">
+    <div className="flex flex-col bg-surface-sunken text-text rounded-2xl border border-border shadow-2xl overflow-hidden">
       {/* Top Header */}
-      <div className="bg-slate-900/90 border-b border-slate-800/80 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-surface/90 border-b border-border/80 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+            <span className="p-1.5 rounded-lg bg-viz-primary/20 text-viz-primary border border-viz-primary/30">
               <GitMerge className="w-4 h-4" />
             </span>
-            <h2 className="text-base font-bold text-white tracking-wide">
+            <h2 className="text-base font-bold text-text tracking-wide">
               Entanglement & Non-Locality 3D Studio
             </h2>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-text-muted mt-1">
             Explore EPR pairs, instantaneous measurement collapse, Bell inequality (CHSH) test, and quantum teleportation.
           </p>
         </div>
 
         {/* Sub-tabs */}
-        <div className="flex rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs">
+        <div className="flex rounded-lg bg-surface-sunken p-1 border border-border text-xs">
           <button
             onClick={() => setSubTab("simulator")}
             className={`px-3 py-1.5 rounded-md font-semibold transition ${
-              subTab === "simulator" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
+              subTab === "simulator" ? "bg-viz-primary text-text" : "text-text-muted hover:text-text"
             }`}
           >
             Correlation Collapse
@@ -173,7 +173,7 @@ export const Entanglement3DStudio: React.FC = () => {
           <button
             onClick={() => setSubTab("bell_test")}
             className={`px-3 py-1.5 rounded-md font-semibold transition ${
-              subTab === "bell_test" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
+              subTab === "bell_test" ? "bg-viz-primary text-text" : "text-text-muted hover:text-text"
             }`}
           >
             CHSH Bell Test
@@ -181,7 +181,7 @@ export const Entanglement3DStudio: React.FC = () => {
           <button
             onClick={() => setSubTab("teleportation")}
             className={`px-3 py-1.5 rounded-md font-semibold transition ${
-              subTab === "teleportation" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
+              subTab === "teleportation" ? "bg-viz-primary text-text" : "text-text-muted hover:text-text"
             }`}
           >
             Quantum Teleportation
@@ -193,7 +193,7 @@ export const Entanglement3DStudio: React.FC = () => {
       {subTab === "simulator" && (
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
           {/* Main Visual Stage (Multi-Tier 3D Platform representation) */}
-          <div className="lg:col-span-8 p-6 flex flex-col justify-between relative bg-radial from-slate-900 via-slate-950 to-black overflow-hidden">
+          <div className="lg:col-span-8 p-6 flex flex-col justify-between relative bg-radial from-surface via-surface-sunken to-black overflow-hidden">
             {/* Background Grid Accent */}
             <div
               className="absolute inset-0 opacity-10 pointer-events-none"
@@ -205,19 +205,19 @@ export const Entanglement3DStudio: React.FC = () => {
 
             {/* Current State Formula & Description Badge */}
             <div className="flex justify-between items-start z-10">
-              <div className="bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-800">
-                <div className="text-xs text-indigo-400 font-mono font-semibold">Selected State:</div>
-                <div className="text-base font-bold text-white font-mono">{stateDef.latex}</div>
-                <p className="text-xs text-slate-400 mt-1 max-w-md">{stateDef.description}</p>
+              <div className="bg-surface/80 backdrop-blur-md px-4 py-2.5 rounded-xl border border-border">
+                <div className="text-xs text-viz-primary font-mono font-semibold">Selected State:</div>
+                <div className="text-base font-bold text-text font-mono">{stateDef.latex}</div>
+                <p className="text-xs text-text-muted mt-1 max-w-md">{stateDef.description}</p>
               </div>
 
-              <div className="bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-slate-800 text-right">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Entanglement Status</span>
+              <div className="bg-surface/80 backdrop-blur-md px-3 py-2 rounded-xl border border-border text-right">
+                <span className="text-[10px] text-text-muted uppercase tracking-wider block">Entanglement Status</span>
                 <span
                   className={`text-xs font-bold font-mono px-2 py-0.5 rounded-full inline-block mt-0.5 ${
                     stateDef.separable
-                      ? "bg-slate-800 text-slate-400 border border-slate-700"
-                      : "bg-indigo-950/80 text-indigo-300 border border-indigo-700/60"
+                      ? "bg-surface-raised text-text-muted border border-border"
+                      : "bg-viz-primary/80 text-viz-primary border border-viz-primary/60"
                   }`}
                 >
                   {stateDef.separable ? "Separable (Product)" : "Maximally Entangled"}
@@ -232,24 +232,24 @@ export const Entanglement3DStudio: React.FC = () => {
                 <div
                   className={`w-32 sm:w-40 h-32 sm:h-40 rounded-2xl border-2 flex flex-col items-center justify-center p-4 transition-all duration-500 relative ${
                     collapsedOutcome
-                      ? "bg-blue-950/60 border-blue-500 shadow-xl shadow-blue-950/50"
+                      ? "bg-viz-primary/60 border-viz-primary shadow-xl shadow-viz-primary/50"
                       : isCollapsing
-                      ? "bg-indigo-900/40 border-indigo-400 animate-pulse"
-                      : "bg-slate-900/70 border-slate-700 hover:border-slate-600"
+                      ? "bg-viz-primary/40 border-viz-primary animate-pulse"
+                      : "bg-surface/70 border-border hover:border-border-strong"
                   }`}
                 >
                   {/* Floating Particle Node */}
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-lg shadow-lg transition-transform duration-500 ${
                       collapsedOutcome
-                        ? "bg-blue-500 text-white scale-110 shadow-blue-500/50"
-                        : "bg-gradient-to-tr from-indigo-500 to-cyan-400 text-white animate-bounce"
+                        ? "bg-viz-primary text-text scale-110 shadow-viz-primary/50"
+                        : "bg-gradient-to-tr from-viz-primary to-viz-tertiary text-text animate-bounce"
                     }`}
                   >
                     {collapsedOutcome ? `|${collapsedOutcome[0]}⟩` : "q₀"}
                   </div>
-                  <span className="text-xs font-mono text-slate-300 font-semibold mt-3">Qubit 0 (Alice)</span>
-                  <span className="text-[10px] text-slate-400 font-mono">
+                  <span className="text-xs font-mono text-text-muted font-semibold mt-3">Qubit 0 (Alice)</span>
+                  <span className="text-[10px] text-text-muted font-mono">
                     {collapsedOutcome ? `Measured: |${collapsedOutcome[0]}⟩` : "Superposition"}
                   </span>
                 </div>
@@ -261,21 +261,21 @@ export const Entanglement3DStudio: React.FC = () => {
                 <div
                   className={`w-full h-1 rounded-full transition-all duration-500 ${
                     stateDef.separable
-                      ? "bg-slate-800"
+                      ? "bg-surface-raised"
                       : collapsedOutcome
-                      ? "bg-blue-500 shadow-md shadow-blue-500/60"
+                      ? "bg-viz-primary shadow-md shadow-viz-primary/60"
                       : isCollapsing
-                      ? "bg-gradient-to-r from-indigo-500 via-cyan-400 to-indigo-500 animate-pulse h-1.5"
-                      : "bg-gradient-to-r from-indigo-600 via-purple-500 to-indigo-600"
+                      ? "bg-gradient-to-r from-viz-primary via-viz-tertiary to-viz-primary animate-pulse h-1.5"
+                      : "bg-gradient-to-r from-viz-primary via-viz-secondary to-viz-primary"
                   }`}
                 />
 
                 {/* Animated Particle or Pulse */}
                 {!stateDef.separable && !collapsedOutcome && (
-                  <div className="absolute w-3 h-3 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/80 animate-ping" />
+                  <div className="absolute w-3 h-3 rounded-full bg-viz-tertiary shadow-lg shadow-viz-tertiary/80 animate-ping" />
                 )}
 
-                <span className="text-[10px] font-mono text-slate-400 mt-2 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800">
+                <span className="text-[10px] font-mono text-text-muted mt-2 bg-surface/80 px-2 py-0.5 rounded border border-border">
                   {stateDef.separable ? "No Correlation" : "Non-Local Entanglement Link"}
                 </span>
               </div>
@@ -285,23 +285,23 @@ export const Entanglement3DStudio: React.FC = () => {
                 <div
                   className={`w-32 sm:w-40 h-32 sm:h-40 rounded-2xl border-2 flex flex-col items-center justify-center p-4 transition-all duration-500 relative ${
                     collapsedOutcome
-                      ? "bg-purple-950/60 border-purple-500 shadow-xl shadow-purple-950/50"
+                      ? "bg-viz-secondary/60 border-viz-secondary shadow-xl shadow-viz-secondary/50"
                       : isCollapsing
-                      ? "bg-indigo-900/40 border-indigo-400 animate-pulse"
-                      : "bg-slate-900/70 border-slate-700 hover:border-slate-600"
+                      ? "bg-viz-primary/40 border-viz-primary animate-pulse"
+                      : "bg-surface/70 border-border hover:border-border-strong"
                   }`}
                 >
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-lg shadow-lg transition-transform duration-500 ${
                       collapsedOutcome
-                        ? "bg-purple-500 text-white scale-110 shadow-purple-500/50"
-                        : "bg-gradient-to-tr from-purple-500 to-pink-500 text-white animate-bounce"
+                        ? "bg-viz-secondary text-text scale-110 shadow-viz-secondary/50"
+                        : "bg-gradient-to-tr from-viz-secondary to-viz-negative text-text animate-bounce"
                     }`}
                   >
                     {collapsedOutcome ? `|${collapsedOutcome[1]}⟩` : "q₁"}
                   </div>
-                  <span className="text-xs font-mono text-slate-300 font-semibold mt-3">Qubit 1 (Bob)</span>
-                  <span className="text-[10px] text-slate-400 font-mono">
+                  <span className="text-xs font-mono text-text-muted font-semibold mt-3">Qubit 1 (Bob)</span>
+                  <span className="text-[10px] text-text-muted font-mono">
                     {collapsedOutcome ? `Instant Collapse: |${collapsedOutcome[1]}⟩` : "Superposition"}
                   </span>
                 </div>
@@ -309,15 +309,15 @@ export const Entanglement3DStudio: React.FC = () => {
             </div>
 
             {/* Bottom Controls Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 z-10 bg-slate-900/80 backdrop-blur-md p-3.5 rounded-xl border border-slate-800">
+            <div className="flex flex-wrap items-center justify-between gap-4 z-10 bg-surface/80 backdrop-blur-md p-3.5 rounded-xl border border-border">
               <div className="flex items-center gap-3">
                 <button
                   onClick={triggerMeasurement}
                   disabled={isCollapsing}
                   className={`px-5 py-2 rounded-lg font-semibold text-xs font-mono flex items-center gap-2 shadow-lg transition ${
                     isCollapsing
-                      ? "bg-indigo-800 text-indigo-300 cursor-not-allowed"
-                      : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/30 active:scale-95"
+                      ? "bg-viz-primary text-viz-primary cursor-not-allowed"
+                      : "bg-viz-primary hover:bg-viz-primary text-text shadow-viz-primary/30 active:scale-95"
                   }`}
                 >
                   <Zap className="w-4 h-4" />
@@ -327,7 +327,7 @@ export const Entanglement3DStudio: React.FC = () => {
                 {collapsedOutcome && (
                   <button
                     onClick={resetState}
-                    className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-mono transition flex items-center gap-1.5 border border-slate-700"
+                    className="px-3.5 py-2 bg-surface-raised hover:bg-surface-raised text-text-muted rounded-lg text-xs font-mono transition flex items-center gap-1.5 border border-border"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Reset Superposition</span>
@@ -337,12 +337,12 @@ export const Entanglement3DStudio: React.FC = () => {
 
               {/* Measurement History */}
               {measurementHistory.length > 0 && (
-                <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-text-muted">
                   <span>Recent:</span>
                   {measurementHistory.map((item, i) => (
                     <span
                       key={i}
-                      className="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-indigo-300 font-bold"
+                      className="px-1.5 py-0.5 rounded bg-surface-raised border border-border text-viz-primary font-bold"
                     >
                       |{item}⟩
                     </span>
@@ -353,10 +353,10 @@ export const Entanglement3DStudio: React.FC = () => {
           </div>
 
           {/* Right Side State Selector & Density Matrix Details */}
-          <div className="lg:col-span-4 bg-slate-900/70 border-t lg:border-t-0 lg:border-l border-slate-800 p-5 flex flex-col justify-between">
+          <div className="lg:col-span-4 bg-surface/70 border-t lg:border-t-0 lg:border-l border-border p-5 flex flex-col justify-between">
             <div className="space-y-5">
               <div>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2.5">
+                <span className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2.5">
                   Choose Quantum State
                 </span>
                 <div className="grid grid-cols-2 gap-2">
@@ -369,14 +369,14 @@ export const Entanglement3DStudio: React.FC = () => {
                         onClick={() => handleSelectState(key)}
                         className={`p-2.5 rounded-xl border text-left transition flex flex-col ${
                           isSelected
-                            ? "bg-indigo-900/40 border-indigo-500 shadow-md shadow-indigo-950"
-                            : "bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-300"
+                            ? "bg-viz-primary/40 border-viz-primary shadow-md shadow-viz-primary"
+                            : "bg-surface-sunken/60 border-border hover:border-border text-text-muted"
                         }`}
                       >
-                        <span className={`text-xs font-bold font-mono ${isSelected ? "text-indigo-300" : "text-slate-200"}`}>
+                        <span className={`text-xs font-bold font-mono ${isSelected ? "text-viz-primary" : "text-text"}`}>
                           {st.name}
                         </span>
-                        <span className="text-[10px] text-slate-400 font-mono mt-0.5">{st.latex}</span>
+                        <span className="text-[10px] text-text-muted font-mono mt-0.5">{st.latex}</span>
                       </button>
                     );
                   })}
@@ -385,21 +385,21 @@ export const Entanglement3DStudio: React.FC = () => {
 
               {/* Basis Probability Bar Chart */}
               <div>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+                <span className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
                   Measurement Probabilities (Born Rule)
                 </span>
-                <div className="space-y-2 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                <div className="space-y-2 bg-surface-sunken p-3 rounded-xl border border-border">
                   {Object.entries(stateDef.amplitudes).map(([basis, amp]) => {
                     const prob = (amp * amp) * 100;
                     return (
                       <div key={basis} className="text-xs font-mono">
-                        <div className="flex justify-between text-slate-300 mb-1">
-                          <span className="font-bold text-indigo-300">|{basis}⟩</span>
+                        <div className="flex justify-between text-text-muted mb-1">
+                          <span className="font-bold text-viz-primary">|{basis}⟩</span>
                           <span>{prob.toFixed(0)}% (amp: {amp.toFixed(3)})</span>
                         </div>
-                        <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div className="w-full h-2 bg-surface-raised rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-indigo-500 transition-all duration-300"
+                            className="h-full bg-viz-primary transition-all duration-300"
                             style={{ width: `${prob}%` }}
                           />
                         </div>
@@ -410,18 +410,18 @@ export const Entanglement3DStudio: React.FC = () => {
               </div>
 
               {/* Entanglement Entropy Info */}
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-1.5">
-                <div className="text-slate-200 font-semibold flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+              <div className="p-3 bg-surface-sunken rounded-xl border border-border text-xs text-text-muted space-y-1.5">
+                <div className="text-text font-semibold flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-viz-primary" />
                   <span>Von Neumann Entanglement Entropy</span>
                 </div>
                 <p className="text-[11px] leading-relaxed">
                   For a bipartite state |ψ_AB⟩, the entropy of subsystem A is{" "}
-                  <code className="text-indigo-300">S(ρ_A) = -Tr(ρ_A log₂ ρ_A)</code>.
+                  <code className="text-viz-primary">S(ρ_A) = -Tr(ρ_A log₂ ρ_A)</code>.
                 </p>
-                <div className="flex justify-between items-center text-xs font-mono pt-1 text-slate-300">
+                <div className="flex justify-between items-center text-xs font-mono pt-1 text-text-muted">
                   <span>Current S(ρ_A):</span>
-                  <span className="font-bold text-indigo-400">{stateDef.separable ? "0.00 (Zero Entanglement)" : "1.00 (Maximal Entanglement)"}</span>
+                  <span className="font-bold text-viz-primary">{stateDef.separable ? "0.00 (Zero Entanglement)" : "1.00 (Maximal Entanglement)"}</span>
                 </div>
               </div>
             </div>
@@ -432,10 +432,10 @@ export const Entanglement3DStudio: React.FC = () => {
       {/* VIEW 2: CHSH BELL INEQUALITY LAB */}
       {subTab === "bell_test" && (
         <div className="p-6 space-y-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-surface/60 p-4 rounded-xl border border-border">
             <div>
-              <h3 className="text-sm font-bold text-white">Clauser–Horne–Shimony–Holt (CHSH) Bell Inequality</h3>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <h3 className="text-sm font-bold text-text">Clauser–Horne–Shimony–Holt (CHSH) Bell Inequality</h3>
+              <p className="text-xs text-text-muted mt-0.5">
                 Local Hidden Variable theories demand that classical correlations satisfy |S| ≤ 2.
                 Quantum mechanics allows correlations up to Tsirelson's bound: <strong>2√2 ≈ 2.828</strong>.
               </p>
@@ -443,11 +443,11 @@ export const Entanglement3DStudio: React.FC = () => {
             <div
               className={`px-4 py-2 rounded-xl font-mono text-center border ${
                 isViolating
-                  ? "bg-emerald-950/60 border-emerald-500 text-emerald-300 shadow-lg shadow-emerald-950"
-                  : "bg-slate-900 border-slate-700 text-slate-300"
+                  ? "bg-viz-positive/60 border-viz-positive text-viz-positive shadow-lg shadow-viz-positive"
+                  : "bg-surface border-border text-text-muted"
               }`}
             >
-              <div className="text-[10px] uppercase tracking-wider text-slate-400">Bell Parameter S</div>
+              <div className="text-[10px] uppercase tracking-wider text-text-muted">Bell Parameter S</div>
               <div className="text-xl font-bold">{chshS.toFixed(3)}</div>
               <div className="text-[10px]">
                 {isViolating ? "✓ Bell Inequality VIOLATED!" : "Classical Bound (S ≤ 2)"}
@@ -458,14 +458,14 @@ export const Entanglement3DStudio: React.FC = () => {
           {/* Detector Angle Sliders */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Alice's Detector Angles */}
-            <div className="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-4">
-              <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider block">
+            <div className="p-4 bg-surface/60 rounded-xl border border-border space-y-4">
+              <span className="text-xs font-semibold text-viz-primary uppercase tracking-wider block">
                 Alice's Measurement Bases (Qubit 0)
               </span>
               <div>
-                <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                   <span>Detector Angle a₁:</span>
-                  <span className="text-blue-400 font-bold">{angleA1}°</span>
+                  <span className="text-viz-primary font-bold">{angleA1}°</span>
                 </div>
                 <input
                   type="range"
@@ -474,14 +474,14 @@ export const Entanglement3DStudio: React.FC = () => {
                   step="2.5"
                   value={angleA1}
                   onChange={(e) => setAngleA1(parseFloat(e.target.value))}
-                  className="w-full accent-blue-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                  className="w-full accent-viz-primary bg-surface-raised h-2 rounded-lg cursor-pointer"
                 />
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                   <span>Detector Angle a₂:</span>
-                  <span className="text-blue-400 font-bold">{angleA2}°</span>
+                  <span className="text-viz-primary font-bold">{angleA2}°</span>
                 </div>
                 <input
                   type="range"
@@ -490,20 +490,20 @@ export const Entanglement3DStudio: React.FC = () => {
                   step="2.5"
                   value={angleA2}
                   onChange={(e) => setAngleA2(parseFloat(e.target.value))}
-                  className="w-full accent-blue-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                  className="w-full accent-viz-primary bg-surface-raised h-2 rounded-lg cursor-pointer"
                 />
               </div>
             </div>
 
             {/* Bob's Detector Angles */}
-            <div className="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-4">
-              <span className="text-xs font-semibold text-purple-400 uppercase tracking-wider block">
+            <div className="p-4 bg-surface/60 rounded-xl border border-border space-y-4">
+              <span className="text-xs font-semibold text-viz-secondary uppercase tracking-wider block">
                 Bob's Measurement Bases (Qubit 1)
               </span>
               <div>
-                <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                   <span>Detector Angle b₁:</span>
-                  <span className="text-purple-400 font-bold">{angleB1}°</span>
+                  <span className="text-viz-secondary font-bold">{angleB1}°</span>
                 </div>
                 <input
                   type="range"
@@ -512,14 +512,14 @@ export const Entanglement3DStudio: React.FC = () => {
                   step="2.5"
                   value={angleB1}
                   onChange={(e) => setAngleB1(parseFloat(e.target.value))}
-                  className="w-full accent-purple-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                  className="w-full accent-viz-secondary bg-surface-raised h-2 rounded-lg cursor-pointer"
                 />
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                   <span>Detector Angle b₂:</span>
-                  <span className="text-purple-400 font-bold">{angleB2}°</span>
+                  <span className="text-viz-secondary font-bold">{angleB2}°</span>
                 </div>
                 <input
                   type="range"
@@ -528,7 +528,7 @@ export const Entanglement3DStudio: React.FC = () => {
                   step="2.5"
                   value={angleB2}
                   onChange={(e) => setAngleB2(parseFloat(e.target.value))}
-                  className="w-full accent-purple-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                  className="w-full accent-viz-secondary bg-surface-raised h-2 rounded-lg cursor-pointer"
                 />
               </div>
             </div>
@@ -543,7 +543,7 @@ export const Entanglement3DStudio: React.FC = () => {
                 setAngleB1(22.5);
                 setAngleB2(67.5);
               }}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-mono font-semibold transition"
+              className="px-4 py-2 bg-viz-primary hover:bg-viz-primary text-text rounded-lg text-xs font-mono font-semibold transition"
             >
               Set Optimal Angles (S = 2.828)
             </button>
@@ -554,7 +554,7 @@ export const Entanglement3DStudio: React.FC = () => {
                 setAngleB1(0);
                 setAngleB2(90);
               }}
-              className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-mono transition"
+              className="px-4 py-2 bg-surface-raised hover:bg-surface-raised text-text-muted rounded-lg text-xs font-mono transition"
             >
               Set Classical Angles (S = 2.000)
             </button>
@@ -565,9 +565,9 @@ export const Entanglement3DStudio: React.FC = () => {
       {/* VIEW 3: QUANTUM TELEPORTATION WALKTHROUGH */}
       {subTab === "teleportation" && (
         <div className="p-6 space-y-6">
-          <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-            <h3 className="text-sm font-bold text-white">Quantum Teleportation Protocol</h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+          <div className="bg-surface/60 p-4 rounded-xl border border-border">
+            <h3 className="text-sm font-bold text-text">Quantum Teleportation Protocol</h3>
+            <p className="text-xs text-text-muted mt-0.5">
               Transmit an unknown state |ψ⟩ = α|0⟩ + β|1⟩ from Alice to Bob using 1 shared Bell pair and 2 classical bits.
             </p>
           </div>
@@ -585,23 +585,23 @@ export const Entanglement3DStudio: React.FC = () => {
                 onClick={() => setTeleportStep(st.step)}
                 className={`p-3 rounded-xl border text-left transition ${
                   teleportStep === st.step
-                    ? "bg-indigo-900/50 border-indigo-500 shadow-md shadow-indigo-950"
-                    : "bg-slate-900/40 border-slate-800 hover:border-slate-700 text-slate-400"
+                    ? "bg-viz-primary/50 border-viz-primary shadow-md shadow-viz-primary"
+                    : "bg-surface/40 border-border hover:border-border text-text-muted"
                 }`}
               >
-                <div className="text-xs font-bold text-white font-mono">{st.title}</div>
-                <div className="text-[11px] text-slate-400 mt-1">{st.desc}</div>
+                <div className="text-xs font-bold text-text font-mono">{st.title}</div>
+                <div className="text-[11px] text-text-muted mt-1">{st.desc}</div>
               </button>
             ))}
           </div>
 
           {/* Step Detail Card */}
-          <div className="p-5 bg-slate-900/80 rounded-xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="p-5 bg-surface/80 rounded-xl border border-border flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
-              <span className="text-xs font-mono font-bold text-indigo-400 uppercase">
+              <span className="text-xs font-mono font-bold text-viz-primary uppercase">
                 Step {teleportStep} Explanation
               </span>
-              <p className="text-sm text-slate-200 leading-relaxed">
+              <p className="text-sm text-text leading-relaxed">
                 {teleportStep === 1 &&
                   "Alice and Bob establish an entangled EPR channel: |Φ⁺⟩ = (|00⟩ + |11⟩)/√2. Alice holds Qubit A, and Bob holds Qubit B across a distance."}
                 {teleportStep === 2 &&
@@ -617,14 +617,14 @@ export const Entanglement3DStudio: React.FC = () => {
               <button
                 disabled={teleportStep === 1}
                 onClick={() => setTeleportStep((s) => Math.max(1, s - 1))}
-                className="px-3 py-2 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 rounded-lg text-xs font-mono transition"
+                className="px-3 py-2 bg-surface-raised hover:bg-surface-raised disabled:opacity-40 rounded-lg text-xs font-mono transition"
               >
                 Previous Step
               </button>
               <button
                 disabled={teleportStep === 4}
                 onClick={() => setTeleportStep((s) => Math.min(4, s + 1))}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 rounded-lg text-xs font-mono font-semibold transition"
+                className="px-4 py-2 bg-viz-primary hover:bg-viz-primary disabled:opacity-40 rounded-lg text-xs font-mono font-semibold transition"
               >
                 Next Step
               </button>
