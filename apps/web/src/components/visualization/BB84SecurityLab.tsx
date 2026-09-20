@@ -87,19 +87,19 @@ export const BB84SecurityLab: React.FC = () => {
   const isSecure = qber <= 11; // 11% is the theoretical security threshold for BB84
 
   return (
-    <div className="flex flex-col bg-slate-950 text-slate-100 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden">
+    <div className="flex flex-col bg-surface-sunken text-text rounded-2xl border border-border shadow-2xl overflow-hidden">
       {/* Header */}
-      <div className="bg-slate-900/90 border-b border-slate-800/80 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-surface/90 border-b border-border/80 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <span className="p-1.5 rounded-lg bg-viz-quaternary/20 text-viz-quaternary border border-viz-quaternary/30">
               <KeyRound className="w-4 h-4" />
             </span>
-            <h2 className="text-base font-bold text-white tracking-wide">
+            <h2 className="text-base font-bold text-text tracking-wide">
               Quantum Key Distribution (BB84 Protocol) Simulator
             </h2>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-text-muted mt-1">
             Information-theoretic security guaranteed by the No-Cloning Theorem and measurement collapse.
           </p>
         </div>
@@ -114,17 +114,17 @@ export const BB84SecurityLab: React.FC = () => {
             }}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold flex items-center gap-2 transition border ${
               eveEnabled
-                ? "bg-red-950/80 border-red-500 text-red-300 shadow-lg shadow-red-950"
-                : "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                ? "bg-viz-negative/80 border-viz-negative text-viz-negative shadow-lg shadow-viz-negative"
+                : "bg-surface-raised border-border text-text-muted hover:bg-surface-raised"
             }`}
           >
-            {eveEnabled ? <Eye className="w-3.5 h-3.5 text-red-400" /> : <EyeOff className="w-3.5 h-3.5" />}
+            {eveEnabled ? <Eye className="w-3.5 h-3.5 text-viz-negative" /> : <EyeOff className="w-3.5 h-3.5" />}
             <span>Eve Interception: {eveEnabled ? "ACTIVE (Spying)" : "OFF"}</span>
           </button>
 
           <button
             onClick={() => runSimulation(eveEnabled)}
-            className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-mono font-semibold flex items-center gap-1.5 transition shadow"
+            className="px-3.5 py-1.5 bg-viz-quaternary hover:bg-viz-quaternary text-text rounded-lg text-xs font-mono font-semibold flex items-center gap-1.5 transition shadow"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Generate Photons</span>
@@ -138,15 +138,15 @@ export const BB84SecurityLab: React.FC = () => {
         <div
           className={`p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
             isSecure
-              ? "bg-emerald-950/40 border-emerald-500/50 text-emerald-200"
-              : "bg-red-950/40 border-red-500/50 text-red-200"
+              ? "bg-viz-positive/40 border-viz-positive/50 text-viz-positive"
+              : "bg-viz-negative/40 border-viz-negative/50 text-viz-negative"
           }`}
         >
           <div className="flex items-center gap-3">
             {isSecure ? (
-              <ShieldCheck className="w-7 h-7 text-emerald-400 shrink-0" />
+              <ShieldCheck className="w-7 h-7 text-viz-positive shrink-0" />
             ) : (
-              <ShieldAlert className="w-7 h-7 text-red-400 shrink-0" />
+              <ShieldAlert className="w-7 h-7 text-viz-negative shrink-0" />
             )}
             <div>
               <div className="text-sm font-bold">
@@ -162,67 +162,67 @@ export const BB84SecurityLab: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-slate-950/80 px-4 py-2 rounded-lg border border-slate-800 font-mono text-xs text-right">
-            <div className="text-slate-400">Error Rate (QBER):</div>
-            <div className={`text-base font-bold ${isSecure ? "text-emerald-400" : "text-red-400"}`}>
+          <div className="bg-surface-sunken/80 px-4 py-2 rounded-lg border border-border font-mono text-xs text-right">
+            <div className="text-text-muted">Error Rate (QBER):</div>
+            <div className={`text-base font-bold ${isSecure ? "text-viz-positive" : "text-viz-negative"}`}>
               {qber.toFixed(1)}% {qber > 0 && `(${errorCount}/${sifted.length} mismatched)`}
             </div>
           </div>
         </div>
 
         {/* Transmission Table (10 Photons) */}
-        <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/60">
+        <div className="overflow-x-auto rounded-xl border border-border bg-surface/60">
           <table className="w-full text-xs font-mono text-left">
-            <thead className="bg-slate-950/80 text-slate-400 border-b border-slate-800">
+            <thead className="bg-surface-sunken/80 text-text-muted border-b border-border">
               <tr>
                 <th className="p-3">Photon #</th>
-                <th className="p-3 text-blue-400">Alice Bit</th>
-                <th className="p-3 text-blue-400">Alice Basis</th>
-                {eveEnabled && <th className="p-3 text-red-400">Eve Basis</th>}
-                <th className="p-3 text-purple-400">Bob Basis</th>
-                <th className="p-3 text-purple-400">Bob Measured</th>
+                <th className="p-3 text-viz-primary">Alice Bit</th>
+                <th className="p-3 text-viz-primary">Alice Basis</th>
+                {eveEnabled && <th className="p-3 text-viz-negative">Eve Basis</th>}
+                <th className="p-3 text-viz-secondary">Bob Basis</th>
+                <th className="p-3 text-viz-secondary">Bob Measured</th>
                 <th className="p-3">Basis Match?</th>
-                <th className="p-3 text-emerald-400">Sifted Key Bit</th>
+                <th className="p-3 text-viz-positive">Sifted Key Bit</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-850">
+            <tbody className="divide-y divide-border-strong">
               {packets.map((pkt, idx) => (
                 <tr
                   key={idx}
-                  className={`transition hover:bg-slate-800/40 ${
-                    pkt.basisMatch ? "bg-slate-900/40 font-semibold" : "opacity-60"
+                  className={`transition hover:bg-surface-raised/40 ${
+                    pkt.basisMatch ? "bg-surface/40 font-semibold" : "opacity-60"
                   }`}
                 >
-                  <td className="p-3 text-slate-500 font-bold">#{idx + 1}</td>
-                  <td className="p-3 text-blue-300">{pkt.aliceBit}</td>
-                  <td className="p-3 text-blue-400">{pkt.aliceBasis}</td>
+                  <td className="p-3 text-text-subtle font-bold">#{idx + 1}</td>
+                  <td className="p-3 text-viz-primary">{pkt.aliceBit}</td>
+                  <td className="p-3 text-viz-primary">{pkt.aliceBasis}</td>
                   {eveEnabled && (
-                    <td className="p-3 text-red-400 font-bold">
+                    <td className="p-3 text-viz-negative font-bold">
                       {pkt.eveBasis} {pkt.eveBasis !== pkt.aliceBasis ? "(disturbed)" : ""}
                     </td>
                   )}
-                  <td className="p-3 text-purple-400">{pkt.bobBasis}</td>
-                  <td className="p-3 text-purple-300">{pkt.bobBit}</td>
+                  <td className="p-3 text-viz-secondary">{pkt.bobBasis}</td>
+                  <td className="p-3 text-viz-secondary">{pkt.bobBit}</td>
                   <td className="p-3">
                     {pkt.basisMatch ? (
-                      <span className="text-emerald-400 font-bold">✓ Match ({pkt.aliceBasis})</span>
+                      <span className="text-viz-positive font-bold">✓ Match ({pkt.aliceBasis})</span>
                     ) : (
-                      <span className="text-slate-500">✗ Discard</span>
+                      <span className="text-text-subtle">✗ Discard</span>
                     )}
                   </td>
                   <td className="p-3">
                     {pkt.basisMatch ? (
                       pkt.bitMatch ? (
-                        <span className="px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/50 text-emerald-300 font-bold">
+                        <span className="px-2 py-0.5 rounded bg-viz-positive border border-viz-positive/50 text-viz-positive font-bold">
                           {pkt.aliceBit}
                         </span>
                       ) : (
-                        <span className="px-2 py-0.5 rounded bg-red-950 border border-red-500/50 text-red-300 font-bold">
+                        <span className="px-2 py-0.5 rounded bg-viz-negative border border-viz-negative/50 text-viz-negative font-bold">
                           ERROR ({pkt.aliceBit} ≠ {pkt.bobBit})
                         </span>
                       )
                     ) : (
-                      <span className="text-slate-600">—</span>
+                      <span className="text-text-subtle">—</span>
                     )}
                   </td>
                 </tr>
@@ -232,15 +232,15 @@ export const BB84SecurityLab: React.FC = () => {
         </div>
 
         {/* Final Shared Secret Key */}
-        <div className="p-4 bg-slate-900/60 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+        <div className="p-4 bg-surface/60 rounded-xl border border-border flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2">
-            <span className="text-slate-400">Extracted Shared Secret Key:</span>
-            <span className="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-amber-300 font-bold tracking-widest text-sm">
+            <span className="text-text-muted">Extracted Shared Secret Key:</span>
+            <span className="px-3 py-1 rounded-lg bg-surface-sunken border border-border text-viz-quaternary font-bold tracking-widest text-sm">
               {sifted.map((s) => s.aliceBit).join("") || "No matching bases"}
             </span>
           </div>
-          <div className="text-slate-400">
-            Sifted Key Length: <strong className="text-white">{sifted.length} bits</strong>
+          <div className="text-text-muted">
+            Sifted Key Length: <strong className="text-text">{sifted.length} bits</strong>
           </div>
         </div>
       </div>

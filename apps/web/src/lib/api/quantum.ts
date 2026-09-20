@@ -171,14 +171,31 @@ export function generateQiskitPythonCode(circuit: QuantumIR, shots: number = 102
     });
   }
 
+  // The backend adds measurements when a circuit has none, so the exported
+  // code must do the same. Without this, get_counts() raises on a circuit that
+  // simulated perfectly a moment earlier -- the code would not reproduce the
+  // results shown next to it.
+  const hasMeasurement = circuit.operations?.some((op) => op.gate === "measure") ?? false;
+  if (!hasMeasurement) {
+    // measure_all() would append a second classical register and produce
+    // two-part keys like "00 00". Measuring into the declared clbits keeps the
+    // output identical to what the simulator panel shows.
+    lines.push("", "# No explicit measurement, so measure every qubit into the register.");
+    if (circuit.numClbits >= circuit.numQubits) {
+      lines.push(`qc.measure(range(${circuit.numQubits}), range(${circuit.numQubits}))`);
+    } else {
+      lines.push("qc.measure_all()");
+    }
+  }
+
   lines.push(
     "",
-    "# Execute simulation using IBM Qiskit Aer",
+    "# Execute on IBM Qiskit Aer",
     "simulator = AerSimulator()",
     `result = simulator.run(qc, shots=${shots}).result()`,
     "counts = result.get_counts()",
     "",
-    'print("Measurement Counts:", counts)'
+    'print("Measurement counts:", counts)'
   );
 
   return lines.join("\n");

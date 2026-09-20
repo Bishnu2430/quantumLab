@@ -25,7 +25,13 @@ export type VisualRenderer =
   | "quantum-data-plot"
   | "quantum-network"
   | "timeline"
-  | "wave-interference";
+  | "wave-interference"
+  // Studios carried over from the standalone visualizations hub, now embedded
+  // in the lesson that needs them rather than sitting in a separate gallery.
+  | "entanglement-studio"
+  | "grover-studio"
+  | "bb84-studio"
+  | "multi-qubit-matrix";
 
 // --- prose ----------------------------------------------------------------
 

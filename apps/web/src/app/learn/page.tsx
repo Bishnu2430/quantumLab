@@ -5,7 +5,7 @@ import { BookOpen, Clock, Code2, Cpu, Eye } from "lucide-react";
 import { LESSONS } from "@/content";
 
 export const metadata: Metadata = {
-  title: "Curriculum — PBQuantum Labs",
+  title: "Curriculum",
   description:
     "A sequenced course in quantum computing: derivations, interactive visuals, and circuits you run on a real simulator.",
 };

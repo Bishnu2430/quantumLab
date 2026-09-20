@@ -17,7 +17,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const lesson = getLesson(params.slug);
   if (!lesson) return { title: "Lesson not found" };
   return {
-    title: `${lesson.title} — PBQuantum Labs`,
+    title: lesson.title,
     description: lesson.summary,
   };
 }

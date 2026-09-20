@@ -213,28 +213,28 @@ export const WaveMechanicsLab: React.FC = () => {
   }, [labMode, isPlaying, phaseOffset, slitSeparation, wavelength, barrierHeight, barrierWidth, particleEnergy, transmissionProb]);
 
   return (
-    <div className="flex flex-col bg-slate-950 text-slate-100 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden">
+    <div className="flex flex-col bg-surface-sunken text-text rounded-2xl border border-border shadow-2xl overflow-hidden">
       {/* Top Header */}
-      <div className="bg-slate-900/90 border-b border-slate-800/80 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-surface/90 border-b border-border/80 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+            <span className="p-1.5 rounded-lg bg-viz-tertiary/20 text-viz-tertiary border border-viz-tertiary/30">
               <Waves className="w-4 h-4" />
             </span>
-            <h2 className="text-base font-bold text-white tracking-wide">
+            <h2 className="text-base font-bold text-text tracking-wide">
               Quantum Superposition & Wave Mechanics Lab
             </h2>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-text-muted mt-1">
             Real-time wave packet interference, constructive/destructive phase tuning, and evanescent quantum tunneling.
           </p>
         </div>
 
-        <div className="flex rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs">
+        <div className="flex rounded-lg bg-surface-sunken p-1 border border-border text-xs">
           <button
             onClick={() => setLabMode("interference")}
             className={`px-3 py-1.5 rounded-md font-semibold transition ${
-              labMode === "interference" ? "bg-cyan-600 text-white" : "text-slate-400 hover:text-white"
+              labMode === "interference" ? "bg-viz-tertiary text-text" : "text-text-muted hover:text-text"
             }`}
           >
             Double-Slit Interference
@@ -242,7 +242,7 @@ export const WaveMechanicsLab: React.FC = () => {
           <button
             onClick={() => setLabMode("tunneling")}
             className={`px-3 py-1.5 rounded-md font-semibold transition ${
-              labMode === "tunneling" ? "bg-cyan-600 text-white" : "text-slate-400 hover:text-white"
+              labMode === "tunneling" ? "bg-viz-tertiary text-text" : "text-text-muted hover:text-text"
             }`}
           >
             Quantum Tunneling
@@ -253,19 +253,19 @@ export const WaveMechanicsLab: React.FC = () => {
       {/* Main Canvas + Control Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[480px]">
         {/* Canvas Area */}
-        <div className="lg:col-span-8 p-4 flex flex-col justify-between relative bg-radial from-slate-900 via-slate-950 to-black">
+        <div className="lg:col-span-8 p-4 flex flex-col justify-between relative bg-radial from-surface via-surface-sunken to-black">
           <canvas
             ref={canvasRef}
             width={640}
             height={420}
-            className="w-full h-full rounded-xl border border-slate-800/80 shadow-inner"
+            className="w-full h-full rounded-xl border border-border/80 shadow-inner"
           />
 
           {/* Canvas Floating Play/Pause Controls */}
-          <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-slate-900/80 p-2 rounded-xl border border-slate-800 backdrop-blur-md">
+          <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-surface/80 p-2 rounded-xl border border-border backdrop-blur-md">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-mono transition flex items-center gap-1.5"
+              className="p-2 bg-surface-raised hover:bg-surface-raised text-text rounded-lg text-xs font-mono transition flex items-center gap-1.5"
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
               <span>{isPlaying ? "Pause Wave" : "Resume"}</span>
@@ -274,20 +274,20 @@ export const WaveMechanicsLab: React.FC = () => {
         </div>
 
         {/* Right Side Control Sliders */}
-        <div className="lg:col-span-4 bg-slate-900/70 border-t lg:border-t-0 lg:border-l border-slate-800 p-5 space-y-5">
+        <div className="lg:col-span-4 bg-surface/70 border-t lg:border-t-0 lg:border-l border-border p-5 space-y-5">
           {labMode === "interference" ? (
             <>
               <div>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-3">
+                <span className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-3">
                   Interference Parameters
                 </span>
 
                 {/* Phase Offset Slider */}
                 <div className="space-y-4">
                   <div>
-                    <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                    <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                       <span>Relative Phase (Δφ):</span>
-                      <span className="text-cyan-400 font-bold">{((phaseOffset * 180) / Math.PI).toFixed(0)}°</span>
+                      <span className="text-viz-tertiary font-bold">{((phaseOffset * 180) / Math.PI).toFixed(0)}°</span>
                     </div>
                     <input
                       type="range"
@@ -296,9 +296,9 @@ export const WaveMechanicsLab: React.FC = () => {
                       step="0.05"
                       value={phaseOffset}
                       onChange={(e) => setPhaseOffset(parseFloat(e.target.value))}
-                      className="w-full accent-cyan-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                      className="w-full accent-viz-tertiary bg-surface-raised h-2 rounded-lg cursor-pointer"
                     />
-                    <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+                    <div className="flex justify-between text-[10px] text-text-subtle font-mono mt-1">
                       <span>0° (Constructive)</span>
                       <span>180° (Destructive)</span>
                       <span>360°</span>
@@ -306,9 +306,9 @@ export const WaveMechanicsLab: React.FC = () => {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                    <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                       <span>Slit Separation (d):</span>
-                      <span className="text-slate-200 font-bold">{slitSeparation} px</span>
+                      <span className="text-text font-bold">{slitSeparation} px</span>
                     </div>
                     <input
                       type="range"
@@ -317,14 +317,14 @@ export const WaveMechanicsLab: React.FC = () => {
                       step="2"
                       value={slitSeparation}
                       onChange={(e) => setSlitSeparation(parseInt(e.target.value))}
-                      className="w-full accent-cyan-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                      className="w-full accent-viz-tertiary bg-surface-raised h-2 rounded-lg cursor-pointer"
                     />
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                    <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                       <span>Wavelength (λ):</span>
-                      <span className="text-slate-200 font-bold">{wavelength} px</span>
+                      <span className="text-text font-bold">{wavelength} px</span>
                     </div>
                     <input
                       type="range"
@@ -333,22 +333,22 @@ export const WaveMechanicsLab: React.FC = () => {
                       step="2"
                       value={wavelength}
                       onChange={(e) => setWavelength(parseInt(e.target.value))}
-                      className="w-full accent-cyan-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                      className="w-full accent-viz-tertiary bg-surface-raised h-2 rounded-lg cursor-pointer"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Mathematical Explanation Card */}
-              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
-                <div className="flex items-center gap-1.5 text-cyan-400 font-semibold">
+              <div className="p-3.5 bg-surface-sunken rounded-xl border border-border text-xs text-text-muted space-y-2">
+                <div className="flex items-center gap-1.5 text-viz-tertiary font-semibold">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Born Rule & Superposition</span>
                 </div>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
+                <p className="text-[11px] text-text-muted leading-relaxed">
                   Unlike classical particles whose probabilities add directly, quantum amplitudes add before squaring:
                 </p>
-                <div className="bg-slate-900 p-2 rounded border border-slate-800 font-mono text-[11px] text-cyan-300">
+                <div className="bg-surface p-2 rounded border border-border font-mono text-[11px] text-viz-tertiary">
                   |Ψ_total|² = |ψ₁ + ψ₂|² = |ψ₁|² + |ψ₂|² + 2|ψ₁||ψ₂|cos(Δφ)
                 </div>
               </div>
@@ -356,15 +356,15 @@ export const WaveMechanicsLab: React.FC = () => {
           ) : (
             <>
               <div>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-3">
+                <span className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-3">
                   Tunneling Barrier Controls
                 </span>
 
                 <div className="space-y-4">
                   <div>
-                    <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                    <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                       <span>Particle Incident Energy (E):</span>
-                      <span className="text-cyan-400 font-bold">{particleEnergy} eV</span>
+                      <span className="text-viz-tertiary font-bold">{particleEnergy} eV</span>
                     </div>
                     <input
                       type="range"
@@ -373,14 +373,14 @@ export const WaveMechanicsLab: React.FC = () => {
                       step="1"
                       value={particleEnergy}
                       onChange={(e) => setParticleEnergy(parseInt(e.target.value))}
-                      className="w-full accent-cyan-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                      className="w-full accent-viz-tertiary bg-surface-raised h-2 rounded-lg cursor-pointer"
                     />
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                    <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                       <span>Barrier Height (V₀):</span>
-                      <span className="text-red-400 font-bold">{barrierHeight} eV</span>
+                      <span className="text-viz-negative font-bold">{barrierHeight} eV</span>
                     </div>
                     <input
                       type="range"
@@ -389,14 +389,14 @@ export const WaveMechanicsLab: React.FC = () => {
                       step="1"
                       value={barrierHeight}
                       onChange={(e) => setBarrierHeight(parseInt(e.target.value))}
-                      className="w-full accent-red-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                      className="w-full accent-viz-negative bg-surface-raised h-2 rounded-lg cursor-pointer"
                     />
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                    <div className="flex justify-between text-xs font-mono text-text-muted mb-1">
                       <span>Barrier Thickness (L):</span>
-                      <span className="text-slate-200 font-bold">{barrierWidth} nm</span>
+                      <span className="text-text font-bold">{barrierWidth} nm</span>
                     </div>
                     <input
                       type="range"
@@ -405,29 +405,29 @@ export const WaveMechanicsLab: React.FC = () => {
                       step="5"
                       value={barrierWidth}
                       onChange={(e) => setBarrierWidth(parseInt(e.target.value))}
-                      className="w-full accent-slate-400 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                      className="w-full accent-text-muted bg-surface-raised h-2 rounded-lg cursor-pointer"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Tunneling Transmission Gauge */}
-              <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+              <div className="p-4 bg-surface-sunken rounded-xl border border-border space-y-2 font-mono text-xs">
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Transmission Prob (T):</span>
-                  <span className="text-emerald-400 font-bold">{transmissionProb.toFixed(1)}%</span>
+                  <span className="text-text-muted">Transmission Prob (T):</span>
+                  <span className="text-viz-positive font-bold">{transmissionProb.toFixed(1)}%</span>
                 </div>
-                <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden flex">
-                  <div className="bg-emerald-500 transition-all duration-300" style={{ width: `${transmissionProb}%` }} />
-                  <div className="bg-red-500 transition-all duration-300" style={{ width: `${100 - transmissionProb}%` }} />
+                <div className="w-full h-2.5 bg-surface-raised rounded-full overflow-hidden flex">
+                  <div className="bg-viz-positive transition-all duration-300" style={{ width: `${transmissionProb}%` }} />
+                  <div className="bg-viz-negative transition-all duration-300" style={{ width: `${100 - transmissionProb}%` }} />
                 </div>
-                <div className="flex justify-between text-[10px] text-slate-500 pt-1">
+                <div className="flex justify-between text-[10px] text-text-subtle pt-1">
                   <span>T: {transmissionProb.toFixed(1)}%</span>
                   <span>R (Reflected): {(100 - transmissionProb).toFixed(1)}%</span>
                 </div>
               </div>
 
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[11px] text-slate-400 leading-relaxed">
+              <div className="p-3 bg-surface-sunken rounded-xl border border-border text-[11px] text-text-muted leading-relaxed">
                 Classically, when E &lt; V₀, transmission is 0%. In quantum mechanics, the wavefunction decays
                 exponentially inside the barrier (exp(-κx)), allowing a finite non-zero probability of tunneling through!
               </div>

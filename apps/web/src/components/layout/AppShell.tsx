@@ -3,27 +3,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  BarChart3,
-  BookOpen,
-  Cpu,
-  FlaskConical,
-  Menu,
-  Settings,
-  Sparkles,
-  Trophy,
-  X,
-} from "lucide-react";
+import { BarChart3, BookOpen, FlaskConical, LogIn, LogOut, Menu, Settings, Sparkles, Trophy, X } from "lucide-react";
 
+import { useAuth } from "@/components/auth/AuthProvider";
 import { QuantumCopilotDrawer } from "@/components/copilot/QuantumCopilotDrawer";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { BRAND } from "@/lib/brand";
 import { QuantumNeuralBackground } from "./QuantumNeuralBackground";
 
 const NAV_ITEMS = [
-  { label: "Curriculum", href: "/learn", icon: BookOpen },
-  { label: "Visualizations", href: "/visualizations", icon: Sparkles },
-  { label: "Simulator", href: "/simulator", icon: Cpu },
-  { label: "Playground", href: "/playground", icon: FlaskConical },
+  { label: "Learn", href: "/learn", icon: BookOpen },
+  { label: "Lab", href: "/lab", icon: FlaskConical },
   { label: "Challenges", href: "/challenges", icon: Trophy },
   { label: "Progress", href: "/progress", icon: BarChart3 },
 ];
@@ -32,6 +22,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
   const pathname = usePathname() ?? "";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copilotOpen, setCopilotOpen] = useState(false);
+  const { user, loading, signOut } = useAuth();
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
@@ -50,16 +41,16 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
       <header className="sticky top-0 z-40 bg-surface border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
           <div className="flex items-center gap-6 min-w-0">
-            <Link href="/learn" className="flex items-center gap-2.5 group rounded-md shrink-0">
+            <Link href="/" className="flex items-center gap-2.5 group rounded-md shrink-0">
               <span
                 aria-hidden="true"
                 className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center
                            text-text-inverse text-xs font-bold font-mono"
               >
-                PB
+                {BRAND.mark}
               </span>
               <span className="text-base font-bold tracking-tight text-text group-hover:text-accent transition-colors">
-                PBQuantum Labs
+                {BRAND.name}
               </span>
             </Link>
 
@@ -109,6 +100,36 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
               <span className="sr-only">Settings</span>
             </Link>
 
+            {/* Account. The role is shown because it decides what the Lab
+                allows: only researchers may run their own code. */}
+            {!loading && (user ? (
+              <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-border">
+                <div className="text-right leading-tight">
+                  <p className="text-[11px] font-medium text-text">{user.display_name}</p>
+                  <p className="text-[10px] font-mono text-text-subtle capitalize">{user.role}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => void signOut()}
+                  className="p-1.5 rounded-md bg-surface-raised border border-border text-text-muted hover:text-text transition-colors"
+                  title="Sign out"
+                >
+                  <LogOut className="w-4 h-4" aria-hidden="true" />
+                  <span className="sr-only">Sign out</span>
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/signin"
+                className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md
+                           border border-border bg-surface text-xs font-semibold text-text
+                           hover:border-accent-border transition-colors"
+              >
+                <LogIn className="w-3.5 h-3.5" aria-hidden="true" />
+                Sign in
+              </Link>
+            ))}
+
             <button
               type="button"
               onClick={() => setMobileMenuOpen((open) => !open)}
@@ -146,10 +167,20 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
       <footer className="relative z-10 border-t border-border bg-surface mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-2">
-          <p className="text-[11px] text-text-subtle">
-            Simulations run on IBM Qiskit Aer. No measurement shown here is fabricated.
-          </p>
-          <p className="text-[11px] font-mono text-text-subtle">PBQuantum Labs</p>
+          <div className="min-w-0">
+            <p className="text-[11px] text-text-subtle">
+              Simulations run on IBM Qiskit Aer. Every stated result is verified against
+              that simulator before it ships.
+            </p>
+            <p className="text-[11px] text-text-subtle mt-0.5">
+              Code executes in an isolated sandbox with no network access.
+            </p>
+          </div>
+          <div className="flex items-center gap-4 text-[11px] text-text-subtle shrink-0">
+            <Link href="/learn" className="hover:text-accent transition-colors">Curriculum</Link>
+            <Link href="/settings" className="hover:text-accent transition-colors">Settings</Link>
+            <span className="font-mono">{BRAND.name}</span>
+          </div>
         </div>
       </footer>
 
