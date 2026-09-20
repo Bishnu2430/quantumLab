@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { AlertTriangle, Loader2, Play, ShieldAlert, ShieldCheck, Terminal } from "lucide-react";
 
+import { useAuth } from "@/components/auth/AuthProvider";
 import {
   type ExecutionResult,
   ExecutionError,
@@ -36,10 +37,19 @@ export const CodeRunner: React.FC<Props> = ({ code, lessonSlug, editable = false
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<{ message: string; requiredRole?: string } | null>(null);
 
+  const { user, loading: authLoading } = useAuth();
+
   useEffect(() => setSource(code), [code]);
+
+  // Only ask about the sandbox once there is a session. Querying it while
+  // signed out produced a guaranteed 401 on every lesson page with code.
   useEffect(() => {
+    if (!user) {
+      setRunner(null);
+      return;
+    }
     void getRunnerStatus().then(setRunner);
-  }, []);
+  }, [user]);
 
   const run = useCallback(async () => {
     setRunning(true);
@@ -112,10 +122,19 @@ export const CodeRunner: React.FC<Props> = ({ code, lessonSlug, editable = false
       )}
 
       <div className="flex items-center gap-2 px-3 py-2 border-t border-border bg-surface-raised">
+        {!user && !authLoading ? (
+          <a
+            href={`/signin?next=${encodeURIComponent(typeof window === "undefined" ? "/" : window.location.pathname)}`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border
+                       bg-surface text-xs font-semibold text-text hover:border-accent-border transition-colors"
+          >
+            Sign in to run this
+          </a>
+        ) : (
         <button
           type="button"
           onClick={() => void run()}
-          disabled={running || runner?.available === false}
+          disabled={running || authLoading || runner?.available === false}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-accent
                      text-text-inverse text-xs font-semibold hover:bg-accent-hover
                      disabled:opacity-60 transition-colors"
@@ -127,6 +146,13 @@ export const CodeRunner: React.FC<Props> = ({ code, lessonSlug, editable = false
           )}
           {running ? "Running" : "Run"}
         </button>
+        )}
+
+        {!user && !authLoading && (
+          <span className="text-[11px] text-text-subtle">
+            Reading is open to everyone; running code needs an account.
+          </span>
+        )}
 
         {result && (
           <span className="text-[11px] font-mono text-text-subtle">

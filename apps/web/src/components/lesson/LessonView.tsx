@@ -2,10 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, Terminal } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock } from "lucide-react";
 
 import type { Lesson } from "@/content/types";
 import { BlockRenderer } from "./Blocks";
+import { CodeRunner } from "@/components/lab/CodeRunner";
 import { LessonCircuitPanel } from "./LessonCircuitPanel";
 import { VisualRenderer } from "@/components/visuals/VisualRenderer";
 
@@ -133,15 +134,9 @@ export const LessonView: React.FC<Props> = ({ lesson, previous, next, prerequisi
               <p className="text-[13px] leading-6 text-text-subtle mb-3 max-w-prose">
                 {lesson.code.description}
               </p>
-              <div className="panel overflow-hidden">
-                <div className="flex items-center gap-2 px-3 py-2 bg-surface-raised border-b border-border">
-                  <Terminal className="w-3.5 h-3.5 text-text-subtle" aria-hidden="true" />
-                  <span className="text-[11px] font-mono text-text-subtle">Python · Qiskit</span>
-                </div>
-                <pre className="p-4 overflow-x-auto text-[12px] font-mono leading-6 text-text-muted">
-                  {lesson.code.code}
-                </pre>
-              </div>
+              {/* Runnable, not a listing. Learners send only the lesson slug
+                  and the server executes its own copy of this snippet. */}
+              <CodeRunner code={lesson.code.code} lessonSlug={lesson.slug} />
             </section>
           )}
 

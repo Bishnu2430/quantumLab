@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -20,20 +21,41 @@ from app.services.execution.local_runner import LocalSubprocessRunner
 
 logger = logging.getLogger(__name__)
 
-# runner.py -> execution -> services -> app -> api -> apps -> repo root
-CURRICULUM_PATH = (
-    Path(__file__).resolve().parents[5] / "packages" / "curriculum" / "curriculum.json"
-)
+def _find_curriculum() -> Path | None:
+    """Locate the exported curriculum.
+
+    The repo and the container lay the tree out differently, so counting
+    parent directories is fragile -- in the image the app sits at /app/app and
+    a fixed index raised IndexError, crashing the service on import. Search
+    upward instead, and let the environment override.
+    """
+    configured = os.getenv("CURRICULUM_PATH")
+    if configured:
+        candidate = Path(configured)
+        return candidate if candidate.exists() else None
+
+    relative = Path("packages") / "curriculum" / "curriculum.json"
+    for base in Path(__file__).resolve().parents:
+        candidate = base / relative
+        if candidate.exists():
+            return candidate
+        # Also accept the flattened layout used inside the container image.
+        flat = base / "curriculum" / "curriculum.json"
+        if flat.exists():
+            return flat
+    return None
+
+
+CURRICULUM_PATH = _find_curriculum()
 
 
 @lru_cache
 def _load_curriculum() -> dict[str, Any]:
     """Load the exported curriculum, or an empty one if it has not been built."""
-    if not CURRICULUM_PATH.exists():
+    if CURRICULUM_PATH is None:
         logger.warning(
-            "Curriculum artifact missing at %s; lesson code execution is unavailable. "
-            "Run `npm run content:export` in apps/web.",
-            CURRICULUM_PATH,
+            "Curriculum artifact not found; lesson code execution is unavailable. "
+            "Run `npm run content:export` in apps/web, or set CURRICULUM_PATH."
         )
         return {"lessons": []}
     return json.loads(CURRICULUM_PATH.read_text(encoding="utf-8"))
