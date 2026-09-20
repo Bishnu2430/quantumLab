@@ -1,7 +1,7 @@
-# Amplitude Lab
+# Quantum Lab
 
 An interactive quantum computing course. Every derivation is worked through step
-by step, every circuit runs on IBM Qiskit Aer, and **every stated result is
+by step, every circuit runs on a real simulator, and **every stated result is
 verified against that simulator in CI** — if a lesson claims physics the
 simulator does not reproduce, the build fails and the content does not ship.
 
@@ -96,8 +96,8 @@ A theory lesson shows no empty panels and no placeholder gates.
 
 ### Correctness is enforced, not reviewed
 
-`apps/api/tests/test_curriculum.py` runs **every lesson circuit** through Qiskit
-Aer and checks the stated probabilities, **executes every code example** and
+`apps/api/tests/test_curriculum.py` runs **every lesson circuit** through the
+simulator and checks the stated probabilities, **executes every code example** and
 checks it prints what the lesson promised, and enforces the editorial rules — no
 placeholder text, no uncaptioned equation, no unjustified derivation step, no
 un-annotated gate, no dangling prerequisite.

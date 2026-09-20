@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Cpu, FlaskConical, GitBranch, ShieldCheck, Sigma } from "lucide-react";
+import { ArrowRight, Cpu, FlaskConical, GitBranch, ShieldCheck } from "lucide-react";
 
 import { LESSONS } from "@/content";
 import { BRAND } from "@/lib/brand";
@@ -18,12 +18,6 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6">
       <section className="py-14 sm:py-20 max-w-3xl">
-        <p className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-soft
-                      border border-accent-border text-[11px] font-medium text-accent-text mb-5">
-          <Sigma className="w-3 h-3" aria-hidden="true" />
-          Powered by IBM Qiskit Aer
-        </p>
-
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-text leading-[1.1]">
           Quantum computing,
           <br />
@@ -66,7 +60,7 @@ export default function HomePage() {
         <Feature
           Icon={ShieldCheck}
           title="Nothing is made up"
-          body="Every probability a lesson states is checked against Qiskit Aer in CI. If the simulator disagrees with the text, the build fails and the lesson does not ship."
+          body="Every probability a lesson states is checked against the simulator in CI. If the simulator disagrees with the text, the build fails and the lesson does not ship."
         />
         <Feature
           Icon={Cpu}

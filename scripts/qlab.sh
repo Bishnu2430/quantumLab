@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Amplitude Lab — stack management.
+# Quantum Lab — stack management.
 #
 #   ./scripts/qlab.sh <command>
 #
@@ -157,7 +157,7 @@ cmd_format() {
 
 cmd_help() {
   cat <<'USAGE'
-Amplitude Lab
+Quantum Lab
 
   Stack
     up               build and start everything, then migrate

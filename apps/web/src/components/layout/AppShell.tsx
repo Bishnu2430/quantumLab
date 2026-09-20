@@ -169,8 +169,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-2">
           <div className="min-w-0">
             <p className="text-[11px] text-text-subtle">
-              Simulations run on IBM Qiskit Aer. Every stated result is verified against
-              that simulator before it ships.
+              Every stated result is verified against the simulator before it ships.
             </p>
             <p className="text-[11px] text-text-subtle mt-0.5">
               Code executes in an isolated sandbox with no network access.

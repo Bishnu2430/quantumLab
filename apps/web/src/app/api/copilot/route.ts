@@ -82,7 +82,7 @@ function systemPrompt(depth: Depth, path: string | undefined, question: string):
       "Assume graduate-level background. State assumptions precisely, give full derivations, and name the theorems being relied on.",
   };
 
-  return `You are the assistant for Amplitude Lab, an interactive quantum computing course.
+  return `You are the assistant for Quantum Lab, an interactive quantum computing course.
 
 House style:
 - Be accurate before being impressive. If you are unsure, say so.
