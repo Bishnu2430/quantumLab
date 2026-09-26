@@ -1,357 +1,264 @@
-# Quantum Lab — 10 minute demo script
+# Quantum Lab — under-5-minute demo script
 
-For the SIH 2026 evaluation video. Written to be read aloud at a normal pace
-(~145 words per minute). Timings are cumulative.
+For the SIH 2026 evaluation video. This is a teleprompter script: every quoted
+line under **Say:** is a complete sentence, meant to be read aloud exactly as
+written, at a normal pace (~145 words per minute). Total runtime target:
+**4:40**, leaving a real buffer under the 5-minute hard cap. Timings are
+cumulative.
 
-**Before you record, read the checklist at the bottom.** Two items in it will
-save you a re-take.
+Technical focus: this cut keeps the automated physics verification, the proof
+that the AI assistant refuses to invent numbers, and the live Qiskit lab and
+sandbox — the four things that are actually hard to build and worth being
+judged on. It drops the Bloch-sphere visuals and the general engineering tour
+from the long version. See "If you have time to spare" at the bottom if you
+want those back.
+
+**Before you record, read the checklist at the bottom.**
 
 ---
 
-## 0:00 – 0:40 · Opening
+## 0:00 – 0:20 · Opening
 
 **Screen:** Landing page (`http://localhost:3000`), scrolled to the top.
 
-> India's National Quantum Mission has committed to building quantum computers
-> and a quantum workforce this decade. The hardware is being funded. The people
-> are the harder problem — and quantum computing is famously difficult to learn,
-> because almost everything written about it either hand-waves the mathematics
-> or buries the reader in it.
->
-> We built Quantum Lab to sit between those two failures. Seventeen lessons that
-> derive every result step by step, and then let you run the physics yourself and
-> check that the derivation was right.
->
-> I'm going to show you the product, and then one thing under the hood that I
-> think makes this different from every other quantum tutorial out there.
+**Say:**
 
-*(If your problem statement has an ID, name it in the first sentence instead of
-the generic NQM framing. Judges look for that link explicitly.)*
+> Team Creative Cartel, team ID one five seven one one four. This is Quantum
+> Lab. Quantum computing content is usually either hand-waved or buried in
+> notation, so we built a platform that derives every result step by step and
+> then lets you verify the derivation by running the physics yourself.
 
 ---
 
-## 0:40 – 1:20 · What it is
+## 0:20 – 1:00 · What it is
 
-**Action:** Slowly scroll the landing page past the three feature cards.
+**Screen:** Landing page, scroll past the three feature cards.
 
-> Three claims, and I'll demonstrate all of them.
->
-> Nothing here is made up — every probability a lesson states is checked against
-> a real quantum simulator automatically, and if the simulator disagrees with the
-> text, the build fails and the lesson cannot ship.
->
-> You run the physics — circuits execute on IBM's Qiskit Aer simulator, and
-> Python runs in an isolated sandbox.
->
-> And the lessons derive rather than assert. Every step says *why* it is allowed.
+**Say:**
 
-**Action:** Click **Start with lesson one**, then immediately click **Learn** in
-the navbar to show the full curriculum list.
-
-> Seventeen lessons, about seven hours, from "what is a qubit" through to
-> Grover's search algorithm and BB84 quantum cryptography.
+> Three things make this different from a typical quantum course. Every
+> probability a lesson states is checked against a real quantum simulator
+> during the build, and if the simulator disagrees, the build fails before it
+> ships. You run the physics yourself, on IBM's Qiskit Aer simulator, inside
+> an isolated sandbox. And every lesson derives its results instead of simply
+> asserting them, with each step explaining why it is allowed. The course
+> covers seventeen lessons, from what a qubit is through to Grover's search
+> algorithm and the BB84 quantum key distribution protocol.
 
 ---
 
-## 1:20 – 3:00 · A lesson, in depth
+## 1:00 – 1:45 · A lesson: derivation, not assertion
 
-**Action:** Open **Superposition and the Hadamard Gate**. Scroll slowly.
+**Screen:** Lesson **Superposition and the Hadamard Gate**, scrolled to the
+**H twice: interference in its simplest form** derivation.
 
-> This is lesson six. Look at what a single lesson contains.
+**Say:**
 
-**Action:** Pause on the objectives box.
+> This is lesson six, and it shows the derivation this whole course is built
+> around. Apply a Hadamard gate twice, and you land back exactly where you
+> started, with certainty rather than likelihood. Watch the step where that
+> happens.
 
-> It opens with what you'll be able to *do* — not "understand superposition",
-> but "compute H applied to zero by matrix multiplication".
+**Action:** Point at the step where the |1⟩ amplitude cancels.
 
-**Action:** Scroll to the **H twice: interference in its simplest form**
-derivation. Let it sit on screen.
+**Say:**
 
-> This is the heart of it. The Hadamard gate creates a superposition. Apply it
-> twice and you get back exactly where you started — with certainty.
->
-> The derivation walks through why, one step at a time, and every step explains
-> the justification, not just the algebra. Watch the fourth step.
-
-**Action:** Point at / highlight the step where the |1⟩ amplitude cancels.
-
-> The amplitude for outcome one is plus one half, plus minus one half. That is
-> exactly zero. Not unlikely — impossible.
->
-> And that is the whole of quantum computing in one line. Classical probabilities
-> are never negative, so they can never cancel. Complex amplitudes can. Every
-> quantum algorithm is an exercise in arranging that cancellation.
-
-**Action:** Scroll to the misconception block.
-
-> We also name the misconceptions directly. A lot of people believe a qubit in
-> superposition is secretly zero or one and we just don't know which. The lesson
-> gives you an experiment that rules it out, rather than just asserting it's
-> wrong. Across the course there are twenty of these.
+> The amplitude for outcome one is plus one half, plus minus one half, and
+> that sum is exactly zero: not unlikely, impossible. That is the whole of
+> quantum computing in one line. Classical probabilities never go negative, so
+> they can never cancel each other out, but complex amplitudes can. Every
+> quantum algorithm is really an exercise in arranging that cancellation, and
+> this lesson proves it happens instead of just telling you that it does.
 
 ---
 
-## 3:00 – 4:15 · The differentiator: physics verified by machine
+## 1:45 – 2:25 · The differentiator: physics verified by machine
 
-**Screen:** Switch to a terminal in the project directory.
+**Screen:** Terminal, project root.
 
-> Here is the part I actually want to be judged on.
->
-> Educational content about quantum mechanics is very easy to get subtly wrong,
-> and very hard to check. So we don't check it by hand. Every circuit in every
-> lesson is executed against the simulator automatically, and compared to what
-> the lesson claims.
+**Say:**
+
+> Here is the part I most want to be judged on. Content about quantum
+> mechanics is easy to get subtly wrong and hard to check by hand, so we do
+> not check it by hand. Every circuit in every lesson runs against the
+> simulator automatically and gets compared against what the lesson claims. I
+> am going to run that verification suite right now.
 
 **Action:** Run:
 
 ```bash
-cd apps/api && uv run pytest tests/test_curriculum.py -q
+cd apps/api && uv run pytest tests/test_curriculum.py -q -s
 ```
 
-> A hundred and forty-two checks. Every lesson circuit run through Qiskit, every
-> code example actually executed and its output compared against what the lesson
-> promised.
+Let the verified probabilities scroll on screen for a few seconds before you
+keep talking — each line is a real simulator readout for one lesson, not a
+canned log line.
 
-**Action:** Now demonstrate it catching an error. Edit the expected probability
-in `apps/web/src/content/lessons/06-superposition-and-hadamard.ts` — change
-`expected: { "0": 1.0, "1": 0.0 }` to `{ "0": 0.5, "1": 0.5 }` — then:
+**Say:**
 
-```bash
-cd apps/web && npm run content:export
-cd ../api && uv run pytest tests/test_curriculum.py -q -k probabilities
-```
-
-> I've just made the lesson claim something false — that two Hadamards give a
-> fifty-fifty result. Watch.
-
-**Action:** Let the failure appear on screen:
-
-```
-superposition-and-hadamard: lesson claims P(0) = 0.5, simulator gives 1.0
-```
-
-> The build refuses it. A lesson cannot ship physics the simulator does not
-> reproduce. As far as we know, no other quantum learning platform enforces
-> correctness this way.
-
-**Action:** Revert the change and re-export. *(Do this before recording the next
-segment, or just cut here.)*
+> That is a hundred and forty-two checks: every circuit executed through
+> Qiskit, every code example actually run, and its output compared against the
+> lesson's own promise, and every single one passes.
 
 ---
 
-## 4:15 – 5:20 · Visuals that explain themselves
+## 2:25 – 3:05 · The AI assistant refuses to guess
 
-**Screen:** Back to the browser. Open **The Qubit and the Bloch Sphere**, scroll
-to the Bloch sphere.
+**Screen:** Same lesson (Superposition and the Hadamard Gate), open the **AI
+Copilot** panel.
 
-> Interactive visuals are common in this space. Most of them give you a slider
-> labelled "theta" and leave you to guess.
+**Say:**
 
-**Action:** Drag the **θ** slider slowly.
+> There is also an AI assistant built into every lesson, and it is
+> deliberately restricted to this curriculum alone. I am going to try to trick
+> it. I will ask it something no algebra can answer: out of exactly one hundred
+> and thirty-seven shots of the Bell-pair circuit, with simulator seed
+> forty-two, how many come out as one-one.
 
-> Ours tells you what the control does before you touch it — "tips the state
-> between zero and one" — and then tells you what's true *right now*: P of zero
-> is sixty-eight percent, so the outcome is biased but not certain.
+**Action:** Type that question into the Copilot panel and let it respond on
+screen.
 
-**Action:** Drag the **φ** slider. Point at the probability bars staying still.
+*(Why this question and not something like "P(1) after two Hadamards": that
+one has an exact answer derivable by algebra alone — zero — so a model can
+legitimately state it without running anything, which isn't the point being
+demonstrated. A specific-seed shot count from a real pseudo-random number
+generator has no closed form; the only way to know it is to actually run the
+simulator, so this is the question that actually tests the refusal.)*
 
-> Now watch this. I'm changing the phase, and the probabilities do not move at
-> all. That's the single most confusing thing about a qubit, and here you can
-> see it rather than be told it.
+**Say:**
 
-**Action:** Click the **info** icon on the φ control to expand the detail.
-
-> And if you want the deeper explanation, it's one click away — phase is
-> invisible to this measurement, and becomes visible the moment another gate
-> interferes the two components.
-
-**Action:** Drag the **Coherence** slider down.
-
-> This one is decoherence — real qubits leak information to their environment.
-> Watch the vector shrink toward the centre. That's a qubit losing its quantum
-> character and becoming an ordinary classical coin. It's the reason quantum
-> computers are hard to build, and you can feel it here.
+> Watch what it does instead of guessing. It refuses to state a number and
+> tells me to run the circuit instead, because it is explicitly instructed
+> never to invent a physics result. The simulator is the authority here, and
+> the assistant is only the explainer.
 
 ---
 
-## 5:20 – 6:40 · The Lab: build, simulate, run
+## 3:05 – 3:50 · The Lab: build, simulate, run
 
-**Action:** Click **Lab** in the navbar.
+**Screen:** **Lab** page. Default Bell-pair circuit.
 
-> This is the workspace. It starts with a Bell pair — the standard entangled
-> state.
+**Say:**
 
-**Action:** Point at the results panel.
+> This is the Lab, the workspace where you build circuits directly. It starts
+> as a Bell pair, and these numbers are not canned: they came from Qiskit Aer
+> the moment the page loaded. Roughly fifty percent land on zero-zero, fifty
+> percent on one-one, and critically, zero percent on the mixed outcomes, so
+> the two qubits always agree, and that is entanglement.
 
-> Those numbers came from Qiskit Aer, computed when the page loaded. Roughly
-> fifty percent on zero-zero, fifty on one-one, and crucially *zero* on the mixed
-> outcomes. The two qubits always agree. That's entanglement.
+**Action:** Click the **X** gate, then **q1**. Let results update.
 
-**Action:** Click the **X** gate, then click **q1**.
+**Say:**
 
-> Let me change the circuit. I pick a gate — and before I place it, it tells me
-> what it will do.
+> Now I will change the circuit, and the distribution flips so the two qubits
+> always disagree instead, computed live.
 
-**Action:** Let the results update.
+**Action:** Click **Run as code**, then **Run**.
 
-> And the distribution flips to zero-one and one-zero. The qubits now always
-> *disagree*. That's a different Bell state, computed live.
+**Say:**
 
-**Action:** Click the **Run as code** tab.
-
-> The same circuit, as real Qiskit Python. Not a picture of code — this is
-> generated from the circuit on screen.
-
-**Action:** Click **Run**. Wait for output.
-
-> And that executed in an isolated container and came back with real measurement
-> counts.
+> This is the same circuit as real Qiskit Python, generated directly from what
+> is on screen, and running it executes inside an isolated container and
+> returns real measurement counts.
 
 ---
 
-## 6:40 – 7:40 · Security and roles
+## 3:50 – 4:15 · Sandboxed execution
 
-**Screen:** Terminal, side by side with the browser if you can manage it.
+**Screen:** Terminal, alongside the Lab if you can manage split screen.
 
-> Running arbitrary user-submitted Python on a server is genuinely dangerous, so
-> this is the part we took most seriously.
+**Say:**
 
-**Action:** With code running in the Lab, run:
+> Running arbitrary user Python is genuinely dangerous, so this is the part we
+> took most seriously.
+
+**Action:** With code running, run:
 
 ```bash
 docker ps --filter label=app=quantum-lab-sandbox
 ```
 
-> Every execution gets a brand new container: no network at all, read-only
-> filesystem, all Linux capabilities dropped, runs as a non-root user, hard caps
-> on memory, CPU and process count. It's destroyed the moment the code finishes.
+**Say:**
 
-**Action:** Run it again after the code completes, showing an empty list.
+> Every run gets a brand new container, with no network access, a read-only
+> filesystem, every capability dropped, a non-root user, and hard limits on
+> memory and CPU, and it is destroyed the instant the code finishes.
 
-> Gone. Nothing survives from one execution to the next.
+**Action:** Run it again after completion — empty list.
 
-> There's a second layer in the role model. A learner never submits code at all —
-> they send a lesson identifier, and the server runs its own trusted copy. So for
-> the majority of users, the untrusted-code path does not exist. Only a
-> researcher can submit their own Python, and only an admin can grant that role.
+**Say:**
 
----
-
-## 7:40 – 8:25 · The AI assistant
-
-**Action:** Back in the browser, open a lesson and click **AI Copilot**.
-
-> There's an AI assistant, and it's built with one unusual instruction.
-
-**Action:** Ask: *"Why do amplitudes need to be complex?"* Let it stream.
-
-> It's grounded in this specific curriculum — it can only discuss the seventeen
-> lessons that exist, and it links back to them.
->
-> And it's explicitly told never to invent a numerical result. If you ask it for
-> a probability, it tells you to run the circuit instead. In a subject where
-> language models confidently produce wrong physics, we made the simulator the
-> authority and the assistant the explainer.
+> Nothing persists between one execution and the next.
 
 ---
 
-## 8:25 – 9:20 · Engineering
-
-**Screen:** Terminal.
-
-> Briefly, on how it's built.
-
-**Action:** Run `docker compose ps`.
-
-> Next.js frontend, FastAPI backend, Postgres, and a hardened sandbox image. The
-> entire stack is one command.
-
-**Action:** Run `./scripts/qlab.sh test` (or show the earlier run).
-
-> Two hundred and seventeen automated tests. Those cover the physics, the
-> authentication — including things like refresh-token rotation and detecting a
-> stolen token — the sandbox limits, and every lesson's content.
->
-> Authentication uses httpOnly cookies and Argon2 hashing. Database migrations
-> are version-controlled. There's one script that manages the whole stack,
-> including opening a psql session on the database.
-
----
-
-## 9:20 – 10:00 · Close
+## 4:15 – 4:40 · Close
 
 **Screen:** Back to the landing page.
 
-> To summarise what's actually working today: seventeen complete lessons,
-> fourteen runnable circuits, sixteen executable programs, all verified against a
-> real simulator automatically. Sandboxed code execution. Three user roles. A
-> grounded AI assistant. One-command deployment.
->
-> Where we'd take it next is the obvious gap — this teaches the foundations
-> beautifully but stops at Grover and BB84. Error correction, variational
-> algorithms and real hardware access through IBM Quantum are the natural
-> continuation, and the content pipeline is built to take them.
->
-> The National Quantum Mission needs people who can actually do this, not just
-> people who have heard of it. That's the gap we're trying to close.
->
-> Thank you.
+**Say:**
+
+> To summarise what is actually working today: seventeen complete lessons, all
+> verified against a real simulator automatically, sandboxed code execution,
+> and an AI assistant that defers to that simulator rather than guessing. The
+> National Quantum Mission needs people who can actually do this, not just
+> people who have heard of it, and that is the gap Quantum Lab closes. Thank
+> you.
 
 ---
 
 ## Pre-recording checklist
 
-**Do these two things or you will re-take:**
-
-1. **Start the stack and let it settle.** `./scripts/qlab.sh up`, then load every
-   page you plan to visit *once* before recording. First loads are slower.
-2. **Sign in first.** Running code requires an account. If you're signed out,
-   the Run button becomes "Sign in to run this" and the demo stalls.
-
-Also worth doing:
-
-- Close other applications. Docker needs the memory, and a slow container start
-  is dead air on camera.
-- Set the browser to **dark mode** via the theme toggle — the visuals read better
-  on video.
-- Zoom the browser to about **110%** so equations are legible after compression.
-- Have the terminal already `cd`'d into the project.
-- Pre-type the long commands so you're not typing on camera.
-- Decide in advance whether you're reverting the deliberate-failure edit on
-  camera or cutting. Cutting is cleaner.
+1. **Say the team name and ID exactly as scripted** — "Creative Cartel", ID
+   "157114" — in the first ten seconds. Judges scan for this first.
+2. **Start the stack and let it settle.** `./scripts/qlab.sh up`, then load
+   every page you'll visit *once* before recording.
+3. **Sign in first.** Running code requires an account; signed out, the Run
+   button becomes "Sign in to run this" and the demo stalls.
+4. **Rehearse the AI Copilot moment once beforehand.** Confirm it actually
+   refuses to give a number for the question in the script — you want a clean
+   take, not a surprise on camera.
+5. **If the pytest run crashes with exit code 3221225477** (an access
+   violation, not a real failure — qiskit-aer's native extension occasionally
+   segfaults on Windows under back-to-back subprocess launches), just re-run
+   the command. It's a known intermittent native issue, not a physics or
+   content bug, and the test now retries once on its own — but if it happens
+   live, a second take will pass.
+6. Set the browser to **dark mode**, zoom to about **110%**, close other apps
+   (Docker needs the memory), and pre-type the long commands.
 
 ## Honesty guardrails
 
-Judges may probe these, so don't overstate them:
+- **Simulator, not real hardware.** Say "simulator" — real quantum hardware
+  access is future work.
+- **Don't claim the AI is always correct.** The design point is narrower and
+  true: it's told to defer to the simulator for any numeric claim, and the
+  demo proves exactly that, nothing more.
+- **Don't say "production-ready at scale."** It's a complete, tested,
+  deployable system; the sandbox uses docker-out-of-docker, which is right for
+  this deployment but would want a dedicated executor for hostile multi-tenant
+  use. That answer lands better than a dodge if asked.
+- **The 142-check content verification is real** — it's your strongest
+  evidence. Lead with it if a judge interrupts.
 
-- **Don't say "runs on a real quantum computer."** It's a simulator — say
-  simulator. Real hardware access is future work.
-- **Don't claim the AI is always correct.** The design point is that it's told
-  to defer to the simulator, which is stronger and true.
-- **Don't say "production-ready at scale."** Say it's a complete, tested,
-  deployable system. The sandbox uses docker-out-of-docker, which is right for
-  this deployment but would need a dedicated executor for hostile multi-tenant
-  use — if a judge asks, that answer will impress them more than a dodge.
-- **The 217 tests are real.** So is the 142-check content verification. Lean on
-  those, they're your strongest evidence.
+## If you have time to spare
 
-## If you need to cut to 7 minutes
-
-Drop in this order: the engineering section (8:25), then the AI assistant
-(7:40), then shorten the lesson walkthrough. **Never cut the verification demo
-at 3:00** — it is the single most distinctive thing about the project.
+Only if you're clearly under 4:40 and want to spend it: add the Bloch-sphere
+phase/coherence visuals (the φ slider not moving the probability bars, the
+coherence slider shrinking the vector) between the Derivation and Physics
+segments — about 40 seconds. Do not add back the general engineering tour or a
+second AI question; they cost more time than they earn back in a technical
+review.
 
 ## Timing summary
 
 | Time | Segment | Screen |
 | --- | --- | --- |
-| 0:00 | Problem and hook | Landing |
-| 0:40 | What it is | Landing + curriculum |
-| 1:20 | A lesson in depth | Lesson 6 |
-| 3:00 | **Physics verified by machine** | Terminal |
-| 4:15 | Self-explaining visuals | Lesson 5, Bloch sphere |
-| 5:20 | Build, simulate, run | Lab |
-| 6:40 | Security and roles | Terminal + Lab |
-| 7:40 | AI assistant | Copilot drawer |
-| 8:25 | Engineering | Terminal |
-| 9:20 | Close | Landing |
+| 0:00 | Opening (team name + ID) | Landing |
+| 0:20 | What it is | Landing |
+| 1:00 | Derivation: H twice | Lesson 6 |
+| 1:45 | **Physics verified by machine** | Terminal |
+| 2:25 | AI assistant refuses to guess | Lesson 6, AI Copilot |
+| 3:05 | Build, simulate, run | Lab |
+| 3:50 | Sandboxed execution | Terminal |
+| 4:15 | Close | Landing |

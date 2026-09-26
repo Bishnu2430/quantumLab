@@ -366,15 +366,26 @@ const Paragraphs: React.FC<{ text: string }> = ({ text }) => (
     {text
       .split(/\n{2,}/)
       .filter(Boolean)
-      .map((paragraph, index) => (
-        <p key={index}>{renderInline(paragraph)}</p>
-      ))}
+      .map((paragraph, index) => {
+        // A markdown horizontal rule on its own line, e.g. "---" or "***".
+        if (/^(-{3,}|\*{3,})$/.test(paragraph.trim())) {
+          return <hr key={index} className="border-border my-2" />;
+        }
+        return <p key={index}>{renderInline(paragraph)}</p>;
+      })}
   </>
 );
 
-/** Handles $math$, **bold** and `code` inside assistant prose. */
+/**
+ * Handles $math$/$$math$$, the \(...\)/\[...\] LaTeX delimiters the model
+ * uses just as often despite the system prompt asking for $-delimited math,
+ * plus **bold** and `code` inside assistant prose. \boxed{...} needs no
+ * special case — KaTeX renders it natively as long as it's inside a math
+ * span, which all four delimiter styles now produce.
+ */
 function renderInline(text: string): React.ReactNode[] {
-  const pattern = /(\$\$[^$]+\$\$)|(\$[^$\n]+\$)|(\*\*[^*]+\*\*)|(`[^`]+`)/g;
+  const pattern =
+    /(\$\$[\s\S]+?\$\$)|(\\\[[\s\S]+?\\\])|(\$[^$\n]+\$)|(\\\([\s\S]+?\\\))|(\*\*[^*]+\*\*)|(`[^`]+`)/g;
   const nodes: React.ReactNode[] = [];
   let last = 0;
 
@@ -385,8 +396,12 @@ function renderInline(text: string): React.ReactNode[] {
     const token = match[0];
     if (token.startsWith("$$")) {
       nodes.push(<Tex key={at} latex={token.slice(2, -2)} display />);
+    } else if (token.startsWith("\\[")) {
+      nodes.push(<Tex key={at} latex={token.slice(2, -2)} display />);
     } else if (token.startsWith("$")) {
       nodes.push(<Tex key={at} latex={token.slice(1, -1)} />);
+    } else if (token.startsWith("\\(")) {
+      nodes.push(<Tex key={at} latex={token.slice(2, -2)} />);
     } else if (token.startsWith("**")) {
       nodes.push(
         <strong key={at} className="font-semibold text-text">

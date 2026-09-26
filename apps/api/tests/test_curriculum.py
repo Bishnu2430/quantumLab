@@ -163,8 +163,10 @@ def test_circuit_produces_the_probabilities_the_lesson_claims(
     )
     result = backend.run(ir, SimulationOptions(shots=1, mode="statevector"))
 
+    actuals: dict[str, float] = {}
     for basis_state, claimed in circuit["expected"].items():
         actual = result.probabilities.get(basis_state, 0.0)
+        actuals[basis_state] = actual
         assert actual == pytest.approx(claimed, abs=tolerance), (
             f"{slug}: lesson claims P({basis_state}) = {claimed}, "
             f"simulator gives {actual}"
@@ -175,6 +177,12 @@ def test_circuit_produces_the_probabilities_the_lesson_claims(
     assert total_claimed == pytest.approx(1.0, abs=1e-6), (
         f"{slug}: stated probabilities sum to {total_claimed}, not 1.0"
     )
+
+    readout = ", ".join(
+        f"P({state})={actuals[state]:.4f} (lesson claims {claimed:.4f})"
+        for state, claimed in circuit["expected"].items()
+    )
+    print(f"[verified] {slug}: {readout}")
 
 
 @pytest.mark.parametrize("slug", CIRCUIT_SLUGS)
@@ -223,13 +231,22 @@ def test_code_example_runs_and_prints_what_it_promises(slug: str, tmp_path: Path
     script = tmp_path / "example.py"
     script.write_text(code["code"], encoding="utf-8")
 
-    proc = subprocess.run(
-        [sys.executable, str(script)],
-        capture_output=True,
-        text=True,
-        timeout=120,
-        cwd=tmp_path,
-    )
+    # qiskit-aer's native extension occasionally segfaults under Windows when
+    # several simulator subprocesses launch in quick succession (exit code
+    # 3221225477 / 0xC0000005, an access violation unrelated to the snippet's
+    # content). Retry once before failing so that transient crash doesn't
+    # mask a passing example.
+    attempts = 2
+    for attempt in range(1, attempts + 1):
+        proc = subprocess.run(
+            [sys.executable, str(script)],
+            capture_output=True,
+            text=True,
+            timeout=120,
+            cwd=tmp_path,
+        )
+        if proc.returncode == 0 or attempt == attempts:
+            break
 
     assert proc.returncode == 0, (
         f"{slug}: example exited {proc.returncode}\nstderr:\n{proc.stderr[-1500:]}"
@@ -240,3 +257,9 @@ def test_code_example_runs_and_prints_what_it_promises(slug: str, tmp_path: Path
             f"{slug}: expected output {fragment!r} not found.\n"
             f"Actual stdout:\n{proc.stdout[-1500:]}"
         )
+
+    last_line = next(
+        (line for line in reversed(proc.stdout.strip().splitlines()) if line.strip()),
+        "(no output)",
+    )
+    print(f"[verified] {slug}: code ran, last line -> {last_line}")
